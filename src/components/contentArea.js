@@ -1,4 +1,4 @@
-import { h, render, Component } from 'preact';
+import {h, render, Component } from 'preact';
 
 export class ContentArea extends Component {
 	constructor(props) {

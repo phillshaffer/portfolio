@@ -1,4 +1,4 @@
-import { h, render, Component } from 'preact';
+import {h, render, Component } from 'preact';
 
 export class Section extends Component {
 	constructor(props) {
@@ -11,7 +11,6 @@ export class Section extends Component {
 	
 	componentDidMount(props) {
 		let self = this
-		self.setState({scrimDisplay: 'none'})
 
 		window.addEventListener("load", function(event) {
 			let componentHeight = self.section.offsetHeight
@@ -63,6 +62,7 @@ export class Section extends Component {
 	render(props, state) {
 		
 		const style = {
+			'position': 'relative',
 			'height': state.componentHeight + 'px',
 			'display': 'flex',
 			'flex-direction': 'column',

@@ -1,4 +1,4 @@
-import { h, render, Component } from 'preact';
+import {h, render, Component } from 'preact';
 
 export class Image extends Component {
 	constructor(props) {
