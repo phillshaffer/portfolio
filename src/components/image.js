@@ -7,11 +7,10 @@ export class Image extends Component {
 	}
 	
 	componentDidMount(props) {
-
 	}
 
-	openTargetURL(targetURL) {
-		window.open(targetURL)
+	openTargetURL() {
+		window.open(this.props.targetUrl)
 	}
 
 	render(props, state) {
@@ -23,8 +22,8 @@ export class Image extends Component {
 			'margin-bottom': props.bottom + 'px'
 		}
 
-		//return h('img', {src: './images/' + props.image, style: style, onClick: this.openTargetURL(props.targetUrl)})
-		return h('img', {src: './images/' + props.image, style: style})
+		return h('img', {src: './images/' + props.image, style: style, onClick: this.openTargetURL})
+		//add bit here to have overlay option that says click here if there is a targetURL
 
 	}
 }

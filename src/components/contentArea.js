@@ -6,17 +6,16 @@ export class ContentArea extends Component {
 	}
 	
 	componentDidMount(props) {
-
 	}
 
 	render(props, state) {
 		
 		const style = {
-      'width': '100%',
       'max-width': props.width + 'px',
       'display': 'flex',
 			'flex-direction': 'column',
       'align-items': 'flex-start',
+      'padding': '0px 16px 0px 16px',
 			'margin-top': props.top + 'px',
 			'margin-bottom': props.bottom + 'px'
 		}

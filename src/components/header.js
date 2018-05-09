@@ -3,7 +3,6 @@ import {h, render, Component } from 'preact';
 export class Header extends Component {
 	constructor(props) {
     super(props);
-    //this.state = {style: ' '}
     this.state = {headerDisplaySticky: false}
     this.onScroll = this.onScroll.bind(this)
 	}
@@ -27,9 +26,6 @@ export class Header extends Component {
     }
       
   }
-
-	//}
-
 
 	render(props, state) {
     
@@ -56,8 +52,6 @@ export class Header extends Component {
     else {
       return h('header', {style: style}, 'first')
     }
-
-
 
 	}
 }

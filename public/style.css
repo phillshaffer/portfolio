@@ -5,6 +5,13 @@ body {
   padding: 0px;
 }
 
+#masthead h1, #masthead p {
+  color: white;
+}
+
+#masthead p {
+  font-weight: 400;
+}
 
 p {
   color: #999999;
@@ -13,6 +20,15 @@ p {
   font-weight: 300;
   padding: 0px;
   margin: 0px 0px 16px 0px;
+}
+
+h1 {
+  color: #111111;
+  font-size: 4rem;
+  line-height: 4.75rem;
+  font-weight: 700;
+  padding: 0px;
+  margin: 0px 0px 36px 0px;
 }
 
 h2 {

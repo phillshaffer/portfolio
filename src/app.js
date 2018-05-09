@@ -52,5 +52,4 @@ class App extends Component {
 	}
 }
 
-
 render(h(App), document.body);

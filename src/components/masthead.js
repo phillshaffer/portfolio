@@ -12,16 +12,31 @@ export class Masthead extends Component {
     
     const style = {
       'height': props.mastheadHeight + 'px',
-      //'height': '500px',
       'width': '100%',
       'position': 'fixed',
-      'background-color': 'blue',
+      'top': '0',
       'z-index': '-99',
-      'top': '0px'
+      'background-image': 'url("./images/' + props.backgroundImage + '")',
+      'background-position': 'center center',
+      'background-repeat': 'no-repeat',
+      'background-size': 'cover',
+    }
+
+    const overlayStyle = {
+      'position': 'absolute',
+      'top': '0',
+      'width': '100%',
+      'height': '100%',
+      'display': 'flex',
+			'flex-direction': 'column',
+			'align-items': 'center',
+      'background-color': props.overlayBackgroundColor
     }
 
     return (
-      h('div', {id: 'masthead', style: style}, 'masthead')
+      h('div', {id: 'masthead', style: style},
+        h('div', {id: 'overlay', style: overlayStyle}, props.children)
+      )
     )
   }
 }

@@ -4,44 +4,66 @@ export class Section extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {componentHeight: ' '}
-		this.state = {scrimDisplay: ' '}
+		this.state = {scrimDisplay: 'none'}
 		this.state = {scrimPosition: ' '}
 		this.state = {scrimBackgroundColor: ' '}
+		this.onScroll = this.onScroll.bind(this)
 	}
 	
 	componentDidMount(props) {
 		let self = this
+		
+		window.addEventListener("load", function () {
+			self.setScrimPosition(self.getScrimPosition(self.setComponentHeight(self.getComponentHeight()), self.props.scrimHeight))
+		}, false)
+		window.addEventListener("scroll", this.onScroll, false)
+		window.addEventListener("resize", function () {
+			self.setScrimPosition(self.getScrimPosition(self.setComponentHeight(self.getComponentHeight()), self.props.scrimHeight))
+		}, false)
 
-		window.addEventListener("load", function(event) {
-			let componentHeight = self.section.offsetHeight
-			self.setState({componentHeight: componentHeight})
-			self.setState({scrimPosition: self.getOverlayPosition(componentHeight, self.props.scrimHeight)})
-		})
+	}
 
-		window.addEventListener("scroll", function(event) {
-			let scrollPosition = this.scrollY
-			const componentHeight = self.state.componentHeight
-			const componentPosition = self.section.getBoundingClientRect().y + scrollPosition
-			const scrimPosition = self.getOverlayPosition(componentHeight, self.props.scrimHeight)
-			let componentScrollPosition = self.getComponentScrollPosition(scrollPosition, componentPosition)
-			
-			if (scrollPosition > componentPosition && scrollPosition < componentPosition + componentHeight) {
-				if(componentScrollPosition > self.state.scrimPosition) {
-					self.setState({scrimDisplay: 'block'})
-					self.setState({scrimBackgroundColor: 'rgba(120, 120, 120, ' + self.getOverlayOpacity(componentScrollPosition, scrimPosition, self.props.scrimHeight) + ')'})
-				}
-				else if(componentScrollPosition < self.state.scrimPosition) {
-					self.setState({scrimDisplay: 'none'})
-				}
+	componentWillUnmount() {
+		window.removeEventListener('load');
+		window.removeEventListener('scroll', this.onScroll, false);
+		window.removeEventListener('resize');
+  }
+
+	onScroll() {
+		console.log('here')
+		let scrollPosition = window.scrollY
+		const componentPosition = this.section.getBoundingClientRect().y + scrollPosition
+		let componentScrollPosition = this.getComponentScrollPosition(scrollPosition, componentPosition)
+
+		if (scrollPosition > componentPosition && scrollPosition < componentPosition + this.state.componentHeight) {
+			if(componentScrollPosition > this.state.scrimPosition) {
+				this.setState({scrimDisplay: 'block'})
+				this.setState({scrimBackgroundColor: 'rgba(120, 120, 120, ' + this.getScrimOpacity(componentScrollPosition, this.state.scrimPosition, this.props.scrimHeight) + ')'})
 			}
-		})
+			else if(componentScrollPosition < this.state.scrimPosition) {
+				this.setState({scrimDisplay: 'none'})
+			}
+		}
+	}
 
-		window.addEventListener('resize', function() {
-			self.section.style.height = 'auto'
-			let componentHeight = self.section.offsetHeight
-			self.setState({componentHeight: componentHeight})
-			self.setState({scrimPosition: self.getOverlayPosition(componentHeight, self.props.scrimHeight)})
-		})
+	getComponentHeight() {
+		let componentHeight = this.section.offsetHeight
+		return componentHeight
+	}
+
+	getScrimPosition(componentHeight, offset) {
+		let overlayPosition =  componentHeight - offset
+		return overlayPosition
+	}
+
+	setComponentHeight(componentHeight) {
+		this.setState({componentHeight: componentHeight})
+		return componentHeight
+	}
+
+	setScrimPosition(overlayPosition) {
+		this.setState({scrimPosition: overlayPosition})
+		return overlayPosition
 	}
 
 	getComponentScrollPosition(scrollPosition, componentPosition) {
@@ -49,21 +71,16 @@ export class Section extends Component {
 		return componentScrollPosition
 	}
 
-	getOverlayPosition(componentHeight, offset) {
-		let componentOverlayPosition =  componentHeight - offset
-		return componentOverlayPosition
-	}
-
-	getOverlayOpacity(componentScrollPosition, scrimPosition, scrimHeight) {	
+	getScrimOpacity(componentScrollPosition, scrimPosition, scrimHeight) {	
 		let opacity = (componentScrollPosition - scrimPosition) / scrimHeight
 		return opacity
 	}
 	
 	render(props, state) {
-		
+
 		const style = {
 			'position': 'relative',
-			'height': state.componentHeight + 'px',
+			'height': 'auto',
 			'display': 'flex',
 			'flex-direction': 'column',
 			'align-items': 'center',
