@@ -1,3 +1,19 @@
+html {
+  font-size: calc(12px + 0.25vw)
+}
+
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: calc(9.5px + 0.25vw)
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: calc(7px + 0.25vw)
+  }
+}
+
 body {
   background-color: #ffffff;
   font-family: 'Open Sans', sans-serif;
@@ -11,6 +27,11 @@ body {
 
 #masthead p {
   font-weight: 400;
+}
+
+#masthead #contentArea {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 p {

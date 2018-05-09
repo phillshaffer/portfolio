@@ -17,7 +17,7 @@ export const Home = (props) => {
 	return ( 
 		h('div', null,	//make id = project name
 			h(Masthead, {mastheadHeight: props.viewportHeight, backgroundImage: 'Adobe XD Component Stickersheet.png', overlayBackgroundColor: 'rgba(41, 141, 225, .8)'},
-				h(ContentArea, {width: '736', top: props.viewportHeight * .2,},
+				h(ContentArea, {width: '736'},
 					h('h1', null, 'An Accessibility Inspired Design System'),
 					h('p', null, 'In October of 2017, Highspot had closed their B Round of funding and was closing in on an ever growing list of Fortune 500 clients. Unlike any other startup, the Highspot product was a mishmash of user experience patterns quickly implemented over time in a race to define a new market category. As a result when a major client made the request for the product to be WCAG 2.0 AA compliant, the task ahead would be met with many challenges.')
 				)
