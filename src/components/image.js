@@ -23,7 +23,7 @@ export class Image extends Component {
 		}
 
 		return h('img', {src: './images/' + props.image, style: style, onClick: this.openTargetURL})
-		//add bit here to have overlay option that says click here if there is a targetURL
+		//add bit here to have overlay option that says click here if there is a targetURL, currently a bug that opens blank for all images
 
 	}
 }

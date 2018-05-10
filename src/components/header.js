@@ -30,16 +30,22 @@ export class Header extends Component {
 	render(props, state) {
     
     const style = {
+      'display': 'flex',
+      'align-items': 'center',
       'height': props.height + 'px',
       'width': '100%',
+      'padding-left': '16px',
       'background-color': 'rgba(255, 255, 255, 1)'
     }
 
     const styleSticky = {
       'position': 'fixed',
+      'display': 'flex',
+      'align-items': 'center',
       'height': props.height + 'px',
       'width': '100%',
       'top': '0px',
+      'padding-left': '16px',
       'z-index': '1000',
       'background-color': 'rgba(255, 255, 255, .70)'
     }
@@ -47,10 +53,14 @@ export class Header extends Component {
     console.log('header rendered')
 
     if (state.headerDisplaySticky) {
-      return h('header', {style: styleSticky}, 'first')
+      return h('header', {style: styleSticky},
+        h('h4', null, 'Phill Shaffer')
+      )
     }
     else {
-      return h('header', {style: style}, 'first')
+      return h('header', {style: style},
+        h('h4', null, 'Phill Shaffer')
+      )
     }
 
 	}

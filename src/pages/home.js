@@ -24,11 +24,7 @@ export const Home = (props) => {
 			),
 			h('main', {style: mainStyle},
 				h(Header, {height: 56, mastheadHeight: props.viewportHeight}),
-				//h('div', {style: 'height: 56px; background-color: green;'}),
 				h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-					h(ContentArea, {width: '736'},
-						h('p', null, 'In October of 2017, Highspot had closed their B Round of funding and was closing in on an ever growing list of Fortune 500 clients. Unlike any other startup, the Highspot product was a mishmash of user experience patterns quickly implemented over time in a race to define a new market category. As a result when a major client made the request for the product to be WCAG 2.0 AA compliant, the task ahead would be met with many challenges.'),
-					),
 					h(ContentArea, {width: '1440'},
 						h(Image, {image: 'Create Spot _MacBookPro.png'})
 					)
