@@ -22,7 +22,13 @@ export class Image extends Component {
 			'margin-bottom': props.bottom + 'px'
 		}
 
-		return h('img', {src: './images/' + props.image, style: style, onClick: this.openTargetURL})
+		if (props.targetUrl) {
+			return h('img', {src: './images/' + props.image, style: style, onClick: this.openTargetURL})
+		}
+		else {
+			return h('img', {src: './images/' + props.image, style: style})
+		}
+
 		//add bit here to have overlay option that says click here if there is a targetURL, currently a bug that opens blank for all images
 
 	}
