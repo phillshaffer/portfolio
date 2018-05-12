@@ -7,27 +7,31 @@ import {Masthead} from './components/masthead';
 import {Header} from './components/header';
 import {Section} from './components/section';
 import {ContentArea} from './components/contentArea';
+import {ImageGallery} from './components/imageGallery';
 import {Image} from './components/image';
 
 class Site extends Component {
 	constructor(props) {
 		super(props);
+		this.state = ({viewportWidth: ' '});
 		this.state = ({viewportHeight: ' '});
-		this.getWindowHeight = this.getWindowHeight.bind(this);
+		this.getViewportSize = this.getViewportSize.bind(this);
 	};
 
 	componentDidMount(props) {
-		window.addEventListener('load', this.getWindowHeight, false);
-		window.addEventListener('resize', this.getWindowHeight, false);
+		window.addEventListener('load', this.getViewportSize, false);
+		window.addEventListener('resize', this.getViewportSize, false);
   };
 
   componentWillUnmount() {
-		window.removeEventListener('load', this.getWindowHeight, false);
-		window.addEventListener('resize', this.getWindowHeight, false);
+		window.removeEventListener('load', this.getViewportSize, false);
+		window.addEventListener('resize', this.getViewportSize, false);
   };
 
-  getWindowHeight() {
+  getViewportSize() {
+		let windowWidth = window.innerWidth;
 		let windowHeight = window.innerHeight;
+		this.setState({viewportWidth: windowWidth});
     this.setState({viewportHeight: windowHeight});
   };
 
@@ -36,7 +40,7 @@ class Site extends Component {
 		return (
 			h('div', {className: 'Site'},
 				h(Router, null,
-					h(Home, {path: '/', viewportHeight: state.viewportHeight}),
+					h(Home, {path: '/', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
 					h(About, {path: '/about'})
 				)
 			)

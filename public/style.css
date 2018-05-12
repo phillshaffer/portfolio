@@ -199,9 +199,19 @@ body {
 
 /* ContentArea Component */
 
+.ImageGallery__imageArea {
+
+}
+
+
+/* ContentArea Component */
+
 .Image {
   max-width: 100%;
   height: auto;
   /* margin-top: defined in component */
   /* margin-bottom: defined in component */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

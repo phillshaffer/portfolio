@@ -43,3 +43,5 @@ export class Header extends Component {
     );
 	};
 };
+
+// has left padding bug, causes streen to good off to right
