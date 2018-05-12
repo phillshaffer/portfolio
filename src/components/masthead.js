@@ -1,14 +1,14 @@
 import {h, render, Component } from 'preact';
 
 export class Masthead extends Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
-	};
-	
-	componentDidMount(props) {
   };
 
-	render(props, state) {
+  componentDidMount(props) {
+  };
+
+  render(props, state) {
     
     const componentInlineStyle = {
       Masthead: {
