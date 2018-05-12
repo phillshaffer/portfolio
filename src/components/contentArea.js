@@ -16,7 +16,7 @@ export class ContentArea extends Component {
 				marginTop: props.top + 'px',
 				marginBottom: props.bottom + 'px'
       }
-		}
+		};
 
 		return h('div', {className: 'ContentArea', style: componentInlineStyle.ContentArea}, props.children);
 		

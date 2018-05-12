@@ -18,7 +18,7 @@ export class Masthead extends Component {
       Masthead__overlay: {
         backgroundColor: props.overlayBackgroundColor
       }
-    }
+    };
 
     return (
       h('div', {className: 'Masthead', style: componentInlineStyle.Masthead},

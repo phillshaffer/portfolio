@@ -34,7 +34,7 @@ export class Header extends Component {
       Header: {
         height: props.height + 'px'
       }
-    }
+    };
 
     return ( 
       h('header', {className: 'Header', style: Object.assign(componentInlineStyle.Header, state.headerDisplay)},

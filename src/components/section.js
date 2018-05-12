@@ -88,7 +88,7 @@ export class Section extends Component {
 				height: props.scrimHeight + 'px',
 				backgroundColor: state.scrimBackgroundColor
 			}
-    }
+    };
 
 		return ( 
 			h('section', {className: 'Section', ref: section => this.section = section, style: componentInlineStyle.Section}, props.children,

@@ -13,7 +13,7 @@ export const Home = (props) => {
 			marginTop: props.viewportHeight,
 			paddingTop: '56px'
 		}
-	}
+	};
 	
 	return ( 
 		h('div', {className: 'page'},
@@ -68,5 +68,5 @@ export const Home = (props) => {
 				)
 			)
 		)
-	)
+	);
 };

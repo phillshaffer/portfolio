@@ -12,19 +12,19 @@ import {Image} from './components/image';
 class Site extends Component {
 	constructor(props) {
 		super(props);
-		this.state = ({viewportHeight: ' '})
-		this.getWindowHeight = this.getWindowHeight.bind(this)
+		this.state = ({viewportHeight: ' '});
+		this.getWindowHeight = this.getWindowHeight.bind(this);
 	};
 
 	componentDidMount(props) {
 		window.addEventListener('load', this.getWindowHeight, false);
 		window.addEventListener('resize', this.getWindowHeight, false);
-  }
+  };
 
   componentWillUnmount() {
 		window.removeEventListener('load', this.getWindowHeight, false);
 		window.addEventListener('resize', this.getWindowHeight, false);
-  }
+  };
 
   getWindowHeight() {
 		let windowHeight = window.innerHeight;
