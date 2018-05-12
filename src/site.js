@@ -9,12 +9,12 @@ import {Section} from './components/section';
 import {ContentArea} from './components/contentArea';
 import {Image} from './components/image';
 
-class App extends Component {
+class Site extends Component {
 	constructor(props) {
 		super(props);
 		this.state = ({viewportHeight: ' '})
 		this.getWindowHeight = this.getWindowHeight.bind(this)
-	}
+	};
 
 	componentDidMount(props) {
 		window.addEventListener('load', this.getWindowHeight, false);
@@ -28,28 +28,20 @@ class App extends Component {
 
   getWindowHeight() {
 		let windowHeight = window.innerHeight;
-		console.log(windowHeight)
-    this.setState({viewportHeight: windowHeight})
-  }
+    this.setState({viewportHeight: windowHeight});
+  };
 
 	render(props, state) {
-		console.log('app redered')
-		
-		const style = {
-			'position': 'absolute',
-			'height': '100%',
-    	'width': '100%'
-		}
 		
 		return (
-			h('div', {id: 'app', style: style},
+			h('div', {className: 'Site'},
 				h(Router, null,
 					h(Home, {path: '/', viewportHeight: state.viewportHeight}),
 					h(About, {path: '/about'})
 				)
 			)
-		)
-	}
-}
+		);
+	};
+};
 
-render(h(App), document.body);
+render(h(Site), document.body);

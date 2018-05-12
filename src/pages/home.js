@@ -7,22 +7,23 @@ import {ContentArea} from '../components/contentArea';
 import {Image} from '../components/image';
 
 export const Home = (props) => {
-	console.log('home redered')
 	
-	const mainStyle = {
-		'position': 'relative',
-		'margin-top': props.viewportHeight
+	const componentInlineStyle = {
+		page__main: {
+			marginTop: props.viewportHeight,
+			paddingTop: '56px'
+		}
 	}
 	
 	return ( 
-		h('div', null,	//make id = project name
+		h('div', {className: 'page'},
 			h(Masthead, {mastheadHeight: props.viewportHeight, backgroundImage: 'Adobe XD Component Stickersheet.png', overlayBackgroundColor: 'rgba(41, 141, 225, .8)'},
 				h(ContentArea, {width: '736'},
 					h('h1', null, 'An Accessibility Inspired Design System'),
 					h('p', null, 'In October of 2017, Highspot had closed their B Round of funding and was closing in on an ever growing list of Fortune 500 clients. Unlike any other startup, the Highspot product was a mishmash of user experience patterns quickly implemented over time in a race to define a new market category. As a result when a major client made the request for the product to be WCAG 2.0 AA compliant, the task ahead would be met with many challenges.')
 				)
 			),
-			h('main', {style: mainStyle},
+			h('main', {style: componentInlineStyle.page__main},
 				h(Header, {height: 56, mastheadHeight: props.viewportHeight}),
 				h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
 					h(ContentArea, {width: '1440'},
@@ -69,67 +70,3 @@ export const Home = (props) => {
 		)
 	)
 };
-
-
-
-
-/*
-function myFunction() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        document.getElementById("myImg").className = "slideUp";
-    }
-}*/
-
-
-//export { Home }; 
-
-/*
-class Home extends Component {
-	componentDidMount() {
-		this.setState({ message:'Hello!' });
-	}
-	render(props, state) {
-		return (
-			h('div', {id:'app'},
-				h(Header, { message: state.message }),
-				h(Main)
-			)
-		);
-	}
-}
-*/
-
-/** Components can just be pure functions */
-/*
-const Header = (props) => {
-	return h('header', null,
-		h('h1', null, 'App'),
-		props.message && h('h2', null, props.message)
-	);
-};
-*/
-
-/** Instead of JSX, use: h(type, props, ...children) */
-/*
-class Main extends Component {
-	render() {
-		const items = [1,2,3,4,5].map( (item) => (
-			h('li', {id:item}, 'Item '+item)
-		));
-		return (
-			h('main', null,
-				h('ul', null, items)
-			)
-		);
-	}
-}
-
-
-//render(h(Home), document.body);
-*/
-/*
-const Test = (props) => {
-	return h('p', null,"test2");
-};
-
-render(h(Test), document.getElementById('app'));*/

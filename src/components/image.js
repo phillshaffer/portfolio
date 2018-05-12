@@ -3,33 +3,31 @@ import {h, render, Component } from 'preact';
 export class Image extends Component {
 	constructor(props) {
 		super(props);
-		this.openTargetURL = this.openTargetURL.bind(this);
-	}
-	
-	componentDidMount(props) {
+		this.openTargetUrl = this.openTargetUrl.bind(this);
 	}
 
-	openTargetURL() {
-		window.open(this.props.targetUrl)
+	openTargetUrl(targetUrl) {
+		window.open(targetUrl)
 	}
 
 	render(props, state) {
-		
-		const style = {
-			'max-width': '100%',
-			'height': 'auto',
-			'margin-top': props.top + 'px',
-			'margin-bottom': props.bottom + 'px'
-		}
 
-		if (props.targetUrl) {
-			return h('img', {src: './images/' + props.image, style: style, onClick: this.openTargetURL})
-		}
-		else {
-			return h('img', {src: './images/' + props.image, style: style})
-		}
+    const componentInlineStyle = {
+      Image: {
+				marginTop: props.top + 'px',
+				marginBottom: props.bottom + 'px'
+      }
+    }
 
-		//add bit here to have overlay option that says click here if there is a targetURL, currently a bug that opens blank for all images
-
-	}
-}
+		return h('img', {className: 'Image', style: componentInlineStyle.Image, src: './images/' + props.image, onClick:
+			targetUrl => {
+				if (props.targetUrl) {
+					this.openTargetUrl(this.props.targetUrl)
+				}
+				else {
+					return null;
+				}
+			}
+		});
+	};
+};

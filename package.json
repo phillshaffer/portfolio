@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "portfolio of work",
-  "main": "app.js",
+  "main": "site.js",
   "scripts": {
     "build": "webpack",
     "start": "",
