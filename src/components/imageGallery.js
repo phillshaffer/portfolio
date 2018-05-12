@@ -2,15 +2,15 @@ import {h, render, Component } from 'preact';
 import {Image} from '../components/image';
 
 export class ImageGallery extends Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
     this.getImageAreaWidth = this.getImageAreaWidth.bind(this);
     this.getMaxColumns = this.getMaxColumns.bind(this);
-	}
+  }
 
-  getImageAreaWidth(imageGalleryWidth, imageCount)  {
+  getImageAreaWidth(imageGalleryWidth, imageCount) {
     let maxColumnsAllowed = this.getMaxColumns(imageGalleryWidth);
-    
+
     if (imageCount < maxColumnsAllowed ) {
       return imageGalleryWidth / imageCount
     }
@@ -43,7 +43,7 @@ export class ImageGallery extends Component {
 
   };
 
-	render(props, state) {
+  render(props, state) {
 
     const componentInlineStyle = {
       ImageGallery: {
@@ -51,8 +51,8 @@ export class ImageGallery extends Component {
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
         maxWidth: props.width + 'px',
-				marginTop: props.top + 'px',
-				marginBottom: props.bottom + 'px'
+        marginTop: props.top + 'px',
+        marginBottom: props.bottom + 'px'
       },
       ImageGallery__imageArea: {
         width: this.getImageAreaWidth(this.props.width, this.props.images.length) - (props.padding * 2) + 'px',
@@ -69,5 +69,5 @@ export class ImageGallery extends Component {
 
     return h('div', {className: 'ImageGallery', style: componentInlineStyle.ImageGallery}, images);
 
-	};
+  };
 };

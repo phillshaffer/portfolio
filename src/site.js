@@ -11,41 +11,41 @@ import {ImageGallery} from './components/imageGallery';
 import {Image} from './components/image';
 
 class Site extends Component {
-	constructor(props) {
-		super(props);
-		this.state = ({viewportWidth: ' '});
-		this.state = ({viewportHeight: ' '});
-		this.getViewportSize = this.getViewportSize.bind(this);
-	};
+  constructor(props) {
+    super(props);
+    this.state = ({viewportWidth: ' '});
+    this.state = ({viewportHeight: ' '});
+    this.getViewportSize = this.getViewportSize.bind(this);
+  };
 
-	componentDidMount(props) {
-		window.addEventListener('load', this.getViewportSize, false);
-		window.addEventListener('resize', this.getViewportSize, false);
+  componentDidMount(props) {
+    window.addEventListener('load', this.getViewportSize, false);
+    window.addEventListener('resize', this.getViewportSize, false);
   };
 
   componentWillUnmount() {
-		window.removeEventListener('load', this.getViewportSize, false);
-		window.addEventListener('resize', this.getViewportSize, false);
+    window.removeEventListener('load', this.getViewportSize, false);
+    window.addEventListener('resize', this.getViewportSize, false);
   };
 
   getViewportSize() {
-		let windowWidth = window.innerWidth;
-		let windowHeight = window.innerHeight;
-		this.setState({viewportWidth: windowWidth});
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    this.setState({viewportWidth: windowWidth});
     this.setState({viewportHeight: windowHeight});
   };
 
-	render(props, state) {
-		
-		return (
-			h('div', {className: 'Site'},
-				h(Router, null,
-					h(Home, {path: '/', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
-					h(About, {path: '/about'})
-				)
-			)
-		);
-	};
+  render(props, state) {
+
+    return (
+      h('div', {className: 'Site'},
+        h(Router, null,
+          h(Home, {path: '/', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
+          h(About, {path: '/about'})
+        )
+      )
+    );
+  };
 };
 
 render(h(Site), document.body);

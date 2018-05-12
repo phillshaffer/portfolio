@@ -1,12 +1,12 @@
 import {h, render, Component } from 'preact';
 
 export class Header extends Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {headerDisplay: {position: 'absolute', backgroundColor: 'rgba(255, 255, 255, 1)'}};
     this.onScroll = this.onScroll.bind(this);
-	};
-	
+  };
+
   componentDidMount() {
     window.addEventListener('scroll', this.onScroll, false);
   };
@@ -18,7 +18,7 @@ export class Header extends Component {
   onScroll() {
     let scrollPosition = window.scrollY;
     let mastheadHeight = window.innerHeight;
-    
+
     if (scrollPosition <= mastheadHeight) {
       this.setState({headerDisplay: {position: 'absolute', backgroundColor: 'rgba(255, 255, 255, 1)'}});
     }
@@ -28,8 +28,8 @@ export class Header extends Component {
 
   };
 
-	render(props, state) {
-    
+  render(props, state) {
+
     const componentInlineStyle = {
       Header: {
         height: props.height + 'px'
@@ -41,7 +41,8 @@ export class Header extends Component {
         h('h4', null, 'Phill Shaffer')
       )
     );
-	};
+  };
 };
 
 // has left padding bug, causes streen to good off to right
+// scroll bar disapears if user refreshed after scrolling a ways down the page
