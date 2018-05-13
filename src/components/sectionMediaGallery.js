@@ -1,7 +1,7 @@
 import {h, render, Component } from 'preact';
 import {Image} from '../components/image';
 
-export class ImageGallery extends Component {
+export class SectionMediaGallery extends Component {
   constructor(props) {
     super(props);
     this.getImageAreaWidth = this.getImageAreaWidth.bind(this);
@@ -46,28 +46,29 @@ export class ImageGallery extends Component {
   render(props, state) {
 
     const componentInlineStyle = {
-      ImageGallery: {
+      SectionMediaGallery: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
         maxWidth: props.width + 'px',
-        marginTop: props.top + 'px',
-        marginBottom: props.bottom + 'px'
+        padding: props.galleryPadding + 'px',  //used to override padding for full width gallerys
+        marginTop: props.top + 'rem',
+        marginBottom: props.bottom + 'rem'
       },
-      ImageGallery__imageArea: {
-        width: this.getImageAreaWidth(this.props.width, this.props.images.length) - (props.padding * 2) + 'px',
+      SectionMediaGallery__imageArea: {
+        width: this.getImageAreaWidth(this.props.width, this.props.images.length) - (props.imagePadding * 2) + 'px',
         height: 'auto',
-        padding: props.padding + 'px'
+        padding: props.imagePadding + 'px'
       }
     };
 
     const images = props.images.map((image) => (
-      h('div', {className: 'ImageGallery__imageArea', style: componentInlineStyle.ImageGallery__imageArea },
+      h('div', {className: 'SectionMediaGallery__imageArea', style: componentInlineStyle.SectionMediaGallery__imageArea},
         h(Image, {image: image})
       )
     ));
 
-    return h('div', {className: 'ImageGallery', style: componentInlineStyle.ImageGallery}, images);
+    return h('div', {className: 'SectionMediaGallery', style: componentInlineStyle.SectionMediaGallery}, images);
 
   };
 };

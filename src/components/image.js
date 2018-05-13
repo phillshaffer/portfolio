@@ -12,14 +12,14 @@ export class Image extends Component {
 
   render(props, state) {
 
-    const componentInlineStyle = {
-      Image: {
-        marginTop: props.top + 'px',
-        marginBottom: props.bottom + 'px'
-      }
-    };
+    // const componentInlineStyle = {
+    //   Image: {
+    //     marginTop: props.top + 'px',
+    //     marginBottom: props.bottom + 'px'
+    //   }
+    // };
 
-    return h('img', {className: 'Image', style: componentInlineStyle.Image, src: './images/' + props.image, onClick:
+    return h('img', {className: 'Image', src: './images/' + props.image, onClick:
       targetUrl => {
         if (props.targetUrl) {
           this.openTargetUrl(this.props.targetUrl)

@@ -6,8 +6,9 @@ import {About} from './pages/about';
 import {Masthead} from './components/masthead';
 import {Header} from './components/header';
 import {Section} from './components/section';
-import {ContentArea} from './components/contentArea';
-import {ImageGallery} from './components/imageGallery';
+import {SectionContent} from './components/sectionContent';
+import {SectionMediaGallery} from './components/sectionMediaGallery';
+import {SectionMedia} from './components/sectionMedia';
 import {Image} from './components/image';
 
 class Site extends Component {
