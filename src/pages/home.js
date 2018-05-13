@@ -121,6 +121,10 @@ export const Home = (props) => {
             h('p', null, `To remediate these requirements we identified a set of components that surfaced within many of the product's dialog based forms. As an initial proof of concept, I designed for components that surfaced within the create spot user workflow. This workflow included the following components: Dialog, Single Line Text Input, Text Area Input, Dropdown and Button components. To round out the design system, I also ensured scalability of this component design by designing additional components outside the initial implementation scope.`)
           ),
           h(SectionMediaGallery, {images: ['Create_Spot_dialog_with_instruction@2x.png','Create_Spot_dialog_without_instruction@2x.png'], width: '736', imagePadding: '4'}
+          ),
+          h(SectionMediaGallery, {images: ['Create_Spot_dialog_with_hover@2x.png','Create_Spot_dialog_with_focus@2x.png'], width: '736', top: '0', imagePadding: '4'}
+          ),
+          h(SectionMediaGallery, {images: ['Create_Spot_dialog_with_error@2x.png','Create_Spot_dialog_with_data@2x.png'], width: '736', top: '0', imagePadding: '4'}
           )
         )
       )
