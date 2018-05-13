@@ -100,16 +100,16 @@ body {
   z-index: 100;
   display: flex;
   align-items: center;
-  /*height: defined in component */
+  height: 55px;
   width: 100%;
-  padding-left: 16px;
+  border-bottom: solid 1px #eeeeee
   /*background-color: defined in component */
 }
 
 .Header h4 {
-  margin: 0px;
   font-weight: 600;
   color: #999999;
+  margin: 0px 0px 0px 32px;
 }
 
 /* Section Component */
@@ -231,7 +231,7 @@ body {
 /* SectionMediaGallery Component */
 
 .SectionMediaGallery {
-  padding: 0px 16px 0px 16px;
+  padding: 0px 16px 0px 16px;  /* overrides defined in component */
   margin: 4rem 0rem;
   /* margin-top: overrides defined in component */
   /* 'margin-bottom': overrides defined in component */

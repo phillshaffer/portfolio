@@ -91,7 +91,7 @@ export class Section extends Component {
     };
 
     return ( 
-      h('section', {className: 'Section', ref: section => this.section = section, style: componentInlineStyle.Section}, props.children,
+      h('section', {className: 'Section', style: componentInlineStyle.Section, ref: section => this.section = section}, props.children,
         h('div', {className: 'Section__scrim', style: componentInlineStyle.Section__scrim})
       )
     );

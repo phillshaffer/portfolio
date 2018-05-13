@@ -8,7 +8,7 @@ import {SectionMediaGallery} from '../components/sectionMediaGallery';
 import {SectionMedia} from '../components/sectionMedia';
 import {Image} from '../components/image';
 
-export const Home = (props) => {
+export const anAccessibilityInspiredDesignSystem = (props) => {
 
   const componentInlineStyle = {
     page__main: {
@@ -26,7 +26,7 @@ export const Home = (props) => {
         )
       ),
       h('main', {style: componentInlineStyle.page__main},
-        h(Header, {height: 56, mastheadHeight: props.viewportHeight}),
+        h(Header, {mastheadHeight: props.viewportHeight}),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
           h(SectionMedia, {width: '1440', top: '0', bottom: '0'},
             h(Image, {image: 'Create_Spot_MacBookPro@2x.png'})
