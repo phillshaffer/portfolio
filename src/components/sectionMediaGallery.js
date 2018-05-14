@@ -4,19 +4,33 @@ import {Image} from '../components/image';
 export class SectionMediaGallery extends Component {
   constructor(props) {
     super(props);
-    this.setMediaGalleryPadding = this.setMediaGalleryPadding.bind(this);
+    this.getMediaGalleryWidth = this.getMediaGalleryWidth.bind(this);
+    this.getMediaGalleryPadding = this.getMediaGalleryPadding.bind(this);
     this.getGalleryItemWidth = this.getGalleryItemWidth.bind(this);
     this.getMediaGalleryMaxColumns = this.getMediaGalleryMaxColumns.bind(this);
+  };
+
+  getMediaGalleryWidth (width) {
+    let windowWidth = window.innerWidth;
+
+    if (width >= windowWidth) {
+      let newWidth = windowWidth - 32;
+      return newWidth;
+    }
+    else {
+      return width;
+    }
+
   }
 
-  setMediaGalleryPadding (width) {
+  getMediaGalleryPadding (width) {
     let windowWidth = window.innerWidth;
 
     if (width == windowWidth) {
       return 0;
     }
     else {
-      return;
+      return '0px 16px 0px 16';
     }
 
   };
@@ -41,13 +55,13 @@ export class SectionMediaGallery extends Component {
     if (width <= 400) {
       return 1;
     }
-    if (width <= 600) {
+    else if (width <= 600) {
       return 2;
     }
-    if (width <= 900) {
+    else if (width <= 900) {
       return 3;
     }
-    if (width <= 1200) {
+    else if (width <= 1200) {
       return 5;
     }
     else {
@@ -60,13 +74,13 @@ export class SectionMediaGallery extends Component {
 
     const componentInlineStyle = {
       SectionMediaGallery: {
-        maxWidth: props.width + 'px',
-        padding: this.setMediaGalleryPadding(props.width) + 'px',  //used to override padding for full width gallerys
+        maxWidth: this.getMediaGalleryWidth(props.width) + 'px',
+        padding: this.getMediaGalleryPadding(props.width) + 'px',  //used to override padding for full width gallerys
         marginTop: props.top + 'rem',
         marginBottom: props.bottom + 'rem'
       },
       SectionMediaGallery__galleryItem: {
-        width: this.getGalleryItemWidth(props.width, props.galleryItems.length) - (props.galleryItemPadding * 2) + 'px',
+        width: this.getGalleryItemWidth(this.getMediaGalleryWidth(props.width), props.galleryItems.length) - (props.galleryItemPadding * 2) + 'px',
         padding: props.galleryItemPadding + 'px'
       }
     };
