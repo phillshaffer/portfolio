@@ -7,7 +7,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 let handler = (req, res) => res.sendFile(__dirname + '/public/index.html');
 
-let routes = ['/', '/about'];
+let routes = ['/', '/newproject'];
 
 routes.forEach(route => app.get(route, handler));
 

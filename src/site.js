@@ -2,7 +2,7 @@
 import Router from 'preact-router';
 import {h, render, Component } from 'preact';
 import {anAccessibilityInspiredDesignSystem} from './pages/anAccessibilityInspiredDesignSystem';
-import {About} from './pages/about';
+import {newProject} from './pages/newProject';
 import {Masthead} from './components/masthead';
 import {Header} from './components/header';
 import {Section} from './components/section';
@@ -42,7 +42,7 @@ class Site extends Component {
       h('div', {className: 'Site'},
         h(Router, null,
           h(anAccessibilityInspiredDesignSystem, {path: '/', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
-          h(About, {path: '/about'})
+          h(newProject, {path: '/newproject'})
         )
       )
     );
