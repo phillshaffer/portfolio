@@ -91,7 +91,7 @@ export const anAccessibilityInspiredDesignSystem = (props) => {
             h('h3', null, 'color'),
             h('p', null, 'All colors where build up from Hex #EEEEEE using HSL color to meet web accessibility color contrast ratio targets or 3:1, 4.5:1 and 7:1. All additional colors in the palette were then aligned to our own design contrast ratio scale for an accessibility driven palette. Additionally all colors had name references to their color contrast value, helping designers and developers alike stay in compliance when designing or implementing new functionality.')
           ),
-          h(SectionMediaGallery, {images: ['Pallette_1@2x.png','Pallette_2@2x.png','Pallette_3@2x.png','Pallette_4@2x.png','Pallette_5@2x.png','Pallette_6@2x.png','Pallette_7@2x.png','Pallette_8@2x.png','Pallette_9@2x.png'], width: props.viewportWidth, galleryPadding: '0', imagePadding: '4'}
+          h(SectionMediaGallery, {galleryItems: ['Pallette_1@2x.png','Pallette_2@2x.png','Pallette_3@2x.png','Pallette_4@2x.png','Pallette_5@2x.png','Pallette_6@2x.png','Pallette_7@2x.png','Pallette_8@2x.png','Pallette_9@2x.png'], width: props.viewportWidth, galleryItemPadding: '4'}
           ),
           h(SectionContent, {width: '736'},
             h('h3', null, 'Typography'),
@@ -120,11 +120,11 @@ export const anAccessibilityInspiredDesignSystem = (props) => {
           h(SectionContent, {width: '736'},
             h('p', null, `To remediate these requirements we identified a set of components that surfaced within many of the product's dialog based forms. As an initial proof of concept, I designed for components that surfaced within the create spot user workflow. This workflow included the following components: Dialog, Single Line Text Input, Text Area Input, Dropdown and Button components. To round out the design system, I also ensured scalability of this component design by designing additional components outside the initial implementation scope.`)
           ),
-          h(SectionMediaGallery, {images: ['Create_Spot_dialog_with_instruction@2x.png','Create_Spot_dialog_without_instruction@2x.png'], width: '736', imagePadding: '4'}
+          h(SectionMediaGallery, {galleryItems: ['Create_Spot_dialog_with_instruction@2x.png','Create_Spot_dialog_without_instruction@2x.png'], width: '736', galleryItemPadding: '4'}
           ),
-          h(SectionMediaGallery, {images: ['Create_Spot_dialog_with_hover@2x.png','Create_Spot_dialog_with_focus@2x.png'], width: '736', top: '0', imagePadding: '4'}
+          h(SectionMediaGallery, {galleryItems: ['Create_Spot_dialog_with_hover@2x.png','Create_Spot_dialog_with_focus@2x.png'], width: '736', top: '0', galleryItemPadding: '4'}
           ),
-          h(SectionMediaGallery, {images: ['Create_Spot_dialog_with_error@2x.png','Create_Spot_dialog_with_data@2x.png'], width: '736', top: '0', imagePadding: '4'}
+          h(SectionMediaGallery, {galleryItems: ['Create_Spot_dialog_with_error@2x.png','Create_Spot_dialog_with_data@2x.png'], width: '736', top: '0', galleryItemPadding: '4'}
           )
         )
       )

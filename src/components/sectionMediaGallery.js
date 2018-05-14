@@ -4,41 +4,54 @@ import {Image} from '../components/image';
 export class SectionMediaGallery extends Component {
   constructor(props) {
     super(props);
-    this.getImageAreaWidth = this.getImageAreaWidth.bind(this);
-    this.getMaxColumns = this.getMaxColumns.bind(this);
+    this.setMediaGalleryPadding = this.setMediaGalleryPadding.bind(this);
+    this.getGalleryItemWidth = this.getGalleryItemWidth.bind(this);
+    this.getMediaGalleryMaxColumns = this.getMediaGalleryMaxColumns.bind(this);
   }
 
-  getImageAreaWidth(imageGalleryWidth, imageCount) {
-    let maxColumnsAllowed = this.getMaxColumns(imageGalleryWidth);
+  setMediaGalleryPadding (width) {
+    let windowWidth = window.innerWidth;
 
-    if (imageCount < maxColumnsAllowed ) {
-      return imageGalleryWidth / imageCount
+    if (width == windowWidth) {
+      return 0;
     }
-    else if (imageCount > maxColumnsAllowed) {
-      return imageGalleryWidth / maxColumnsAllowed
-    }  
     else {
-      return imageGalleryWidth / imageCount
+      return;
     }
 
   };
 
-  getMaxColumns(width) {
+  getGalleryItemWidth(mediaGalleryWidth, galleryItemCount) {
+    let maxColumnsAllowed = this.getMediaGalleryMaxColumns(mediaGalleryWidth);
+
+    if (galleryItemCount < maxColumnsAllowed) {
+      return mediaGalleryWidth / galleryItemCount;
+    }
+    else if (galleryItemCount > maxColumnsAllowed) {
+      return mediaGalleryWidth / maxColumnsAllowed;
+    }  
+    else {
+      return mediaGalleryWidth / galleryItemCount;
+    }
+
+  };
+
+  getMediaGalleryMaxColumns(width) {
 
     if (width <= 400) {
-      return 1
+      return 1;
     }
     if (width <= 600) {
-      return 2
+      return 2;
     }
     if (width <= 900) {
-      return 3
+      return 3;
     }
     if (width <= 1200) {
-      return 5
+      return 5;
     }
     else {
-      return
+      return;
     }
 
   };
@@ -47,28 +60,24 @@ export class SectionMediaGallery extends Component {
 
     const componentInlineStyle = {
       SectionMediaGallery: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
         maxWidth: props.width + 'px',
-        padding: props.galleryPadding + 'px',  //used to override padding for full width gallerys
+        padding: this.setMediaGalleryPadding(props.width) + 'px',  //used to override padding for full width gallerys
         marginTop: props.top + 'rem',
         marginBottom: props.bottom + 'rem'
       },
-      SectionMediaGallery__imageArea: {
-        width: this.getImageAreaWidth(this.props.width, this.props.images.length) - (props.imagePadding * 2) + 'px',
-        height: 'auto',
-        padding: props.imagePadding + 'px'
+      SectionMediaGallery__galleryItem: {
+        width: this.getGalleryItemWidth(props.width, props.galleryItems.length) - (props.galleryItemPadding * 2) + 'px',
+        padding: props.galleryItemPadding + 'px'
       }
     };
 
-    const images = props.images.map((image) => (
-      h('div', {className: 'SectionMediaGallery__imageArea', style: componentInlineStyle.SectionMediaGallery__imageArea},
-        h(Image, {image: image})
+    const galleryItems = props.galleryItems.map((galleryItem) => (
+      h('div', {className: 'SectionMediaGallery__galleryItem', style: componentInlineStyle.SectionMediaGallery__galleryItem},
+        h(Image, {image: galleryItem})
       )
     ));
 
-    return h('div', {className: 'SectionMediaGallery', style: componentInlineStyle.SectionMediaGallery}, images);
+    return h('div', {className: 'SectionMediaGallery', style: componentInlineStyle.SectionMediaGallery}, galleryItems);
 
   };
 };

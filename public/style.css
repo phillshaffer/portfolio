@@ -109,7 +109,7 @@ body {
 .Header h4 {
   font-weight: 600;
   color: #999999;
-  margin: 0px 0px 0px 32px;
+  margin: 0px 0px 0px 16px;
 }
 
 /* Section Component */
@@ -231,6 +231,10 @@ body {
 /* SectionMediaGallery Component */
 
 .SectionMediaGallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /*maxWidth: defined in component */
   padding: 0px 16px 0px 16px;  /* overrides defined in component */
   margin: 4rem 0rem;
   /* margin-top: overrides defined in component */
@@ -245,8 +249,10 @@ body {
   margin: 0rem 0rem 4rem 0rem;
 }
 
-.SectionMediaGallery__imageArea {
-
+.SectionMediaGallery__galleryItem {
+  /* width: defined in component */
+  height: 'auto',
+  /* padding: defined in component */
 }
 
 

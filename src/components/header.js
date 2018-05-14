@@ -36,7 +36,7 @@ export class Header extends Component {
   onScroll() {
     let scrollPosition = window.scrollY;
     let mastheadHeight = window.innerHeight;
-    console.log(this.header.height)
+
     if (scrollPosition <= mastheadHeight) {
       this.setState({headerDisplay: {position: 'absolute', backgroundColor: 'rgba(255, 255, 255, 1)'}});
     }
