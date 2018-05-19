@@ -1,9 +1,11 @@
 //'use strict';
-import Router from 'preact-router';
 import {h, render, Component} from 'preact';
+import Router from 'preact-router';
+import {Link} from 'preact-router/match';
 import {work} from './pages/work';
 import {anAccessibilityInspiredDesignSystem} from './pages/anAccessibilityInspiredDesignSystem';
 import {newProject} from './pages/newProject';
+import {Redirect} from './components/redirect';
 import {Masthead} from './components/masthead';
 import {Header} from './components/header';
 import {Section} from './components/section';
@@ -11,6 +13,7 @@ import {SectionContent} from './components/sectionContent';
 import {SectionMediaGallery} from './components/sectionMediaGallery';
 import {SectionMedia} from './components/sectionMedia';
 import {Image} from './components/image';
+import {Button} from './components/button';
 
 class Site extends Component {
   constructor(props) {
@@ -42,7 +45,7 @@ class Site extends Component {
     return (
       h('div', {className: 'Site'},
         h(Router, null,
-          h(work, {path: '/', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
+          h(Redirect, {path: '/', to: '/work'}),
           h(work, {path: '/work', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
           h(anAccessibilityInspiredDesignSystem, {path: '/anAccessibilityInspiredDesignSystem', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
           h(newProject, {path: '/newproject'})

@@ -1,4 +1,5 @@
 import {h, render, Component } from 'preact';
+import {Link} from 'preact-router/match';
 
 export class Header extends Component {
   constructor(props) {
@@ -56,7 +57,8 @@ export class Header extends Component {
 
     return ( 
       h('header', {className: 'Header', style: Object.assign(state.headerDisplay), ref: header => this.header = header},
-        h('h4', null, 'Phill Shaffer')
+        h('h4', null, 'Phill Shaffer'),
+        h(Link, {activeClassName: 'active', href:'/'}, 'Work')
       )
     );
   };
