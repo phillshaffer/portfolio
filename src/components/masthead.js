@@ -9,7 +9,7 @@ export class Masthead extends Component {
   };
 
   render(props, state) {
-    
+
     const componentInlineStyle = {
       Masthead: {
         height: props.mastheadHeight + 'px',

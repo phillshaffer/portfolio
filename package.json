@@ -5,7 +5,7 @@
   "main": "site.js",
   "scripts": {
     "build": "webpack",
-    "start": "",
+    "start": "node server.js",
     "deploy": "firebase deploy"
   },
   "author": "Phill Shaffer",

@@ -1,6 +1,7 @@
 //'use strict';
 import Router from 'preact-router';
-import {h, render, Component } from 'preact';
+import {h, render, Component} from 'preact';
+import {work} from './pages/work';
 import {anAccessibilityInspiredDesignSystem} from './pages/anAccessibilityInspiredDesignSystem';
 import {newProject} from './pages/newProject';
 import {Masthead} from './components/masthead';
@@ -41,7 +42,9 @@ class Site extends Component {
     return (
       h('div', {className: 'Site'},
         h(Router, null,
-          h(anAccessibilityInspiredDesignSystem, {path: '/', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
+          h(work, {path: '/', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
+          h(work, {path: '/work', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
+          h(anAccessibilityInspiredDesignSystem, {path: '/anAccessibilityInspiredDesignSystem', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
           h(newProject, {path: '/newproject'})
         )
       )
