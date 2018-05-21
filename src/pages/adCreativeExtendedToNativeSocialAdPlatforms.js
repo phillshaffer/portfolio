@@ -28,7 +28,7 @@ export const adCreativeExtendedToNativeSocialAdPlatforms = (props) => {
       h('main', {style: componentInlineStyle.page__main},
         h(Header, {mastheadHeight: props.viewportHeight}),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-          h(SectionMedia, {width: '1440', top: '0', bottom: '0'},
+          h(SectionMedia, {width: '736', top: '0', bottom: '0'},
             h(Image, {image: 'ThunderAllTheParts@2x.png'})
           ),
           h(SectionContent, {width: '736', top: '4'},
@@ -51,7 +51,7 @@ export const adCreativeExtendedToNativeSocialAdPlatforms = (props) => {
           )
         ),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-          h(SectionMedia, {width: '1280', bottom: '0'},
+          h(SectionMedia, {width: '736', bottom: '0'},
             h(Image, {image: 'ElevatorPitch@2x.png'})
           )
         ),
@@ -86,13 +86,13 @@ export const adCreativeExtendedToNativeSocialAdPlatforms = (props) => {
           h(SectionMediaGallery, {galleryItems: ['Ads@2x.png', 'AdPreview_300x250@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
           h(SectionContent, {width: '736'},
-            h('p', null, 'As a bonus not only were users able to now view ads on the go, because they were viewing on a mobile device ads where now displayed at true native device DPI. This reduced some the challenges with viewing higher dpi ad designs within our creative studio web editor that was limited to 72 and 96 browser dpi. In addition to viewing ad designs on the go, viewing on a mobile device quickly started to delivery unanticipated added value for our users.'),
+            h('p', null, 'As a bonus not only were users able to now view ads on the go, because they were viewing on a mobile device ads where now displayed at true native device DPI. This reduced some of the challenges with viewing higher dpi ad designs within our creative studio web editor that was limited to 72 and 96 browser dpi. In addition to viewing ad designs on the go, viewing on a mobile device was quickly creating unanticipated added value for our users.'),
             h('p', null, 'For larger format ad designs we implemented a solution to hide app menu controls when a user taps on the ad design. Much like viewing an image in a photo app, simply swipe upwards and the user is returned back to the main ad design viewing experience.')
           ),
           h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600@2x.png', 'AdPreview_300x600_TapZoom@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
           h(SectionContent, {width: '736'},
-            h('p', null, 'Our new mobile app provided users the ability view ad designs at true size, but often this made it difficult to see smaller more important details. Once a user had tapped to view an ad design, they can also pinch to zoom and pan around the add design.')
+            h('p', null, 'Our new mobile app provided users the ability view ad designs at true size, but often this made it difficult to see small important details. Once a user has tapped to view an ad design, they can pinch to zoom and drag their finger to pan around the add design.')
           ),
           h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600_TapZoom@2x.png', 'AdPreview_300x600_PinchZoom@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
@@ -103,7 +103,7 @@ export const adCreativeExtendedToNativeSocialAdPlatforms = (props) => {
             h(Image, {image: 'AdPreview_300x250@2x.png'})
           ),
           h(SectionContent, {width: '736'},
-            h('p', null, 'Ads are ultimately made up of many different ad sizes, or what the new Thunder Ad Framework refers to as ad units. We wanted to make it natural for users to quickly scan between ad units. Designs made this possible by swiping upwards, each swipe would advance the user to the next ad design.')
+            h('p', null, 'Ads are ultimately made up of many different ad sizes, or what the Thunder Ad Framework refers to as ad units. We wanted to make it natural for users to quickly scan between ad units. Designs made this possible by swiping upwards, each swipe would advance the user to the next ad design.')
           ),
           h(SectionMediaGallery, {galleryItems: ['AdPreview_300x250@2x.png', 'AdPreview_300x600@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
