@@ -31,7 +31,6 @@ export class Header extends Component {
     else if (scrollPosition > mastheadHeight) {
       this.setState({headerDisplay: {position: 'fixed', backgroundColor: 'rgba(255, 255, 255, .70)'}});
     }
-
   };
 
   onScroll() {
@@ -54,6 +53,8 @@ export class Header extends Component {
     //     height: props.height + 'px'
     //   }
     // };
+
+
 
     return ( 
       h('header', {className: 'Header', style: Object.assign(state.headerDisplay), ref: header => this.header = header},

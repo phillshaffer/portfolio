@@ -1,5 +1,5 @@
-import Router from 'preact-router';
 import {h, render, Component } from 'preact';
+import Router from 'preact-router';
 import {Masthead} from '../components/masthead';
 import {Header} from '../components/header';
 import {Section} from '../components/section';

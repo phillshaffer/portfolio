@@ -1,5 +1,5 @@
-import Router from 'preact-router';
 import {h, render, Component} from 'preact';
+import Router from 'preact-router';
 import {SectionContent} from '../components/sectionContent';
 import {Button} from '../components/button';
 
@@ -36,7 +36,7 @@ export class work extends Component {
 
     const projectsArray = [
       {
-        targetUrl: '/anAccessibilityInspiredDesignSystem',
+        targetUrl: '/an_accessibility_inspired_design_system',
         buttonColor: 'rgb(41, 141, 225)',
         title: 'An Accessibility Inspired Design System',
         subTitle: 'Over the next 90 days our goal was to prove out feasibility and arrive at a strategy for making the product accessible.', 
@@ -45,12 +45,12 @@ export class work extends Component {
         selected: true
       },
       {
-        targetUrl: '/newProject',
-        buttonColor: 'rgb(41, 141, 225)',
-        title: '1',
-        subTitle: 'something',
-        backgroundImage: 'AdobeXD_Component_Stickersheet.png', 
-        backgroundColor: 'blue', 
+        targetUrl: '/ad_creativeext_ended_to_native_social_ad_platforms',
+        buttonColor: 'rgb(36, 56, 94)',
+        title: 'Ad Creative Extended to Native Social Ad Platforms',
+        subTitle: 'Over the coming months, our goal was to standardize our approach to ad creative, improve ad creative storage and access, and design the company’s first mobile app.',
+        backgroundImage: 'ThunderAdFrameworkSchema.png', 
+        backgroundColor: 'rgb(36, 56, 94, .9)', 
         selected: false
       }
     ];
@@ -65,7 +65,7 @@ export class work extends Component {
     };
 
     const projects = projectsArray.map((project) => {
-
+      console.log(project.backgroundImage);
       return ( 
         h('article', {className: 'projects__project', style: Object.assign(componentInlineStyle.projects__project, {backgroundImage: "url('/images/" + project.backgroundImage + "')"})},
           h('div', {className: 'project__overlay', style:{backgroundColor: project.backgroundColor}},
