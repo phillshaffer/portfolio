@@ -19,7 +19,7 @@ export const adCreativeExtendedToNativeSocialAdPlatforms = (props) => {
 
   return (
     h('div', {className: 'page'},
-      h(Masthead, {mastheadHeight: props.viewportHeight, backgroundImage: 'ThunderAdFrameworkSchema.png', overlayBackgroundColor: 'rgb(36, 56, 94, .9)'},
+      h(Masthead, {mastheadHeight: props.viewportHeight, backgroundImage: 'ThunderAdFrameworkSchema.png', overlayBackgroundColor: 'rgba(36, 56, 94, .9)'},
         h(SectionContent, {width: '736'},
           h('h1', null, 'Ad Creative Extended to Native Social Ad Platforms'),
           h('p', null, '')
@@ -38,7 +38,7 @@ export const adCreativeExtendedToNativeSocialAdPlatforms = (props) => {
         h(Section, {backgroundColor: '#F5F5F5', scrimHeight: '240'},
           h(SectionContent, {width: '736'},
             h('h4', null, 'The Challenge'),
-            h('h2', null, 'Scale thunder display ad technology to native social ad platforms.'),
+            h('h2', null, 'Scale Thunder Display Ad Technology to Native Social Ad Platforms.'),
             h('p', null, 'Thunder Industries had transformed the way in which marketing teams design and scale ad creative for web display ads. The central selling point of their creative studio product was build an ad once and scale across multiple ad sizes with ease. As Thunder grew so did the sophistication of their customers. No longer where clients simply creating one off ads, they were designing long running campaigns that comprised many ads and variations designed to further personalize ad creative. At the same time, ad buying was trending more and more to mobile and social ad platforms.'),
             h('p', null, 'Over a series of interconnected projects, various feature teams tackled the following problems.'),
             h('ol', null,
@@ -110,6 +110,14 @@ export const adCreativeExtendedToNativeSocialAdPlatforms = (props) => {
           h(SectionContent, {width: '736'},
             h('p', null, 'Lastly all ad information is being pulled from the ThudnerKit api, with in app ad design metadata informed by the Thunder Ad Framework.')
           )
+        ),
+        h(Section, {backgroundColor: '#f5f5f5', scrimHeight: '240'},
+          h(SectionContent, {width: '736'},
+            h('h4', null, 'Commenting'),
+            h('h2', null, 'Commenting on Ad Designs Write Up Comming Soon'),
+          ),
+          h(SectionMediaGallery, {galleryItems: ['AdPreview_CommentMode@2x.png', 'AdPreview_CommentMode_ViewingComment@2x.png', 'AdPreview_CommentMode_AddingToCommentThread@2x.png', 'AdPreview_CommentMode_AddingNewComment@2x.png', 'AdPreview_CommentMode_WithNewComment@2x.png'], width: '736', galleryItemPadding: '8'}
+          ),
         )
       )
     )

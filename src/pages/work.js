@@ -50,7 +50,7 @@ export class work extends Component {
         title: 'Ad Creative Extended to Native Social Ad Platforms',
         subTitle: 'Over the coming months, our goal was to standardize our approach to ad creative, improve ad creative storage and access, and design the company’s first mobile app.',
         backgroundImage: 'ThunderAdFrameworkSchema.png', 
-        backgroundColor: 'rgb(36, 56, 94, .9)', 
+        backgroundColor: 'rgba(36, 56, 94, .9)', 
         selected: false
       }
     ];
@@ -60,14 +60,14 @@ export class work extends Component {
       },
       projects__project: {
         width: this.getProjectsMaxColumns(this.props.viewportWidth),
-        height: props.viewportHeight + 'px',
+        height: props.viewportHeight + 'px'
       }
     };
 
     const projects = projectsArray.map((project) => {
-      console.log(project.backgroundImage);
+      //console.log(Object.assign(componentInlineStyle.projects__project, {backgroundImage: "url('/images/" + project.backgroundImage + "')"}));
       return ( 
-        h('article', {className: 'projects__project', style: Object.assign(componentInlineStyle.projects__project, {backgroundImage: "url('/images/" + project.backgroundImage + "')"})},
+        h('article', {className: 'projects__project', style: Object.assign({backgroundImage: "url('/images/" + project.backgroundImage + "')"}, componentInlineStyle.projects__project)},
           h('div', {className: 'project__overlay', style:{backgroundColor: project.backgroundColor}},
             h(SectionContent, {width: '736'},
               h('h1', null, project.title),
@@ -78,7 +78,7 @@ export class work extends Component {
         )
       )
     });
-
+    console.log(projects)
     return (
       h('section', {className: 'projects'}, projects)
     );
