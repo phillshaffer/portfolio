@@ -45,9 +45,9 @@ export class work extends Component {
         selected: true
       },
       {
-        targetUrl: '/ad_creativeext_ended_to_native_social_ad_platforms',
+        targetUrl: '/extending_ad_creative_to_social_ad_platforms',
         buttonColor: 'rgb(36, 56, 94)',
-        title: 'Ad Creative Extended to Native Social Ad Platforms',
+        title: 'Extending Ad Creative to Social Ad Platforms',
         subTitle: 'Over the coming months, our goal was to standardize our approach to ad creative, improve ad creative storage and access, and design the company’s first mobile app.',
         backgroundImage: 'ThunderAdFrameworkSchema.png', 
         backgroundColor: 'rgba(36, 56, 94, .9)', 

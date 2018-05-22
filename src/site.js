@@ -4,7 +4,7 @@ import Router from 'preact-router';
 import {Link} from 'preact-router/match';
 import {work} from './pages/work';
 import {anAccessibilityInspiredDesignSystem} from './pages/anAccessibilityInspiredDesignSystem';
-import {adCreativeExtendedToNativeSocialAdPlatforms} from './pages/adCreativeExtendedToNativeSocialAdPlatforms';
+import {extendingAdCreativeToSocialAdPlatforms} from './pages/extendingAdCreativeToSocialAdPlatforms';
 import {Redirect} from './components/redirect';
 import {Masthead} from './components/masthead';
 import {Header} from './components/header';
@@ -48,7 +48,7 @@ class Site extends Component {
           h(Redirect, {path: '/', to: '/work'}),
           h(work, {path: '/work', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
           h(anAccessibilityInspiredDesignSystem, {path: '/an_accessibility_inspired_design_system', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth}),
-          h(adCreativeExtendedToNativeSocialAdPlatforms, {path: '/ad_creativeext_ended_to_native_social_ad_platforms', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth})
+          h(extendingAdCreativeToSocialAdPlatforms, {path: '/extending_ad_creative_to_social_ad_platforms', viewportHeight: state.viewportHeight, viewportWidth: state.viewportWidth})
         )
       )
     );
