@@ -165,7 +165,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('h4', null, 'Thunder Ad Framwork'),
             h('h2', null, 'Framework Story Coming Soon'),
           ),
-          h(SectionEmbed, {width: '960', height: '569', targetUrl: 'https://docs.google.com/presentation/d/e/2PACX-1vTfv7eq6y0HSYXBH6egnuSWzDdxqKR8t9mubvZvO3uMeuCZm33gz2rPDxIrJLeP9lzC6wxuH7yK0Q5g/embed?start=true&loop=true&delayms=3000'})
+          h(SectionEmbed, {width: props.viewportWidth, targetUrl: 'https://docs.google.com/presentation/d/e/2PACX-1vTfv7eq6y0HSYXBH6egnuSWzDdxqKR8t9mubvZvO3uMeuCZm33gz2rPDxIrJLeP9lzC6wxuH7yK0Q5g/embed?start=true&loop=true&delayms=3000'})
         )
       )
     )
