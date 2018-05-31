@@ -48,7 +48,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
               h('li', null, 'Expand platform products and tools beyond the web.')
             ),
             h('h3', null, 'My Role'),
-            h('p', null, 'Over the coming months, I would lead in both a product management and product design capacity a series of high profile initiatives to standardize our approach to ad creative, improve ad creative storage and access, and design the company’s first mobile app.')
+            h('p', null, 'Over the coming months, I would lead in both a product management and product design capacity a series of high profile initiatives to standardize our approach to ad creative, improve ad creative storage and access, and developed the business case and designed the company’s first mobile app.')
           )
         ),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
@@ -71,11 +71,42 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             finalize ad designs faster than ever.`),
             h('h3', null, 'User Goals'),
             h('ol', null,
-              h('li', null, 'View final ad designs from a mobile device.'),
-              h('li', null, 'Leave comments for ad designers specific to an ad unit.'),
-              h('li', null, 'Be notified if action or feedback is required.'),
+              h('li', null, 'View submitted ad designs on a mobile device.'),
+              h('li', null, 'Leave feedback on ad designs.'),
+              h('li', null, 'Provide ad approval outside creative studio.'),
             )
           )
+        ),
+        h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
+          h(SectionContent, {width: '736'},
+            h('h4', null, 'The Approach'),
+            h('h2', null, 'Defining the Initial MVP'),
+            h('p', null, `With our initial set of user goals in hand, I led the feature crew to define the set of user tasks required to satisfy our identified goals. Additionally we had a business directive to have a proof of concept designed, coded and deployable to internal stakeholders within two weeks. This shortened timeline meant we had to be very disciplined in defining our core user tasks and subsequent user experience.`),
+            h('h3', null, 'User Tasks'),
+            h('ol', null,
+              h('li', null, 'Ability to login.'),
+              h('li', null, 'Ability to select and view a submitted ad design.'),
+              h('li', null, 'Ability to leave comments for a given ad unit.'),
+              h('li', null, 'Ability to play HTML ad design animation'),
+              h('li', null, 'Ability to leave comments for a given ad unit.'),
+              h('li', null, 'Ability to leave contextual comments for a given ad unit'),
+              h('li', null, 'Ability to be notified of new comments or responses.'),
+              h('li', null, 'Ability to navigate between ad units for a selected ad design.')
+            ),
+            h('h3', null, 'Core Workflows and App Navigation'),
+            h('p', null, 'We started our design process by first mapping our core workflows and app navigation.')
+            ),
+          h(SectionMedia, {width: '736'},
+            h(Image, {image: 'ThunderCast_InitalWireframes.png'})
+          ),
+          h(SectionContent, {width: '736'},
+            h('p', null, 'As we started to dive deeper into our initial wireframing two key user challenges emerged.'),
+            h('p', null, 'First when leaving comments on a given ad unit, users told us they wanted to make those comments contextual. For example they wanted to flag a given area of an ad design and add comments similar to sticking a post-it a note to a printed version of the ad. As a result we modified our designs to make comments less chat focussed and went all in on contextual commenting. This learning also lead to comments being designed as a mode, vs. a separate screen within the app.'),
+            h('p', null, 'Secondly users found laborious to go back and forth between ad preview and the ad unit gallery to select a new ad unit. We attempted to overlay the ad unit selection within the ad preview itself, but this solution competed with the ad design preview and didn’t significantly reduce ad unit selection fatigue. Initially when designing the gallery we thought it would be important for users to see all the available ad units for a given ad design in one place. In actuality ad design collaborators told us it was more important to them to quickly skim between ad units and make comments as required. This feedback led us to implement a swipe up or flipping interaction to navigate between ad units.')
+          ),
+          h(SectionMedia, {width: '736'},
+            h(Image, {image: 'ThunderCast_FinalWireframes.png'})
+          ),
         ),
         h(Section, {backgroundColor: '#f5f5f5', scrimHeight: '240'},
           h(SectionContent, {width: '736'},
@@ -88,7 +119,6 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           ),
           h(SectionMediaGallery, {galleryItems: ['Ads@2x.png', 'AdPreview_300x250@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
-
           h(SectionContent, {width: '736'},
             h('h3', null, 'Viewing True Render'),
             h('p', null, 'Not only were users now able to view ads designs on the go, because they were viewing on a mobile device ads were now displayed at true native device DPI. This reduced some the challenges with viewing higher dpi ad designs within Thunder’s Creative Studio web editor that was limited to 72 and 96 browser dpi. In addition to viewing ad designs on the go, viewing on a mobile device was quickly creating unanticipated added value for our users.'),
