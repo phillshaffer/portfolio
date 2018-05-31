@@ -6,6 +6,7 @@ import {Section} from '../components/section';
 import {SectionContent} from '../components/sectionContent';
 import {SectionMediaGallery} from '../components/sectionMediaGallery';
 import {SectionMedia} from '../components/sectionMedia';
+import {SectionEmbed} from '../components/sectionEmbed';
 import {Image} from '../components/image';
 
 export const extendingAdCreativeToSocialAdPlatforms = (props) => {
@@ -121,13 +122,20 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('p', null, 'Lastly all ad information is being pulled from the ThudnerKit api, with in app ad design metadata informed by the Thunder Ad Framework.')
           )
         ),
-        h(Section, {backgroundColor: '#f5f5f5', scrimHeight: '240'},
+        h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
           h(SectionContent, {width: '736'},
             h('h4', null, 'Commenting'),
-            h('h2', null, 'Commenting Story Comming Soon'),
+            h('h2', null, 'Commenting Story Coming Soon'),
           ),
           h(SectionMediaGallery, {galleryItems: ['AdPreview_CommentMode@2x.png', 'AdPreview_CommentMode_ViewingComment@2x.png', 'AdPreview_CommentMode_AddingToCommentThread@2x.png', 'AdPreview_CommentMode_AddingNewComment@2x.png', 'AdPreview_CommentMode_WithNewComment@2x.png'], width: '736', galleryItemPadding: '8'}
           )
+        ),
+        h(Section, {backgroundColor: '#f5f5f5', scrimHeight: '240'},
+          h(SectionContent, {width: '736'},
+            h('h4', null, 'Thunder Ad Framwork'),
+            h('h2', null, 'Framework Story Coming Soon'),
+          ),
+          h(SectionEmbed, {width: '960', height: '569', targetUrl: 'https://docs.google.com/presentation/d/e/2PACX-1vTfv7eq6y0HSYXBH6egnuSWzDdxqKR8t9mubvZvO3uMeuCZm33gz2rPDxIrJLeP9lzC6wxuH7yK0Q5g/embed?start=true&loop=true&delayms=3000'})
         )
       )
     )

@@ -219,6 +219,11 @@ body {
   margin: 0rem 0rem 4rem 0rem;
 }
 
+
+.SectionContent + .SectionEmbed {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
 .SectionContent h1 {
   color: #111111;
   font-size: 4rem;
@@ -313,6 +318,10 @@ body {
   margin: 0rem 0rem 4rem 0rem;
 }
 
+.SectionMediaGallery + .SectionEmbed {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
 .SectionMediaGallery__galleryItem {
   /* width: defined in component */
   height: 'auto',
@@ -338,6 +347,34 @@ body {
 }
 
 .SectionMedia + .SectionMediaGallery {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionMedia + .SectionEmbed {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+
+.SectionEmbed {
+  /* max-width: defined in component */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 16px 0px 16px;
+  margin: 4rem 0rem;
+  /* margin-top: overrides defined in component */
+  /* 'margin-bottom': overrides defined in component */
+}
+
+.SectionEmbed + .SectionContent {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionEmbed + .SectionMediaGallery {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionEmbed + .SectionMedia {
   margin: 0rem 0rem 4rem 0rem;
 }
 

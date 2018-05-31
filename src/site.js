@@ -12,6 +12,7 @@ import {Section} from './components/section';
 import {SectionContent} from './components/sectionContent';
 import {SectionMediaGallery} from './components/sectionMediaGallery';
 import {SectionMedia} from './components/sectionMedia';
+import {SectionEmbed} from './components/sectionEmbed';
 import {Image} from './components/image';
 import {Button} from './components/button';
 
