@@ -60,7 +60,8 @@ export class work extends Component {
       },
       projects__project: {
         width: this.getProjectsMaxColumns(this.props.viewportWidth),
-        height: props.viewportHeight + 'px'
+        //height: props.viewportHeight + 'px'
+        height: props.viewportHeight * .8 + 'px'
       }
     };
 
