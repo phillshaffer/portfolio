@@ -21,7 +21,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
   return (
     h('div', {className: 'page'},
       h(Masthead, {mastheadHeight: props.viewportHeight, backgroundImage: 'ThunderAdFrameworkSchema.png', overlayBackgroundColor: 'rgba(36, 56, 94, .9)'},
-        h(SectionContent, {width: '736'},
+        h(SectionContent, null,
           h('h1', null, 'Extending Ad Creative to Social Ad Platforms'),
           h('p', null, '')
         )
@@ -32,12 +32,12 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           h(SectionMedia, {width: '736', top: '0', bottom: '0'},
             h(Image, {image: 'ThunderAllTheParts@2x.png'})
           ),
-          h(SectionContent, {width: '736', top: '4'},
+          h(SectionContent, {top: '4'},
             h('p', null, 'ThunderCast was the culmination of months of work to establish a new ad standardization to scale display ads across web and social ad platforms. This standardization was cemented within the Thunder Ad Framework, backend data model, ThunderKit RESTful API and ThunderCast mobile app designed to facilitate real time ad design collaboration. Together these projects proved the ad framework’s scalability, with the mobile app proving technology interoperability with newly created API and backend.')
           )
         ),
         h(Section, {backgroundColor: '#F5F5F5', scrimHeight: '240'},
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h4', null, 'The Challenge'),
             h('h2', null, 'Scale Thunder’s Display Ad Technology to Social ad platforms.'),
             h('p', null, 'Thunder Industries had transformed the way in which marketing teams design and scale ad creative for web display ads. The central selling point of their creative studio product, was build once and scale ad designs across multiple ad sizes with ease. As Thunder grew so did the sophistication of their customers. No longer where users simply creating one off ads, they were designing long running sophisticated marketing campaigns that comprised many ads with personalized design variations. At the same time, ad buying was trending more and more to mobile and social ad platforms. For Thunder to stay relevant, they has to extend their offering beyond web display ads.'),
@@ -57,7 +57,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           )
         ),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h4', null, 'ThunderCast Elevator Pitch'),
             h('h2', null, 'Real Time Ad Design and Collaboration'),
             h('p', null, `Thunder Cast is a mobile application that facilitates real time ad design collaboration for today’s
@@ -78,7 +78,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           )
         ),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h4', null, 'The Approach'),
             h('h2', null, 'Defining the Initial MVP'),
             h('p', null, `With our initial set of user goals in hand, I led the feature crew to define the set of user tasks required to satisfy our identified goals. Additionally we had a business directive to have a proof of concept designed, coded and deployable to internal stakeholders within two weeks. This shortened timeline meant we had to be very disciplined in defining our core user tasks and subsequent user experience.`),
@@ -99,7 +99,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           h(SectionMedia, {width: '736'},
             h(Image, {image: 'ThunderCast_InitalWireframes.png'})
           ),
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('p', null, 'As we started to dive deeper into our initial wireframing two key user challenges emerged.'),
             h('p', null, 'First when leaving comments on a given ad unit, users told us they wanted to make those comments contextual. For example they wanted to flag a given area of an ad design and add comments similar to sticking a post-it note to a printed version of the ad. As a result we modified our designs to make comments less chat focussed and went all in on contextual commenting. This learning also led to comments being designed as a mode, vs. a separate screen within the app.'),
             h('p', null, 'Secondly users found it laborious to go back and forth between ad preview and the ad unit gallery to select a new ad unit to preview. We attempted to overlay the ad unit selection within the ad preview itself, but this solution competed with the ad design preview and didn’t significantly reduce ad unit selection fatigue. Initially when designing the gallery we thought it would be important for users to see all the available ad units for a given ad design in one place. In actuality ad design collaborators told us it was more important to them to quickly skim between ad units and make comments as required. This feedback led us to implement a swipe up or flipping interaction to navigate between ad units.')
@@ -109,7 +109,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           ),
         ),
         h(Section, {backgroundColor: '#f5f5f5', scrimHeight: '240'},
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h4', null, 'Viewing Ads'),
             h('h2', null, 'Ad Selection and Viewing by Ad Unit'),
             h('p', null, 'After designing an ad using Thunder’s Creative Studio product, draft or final ad designs could be complied. Compiled ads have gone through some backend processing to ensure the best quality ad is displayed on the web or mobile device.'),
@@ -119,7 +119,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           ),
           h(SectionMediaGallery, {galleryItems: ['Ads@2x.png', 'AdPreview_300x250@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h3', null, 'Viewing True Render'),
             h('p', null, 'Not only were users now able to view ads designs on the go, because they were viewing on a mobile device ads were now displayed at true native device DPI. This reduced some the challenges with viewing higher dpi ad designs within Thunder’s Creative Studio web editor that was limited to 72 and 96 browser dpi. In addition to viewing ad designs on the go, viewing on a mobile device was quickly creating unanticipated added value for our users.'),
             h('h3', null, 'Viewing Larger Ad Units'),
@@ -128,13 +128,13 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
 
           h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600@2x.png', 'AdPreview_300x600_TapZoom@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h3', null, 'Viewing Ad Design Details'),
             h('p', null, 'Our new mobile app provided users the ability view ad designs at true size. Again given mobile device’s small form factor combined with an ad’s complexity, users sometimes found it difficult to view small important details. To solve for this we implemented a solution to zoom in on ad designs. Once a user has tapped to view an ad design, they can pinch to zoom and drag their finger to pan around the add design.')
           ),
           h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600_TapZoom@2x.png', 'AdPreview_300x600_PinchZoom@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h3', null, 'Viewing Ad Animations'),
             h('p', null, 'Many HTML5 ads are designed with animation in mind. When viewing an animated ad design, the ad will animate the first time the ad loads. Users can replay the animation by clicking the large replay button in the center of the ad viewing menu.'),
             h('p', null, 'Given the relative shortness of most display ad animations, we opted for the simplicity of a replay button over a timeline animation scrubber interaction model. Designs also highlighted the replay capability because Thunder’s animated HTML5 ads were viewed as a differentiator against other ad design products.')
@@ -142,18 +142,18 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           h(SectionMedia, {width: '368'},
             h(Image, {image: 'AdPreview_300x250@2x.png'})
           ),
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h3', null, 'Viewing Multiple Ad Sizes'), 
             h('p', null, 'Ads are ultimately made up of many different ad sizes, or what the Thunder Ad Framework refers to as ad units. We wanted to make it natural for users to quickly scan between ad units. Designs made this possible by swiping upwards, each swipe would advance the user to the next ad design.')
           ),
           h(SectionMediaGallery, {galleryItems: ['AdPreview_300x250@2x.png', 'AdPreview_300x600@2x.png'], width: '736', galleryItemPadding: '8'}
           ),
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('p', null, 'Lastly all ad information is being pulled from the ThudnerKit api, with in app ad design metadata informed by the Thunder Ad Framework.')
           )
         ),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h4', null, 'Commenting'),
             h('h2', null, 'Commenting Story Coming Soon'),
           ),
@@ -161,7 +161,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           )
         ),
         h(Section, {backgroundColor: '#f5f5f5', scrimHeight: '240'},
-          h(SectionContent, {width: '736'},
+          h(SectionContent, null,
             h('h4', null, 'Thunder Ad Framwork'),
             h('h2', null, 'Framework Story Coming Soon'),
           ),

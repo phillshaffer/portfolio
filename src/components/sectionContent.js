@@ -5,20 +5,22 @@ export class SectionContent extends Component {
     super(props);
   };
 
-  componentDidMount(props) {
+  componentDidMount() {
+    if (this.props.width) {
+      this.SectionContent.style.setProperty('--subSection-maxWidth', this.props.width + 'px'); 
+    }
   };
 
   render(props, state) {
 
     const componentInlineStyle = {
       SectionContent: {
-        maxWidth: props.width + 'px',
-        marginTop: props.top + 'rem', // overrides default defined in SectionConent css class
-        marginBottom: props.bottom + 'rem' // overrides default defined in SectionConent css class
+        'margin-top': props.top + 'rem',
+        'margin-bottom': props.bottom + 'rem'
       }
     };
 
-    return h('div', {className: 'SectionContent', style: componentInlineStyle.SectionContent}, props.children);
+    return h('div', {class: 'SectionContent', ref: div => this.SectionContent = div, style: componentInlineStyle.SectionContent}, props.children);
 
   };
 };

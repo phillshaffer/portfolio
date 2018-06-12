@@ -5,20 +5,22 @@ export class SectionMedia extends Component {
     super(props);
   };
 
-  componentDidMount(props) {
+  componentDidMount() {
+    if (this.props.width) {
+      this.SectionMedia.style.setProperty('--subSection-maxWidth', this.props.width + 'px'); 
+    }
   };
 
   render(props, state) {
 
     const componentInlineStyle = {
       SectionMedia: {
-        maxWidth: props.width + 'px',
         marginTop: props.top + 'rem',
         marginBottom: props.bottom + 'rem'
       }
     };
 
-    return h('div', {className: 'SectionMedia', style: componentInlineStyle.SectionMedia}, props.children);
+    return h('div', {class: 'SectionMedia', ref: div => this.SectionMedia = div, style: componentInlineStyle.SectionMedia}, props.children);
 
   };
 };

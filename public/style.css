@@ -1,34 +1,46 @@
 
-html {
+:root {
+  --white: #ffffff;
+  --lightest-grey: #959595;
+  --light-grey: #767676;
+  --grey: #595959;
+  --dark-grey: #424242;
+  --darkest-grey: #161616;
+  --black: #000000;
+  --subSection-maxWidth: 736px; /* var override defined in component */
+
+}
+
+:root {
   font-size: 9px;
 }
 
 @media screen and (min-width: 300px) {
-  html {
+  :root {
     font-size: 9px;
   }
 }
 
 @media screen and (min-width: 400px) {
-  html {
+  :root {
     font-size: 11px;
   }
 }
 
 @media screen and (min-width: 600px) {
-  html {
+  :root {
     font-size: 13px;
   }
 }
 
 @media screen and (min-width: 900px) {
-  html {
+  :root {
     font-size: 14px;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  html {
+  :root {
     font-size: 16px;
   }
 }
@@ -83,7 +95,7 @@ body {
 }
 
 .project__overlay .SectionContent h1 {
-  color: #ffffff;
+  color: var(--white);
   font-size: 2.5rem;
   line-height: 3rem;
   font-weight: 500;
@@ -92,7 +104,7 @@ body {
 
 
 .project__overlay .SectionContent p {
-  color: #ffffff;
+  color: var(--white);
   font-size: 1.375rem;
   line-height: 2.25rem;
   font-weight: 300;
@@ -129,12 +141,12 @@ body {
 }
 
 .Masthead__overlay .SectionContent h1 {
-  color: #ffffff;
+  color: var(--white);
 }
 
 .Masthead__overlay .SectionContent p {
   font-weight: 400;
-  color: #ffffff;
+  color: var(--white);
 }
 
 
@@ -142,7 +154,7 @@ body {
   position: relative;
   /* margin-top: defined in component */
   /* padding-top: defined in component */
-  background-color: #ffffff;
+  color: var(--white);
 }
 
 
@@ -163,7 +175,7 @@ body {
 .Header h4, .Header a {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #999999;
+  color: var(--lightest-grey);
   margin: 0px 0px 0px 16px;
 }
 
@@ -172,7 +184,7 @@ body {
 }
 
 .Header a:hover {
-  color: #666666;
+  color: var(--grey);
 }
 
 
@@ -198,10 +210,10 @@ body {
 }
 
 
-/* ContentArea Component */
+/* subSection Components */
 
-.SectionContent {
-  /* max-width: defined in component */
+.SectionContent, .SectionMedia {
+  max-width: var(--subSection-maxWidth);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -211,21 +223,20 @@ body {
   /* 'margin-bottom': overrides defined in component */
 }
 
-.SectionContent + .SectionMedia {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionContent + .SectionMediaGallery {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-
+.SectionContent + .SectionMedia,
+.SectionContent + .SectionMediaGallery,
 .SectionContent + .SectionEmbed {
   margin: 0rem 0rem 4rem 0rem;
 }
 
+.SectionMedia + .SectionContent,
+.SectionMedia + .SectionMediaGallery,
+.SectionMedia + .SectionEmbed {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
 .SectionContent h1 {
-  color: #111111;
+  color: var(--darkest-grey);
   font-size: 4rem;
   line-height: 4.75rem;
   font-weight: 700;
@@ -234,7 +245,7 @@ body {
 }
 
 .SectionContent h2 {
-  color: #333333;
+  color: var(--dark-grey);
   font-size: 3rem;
   line-height: 3.5rem;
   font-weight: 700;
@@ -243,7 +254,7 @@ body {
 }
 
 .SectionContent h3 {
-  color: #444444;
+  color: var(--dark-grey);
   font-size: 2rem;
   font-weight: 600;
   padding: 0px;
@@ -255,7 +266,7 @@ body {
 }
 
 .SectionContent h4 {
-  color: #333333;
+  color: var(--dark-grey);
   font-size: 1.125rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -264,7 +275,7 @@ body {
 }
 
 .SectionContent p {
-  color: #999999;
+  color: var(--light-grey);
   font-size: 1.375rem;
   line-height: 2.25rem;
   font-weight: 300;
@@ -287,72 +298,21 @@ body {
 }
 
 .SectionContent ol li {
-  color: #666666;
+  color: var(--light-grey);
   font-size: 1.375rem;
   line-height: 2.25rem;
-  font-weight: 400;
+  font-weight: 300;
   font-style: italic;
   padding: 0px;
   margin: 16px 0px 0px 48px;
 }
 
 
-/* SectionMediaGallery Component */
-
-.SectionMediaGallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  /*maxWidth: defined in component */
-  padding: 0px 16px 0px 16px;  /* overrides defined in component */
-  margin: 4rem 0rem;
-  /* margin-top: overrides defined in component */
-  /* 'margin-bottom': overrides defined in component */
-}
-
-.SectionMediaGallery + .SectionContent {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionMediaGallery + .SectionMedia {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionMediaGallery + .SectionEmbed {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionMediaGallery__galleryItem {
-  /* width: defined in component */
-  height: 'auto',
-  /* padding: defined in component */
-}
-
-
 /* SectionMedia Component */
 
-.SectionMedia {
-  /* max-width: defined in component */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px 16px 0px 16px;
-  margin: 4rem 0rem;
-  /* margin-top: overrides defined in component */
-  /* 'margin-bottom': overrides defined in component */
-}
 
-.SectionMedia + .SectionContent {
-  margin: 0rem 0rem 4rem 0rem;
-}
 
-.SectionMedia + .SectionMediaGallery {
-  margin: 0rem 0rem 4rem 0rem;
-}
 
-.SectionMedia + .SectionEmbed {
-  margin: 0rem 0rem 4rem 0rem;
-}
 
 
 .SectionEmbed {
@@ -390,6 +350,38 @@ body {
 }
 
 
+/* SectionMediaGallery Component */
+
+.SectionMediaGallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /*maxWidth: defined in component */
+  padding: 0px 16px 0px 16px;  /* overrides defined in component */
+  margin: 4rem 0rem;
+  /* margin-top: overrides defined in component */
+  /* 'margin-bottom': overrides defined in component */
+}
+
+.SectionMediaGallery + .SectionContent {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionMediaGallery + .SectionMedia {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionMediaGallery + .SectionEmbed {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionMediaGallery__galleryItem {
+  /* width: defined in component */
+  height: 'auto',
+  /* padding: defined in component */
+}
+
+
 /* ContentArea Component */
 
 .Image {
@@ -408,7 +400,7 @@ body {
   /* color: defined in component */
   border: none;
   border-radius: 8px;
-  background-color: #ffffff;
+  color: var(--white);
 }
 
 .Button:hover {
