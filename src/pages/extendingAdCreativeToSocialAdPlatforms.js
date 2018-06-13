@@ -29,7 +29,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
       h('main', {style: componentInlineStyle.page__main},
         h(Header, {mastheadHeight: props.viewportHeight}),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-          h(SectionMedia, {width: '736', top: '0', bottom: '0'},
+          h(SectionMedia, {top: '0', bottom: '0'},
             h(Image, {image: 'ThunderAllTheParts@2x.png'})
           ),
           h(SectionContent, {top: '4'},
@@ -52,7 +52,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
           )
         ),
         h(Section, {backgroundColor: '#ffffff', scrimHeight: '240'},
-          h(SectionMedia, {width: '736', bottom: '0'},
+          h(SectionMedia, {bottom: '0'},
             h(Image, {image: 'ElevatorPitch@2x.png'})
           )
         ),
@@ -96,7 +96,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('h3', null, 'Core Workflows and App Navigation'),
             h('p', null, 'We started our design process by first mapping our core workflows and app navigation.')
             ),
-          h(SectionMedia, {width: '736'},
+          h(SectionMedia, null,
             h(Image, {image: 'ThunderCast_InitalWireframes.png'})
           ),
           h(SectionContent, null,
@@ -104,7 +104,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('p', null, 'First when leaving comments on a given ad unit, users told us they wanted to make those comments contextual. For example they wanted to flag a given area of an ad design and add comments similar to sticking a post-it note to a printed version of the ad. As a result we modified our designs to make comments less chat focussed and went all in on contextual commenting. This learning also led to comments being designed as a mode, vs. a separate screen within the app.'),
             h('p', null, 'Secondly users found it laborious to go back and forth between ad preview and the ad unit gallery to select a new ad unit to preview. We attempted to overlay the ad unit selection within the ad preview itself, but this solution competed with the ad design preview and didn’t significantly reduce ad unit selection fatigue. Initially when designing the gallery we thought it would be important for users to see all the available ad units for a given ad design in one place. In actuality ad design collaborators told us it was more important to them to quickly skim between ad units and make comments as required. This feedback led us to implement a swipe up or flipping interaction to navigate between ad units.')
           ),
-          h(SectionMedia, {width: '736'},
+          h(SectionMedia, null,
             h(Image, {image: 'ThunderCast_FinalWireframes.png'})
           ),
         ),
@@ -117,7 +117,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('h3', null, 'Viewing Ad Designs'),
             h('p', null, 'Once an ad is selected from the the apps main landing screen, users can navigate to the main viewing experience. It was important the ad viewing experience not distract from the ad design itself. We solved for this by exposing app functionality and related metadata about the ad using an overlay menu design with opacities to reduce visual conflict.')
           ),
-          h(SectionMediaGallery, {galleryItems: ['Ads@2x.png', 'AdPreview_300x250@2x.png'], width: '736', galleryItemPadding: '8'}
+          h(SectionMediaGallery, {galleryItems: ['Ads@2x.png', 'AdPreview_300x250@2x.png'], galleryItemPadding: '8'}
           ),
           h(SectionContent, null,
             h('h3', null, 'Viewing True Render'),
@@ -126,13 +126,13 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('p', null, 'Some larger format ad designs can encroach into the menu bars given mobile device’s small form factor. To solve for this we implemented a solution to hide the menu when a user taps on an ad design. Much like viewing an image in a photo app, simply swipe upwards and the user is returned back to the main ad design viewing experience.')
           ),
 
-          h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600@2x.png', 'AdPreview_300x600_TapZoom@2x.png'], width: '736', galleryItemPadding: '8'}
+          h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600@2x.png', 'AdPreview_300x600_TapZoom@2x.png'], galleryItemPadding: '8'}
           ),
           h(SectionContent, null,
             h('h3', null, 'Viewing Ad Design Details'),
             h('p', null, 'Our new mobile app provided users the ability view ad designs at true size. Again given mobile device’s small form factor combined with an ad’s complexity, users sometimes found it difficult to view small important details. To solve for this we implemented a solution to zoom in on ad designs. Once a user has tapped to view an ad design, they can pinch to zoom and drag their finger to pan around the add design.')
           ),
-          h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600_TapZoom@2x.png', 'AdPreview_300x600_PinchZoom@2x.png'], width: '736', galleryItemPadding: '8'}
+          h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600_TapZoom@2x.png', 'AdPreview_300x600_PinchZoom@2x.png'], galleryItemPadding: '8'}
           ),
           h(SectionContent, null,
             h('h3', null, 'Viewing Ad Animations'),
@@ -146,7 +146,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('h3', null, 'Viewing Multiple Ad Sizes'), 
             h('p', null, 'Ads are ultimately made up of many different ad sizes, or what the Thunder Ad Framework refers to as ad units. We wanted to make it natural for users to quickly scan between ad units. Designs made this possible by swiping upwards, each swipe would advance the user to the next ad design.')
           ),
-          h(SectionMediaGallery, {galleryItems: ['AdPreview_300x250@2x.png', 'AdPreview_300x600@2x.png'], width: '736', galleryItemPadding: '8'}
+          h(SectionMediaGallery, {galleryItems: ['AdPreview_300x250@2x.png', 'AdPreview_300x600@2x.png'], galleryItemPadding: '8'}
           ),
           h(SectionContent, null,
             h('p', null, 'Lastly all ad information is being pulled from the ThudnerKit api, with in app ad design metadata informed by the Thunder Ad Framework.')
@@ -157,7 +157,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('h4', null, 'Commenting'),
             h('h2', null, 'Commenting Story Coming Soon'),
           ),
-          h(SectionMediaGallery, {galleryItems: ['AdPreview_CommentMode@2x.png', 'AdPreview_CommentMode_ViewingComment@2x.png', 'AdPreview_CommentMode_AddingToCommentThread@2x.png', 'AdPreview_CommentMode_AddingNewComment@2x.png', 'AdPreview_CommentMode_WithNewComment@2x.png'], width: '736', galleryItemPadding: '8'}
+          h(SectionMediaGallery, {galleryItems: ['AdPreview_CommentMode@2x.png', 'AdPreview_CommentMode_ViewingComment@2x.png', 'AdPreview_CommentMode_AddingToCommentThread@2x.png', 'AdPreview_CommentMode_AddingNewComment@2x.png', 'AdPreview_CommentMode_WithNewComment@2x.png'], galleryItemPadding: '8'}
           )
         ),
         h(Section, {backgroundColor: '#f5f5f5', scrimHeight: '240'},
@@ -165,7 +165,7 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('h4', null, 'Thunder Ad Framwork'),
             h('h2', null, 'Framework Story Coming Soon'),
           ),
-          h(SectionEmbed, {width: props.viewportWidth, targetUrl: 'https://docs.google.com/presentation/d/e/2PACX-1vTfv7eq6y0HSYXBH6egnuSWzDdxqKR8t9mubvZvO3uMeuCZm33gz2rPDxIrJLeP9lzC6wxuH7yK0Q5g/embed?start=true&loop=true&delayms=3000'})
+          h(SectionEmbed, {targetUrl: 'https://docs.google.com/presentation/d/e/2PACX-1vTfv7eq6y0HSYXBH6egnuSWzDdxqKR8t9mubvZvO3uMeuCZm33gz2rPDxIrJLeP9lzC6wxuH7yK0Q5g/embed?start=true&loop=true&delayms=3000'})
         )
       )
     )

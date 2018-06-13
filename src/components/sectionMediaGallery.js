@@ -5,35 +5,62 @@ export class SectionMediaGallery extends Component {
   constructor(props) {
     super(props);
     this.getMediaGalleryWidth = this.getMediaGalleryWidth.bind(this);
-    this.getMediaGalleryPadding = this.getMediaGalleryPadding.bind(this);
+    this.setMediaGalleryWidth = this.setMediaGalleryWidth.bind(this);
     this.getGalleryItemWidth = this.getGalleryItemWidth.bind(this);
     this.getMediaGalleryMaxColumns = this.getMediaGalleryMaxColumns.bind(this);
   };
 
-  getMediaGalleryWidth (width) {
-    let windowWidth = window.innerWidth;
+  componentDidMount() {
+    let self = this;
+    window.addEventListener("load", function () {
+      self.setMediaGalleryWidth(self.getMediaGalleryWidth());
+    }, false);
+    window.addEventListener("resize", function () {
+      self.setMediaGalleryWidth(self.getMediaGalleryWidth());
+    }, false);
+  };
 
-    if (width >= windowWidth) {
-      let newWidth = windowWidth - 32;
-      return newWidth;
+  componentWillUnmount() {
+    window.removeEventListener('load');
+    window.removeEventListener('resize');
+  };
+
+
+  getMediaGalleryWidth() {
+    let windowWidth = window.innerWidth;
+    let width = this.props.width;
+    let style = window.getComputedStyle(document.getElementsByTagName('html')[0]);
+    let cssWidth = parseInt(style.getPropertyValue('--subSection-maxWidth'));
+    let rightLeftPadding = parseInt(style.getPropertyValue('--subSection-paddingRight')) + parseInt(style.getPropertyValue('--subSection-paddingLeft'));
+
+    if (this.props.fullWidth) {
+      return windowWidth - rightLeftPadding;
+    }
+
+    if (this.props.width) {
+      if (width >= windowWidth) {
+        return windowWidth - rightLeftPadding;
+      }
+      else {
+        return width;
+      }
     }
     else {
-      return width;
+      return cssWidth;
     }
-
   }
 
-  getMediaGalleryPadding (width) {
-    let windowWidth = window.innerWidth;
+  setMediaGalleryWidth(width) {
+    let cssWidth = parseInt(window.getComputedStyle(document.getElementsByTagName('html')[0]).getPropertyValue('--subSection-maxWidth'));
 
-    if (width == windowWidth) {
-      return 0;
+    if (width == cssWidth) {
+      return;
     }
     else {
-      return '0px 16px 0px 16';
+      this.SectionMediaGallery.style.setProperty('--subSection-maxWidth', width + 'px');
+      return width;
     }
-
-  };
+  }
 
   getGalleryItemWidth(mediaGalleryWidth, galleryItemCount) {
     let maxColumnsAllowed = this.getMediaGalleryMaxColumns(mediaGalleryWidth);
@@ -74,24 +101,22 @@ export class SectionMediaGallery extends Component {
 
     const componentInlineStyle = {
       SectionMediaGallery: {
-        maxWidth: this.getMediaGalleryWidth(props.width) + 'px',
-        padding: this.getMediaGalleryPadding(props.width) + 'px',  //used to override padding for full width gallerys
         marginTop: props.top + 'rem',
         marginBottom: props.bottom + 'rem'
       },
       SectionMediaGallery__galleryItem: {
-        width: this.getGalleryItemWidth(this.getMediaGalleryWidth(props.width), props.galleryItems.length) - (props.galleryItemPadding * 2) + 'px',
+        width: this.getGalleryItemWidth(this.getMediaGalleryWidth(), props.galleryItems.length) - (props.galleryItemPadding * 2) + 'px',
         padding: props.galleryItemPadding + 'px'
       }
     };
 
     const galleryItems = props.galleryItems.map((galleryItem) => (
-      h('div', {className: 'SectionMediaGallery__galleryItem', style: componentInlineStyle.SectionMediaGallery__galleryItem},
+      h('div', {class: 'SectionMediaGallery__galleryItem', style: componentInlineStyle.SectionMediaGallery__galleryItem},
         h(Image, {image: galleryItem})
       )
     ));
 
-    return h('div', {className: 'SectionMediaGallery', style: componentInlineStyle.SectionMediaGallery}, galleryItems);
+    return h('div', {class: 'SectionMediaGallery', ref: div => this.SectionMediaGallery = div, style: componentInlineStyle.SectionMediaGallery}, galleryItems);
 
   };
 };

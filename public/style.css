@@ -7,7 +7,9 @@
   --dark-grey: #424242;
   --darkest-grey: #161616;
   --black: #000000;
-  --subSection-maxWidth: 736px; /* var override defined in component */
+  --subSection-maxWidth: 736px;
+  --subSection-paddingRight: 16px;
+  --subSection-paddingLeft: 16px
 
 }
 
@@ -212,15 +214,33 @@ body {
 
 /* subSection Components */
 
-.SectionContent, .SectionMedia {
+.SectionContent, .SectionMedia, .SectionMediaGallery {
   max-width: var(--subSection-maxWidth);
+}
+
+.SectionContent, .SectionMedia, .SectionMediaGallery, .SectionEmbed {
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  padding: 0px 16px 0px 16px;
+  padding-right: var(--subSection-paddingRight);
+  padding-left: var(--subSection-paddingLeft);
   margin: 4rem 0rem;
   /* margin-top: overrides defined in component */
   /* 'margin-bottom': overrides defined in component */
+}
+
+.SectionContent {
+  flex-direction: column;
+}
+
+.SectionMediaGallery {
+  flex-wrap: wrap;
+}
+
+.SectionEmbed {
+  width: var(--subSection-maxWidth);
+    /* height: defined in component */
+  flex-direction: column;
 }
 
 .SectionContent + .SectionMedia,
@@ -232,6 +252,19 @@ body {
 .SectionMedia + .SectionContent,
 .SectionMedia + .SectionMediaGallery,
 .SectionMedia + .SectionEmbed {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionMediaGallery + .SectionMediaGallery,
+.SectionMediaGallery + .SectionContent,
+.SectionMediaGallery + .SectionMedia,
+.SectionMediaGallery + .SectionEmbed {
+  margin: 0rem 0rem 4rem 0rem;
+}
+
+.SectionEmbed + .SectionContent,
+.SectionEmbed + .SectionMediaGallery,
+.SectionEmbed + .SectionMedia {
   margin: 0rem 0rem 4rem 0rem;
 }
 
@@ -307,25 +340,10 @@ body {
   margin: 16px 0px 0px 48px;
 }
 
-
-/* SectionMedia Component */
-
-
-
-
-
-
-.SectionEmbed {
-  /* max-width: defined in component */
-  /* height: defined in component */
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* padding: 0px 16px 0px 16px; */
-  margin: 4rem 0rem;
-  /* margin-top: overrides defined in component */
-  /* 'margin-bottom': overrides defined in component */
+.SectionMediaGallery__galleryItem {
+  /* width: defined in component */
+  height: 'auto',
+  /* padding: defined in component */
 }
 
 .SectionEmbed iframe {
@@ -334,55 +352,10 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  margin-right: var(--subSection-paddingRight);
+  margin-left: var(--subSection-paddingLeft);
 }
 
-
-.SectionEmbed + .SectionContent {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionEmbed + .SectionMediaGallery {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionEmbed + .SectionMedia {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-
-/* SectionMediaGallery Component */
-
-.SectionMediaGallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  /*maxWidth: defined in component */
-  padding: 0px 16px 0px 16px;  /* overrides defined in component */
-  margin: 4rem 0rem;
-  /* margin-top: overrides defined in component */
-  /* 'margin-bottom': overrides defined in component */
-}
-
-.SectionMediaGallery + .SectionContent {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionMediaGallery + .SectionMedia {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionMediaGallery + .SectionEmbed {
-  margin: 0rem 0rem 4rem 0rem;
-}
-
-.SectionMediaGallery__galleryItem {
-  /* width: defined in component */
-  height: 'auto',
-  /* padding: defined in component */
-}
-
-
-/* ContentArea Component */
 
 .Image {
   max-width: 100%;

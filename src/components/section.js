@@ -10,7 +10,7 @@ export class Section extends Component {
     this.onScroll = this.onScroll.bind(this);
   }
 
-  componentDidMount(props) {
+  componentDidMount() {
     let self = this;
 
     window.addEventListener("load", function () {
@@ -91,8 +91,8 @@ export class Section extends Component {
     };
 
     return ( 
-      h('section', {className: 'Section', style: componentInlineStyle.Section, ref: section => this.section = section}, props.children,
-        h('div', {className: 'Section__scrim', style: componentInlineStyle.Section__scrim})
+      h('section', {class: 'Section', style: componentInlineStyle.Section, ref: section => this.section = section}, props.children,
+        h('div', {class: 'Section__scrim', style: componentInlineStyle.Section__scrim})
       )
     );
   };
