@@ -2,6 +2,23 @@ import * as React from "react";
 import { Portfolio } from "./portfolio"
 import styled, { createGlobalStyle } from "styled-components";
 
+export interface Projects extends Array<Project> {}
+
+export interface Project {
+  name: string;
+}
+
+const projects: Projects = [
+  {
+    name: "A"
+  },
+  {
+    name: "B"
+  },
+  {
+    name: "C"
+  }
+]
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
@@ -58,7 +75,7 @@ export class PortfolioShell extends React.Component<any, any> {
     return (
       <React.Fragment>
         <GlobalStyle />
-        <Portfolio width={this.state.width} height={this.state.height} scrollYPosition={this.state.scrollYPosition} />
+        <Portfolio width={this.state.width} height={this.state.height} scrollYPosition={this.state.scrollYPosition} projects={projects} />
       </React.Fragment>
     )
   };

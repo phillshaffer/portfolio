@@ -29970,9 +29970,28 @@ function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+const React = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const ReactDOM = __importStar(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
 const portfolioShell_1 = __webpack_require__(/*! ./portfolioShell */ "./src/portfolioShell.tsx");
 ReactDOM.render(React.createElement(portfolioShell_1.PortfolioShell, null), document.getElementById("portfolio"));
 
@@ -29988,34 +30007,64 @@ ReactDOM.render(React.createElement(portfolioShell_1.PortfolioShell, null), docu
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Portfolio = void 0;
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 ;
-const Background = styled_components_1.default.div `
+const Projects = styled_components_1.default.div `
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};  
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+`;
+;
+const Project = styled_components_1.default.div `
   display: flex;
   box-sizing: border-box;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
+  scroll-snap-align: start;
 `;
 ;
-exports.Portfolio = (props) => (React.createElement(React.Fragment, null,
-    React.createElement(Background, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "red" },
-        React.createElement("p", null,
+exports.Portfolio = (props) => {
+    const [projectCount, setProjectCount] = react_1.useState(props.projects.length);
+    react_1.useEffect(() => {
+    });
+    return (react_1.default.createElement(Projects, { height: props.height }, props.projects.map((project) => react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "red" },
+        react_1.default.createElement("p", null,
+            project.name,
+            " ",
+            projectCount,
+            " ",
             props.width,
             " ",
             props.height,
             " ",
-            props.scrollYPosition)),
-    React.createElement(Background, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "blue" },
-        React.createElement("p", null,
-            props.width,
-            " ",
-            props.height,
-            " ",
-            props.scrollYPosition))));
+            props.scrollYPosition)))));
+};
 
 
 /***/ }),
@@ -30029,11 +30078,41 @@ exports.Portfolio = (props) => (React.createElement(React.Fragment, null,
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PortfolioShell = void 0;
-const React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+const React = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const portfolio_1 = __webpack_require__(/*! ./portfolio */ "./src/portfolio.tsx");
 const styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+const projects = [
+    {
+        name: "A"
+    },
+    {
+        name: "B"
+    },
+    {
+        name: "C"
+    }
+];
 const GlobalStyle = styled_components_1.createGlobalStyle `
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
 
@@ -30075,15 +30154,17 @@ class PortfolioShell extends React.Component {
             height: window.innerHeight
         });
     }
+    ;
     handleScroll(e) {
         this.setState({
             scrollYPosition: window.scrollY
         });
     }
+    ;
     render() {
         return (React.createElement(React.Fragment, null,
             React.createElement(GlobalStyle, null),
-            React.createElement(portfolio_1.Portfolio, { width: this.state.width, height: this.state.height, scrollYPosition: this.state.scrollYPosition })));
+            React.createElement(portfolio_1.Portfolio, { width: this.state.width, height: this.state.height, scrollYPosition: this.state.scrollYPosition, projects: projects })));
     }
     ;
 }
