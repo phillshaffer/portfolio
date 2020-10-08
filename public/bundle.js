@@ -30038,14 +30038,18 @@ const Projects = styled_components_1.default.div `
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};  
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+  scroll-padding: 16px;
 `;
 ;
 const Project = styled_components_1.default.div `
   display: flex;
   box-sizing: border-box;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  width: ${props => { var _a; return (_a = props.width - 32 + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height - 32 + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  margin: 16px;
   background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
+  box-shadow: 4px 4px 8px 8px #eeeeee;
+  border-radius: 2px;
   scroll-snap-align: start;
 `;
 ;
@@ -30053,7 +30057,7 @@ exports.Portfolio = (props) => {
     const [projectCount, setProjectCount] = react_1.useState(props.projects.length);
     react_1.useEffect(() => {
     });
-    return (react_1.default.createElement(Projects, { height: props.height }, props.projects.map((project) => react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "red" },
+    return (react_1.default.createElement(Projects, { height: props.height }, props.projects.map((project) => react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "#FAFAFA" },
         react_1.default.createElement("p", null,
             project.name,
             " ",
@@ -30123,6 +30127,7 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
     font-family: 'Open Sans', sans-serif;
     margin: 0px;
     padding: 0px;
+    background-color: #ffffff;
   }
 `;
 class PortfolioShell extends React.Component {

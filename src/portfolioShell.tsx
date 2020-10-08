@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
     margin: 0px;
     padding: 0px;
+    background-color: #ffffff;
   }
 `;
 
