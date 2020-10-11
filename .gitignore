@@ -76,6 +76,9 @@ web_modules/
 .cache
 .parcel-cache
 
+# Firebase build output
+# public/
+
 # Next.js build output
 .next
 out

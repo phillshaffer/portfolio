@@ -30035,39 +30035,63 @@ const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/re
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 ;
 const Projects = styled_components_1.default.div `
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};  
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
-  scroll-padding: 16px;
+  scroll-padding: 0px;
 `;
 ;
 const Project = styled_components_1.default.div `
   display: flex;
   box-sizing: border-box;
-  width: ${props => { var _a; return (_a = props.width - 32 + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height - 32 + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  margin: 16px;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
-  box-shadow: 4px 4px 8px 8px #eeeeee;
-  border-radius: 2px;
-  scroll-snap-align: start;
+`;
+;
+const HeroProject = styled_components_1.default.div `
+  box-sizing: border-box;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height + 'vh') !== null && _a !== void 0 ? _a : 'auto'; }};
+  background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
+  position: relative;
+`;
+;
+const HeroProjectBackground = styled_components_1.default.div `
+  box-sizing: border-box;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
+`;
+const ImageContainer = styled_components_1.default.div `
+  position: sticky;
+  height: auto;
+  top: 0px;
+  overflow: hidden;
+`;
+const Image = styled_components_1.default.svg `
+  animation: rotate 1s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  transform: scale(2.0) translate(50px, 100px); 
 `;
 ;
 exports.Portfolio = (props) => {
     const [projectCount, setProjectCount] = react_1.useState(props.projects.length);
     react_1.useEffect(() => {
     });
-    return (react_1.default.createElement(Projects, { height: props.height }, props.projects.map((project) => react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "#FAFAFA" },
-        react_1.default.createElement("p", null,
-            project.name,
-            " ",
-            projectCount,
-            " ",
-            props.width,
-            " ",
-            props.height,
-            " ",
-            props.scrollYPosition)))));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(HeroProject, { id: "1", width: props.width, height: 500, color: "green" },
+            react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, color: "blue" },
+                react_1.default.createElement(ImageContainer, null,
+                    react_1.default.createElement(Image, { width: "100", height: "100", viewBox: "0 0 24 24" },
+                        react_1.default.createElement("path", { d: "M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" }))))),
+        react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "green" },
+            react_1.default.createElement("p", null, "project footer"))));
 };
 
 
@@ -30120,6 +30144,12 @@ const projects = [
 const GlobalStyle = styled_components_1.createGlobalStyle `
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
 
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   html {
     font-size: calc(1em * .625);
   }
@@ -30129,6 +30159,8 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
     padding: 0px;
     background-color: #ffffff;
   }
+
+
 `;
 class PortfolioShell extends React.Component {
     constructor(props) {
@@ -30145,12 +30177,16 @@ class PortfolioShell extends React.Component {
     componentDidMount() {
         window.addEventListener('load', this.handleWindowSize);
         window.addEventListener('resize', this.handleWindowSize);
-        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', () => {
+            var element = document.getElementById("1");
+            element.style.setProperty('--scroll', String(window.scrollY / element.offsetHeight));
+        }, false);
     }
     ;
     componentWillUnmount() {
-        window.addEventListener('load', this.handleWindowSize);
-        window.addEventListener('resize', this.handleWindowSize);
+        window.removeEventListener('load', this.handleWindowSize);
+        window.removeEventListener('resize', this.handleWindowSize);
+        window.removeEventListener('scroll', this.handleWindowSize);
     }
     ;
     handleWindowSize(e) {
