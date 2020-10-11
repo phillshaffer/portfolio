@@ -32,8 +32,7 @@ module.exports = {
           //name: '/images/[name].[ext]'
           name: '[name].[ext]',
           outputPath: 'images/',
-          //publicPath: 'images/',
-          esModule: false
+          publicPath: 'images/'
         }
       }
       /*{

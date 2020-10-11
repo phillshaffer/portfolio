@@ -29965,10 +29965,12 @@ function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;
 /*!*******************************************!*\
   !*** ./src/images/LauchingBackground.png ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/LauchingBackground.png";
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("images/LauchingBackground.png");
 
 /***/ }),
 
@@ -30044,7 +30046,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Portfolio = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-const LauchingBackground = __importStar(__webpack_require__(/*! ./images/LauchingBackground.png */ "./src/images/LauchingBackground.png"));
+const LauchingBackground_png_1 = __importDefault(__webpack_require__(/*! ./images/LauchingBackground.png */ "./src/images/LauchingBackground.png"));
 ;
 const Projects = styled_components_1.default.div `
   overflow-y: scroll;
@@ -30100,7 +30102,8 @@ exports.Portfolio = (props) => {
         react_1.default.createElement(HeroProject, { id: "1", width: props.width, height: 500, color: "green" },
             react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, color: "blue" },
                 react_1.default.createElement(ImageContainer, null,
-                    react_1.default.createElement("img", { src: LauchingBackground }),
+                    react_1.default.createElement("img", { src: LauchingBackground_png_1.default }),
+                    console.log(LauchingBackground_png_1.default),
                     react_1.default.createElement(Image, { width: "100", height: "100", viewBox: "0 0 24 24" },
                         react_1.default.createElement("path", { d: "M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" }))))),
         react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "green" },
