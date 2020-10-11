@@ -6,7 +6,8 @@ module.exports = {
   mode: "development",
   output: {
     filename: "bundle.js",
-    path: __dirname + "/public"
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/public/',
   },
   devtool: "source-map",
   resolve: {
@@ -22,7 +23,30 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader",
+      },
+      
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          //name: '/images/[name].[ext]'
+          name: '[name].[ext]',
+          outputPath: 'images/',
+          //publicPath: 'images/',
+          esModule: false
+        }
       }
+      /*{
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'url-loader',
+        options: {
+          //name: '/images/[name].[ext]'
+          name: '[name].[ext]',
+          outputPath: 'images/',
+          //publicPath: 'images/',
+          esModule: false
+        }
+      }*/
     ]
   }
 };
