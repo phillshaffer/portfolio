@@ -160,6 +160,12 @@ export const Portfolio = (props: PortfolioProps) => {
       </HeroProject>
       <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="green">
         <p>project footer</p>
+        <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <div id="theater">
+          <video id="video" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" hidden></video>
+          <canvas id="canvas"></canvas>
+        </div>
+        <button onclick="stop()">Stop</button>
       </Project>
       {/*
       <Projects height={props.height}>
@@ -179,4 +185,12 @@ export const Portfolio = (props: PortfolioProps) => {
 
     </React.Fragment>
   );
+}
+
+declare module 'react' {
+  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+    // extends React's HTMLAttributes
+    hidden?: boolean;
+    onclick?: any;
+  }
 }

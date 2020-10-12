@@ -30135,7 +30135,12 @@ exports.Portfolio = (props) => {
                 react_1.default.createElement(ImageContainer, { width: props.width, height: props.height, size: "l" },
                     react_1.default.createElement("img", { src: ObjectSummary_png_1.default })))),
         react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "green" },
-            react_1.default.createElement("p", null, "project footer"))));
+            react_1.default.createElement("p", null, "project footer"),
+            react_1.default.createElement("script", { src: "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" }),
+            react_1.default.createElement("div", { id: "theater" },
+                react_1.default.createElement("video", { id: "video", src: "http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv", hidden: true }),
+                react_1.default.createElement("canvas", { id: "canvas" })),
+            react_1.default.createElement("button", { onclick: "stop()" }, "Stop"))));
 };
 
 
@@ -30235,6 +30240,21 @@ class PortfolioShell extends React.Component {
     }
     ;
     handleWindowSize(e) {
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        const video = document.querySelector("video");
+        video.play();
+        playCanvas();
+        function playCanvas() {
+            function step() {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        function stop() {
+            video.pause();
+        }
         this.setState({
             width: window.innerWidth,
             height: window.innerHeight

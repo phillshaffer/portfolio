@@ -64,6 +64,7 @@ export class PortfolioShell extends React.Component<any, any> {
       var element = document.getElementById("1");
       element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
     }, false);
+
   };
 
   componentWillUnmount() {
@@ -73,6 +74,25 @@ export class PortfolioShell extends React.Component<any, any> {
   };
 
   handleWindowSize(e: any) {
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+    const video = document.querySelector("video");
+
+    video.play();
+    playCanvas()
+
+    function playCanvas() {
+      function step() {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+        requestAnimationFrame(step)
+      }
+      requestAnimationFrame(step);
+    }
+    
+    function stop() {
+      video.pause();
+    }
+
     this.setState({
       width: window.innerWidth,
       height: window.innerHeight
