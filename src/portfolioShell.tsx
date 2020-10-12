@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+
   html {
     font-size: calc(1em * .625);
   }
@@ -61,7 +62,7 @@ export class PortfolioShell extends React.Component<any, any> {
     //window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('scroll', () => {
       var element = document.getElementById("1");
-      element.style.setProperty('--scroll', String(window.scrollY / element.offsetHeight));
+      element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
     }, false);
   };
 

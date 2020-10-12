@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { Projects } from "./portfolioShell";
-import LauchingBackground from './images/LauchingBackground.png';
+import ObjectSummary from './images/ObjectSummary.png';
 //const LauchingBackground = require('./images/LauchingBackground.png').default
 
 
@@ -67,11 +67,51 @@ const HeroProjectBackground = styled.div<HeroProjectBackgroundProps>`
 
 //  scroll-snap-align: start;
 
-const ImageContainer = styled.div`
+interface ImageContainerProps {
+  width: number;
+  height: number;
+  size: string;
+};
+
+const ImageContainer = styled.div<ImageContainerProps>`
   position: sticky;
-  height: auto;
-  top: 0px;
+  height: ${props => props.height + 'px' ?? 'auto'};
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+
+  img {
+    position: absolute;
+    display: block;
+    
+    width: ${({size}) => 
+      size === 'l' && '888px'
+    };
+    
+    animation: scale;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+  }
+
+  @keyframes scale {
+    0% {
+      bottom: ${({size}) => 
+        size === 'l' && '-40px'
+      };
+    }
+    5% {
+      bottom: 0px;
+    }
+    100% {
+      top: 50%;
+      transform: translateY(-50%) scale(${props => ((props.width - 32) / props.width) + 1 }, ${props => ((props.height - 32) / props.height) + 1 })
+    }
+  }
+
 `;
 
 const Image = styled.svg`
@@ -109,14 +149,11 @@ export const Portfolio = (props: PortfolioProps) => {
     <React.Fragment>
       <HeroProject id="1" width={props.width} height={500} color="green">
         <HeroProjectBackground width={props.width} height={props.height} color="blue" >
-          <ImageContainer >
-          <img src={LauchingBackground} />
-          {console.log(LauchingBackground)}
-            <Image width="100" height="100" viewBox="0 0 24 24">
-      
-                <path d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" />
-    
-            </Image>
+          <ImageContainer width={props.width} height={props.height} size="l" >
+            <img src={ObjectSummary} />
+            {/* <Image width="100" height="100" viewBox="0 0 24 24">
+              <path d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" />
+            </Image> */}
           </ImageContainer>
         </HeroProjectBackground>
       </HeroProject>

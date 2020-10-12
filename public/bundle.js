@@ -29961,16 +29961,16 @@ function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;
 
 /***/ }),
 
-/***/ "./src/images/LauchingBackground.png":
-/*!*******************************************!*\
-  !*** ./src/images/LauchingBackground.png ***!
-  \*******************************************/
+/***/ "./src/images/ObjectSummary.png":
+/*!**************************************!*\
+  !*** ./src/images/ObjectSummary.png ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("images/LauchingBackground.png");
+/* harmony default export */ __webpack_exports__["default"] = ("images/ObjectSummary.png");
 
 /***/ }),
 
@@ -30046,7 +30046,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Portfolio = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-const LauchingBackground_png_1 = __importDefault(__webpack_require__(/*! ./images/LauchingBackground.png */ "./src/images/LauchingBackground.png"));
+const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ./images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
 ;
 const Projects = styled_components_1.default.div `
   overflow-y: scroll;
@@ -30079,11 +30079,42 @@ const HeroProjectBackground = styled_components_1.default.div `
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
 `;
+;
 const ImageContainer = styled_components_1.default.div `
   position: sticky;
-  height: auto;
-  top: 0px;
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+
+  img {
+    position: absolute;
+    display: block;
+    
+    width: ${({ size }) => size === 'l' && '888px'};
+    
+    animation: scale;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+  }
+
+  @keyframes scale {
+    0% {
+      bottom: ${({ size }) => size === 'l' && '-40px'};
+    }
+    5% {
+      bottom: 0px;
+    }
+    100% {
+      top: 50%;
+      transform: translateY(-50%) scale(${props => ((props.width - 32) / props.width) + 1}, ${props => ((props.height - 32) / props.height) + 1})
+    }
+  }
+
 `;
 const Image = styled_components_1.default.svg `
   animation: rotate 1s linear infinite;
@@ -30101,11 +30132,8 @@ exports.Portfolio = (props) => {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(HeroProject, { id: "1", width: props.width, height: 500, color: "green" },
             react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, color: "blue" },
-                react_1.default.createElement(ImageContainer, null,
-                    react_1.default.createElement("img", { src: LauchingBackground_png_1.default }),
-                    console.log(LauchingBackground_png_1.default),
-                    react_1.default.createElement(Image, { width: "100", height: "100", viewBox: "0 0 24 24" },
-                        react_1.default.createElement("path", { d: "M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" }))))),
+                react_1.default.createElement(ImageContainer, { width: props.width, height: props.height, size: "l" },
+                    react_1.default.createElement("img", { src: ObjectSummary_png_1.default })))),
         react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "green" },
             react_1.default.createElement("p", null, "project footer"))));
 };
@@ -30166,6 +30194,7 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
     }
   }
 
+
   html {
     font-size: calc(1em * .625);
   }
@@ -30195,7 +30224,7 @@ class PortfolioShell extends React.Component {
         window.addEventListener('resize', this.handleWindowSize);
         window.addEventListener('scroll', () => {
             var element = document.getElementById("1");
-            element.style.setProperty('--scroll', String(window.scrollY / element.offsetHeight));
+            element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
         }, false);
     }
     ;
