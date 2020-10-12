@@ -82,12 +82,17 @@ const ImageContainer = styled.div<ImageContainerProps>`
 
   img {
     position: absolute;
-    display: block;
-    
+    display: flex;
+    align-self: center;
+
     width: ${({size}) => 
-      size === 'l' && '888px'
+    size === 'l' && '888px'
     };
-    
+
+    bottom: ${({size}) => 
+    size === 'l' && '-40px'
+  };
+
     animation: scale;
     animation-duration: 2s;
     animation-timing-function: linear;
@@ -98,21 +103,17 @@ const ImageContainer = styled.div<ImageContainerProps>`
   }
 
   @keyframes scale {
-    0% {
-      bottom: ${({size}) => 
-        size === 'l' && '-40px'
-      };
-    }
+    0% {}
     5% {
       bottom: 0px;
     }
     100% {
-      top: 50%;
-      transform: translateY(-50%) scale(${props => ((props.width - 32) / props.width) + 1 }, ${props => ((props.height - 32) / props.height) + 1 })
+      align-self: center;
+      transform: translateY(-50%) scale(${props => (props.width - 64) / 888}, ${props => (props.height - 64) / 555});
     }
   }
-
 `;
+
 
 const Image = styled.svg`
   animation: rotate 1s linear infinite;
@@ -147,7 +148,7 @@ export const Portfolio = (props: PortfolioProps) => {
 
   return (
     <React.Fragment>
-      <HeroProject id="1" width={props.width} height={500} color="green">
+      <HeroProject id="1" width={props.width} height={400} color="green">
         <HeroProjectBackground width={props.width} height={props.height} color="blue" >
           <ImageContainer width={props.width} height={props.height} size="l" >
             <img src={ObjectSummary} />

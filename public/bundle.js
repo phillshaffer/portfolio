@@ -30089,10 +30089,13 @@ const ImageContainer = styled_components_1.default.div `
 
   img {
     position: absolute;
-    display: block;
-    
+    display: flex;
+    align-self: center;
+
     width: ${({ size }) => size === 'l' && '888px'};
-    
+
+    bottom: ${({ size }) => size === 'l' && '-40px'};
+
     animation: scale;
     animation-duration: 2s;
     animation-timing-function: linear;
@@ -30103,18 +30106,15 @@ const ImageContainer = styled_components_1.default.div `
   }
 
   @keyframes scale {
-    0% {
-      bottom: ${({ size }) => size === 'l' && '-40px'};
-    }
+    0% {}
     5% {
       bottom: 0px;
     }
     100% {
-      top: 50%;
-      transform: translateY(-50%) scale(${props => ((props.width - 32) / props.width) + 1}, ${props => ((props.height - 32) / props.height) + 1})
+      align-self: center;
+      transform: translateY(-50%) scale(${props => (props.width - 64) / 888}, ${props => (props.height - 64) / 555});
     }
   }
-
 `;
 const Image = styled_components_1.default.svg `
   animation: rotate 1s linear infinite;
@@ -30130,7 +30130,7 @@ exports.Portfolio = (props) => {
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject, { id: "1", width: props.width, height: 500, color: "green" },
+        react_1.default.createElement(HeroProject, { id: "1", width: props.width, height: 400, color: "green" },
             react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, color: "blue" },
                 react_1.default.createElement(ImageContainer, { width: props.width, height: props.height, size: "l" },
                     react_1.default.createElement("img", { src: ObjectSummary_png_1.default })))),
