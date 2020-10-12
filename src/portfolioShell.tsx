@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 import { Portfolio } from "./portfolio"
 import styled, { createGlobalStyle } from "styled-components";
 
@@ -44,36 +44,28 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
-export class PortfolioShell extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      width: Number,
-      height: Number,
-      scrollYPosition: Number
+export const PortfolioShell = () => {
+
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
+
+  useEffect(() => {
+    // initiate the event handler
+    window.addEventListener('load', handleWindowSize, false);
+    window.addEventListener('resize', handleWindowSize, false);
+    window.addEventListener('scroll', handleScroll, false);
+
+    // this will clean up the event every time the component is re-rendered
+    return function cleanup() {
+      window.removeEventListener('load', handleWindowSize, false);
+      window.removeEventListener('resize', handleWindowSize, false);
+      window.removeEventListener('scroll', handleScroll, false);
     };
-    this.handleWindowSize = this.handleWindowSize.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
-  };
 
-  componentDidMount() {
-    window.addEventListener('load', this.handleWindowSize);
-    window.addEventListener('resize', this.handleWindowSize);
-    //window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('scroll', () => {
-      var element = document.getElementById("1");
-      element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
-    }, false);
+  });
 
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener('load', this.handleWindowSize);
-    window.removeEventListener('resize', this.handleWindowSize);
-    window.removeEventListener('scroll', this.handleWindowSize);
-  };
-
-  handleWindowSize(e: any) {
+  const handleWindowSize = () => {
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
     const video = document.querySelector("video");
@@ -93,27 +85,20 @@ export class PortfolioShell extends React.Component<any, any> {
       video.pause();
     }
 
-    this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight
-    }) 
+    setWidth(window.innerWidth)
+    setHeight(window.innerHeight)
+
   };
 
-  handleScroll(e: any) {
-
-    //document.body.style.setProperty('--scroll', String(window.scrollY / window.innerHeight));
-
-    this.setState({
-      scrollYPosition: window.scrollY
-    }) 
+  const handleScroll = () => {
+    var element = document.getElementById("1");
+    element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <GlobalStyle />
-        <Portfolio width={this.state.width} height={this.state.height} scrollYPosition={this.state.scrollYPosition} projects={projects} />
-      </React.Fragment>
-    )
-  };
-};
+  return (
+    <React.Fragment>
+      <GlobalStyle />
+      <Portfolio width={width} height={height} scrollYPosition={scrollYPosition} projects={projects} />
+    </React.Fragment>
+  );
+}

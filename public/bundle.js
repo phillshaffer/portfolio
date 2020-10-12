@@ -30176,7 +30176,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PortfolioShell = void 0;
-const React = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const portfolio_1 = __webpack_require__(/*! ./portfolio */ "./src/portfolio.tsx");
 const styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 const projects = [
@@ -30212,34 +30212,21 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
 
 
 `;
-class PortfolioShell extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            width: Number,
-            height: Number,
-            scrollYPosition: Number
+exports.PortfolioShell = () => {
+    const [width, setWidth] = react_1.useState(window.innerWidth);
+    const [height, setHeight] = react_1.useState(window.innerHeight);
+    const [scrollYPosition, setScrollYPosition] = react_1.useState(window.scrollY);
+    react_1.useEffect(() => {
+        window.addEventListener('load', handleWindowSize, false);
+        window.addEventListener('resize', handleWindowSize, false);
+        window.addEventListener('scroll', handleScroll, false);
+        return function cleanup() {
+            window.removeEventListener('load', handleWindowSize, false);
+            window.removeEventListener('resize', handleWindowSize, false);
+            window.removeEventListener('scroll', handleScroll, false);
         };
-        this.handleWindowSize = this.handleWindowSize.bind(this);
-        this.handleScroll = this.handleScroll.bind(this);
-    }
-    ;
-    componentDidMount() {
-        window.addEventListener('load', this.handleWindowSize);
-        window.addEventListener('resize', this.handleWindowSize);
-        window.addEventListener('scroll', () => {
-            var element = document.getElementById("1");
-            element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
-        }, false);
-    }
-    ;
-    componentWillUnmount() {
-        window.removeEventListener('load', this.handleWindowSize);
-        window.removeEventListener('resize', this.handleWindowSize);
-        window.removeEventListener('scroll', this.handleWindowSize);
-    }
-    ;
-    handleWindowSize(e) {
+    });
+    const handleWindowSize = () => {
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d");
         const video = document.querySelector("video");
@@ -30255,27 +30242,17 @@ class PortfolioShell extends React.Component {
         function stop() {
             video.pause();
         }
-        this.setState({
-            width: window.innerWidth,
-            height: window.innerHeight
-        });
-    }
-    ;
-    handleScroll(e) {
-        this.setState({
-            scrollYPosition: window.scrollY
-        });
-    }
-    ;
-    render() {
-        return (React.createElement(React.Fragment, null,
-            React.createElement(GlobalStyle, null),
-            React.createElement(portfolio_1.Portfolio, { width: this.state.width, height: this.state.height, scrollYPosition: this.state.scrollYPosition, projects: projects })));
-    }
-    ;
-}
-exports.PortfolioShell = PortfolioShell;
-;
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
+    };
+    const handleScroll = () => {
+        var element = document.getElementById("1");
+        element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(GlobalStyle, null),
+        react_1.default.createElement(portfolio_1.Portfolio, { width: width, height: height, scrollYPosition: scrollYPosition, projects: projects })));
+};
 
 
 /***/ })
