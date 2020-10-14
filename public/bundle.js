@@ -30082,17 +30082,17 @@ exports.HeroProject = void 0;
 const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 ;
-const HeroProjectContainer = styled_components_1.default.div `
+const Container = styled_components_1.default.div `
   box-sizing: border-box;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: 400vh;
   position: relative;
 `;
 ;
-const HeroProjectBackground = styled_components_1.default.div `
+const Viewport = styled_components_1.default.div `
   box-sizing: border-box;
   position: sticky;
-  top: 0px;
+  top: 0px; 
   left: 0px;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
@@ -30100,8 +30100,8 @@ const HeroProjectBackground = styled_components_1.default.div `
 `;
 ;
 exports.HeroProject = (props) => {
-    return (react_1.default.createElement(HeroProjectContainer, { id: props.id, width: props.width, height: props.height },
-        react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, backgroundColor: props.backgroundColor }, props.children)));
+    return (react_1.default.createElement(Container, { id: props.id, width: props.width, height: props.height },
+        react_1.default.createElement(Viewport, { width: props.width, height: props.height, backgroundColor: props.backgroundColor }, props.children)));
 };
 
 

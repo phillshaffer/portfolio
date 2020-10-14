@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
-interface HeroProjectContainerProps {
+interface ContainerProps {
   width: number;
   height: number;
 };
 
-const HeroProjectContainer = styled.div<HeroProjectContainerProps>`
+const Container = styled.div<ContainerProps>`
   box-sizing: border-box;
   width: ${props => props.width + 'px' ?? 'auto'};
   height: 400vh;
   position: relative;
 `;
 
-interface HeroProjectBackgroundProps {
+interface ViewportProps {
   width: number;
   height: number;
   backgroundColor: string;
 };
 
-const HeroProjectBackground = styled.div<HeroProjectBackgroundProps>`
+const Viewport = styled.div<ViewportProps>`
   box-sizing: border-box;
   position: sticky;
-  top: 0px;
+  top: 0px; 
   left: 0px;
   width: ${props => props.width + 'px' ?? 'auto'};
   height: ${props => props.height + 'px' ?? 'auto'};
@@ -41,10 +41,10 @@ export interface HeroProjectProps {
 export const HeroProject = (props: HeroProjectProps) => {
 
   return (
-    <HeroProjectContainer id={props.id} width={props.width} height={props.height}>
-      <HeroProjectBackground width={props.width} height={props.height} backgroundColor={props.backgroundColor}>
+    <Container id={props.id} width={props.width} height={props.height}>
+      <Viewport width={props.width} height={props.height} backgroundColor={props.backgroundColor}>
         {props.children}
-      </HeroProjectBackground>
-    </HeroProjectContainer>
+      </Viewport>
+    </Container>
   );
 }
