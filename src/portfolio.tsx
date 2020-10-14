@@ -49,10 +49,14 @@ interface ImageContainerProps {
 
 const ImageContainer = styled.div<ImageContainerProps>`
   position: sticky;
+  width: ${props => props.width + 'px' ?? 'auto'};
   height: ${props => props.height + 'px' ?? 'auto'};
   overflow: hidden;
   display: flex;
   justify-content: center;
+
+
+  
 
   img {
     position: absolute;
@@ -65,7 +69,7 @@ const ImageContainer = styled.div<ImageContainerProps>`
 
     bottom: ${({size}) => 
     size === 'l' && '-40px'
-  };
+    };
 
     animation: scale;
     animation-duration: 2s;
@@ -76,16 +80,26 @@ const ImageContainer = styled.div<ImageContainerProps>`
     animation-fill-mode: both;
   }
 
-  @keyframes scale {
-    0% {}
-    5% {
-      bottom: 0px;
-    }
-    100% {
-      align-self: center;
-      transform: translateY(-50%) scale(${props => (props.width - 64) / 888}, ${props => (props.height - 64) / 555});
-    }
+  div {
+    position: absolute;
+    display: flex;
+    align-self: center;
+
+    width: 888px;
+    height: 580px;
+    
+    bottom: -40px;
+    background-color: lime;
+    animation: scale;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
   }
+
+
 `;
 
 
@@ -106,9 +120,12 @@ export const Portfolio = (props: PortfolioProps) => {
   return (
     <React.Fragment>
       <HeroProject id={"1"} width={props.width} height={props.height} backgroundColor="blue" >
-        <ImageContainer width={props.width} height={props.height} size="l" >
+        {/* <ImageContainer width={props.width} height={props.height} size="l" >
           <img src={ObjectSummary} />
-        </ImageContainer>
+          <div></div>
+        </ImageContainer> */}
+        <HeroAnimation width={props.width} height={props.height} size="l"/>
+
       </HeroProject>
       <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="yellow">
         <HeroAnimation width={props.width} height={props.height} size="l"/>
@@ -139,6 +156,7 @@ declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     // extends React's HTMLAttributes
     hidden?: boolean;
+    muted?: boolean;
     onclick?: any;
   }
 }

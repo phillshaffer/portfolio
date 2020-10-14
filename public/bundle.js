@@ -29996,6 +29996,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroAnimation = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ../images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
 ;
 const Overlay = styled_components_1.default.div `
   position: sticky;
@@ -30004,7 +30005,17 @@ const Overlay = styled_components_1.default.div `
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   justify-content: center;
-  z-index: 100
+
+  @keyframes scale {
+    0% {}
+    5% {
+      bottom: 0px;
+    }
+    100% {
+      align-self: center;
+      transform: translateY(-50%) scale(${props => (props.width - 64) / 888}, ${props => (props.height - 64) / 555});
+    }
+  }
 `;
 ;
 const Container = styled_components_1.default.div `
@@ -30018,7 +30029,15 @@ const Container = styled_components_1.default.div `
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
   
   background-color: red;
-  z-index: 101
+  z-index: 101;
+
+  animation: scale;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-fill-mode: both;
 `;
 ;
 const Bezel = styled_components_1.default.div `
@@ -30036,9 +30055,7 @@ const Bezel = styled_components_1.default.div `
 const Canvas = styled_components_1.default.canvas `
   position: absolute;
   box-sizing: border-box;
-  width: ${props => { var _a; return (_a = props.heroAnimationWidth + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  padding: ${props => 12 * props.heroAnimationWidth / 1440 + 'px'};
+  padding: 16px;
   background-color: transparent;
   z-index: 102
 `;
@@ -30046,21 +30063,83 @@ const Canvas = styled_components_1.default.canvas `
 exports.HeroAnimation = (props) => {
     const [HeroAnimationWidth, setHeroAnimationWidth] = react_1.useState(0);
     const [HeroAnimationHeight, setHeroAnimationHeight] = react_1.useState(0);
+    const [playing, setPlaying] = react_1.useState(false);
     react_1.useEffect(() => {
         getHeroAnimationDimensions(props.size);
+        window.addEventListener('scroll', handleScroll, false);
+        return function cleanup() {
+            window.removeEventListener('scroll', handleScroll, false);
+        };
     });
     const getHeroAnimationDimensions = (size) => {
         if (size === "l") {
             setHeroAnimationWidth(928);
             setHeroAnimationHeight(580);
         }
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        scaleCanvas(canvas, ctx, HeroAnimationWidth, HeroAnimationHeight);
+        const image = new Image();
+        image.src = ObjectSummary_png_1.default;
+        image.onload = () => {
+            ctx.drawImage(image, 0, 0);
+        };
+    };
+    const handleScroll = () => {
+        var element = document.getElementById("1");
+        var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight);
+        element.style.setProperty('--scroll', String(scrollPercent));
+        if (scrollPercent >= .75 && !playing) {
+            playAnimation();
+            setPlaying(true);
+        }
+    };
+    const playAnimation = () => {
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        const video = document.querySelector("video");
+        video.play();
+        playCanvas();
+        function playCanvas() {
+            function step() {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        function stop() {
+            video.pause();
+        }
     };
     return (react_1.default.createElement(Overlay, { width: props.width, height: props.height },
         react_1.default.createElement(Container, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
-            react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight }),
-            react_1.default.createElement(Canvas, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight }),
-            react_1.default.createElement("video", { id: "video", src: "http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv", hidden: true }))));
+            react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
+            react_1.default.createElement(Canvas, null),
+            react_1.default.createElement("video", { id: "video", src: "http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv", hidden: true, muted: true }))));
 };
+function scaleCanvas(canvas, context, width, height) {
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const backingStoreRatio = (context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio ||
+        context.backingStorePixelRatio || 1);
+    const ratio = devicePixelRatio / backingStoreRatio;
+    if (devicePixelRatio !== backingStoreRatio) {
+        canvas.width = width * ratio;
+        canvas.height = height * ratio;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+    }
+    else {
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.width = '';
+        canvas.style.height = '';
+    }
+    context.scale(ratio, ratio);
+}
+exports.default = scaleCanvas;
 
 
 /***/ }),
@@ -30194,7 +30273,6 @@ const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/re
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 const HeroProject_1 = __webpack_require__(/*! ./components/HeroProject */ "./src/components/HeroProject.tsx");
 const HeroAnimation_1 = __webpack_require__(/*! ./components/HeroAnimation */ "./src/components/HeroAnimation.tsx");
-const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ./images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
 ;
 const Projects = styled_components_1.default.div `
   overflow-y: scroll;
@@ -30213,10 +30291,14 @@ const Project = styled_components_1.default.div `
 ;
 const ImageContainer = styled_components_1.default.div `
   position: sticky;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   overflow: hidden;
   display: flex;
   justify-content: center;
+
+
+  
 
   img {
     position: absolute;
@@ -30236,16 +30318,26 @@ const ImageContainer = styled_components_1.default.div `
     animation-fill-mode: both;
   }
 
-  @keyframes scale {
-    0% {}
-    5% {
-      bottom: 0px;
-    }
-    100% {
-      align-self: center;
-      transform: translateY(-50%) scale(${props => (props.width - 64) / 888}, ${props => (props.height - 64) / 555});
-    }
+  div {
+    position: absolute;
+    display: flex;
+    align-self: center;
+
+    width: 888px;
+    height: 580px;
+    
+    bottom: -40px;
+    background-color: lime;
+    animation: scale;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
   }
+
+
 `;
 ;
 exports.Portfolio = (props) => {
@@ -30254,8 +30346,7 @@ exports.Portfolio = (props) => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(HeroProject_1.HeroProject, { id: "1", width: props.width, height: props.height, backgroundColor: "blue" },
-            react_1.default.createElement(ImageContainer, { width: props.width, height: props.height, size: "l" },
-                react_1.default.createElement("img", { src: ObjectSummary_png_1.default }))),
+            react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" })),
         react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "yellow" },
             react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" }))));
 };
@@ -30337,28 +30428,11 @@ exports.PortfolioShell = () => {
         };
     });
     const handleWindowSize = () => {
-        const canvas = document.querySelector("canvas");
-        const ctx = canvas.getContext("2d");
-        const video = document.querySelector("video");
-        video.play();
-        playCanvas();
-        function playCanvas() {
-            function step() {
-                ctx.clip;
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
-        }
-        function stop() {
-            video.pause();
-        }
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
     };
     const handleScroll = () => {
-        var element = document.getElementById("1");
-        element.style.setProperty('--scroll', String(window.scrollY / (element.offsetHeight - window.innerHeight)));
+        setScrollYPosition(window.scrollY);
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(GlobalStyle, null),

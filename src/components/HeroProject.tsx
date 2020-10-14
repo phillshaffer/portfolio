@@ -48,3 +48,4 @@ export const HeroProject = (props: HeroProjectProps) => {
     </Container>
   );
 }
+
