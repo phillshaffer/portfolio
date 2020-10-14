@@ -30065,6 +30065,48 @@ exports.HeroAnimation = (props) => {
 
 /***/ }),
 
+/***/ "./src/components/HeroProject.tsx":
+/*!****************************************!*\
+  !*** ./src/components/HeroProject.tsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HeroProject = void 0;
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+;
+const HeroProjectContainer = styled_components_1.default.div `
+  box-sizing: border-box;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: 400vh;
+  position: relative;
+`;
+;
+const HeroProjectBackground = styled_components_1.default.div `
+  box-sizing: border-box;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'green'; }};
+`;
+;
+exports.HeroProject = (props) => {
+    return (react_1.default.createElement(HeroProjectContainer, { id: props.id, width: props.width, height: props.height },
+        react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, backgroundColor: props.backgroundColor }, props.children)));
+};
+
+
+/***/ }),
+
 /***/ "./src/images/ObjectSummary.png":
 /*!**************************************!*\
   !*** ./src/images/ObjectSummary.png ***!
@@ -30150,6 +30192,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Portfolio = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const HeroProject_1 = __webpack_require__(/*! ./components/HeroProject */ "./src/components/HeroProject.tsx");
 const HeroAnimation_1 = __webpack_require__(/*! ./components/HeroAnimation */ "./src/components/HeroAnimation.tsx");
 const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ./images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
 ;
@@ -30163,24 +30206,6 @@ const Project = styled_components_1.default.div `
   position: relative;
   display: flex;
   box-sizing: border-box;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
-`;
-;
-const HeroProject = styled_components_1.default.div `
-  box-sizing: border-box;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'vh') !== null && _a !== void 0 ? _a : 'auto'; }};
-  background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
-  position: relative;
-`;
-;
-const HeroProjectBackground = styled_components_1.default.div `
-  box-sizing: border-box;
-  position: sticky;
-  top: 0px;
-  left: 0px;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
@@ -30222,24 +30247,15 @@ const ImageContainer = styled_components_1.default.div `
     }
   }
 `;
-const Image = styled_components_1.default.svg `
-  animation: rotate 1s linear infinite;
-  animation-play-state: paused;
-  animation-delay: calc(var(--scroll) * -1s);
-  animation-iteration-count: 1;
-  animation-fill-mode: both;
-  transform: scale(2.0) translate(50px, 100px); 
-`;
 ;
 exports.Portfolio = (props) => {
     const [projectCount, setProjectCount] = react_1.useState(props.projects.length);
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject, { id: "1", width: props.width, height: 400, color: "green" },
-            react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, color: "blue" },
-                react_1.default.createElement(ImageContainer, { width: props.width, height: props.height, size: "l" },
-                    react_1.default.createElement("img", { src: ObjectSummary_png_1.default })))),
+        react_1.default.createElement(HeroProject_1.HeroProject, { id: "1", width: props.width, height: props.height, backgroundColor: "blue" },
+            react_1.default.createElement(ImageContainer, { width: props.width, height: props.height, size: "l" },
+                react_1.default.createElement("img", { src: ObjectSummary_png_1.default }))),
         react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "yellow" },
             react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" }))));
 };
@@ -30293,13 +30309,6 @@ const projects = [
 ];
 const GlobalStyle = styled_components_1.createGlobalStyle `
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
-
-  @keyframes rotate {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
 
   html {
     font-size: calc(1em * .625);

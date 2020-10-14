@@ -23,13 +23,6 @@ const projects: Projects = [
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
 
-  @keyframes rotate {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-
   html {
     font-size: calc(1em * .625);
   }
