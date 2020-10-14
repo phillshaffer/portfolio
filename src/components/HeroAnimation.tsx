@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import ObjectSummary from '../images/ObjectSummary.png';
+import Prototype from '../images/video.mp4'
+
 
 interface OverlayProps {
   width: number;
@@ -16,20 +18,12 @@ const Overlay = styled.div<OverlayProps>`
   height: ${props => props.height + 'px' ?? 'auto'};
   justify-content: center;
 
-  @keyframes scale {
-    0% {}
-    5% {
-      bottom: 0px;
-    }
-    100% {
-      align-self: center;
-      transform: translateY(-50%) scale(${props => (props.width - 64) / 888}, ${props => (props.height - 64) / 555});
-    }
-  }
 `;
 
 
 interface ContainerProps {
+  width: number;
+  height: number;
   heroAnimationWidth: number;
   heroAnimationHeight: number;
 };
@@ -43,8 +37,8 @@ const Container = styled.div<ContainerProps>`
   width: ${props => props.heroAnimationWidth + 'px' ?? 'auto'};
   height: ${props => props.heroAnimationHeight + 'px' ?? 'auto'};
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
-  
-  background-color: red;
+
+  background-color: #1D1D1F;
   z-index: 101;
 
   animation: scale;
@@ -54,6 +48,24 @@ const Container = styled.div<ContainerProps>`
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
   animation-fill-mode: both;
+
+  @keyframes scale {
+    0% {}
+    5% {
+      bottom: 0px;
+    }
+    100% {
+      align-self: center;
+      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - 64) / props.heroAnimationWidth});
+    }
+  }
+
+  video {
+    box-sizing: border-box;
+    padding: ${props => 16 * props.heroAnimationHeight / 900 + 'px'} ${props => 16 * props.heroAnimationWidth / 1440 + 'px'};
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 
@@ -117,7 +129,7 @@ export const HeroAnimation = (props: HeroAnimationProps) => {
       setHeroAnimationWidth(928)
       setHeroAnimationHeight(580)
     }
-
+    /*
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
     scaleCanvas(canvas, ctx, HeroAnimationWidth, HeroAnimationHeight)
@@ -127,18 +139,19 @@ export const HeroAnimation = (props: HeroAnimationProps) => {
     image.onload = () => {
       ctx.drawImage(image, 0, 0)
     };
+    */
   }
 
   const handleScroll = () => {
     var element = document.getElementById("1");
     var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight)
     element.style.setProperty('--scroll', String(scrollPercent));
-
+    /*
     if (scrollPercent >= .75 && !playing) {
       playAnimation()
       setPlaying(true)
     }
-
+    */
   }
 
   const playAnimation = () => {
@@ -164,10 +177,11 @@ export const HeroAnimation = (props: HeroAnimationProps) => {
 
   return (
     <Overlay width={props.width} height={props.height}>
-      <Container heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
+      <Container width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
-        <Canvas/>
-        <video id="video" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" hidden muted></video>
+        {/* <Canvas/> */}
+        {/* <video id="video" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" muted autoPlay></video> */}
+        <video id="video" src={Prototype} muted autoPlay></video>
       </Container>
     </Overlay>
   );

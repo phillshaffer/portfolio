@@ -29996,7 +29996,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroAnimation = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ../images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
+const video_mp4_1 = __importDefault(__webpack_require__(/*! ../images/video.mp4 */ "./src/images/video.mp4"));
 ;
 const Overlay = styled_components_1.default.div `
   position: sticky;
@@ -30006,16 +30006,6 @@ const Overlay = styled_components_1.default.div `
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   justify-content: center;
 
-  @keyframes scale {
-    0% {}
-    5% {
-      bottom: 0px;
-    }
-    100% {
-      align-self: center;
-      transform: translateY(-50%) scale(${props => (props.width - 64) / 888}, ${props => (props.height - 64) / 555});
-    }
-  }
 `;
 ;
 const Container = styled_components_1.default.div `
@@ -30027,8 +30017,8 @@ const Container = styled_components_1.default.div `
   width: ${props => { var _a; return (_a = props.heroAnimationWidth + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
-  
-  background-color: red;
+
+  background-color: #1D1D1F;
   z-index: 101;
 
   animation: scale;
@@ -30038,6 +30028,24 @@ const Container = styled_components_1.default.div `
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
   animation-fill-mode: both;
+
+  @keyframes scale {
+    0% {}
+    5% {
+      bottom: 0px;
+    }
+    100% {
+      align-self: center;
+      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - 64) / props.heroAnimationWidth});
+    }
+  }
+
+  video {
+    box-sizing: border-box;
+    padding: ${props => 16 * props.heroAnimationHeight / 900 + 'px'} ${props => 16 * props.heroAnimationWidth / 1440 + 'px'};
+    width: 100%;
+    height: 100%;
+  }
 `;
 ;
 const Bezel = styled_components_1.default.div `
@@ -30076,23 +30084,11 @@ exports.HeroAnimation = (props) => {
             setHeroAnimationWidth(928);
             setHeroAnimationHeight(580);
         }
-        const canvas = document.querySelector("canvas");
-        const ctx = canvas.getContext("2d");
-        scaleCanvas(canvas, ctx, HeroAnimationWidth, HeroAnimationHeight);
-        const image = new Image();
-        image.src = ObjectSummary_png_1.default;
-        image.onload = () => {
-            ctx.drawImage(image, 0, 0);
-        };
     };
     const handleScroll = () => {
         var element = document.getElementById("1");
         var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight);
         element.style.setProperty('--scroll', String(scrollPercent));
-        if (scrollPercent >= .75 && !playing) {
-            playAnimation();
-            setPlaying(true);
-        }
     };
     const playAnimation = () => {
         const canvas = document.querySelector("canvas");
@@ -30112,10 +30108,9 @@ exports.HeroAnimation = (props) => {
         }
     };
     return (react_1.default.createElement(Overlay, { width: props.width, height: props.height },
-        react_1.default.createElement(Container, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
+        react_1.default.createElement(Container, { width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
             react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
-            react_1.default.createElement(Canvas, null),
-            react_1.default.createElement("video", { id: "video", src: "http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv", hidden: true, muted: true }))));
+            react_1.default.createElement("video", { id: "video", src: video_mp4_1.default, muted: true, autoPlay: true }))));
 };
 function scaleCanvas(canvas, context, width, height) {
     const devicePixelRatio = window.devicePixelRatio || 1;
@@ -30186,16 +30181,16 @@ exports.HeroProject = (props) => {
 
 /***/ }),
 
-/***/ "./src/images/ObjectSummary.png":
-/*!**************************************!*\
-  !*** ./src/images/ObjectSummary.png ***!
-  \**************************************/
+/***/ "./src/images/video.mp4":
+/*!******************************!*\
+  !*** ./src/images/video.mp4 ***!
+  \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("images/ObjectSummary.png");
+/* harmony default export */ __webpack_exports__["default"] = ("images/video.mp4");
 
 /***/ }),
 

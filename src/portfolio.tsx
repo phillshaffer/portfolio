@@ -157,6 +157,8 @@ declare module 'react' {
     // extends React's HTMLAttributes
     hidden?: boolean;
     muted?: boolean;
+    autoPlay?: boolean;
+    controls?: boolean;
     onclick?: any;
   }
 }
