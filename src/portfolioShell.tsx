@@ -75,6 +75,7 @@ export const PortfolioShell = () => {
 
     function playCanvas() {
       function step() {
+        ctx.clip
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
         requestAnimationFrame(step)
       }

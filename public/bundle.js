@@ -29961,6 +29961,110 @@ function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;
 
 /***/ }),
 
+/***/ "./src/components/HeroAnimation.tsx":
+/*!******************************************!*\
+  !*** ./src/components/HeroAnimation.tsx ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HeroAnimation = void 0;
+const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+;
+const Overlay = styled_components_1.default.div `
+  position: sticky;
+  overflow: hidden;
+  display: flex;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  justify-content: center;
+  z-index: 100
+`;
+;
+const Container = styled_components_1.default.div `
+  position: absolute;
+  display: flex;
+  align-self: center;
+
+  box-sizing: content-box;
+  width: ${props => { var _a; return (_a = props.heroAnimationWidth + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
+  
+  background-color: red;
+  z-index: 101
+`;
+;
+const Bezel = styled_components_1.default.div `
+  position: absolute;
+  box-sizing: border-box;
+  width: ${props => { var _a; return (_a = props.heroAnimationWidth + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  border: ${props => 16 * props.heroAnimationWidth / 1440 + 'px' + ' solid black'};
+  border-radius: ${props => 44 * props.heroAnimationWidth / 1440 + 'px'};
+  
+  background-color: transparent;
+  z-index: 103
+`;
+;
+const Canvas = styled_components_1.default.canvas `
+  position: absolute;
+  box-sizing: border-box;
+  width: ${props => { var _a; return (_a = props.heroAnimationWidth + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  padding: ${props => 12 * props.heroAnimationWidth / 1440 + 'px'};
+  background-color: transparent;
+  z-index: 102
+`;
+;
+exports.HeroAnimation = (props) => {
+    const [HeroAnimationWidth, setHeroAnimationWidth] = react_1.useState(0);
+    const [HeroAnimationHeight, setHeroAnimationHeight] = react_1.useState(0);
+    react_1.useEffect(() => {
+        getHeroAnimationDimensions(props.size);
+    });
+    const getHeroAnimationDimensions = (size) => {
+        if (size === "l") {
+            setHeroAnimationWidth(928);
+            setHeroAnimationHeight(580);
+        }
+    };
+    return (react_1.default.createElement(Overlay, { width: props.width, height: props.height },
+        react_1.default.createElement(Container, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
+            react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight }),
+            react_1.default.createElement(Canvas, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight }),
+            react_1.default.createElement("video", { id: "video", src: "http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv", hidden: true }))));
+};
+
+
+/***/ }),
+
 /***/ "./src/images/ObjectSummary.png":
 /*!**************************************!*\
   !*** ./src/images/ObjectSummary.png ***!
@@ -30046,6 +30150,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Portfolio = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const HeroAnimation_1 = __webpack_require__(/*! ./components/HeroAnimation */ "./src/components/HeroAnimation.tsx");
 const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ./images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
 ;
 const Projects = styled_components_1.default.div `
@@ -30055,6 +30160,7 @@ const Projects = styled_components_1.default.div `
 `;
 ;
 const Project = styled_components_1.default.div `
+  position: relative;
   display: flex;
   box-sizing: border-box;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
@@ -30134,13 +30240,8 @@ exports.Portfolio = (props) => {
             react_1.default.createElement(HeroProjectBackground, { width: props.width, height: props.height, color: "blue" },
                 react_1.default.createElement(ImageContainer, { width: props.width, height: props.height, size: "l" },
                     react_1.default.createElement("img", { src: ObjectSummary_png_1.default })))),
-        react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "green" },
-            react_1.default.createElement("p", null, "project footer"),
-            react_1.default.createElement("script", { src: "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" }),
-            react_1.default.createElement("div", { id: "theater" },
-                react_1.default.createElement("video", { id: "video", src: "http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv", hidden: true }),
-                react_1.default.createElement("canvas", { id: "canvas" })),
-            react_1.default.createElement("button", { onclick: "stop()" }, "Stop"))));
+        react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "yellow" },
+            react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" }))));
 };
 
 
@@ -30234,6 +30335,7 @@ exports.PortfolioShell = () => {
         playCanvas();
         function playCanvas() {
             function step() {
+                ctx.clip;
                 ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
                 requestAnimationFrame(step);
             }

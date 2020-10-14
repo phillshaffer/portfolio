@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { Projects } from "./portfolioShell";
+
+import { HeroAnimation } from "./components/HeroAnimation"
+
 import ObjectSummary from './images/ObjectSummary.png';
 //const LauchingBackground = require('./images/LauchingBackground.png').default
 
@@ -27,6 +30,7 @@ interface ProjectProps {
 };
 
 const Project = styled.div<ProjectProps>`
+  position: relative;
   display: flex;
   box-sizing: border-box;
   width: ${props => props.width + 'px' ?? 'auto'};
@@ -125,6 +129,12 @@ const Image = styled.svg`
 `;
 
 
+
+
+
+
+
+
 export interface PortfolioProps {
   width: number;
   height: number;
@@ -158,15 +168,11 @@ export const Portfolio = (props: PortfolioProps) => {
           </ImageContainer>
         </HeroProjectBackground>
       </HeroProject>
-      <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="green">
-        <p>project footer</p>
-        <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <div id="theater">
-          <video id="video" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" hidden></video>
-          <canvas id="canvas"></canvas>
-        </div>
-        <button onclick="stop()">Stop</button>
+      <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="yellow">
+        <HeroAnimation width={props.width} height={props.height} size="l"/>
       </Project>
+     
+
       {/*
       <Projects height={props.height}>
         <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="blue">
