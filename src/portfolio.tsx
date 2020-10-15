@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
 
-import { Projects } from "./portfolioShell";
+import { Projects } from "./components/Projects";
 
 import { HeroProject } from "./components/HeroProject"
 import { HeroAnimation } from "./components/HeroAnimation"
@@ -11,7 +11,7 @@ import ObjectSummary from './images/ObjectSummary.png';
 
 
 
-
+/*
 interface ProjectsProps {
   height: number;
 };
@@ -22,7 +22,7 @@ const Projects = styled.div<ProjectsProps>`
   scroll-padding: 0px;
 `;
 //  height: ${props => props.height + 'px' ?? 'auto'};  
-
+*/
 
 interface ProjectProps {
   width: number;
@@ -41,78 +41,17 @@ const Project = styled.div<ProjectProps>`
 `;
 //  scroll-snap-align: start;
 
-interface ImageContainerProps {
-  width: number;
-  height: number;
-  size: string;
-};
-
-const ImageContainer = styled.div<ImageContainerProps>`
-  position: sticky;
-  width: ${props => props.width + 'px' ?? 'auto'};
-  height: ${props => props.height + 'px' ?? 'auto'};
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-
-
-  
-
-  img {
-    position: absolute;
-    display: flex;
-    align-self: center;
-
-    width: ${({size}) => 
-    size === 'l' && '888px'
-    };
-
-    bottom: ${({size}) => 
-    size === 'l' && '-40px'
-    };
-
-    animation: scale;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-play-state: paused;
-    animation-delay: calc(var(--scroll) * -1s);
-    animation-fill-mode: both;
-  }
-
-  div {
-    position: absolute;
-    display: flex;
-    align-self: center;
-
-    width: 888px;
-    height: 580px;
-    
-    bottom: -40px;
-    background-color: lime;
-    animation: scale;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-play-state: paused;
-    animation-delay: calc(var(--scroll) * -1s);
-    animation-fill-mode: both;
-  }
-
-
-`;
-
 
 export interface PortfolioProps {
   width: number;
   height: number;
   scrollYPosition: number;
-  projects: Projects;
+  //projects: Projects;
 };
 
 export const Portfolio = (props: PortfolioProps) => {
 
-  const [projectCount, setProjectCount] = useState(props.projects.length);
+  //const [projectCount, setProjectCount] = useState(props.projects.length);
 
   useEffect(() => {
   });
@@ -120,34 +59,19 @@ export const Portfolio = (props: PortfolioProps) => {
   return (
     <React.Fragment>
       <HeroProject id={"1"} width={props.width} height={props.height} backgroundColor="blue" >
-        {/* <ImageContainer width={props.width} height={props.height} size="l" >
-          <img src={ObjectSummary} />
-          <div></div>
-        </ImageContainer> */}
         <HeroAnimation width={props.width} height={props.height} size="l"/>
-
       </HeroProject>
-      <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="yellow">
-        <HeroAnimation width={props.width} height={props.height} size="l"/>
-      </Project>
-     
-
-      {/*
       <Projects height={props.height}>
+        <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="red">
+          <p>1</p>
+        </Project>
+        <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="white">
+          <p>2</p>
+        </Project>
         <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="blue">
-          <p>project fixed</p>
-      </Project>*/}
-  {/*         
-        {
-          props.projects.map((project: any) =>
-            <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="#FAFAFA">
-              <p>
-                {project.name} {projectCount} {props.width} {props.height} {props.scrollYPosition}
-              </p>
-            </Project>
-          )
-        } */}
-
+          <p>3</p>
+        </Project>
+      </Projects>
     </React.Fragment>
   );
 }

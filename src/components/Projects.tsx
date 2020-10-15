@@ -31,10 +31,10 @@ export interface ProjectsProps {
 export const Projects = (props: ProjectsProps) => {
 
   return (
-
+    <Container>
       <ViewPort height={props.height}>
       {props.children}
       </ViewPort>
-
+    </Container>
   );
 };

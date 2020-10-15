@@ -30148,6 +30148,46 @@ exports.HeroProject = (props) => {
 
 /***/ }),
 
+/***/ "./src/components/Projects.tsx":
+/*!*************************************!*\
+  !*** ./src/components/Projects.tsx ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Projects = void 0;
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const Container = styled_components_1.default.div `
+  position: sticky;
+`;
+;
+const ViewPort = styled_components_1.default.div `
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-padding: 100px;
+  scroll-snap-align: center;
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+
+  div {
+    scroll-snap-align: start;
+  }
+`;
+;
+exports.Projects = (props) => {
+    return (react_1.default.createElement(Container, null,
+        react_1.default.createElement(ViewPort, { height: props.height }, props.children)));
+};
+
+
+/***/ }),
+
 /***/ "./src/images/video.mp4":
 /*!******************************!*\
   !*** ./src/images/video.mp4 ***!
@@ -30233,14 +30273,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Portfolio = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const Projects_1 = __webpack_require__(/*! ./components/Projects */ "./src/components/Projects.tsx");
 const HeroProject_1 = __webpack_require__(/*! ./components/HeroProject */ "./src/components/HeroProject.tsx");
 const HeroAnimation_1 = __webpack_require__(/*! ./components/HeroAnimation */ "./src/components/HeroAnimation.tsx");
-;
-const Projects = styled_components_1.default.div `
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-padding: 0px;
-`;
 ;
 const Project = styled_components_1.default.div `
   position: relative;
@@ -30251,66 +30286,19 @@ const Project = styled_components_1.default.div `
   background-color: ${props => { var _a; return (_a = props.color) !== null && _a !== void 0 ? _a : 'green'; }};
 `;
 ;
-const ImageContainer = styled_components_1.default.div `
-  position: sticky;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-
-
-  
-
-  img {
-    position: absolute;
-    display: flex;
-    align-self: center;
-
-    width: ${({ size }) => size === 'l' && '888px'};
-
-    bottom: ${({ size }) => size === 'l' && '-40px'};
-
-    animation: scale;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-play-state: paused;
-    animation-delay: calc(var(--scroll) * -1s);
-    animation-fill-mode: both;
-  }
-
-  div {
-    position: absolute;
-    display: flex;
-    align-self: center;
-
-    width: 888px;
-    height: 580px;
-    
-    bottom: -40px;
-    background-color: lime;
-    animation: scale;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-play-state: paused;
-    animation-delay: calc(var(--scroll) * -1s);
-    animation-fill-mode: both;
-  }
-
-
-`;
-;
 exports.Portfolio = (props) => {
-    const [projectCount, setProjectCount] = react_1.useState(props.projects.length);
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(HeroProject_1.HeroProject, { id: "1", width: props.width, height: props.height, backgroundColor: "blue" },
             react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" })),
-        react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "yellow" },
-            react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" }))));
+        react_1.default.createElement(Projects_1.Projects, { height: props.height },
+            react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "red" },
+                react_1.default.createElement("p", null, "1")),
+            react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "white" },
+                react_1.default.createElement("p", null, "2")),
+            react_1.default.createElement(Project, { width: props.width, height: props.height, scrollYPosition: props.scrollYPosition, color: "blue" },
+                react_1.default.createElement("p", null, "3")))));
 };
 
 
@@ -30398,7 +30386,7 @@ exports.PortfolioShell = () => {
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(GlobalStyle, null),
-        react_1.default.createElement(portfolio_1.Portfolio, { width: width, height: height, scrollYPosition: scrollYPosition, projects: projects })));
+        react_1.default.createElement(portfolio_1.Portfolio, { width: width, height: height, scrollYPosition: scrollYPosition })));
 };
 
 

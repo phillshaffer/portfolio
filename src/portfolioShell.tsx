@@ -70,7 +70,7 @@ export const PortfolioShell = () => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Portfolio width={width} height={height} scrollYPosition={scrollYPosition} projects={projects} />
+      <Portfolio width={width} height={height} scrollYPosition={scrollYPosition} />
     </React.Fragment>
   );
 }
