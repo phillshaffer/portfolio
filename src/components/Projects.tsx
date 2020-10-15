@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 const Container = styled.div`
-  position: sticky;
+  position: relative;
 `;
 
 
@@ -11,6 +11,12 @@ interface ViewPortProps {
   height: number;
 };
 
+const ViewPort = styled.div<ViewPortProps>`
+
+  height: ${props => props.height + 'px' ?? 'auto'};
+
+`;
+/*
 const ViewPort = styled.div<ViewPortProps>`
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
@@ -21,7 +27,7 @@ const ViewPort = styled.div<ViewPortProps>`
   div {
     scroll-snap-align: start;
   }
-`;
+`;*/
 
 export interface ProjectsProps {
   children: React.ReactNode;

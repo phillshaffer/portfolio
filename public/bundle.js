@@ -30165,19 +30165,13 @@ exports.Projects = void 0;
 const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 const Container = styled_components_1.default.div `
-  position: sticky;
+  position: relative;
 `;
 ;
 const ViewPort = styled_components_1.default.div `
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-padding: 100px;
-  scroll-snap-align: center;
+
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
 
-  div {
-    scroll-snap-align: start;
-  }
 `;
 ;
 exports.Projects = (props) => {
