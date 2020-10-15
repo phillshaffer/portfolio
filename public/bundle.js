@@ -30091,52 +30091,17 @@ exports.HeroAnimation = (props) => {
         var element = document.getElementById("1");
         var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight);
         element.style.setProperty('--scroll', String(scrollPercent));
-    };
-    const playAnimation = () => {
-        const canvas = document.querySelector("canvas");
-        const ctx = canvas.getContext("2d");
-        const video = document.querySelector("video");
-        video.play();
-        playCanvas();
-        function playCanvas() {
-            function step() {
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                requestAnimationFrame(step);
-            }
-            requestAnimationFrame(step);
-        }
-        function stop() {
-            video.pause();
+        if (scrollPercent >= .75 && !playing) {
+            const video = document.querySelector("video");
+            video.play();
+            setPlaying(true);
         }
     };
     return (react_1.default.createElement(Overlay, { width: props.width, height: props.height },
         react_1.default.createElement(Container, { width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
             react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
-            react_1.default.createElement("video", { id: "video", src: video_mp4_1.default, muted: true, autoPlay: true }))));
+            react_1.default.createElement("video", { id: "video", src: video_mp4_1.default, muted: true }))));
 };
-function scaleCanvas(canvas, context, width, height) {
-    const devicePixelRatio = window.devicePixelRatio || 1;
-    const backingStoreRatio = (context.webkitBackingStorePixelRatio ||
-        context.mozBackingStorePixelRatio ||
-        context.msBackingStorePixelRatio ||
-        context.oBackingStorePixelRatio ||
-        context.backingStorePixelRatio || 1);
-    const ratio = devicePixelRatio / backingStoreRatio;
-    if (devicePixelRatio !== backingStoreRatio) {
-        canvas.width = width * ratio;
-        canvas.height = height * ratio;
-        canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
-    }
-    else {
-        canvas.width = width;
-        canvas.height = height;
-        canvas.style.width = '';
-        canvas.style.height = '';
-    }
-    context.scale(ratio, ratio);
-}
-exports.default = scaleCanvas;
 
 
 /***/ }),
