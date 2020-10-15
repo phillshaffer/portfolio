@@ -30018,7 +30018,7 @@ const Container = styled_components_1.default.div `
   height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
 
-  background-color: #1D1D1F;
+  background-color: red;
   z-index: 101;
 
   animation: scale;
@@ -30042,7 +30042,6 @@ const Container = styled_components_1.default.div `
 
   video {
     box-sizing: border-box;
-    padding: ${props => 16 * props.heroAnimationHeight / 900 + 'px'} ${props => 16 * props.heroAnimationWidth / 1440 + 'px'};
     width: 100%;
     height: 100%;
   }
@@ -30050,9 +30049,12 @@ const Container = styled_components_1.default.div `
 ;
 const Bezel = styled_components_1.default.div `
   position: absolute;
-  box-sizing: border-box;
+  top: -${props => 16 * props.heroAnimationHeight / 900 + 'px'};
+  left: -${props => 16 * props.heroAnimationWidth / 1440 + 'px'};
+  box-sizing: content-box;
   width: ${props => { var _a; return (_a = props.heroAnimationWidth + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  
   border: ${props => 16 * props.heroAnimationWidth / 1440 + 'px' + ' solid black'};
   border-radius: ${props => 44 * props.heroAnimationWidth / 1440 + 'px'};
   

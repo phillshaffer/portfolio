@@ -38,7 +38,7 @@ const Container = styled.div<ContainerProps>`
   height: ${props => props.heroAnimationHeight + 'px' ?? 'auto'};
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
 
-  background-color: #1D1D1F;
+  background-color: red;
   z-index: 101;
 
   animation: scale;
@@ -62,7 +62,6 @@ const Container = styled.div<ContainerProps>`
 
   video {
     box-sizing: border-box;
-    padding: ${props => 16 * props.heroAnimationHeight / 900 + 'px'} ${props => 16 * props.heroAnimationWidth / 1440 + 'px'};
     width: 100%;
     height: 100%;
   }
@@ -76,16 +75,18 @@ interface BezelProps {
 
 const Bezel = styled.div<BezelProps>`
   position: absolute;
-  box-sizing: border-box;
+  top: -${props => 16 * props.heroAnimationHeight / 900 + 'px'};
+  left: -${props => 16 * props.heroAnimationWidth / 1440 + 'px'};
+  box-sizing: content-box;
   width: ${props => props.heroAnimationWidth + 'px' ?? 'auto'};
   height: ${props => props.heroAnimationHeight + 'px' ?? 'auto'};
+  
   border: ${props => 16 * props.heroAnimationWidth / 1440 + 'px' + ' solid black'};
   border-radius: ${props => 44 * props.heroAnimationWidth / 1440 + 'px'};
   
   background-color: transparent;
   z-index: 103
 `;
-
 
 interface CanvasProps {
   heroAnimationWidth?: number;
