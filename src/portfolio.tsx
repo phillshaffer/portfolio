@@ -47,6 +47,8 @@ export const Portfolio = () => {
 
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
+  const [mediaSize, setMediaSize] = useState("l");
+
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
   useEffect(() => {
@@ -64,9 +66,30 @@ export const Portfolio = () => {
 
   });
 
-  const handleWindowSize = () => {
+  const handleWindowSize = (): void => {
     setWidth(window.innerWidth)
     setHeight(window.innerHeight)
+
+    type mediaSize = {
+      size: string;
+      maxWidth: number;
+    }
+
+    let mediaSizes: Array<mediaSize> = [
+      {size: "xs", maxWidth: 320},
+      {size: "s", maxWidth: 768},
+      {size: "m", maxWidth: 1020},
+      {size: "l", maxWidth: 1440}
+    ]
+
+    mediaSizes.find((mediaSize: mediaSize) => {
+      if(window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches) {
+        console.log(window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches)
+        setMediaSize(mediaSize.size);
+      }
+    })
+
+    console.log(mediaSize)
   };
 
   const handleScroll = () => {

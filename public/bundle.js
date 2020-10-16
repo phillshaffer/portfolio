@@ -34140,6 +34140,7 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
 exports.Portfolio = () => {
     const [width, setWidth] = react_1.useState(window.innerWidth);
     const [height, setHeight] = react_1.useState(window.innerHeight);
+    const [mediaSize, setMediaSize] = react_1.useState("l");
     const [scrollYPosition, setScrollYPosition] = react_1.useState(window.scrollY);
     react_1.useEffect(() => {
         window.addEventListener('load', handleWindowSize, false);
@@ -34154,6 +34155,19 @@ exports.Portfolio = () => {
     const handleWindowSize = () => {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
+        let mediaSizes = [
+            { size: "xs", maxWidth: 320 },
+            { size: "s", maxWidth: 768 },
+            { size: "m", maxWidth: 1020 },
+            { size: "l", maxWidth: 1440 }
+        ];
+        mediaSizes.find((mediaSize) => {
+            if (window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches) {
+                console.log(window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches);
+                setMediaSize(mediaSize.size);
+            }
+        });
+        console.log(mediaSize);
     };
     const handleScroll = () => {
         setScrollYPosition(window.scrollY);
