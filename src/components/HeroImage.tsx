@@ -10,12 +10,13 @@ interface OverlayProps {
 
 const Overlay = styled.div<OverlayProps>`
   position: absolute;
+  top: 0px;
+  left: 0px;
   overflow: hidden;
   display: flex;
   width: ${props => props.width + 'px' ?? 'auto'};
   height: ${props => props.height + 'px' ?? 'auto'};
   justify-content: center;
-
 `;
 
 
@@ -37,9 +38,9 @@ const Container = styled.div<ContainerProps>`
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
 
   background-color: red;
-  z-index: 101;
+  z-index: 102;
 
-  animation: scale;
+  animation: AnimateHeroImage;
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
@@ -47,7 +48,7 @@ const Container = styled.div<ContainerProps>`
   animation-delay: calc(var(--scroll) * -1s);
   animation-fill-mode: both;
 
-  @keyframes scale {
+  @keyframes AnimateHeroImage {
     0% {}
     5% {
       bottom: 0px;
@@ -56,12 +57,6 @@ const Container = styled.div<ContainerProps>`
       align-self: center;
       transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - 64) / props.heroAnimationWidth});
     }
-  }
-
-  video {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
   }
 `;
 
@@ -86,34 +81,30 @@ const Bezel = styled.div<BezelProps>`
   z-index: 103
 `;
 
-interface CanvasProps {
-  heroAnimationWidth?: number;
-  heroAnimationHeight?: number;
-};
 
-const Canvas = styled.canvas<CanvasProps>`
-  position: absolute;
+const Video = styled.video`
   box-sizing: border-box;
-  padding: 16px;
-  background-color: transparent;
-  z-index: 102
+  width: 100%;
+  height: 100%;
 `;
 
 
-export interface HeroAnimationProps {
+export interface HeroImageProps {
   width: number;
   height: number;
   size: string;
+  scrollPercent: number;
 };
 
-export const HeroAnimation = (props: HeroAnimationProps) => {
+export const HeroImage = (props: HeroImageProps) => {
 
   const [HeroAnimationWidth, setHeroAnimationWidth] = useState(0);
   const [HeroAnimationHeight, setHeroAnimationHeight] = useState(0);
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
-    getHeroAnimationDimensions(props.size)
+    getHeroAnimationDimensions(props.size);
+    handleVideo();
   });
 
   const getHeroAnimationDimensions = (size: string): void => {
@@ -123,25 +114,31 @@ export const HeroAnimation = (props: HeroAnimationProps) => {
     }
   }
 
-  const handleScroll = () => {
-    var element = document.getElementById("HeroProjectContainer");
-    var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight)
-    element.style.setProperty('--scroll', String(scrollPercent));
-    
-    if (scrollPercent >= .75 && !playing) {
-      const video = document.querySelector("video");
+  const handleVideo = () => {  
+    const video = document.getElementById("HeroImageVideo") as HTMLVideoElement;
+  
+    if (props.scrollPercent <= 0 && !playing) {
+      video.currentTime = 0;
+      setPlaying(false)
+    }
+
+    else if (props.scrollPercent >= .75 && !playing) {
       video.play();
-      //video.pause();
       setPlaying(true)
     }
-    
+
+    else if (props.scrollPercent <= .74 && playing) {
+      video.pause();
+      setPlaying(false)
+    }
+
   }
 
   return (
     <Overlay width={props.width} height={props.height}>
       <Container width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
-        <video id="video" src={Prototype} muted></video>
+        <Video id="HeroImageVideo" src={Prototype} muted></Video>
       </Container>
     </Overlay>
   );

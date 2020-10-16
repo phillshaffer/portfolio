@@ -1,11 +1,13 @@
+// Libraries
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
-//import { Projects } from "../components/projects";
-//import { Project } from "../components/project";
-
+// Components
 import { HeroProject } from "../components/HeroProject";
-import { HeroAnimation } from "../components/HeroAnimation";
+import { Projects } from "../components/projects";
+import { Project } from "../components/project";
+
+
 
 
 export interface WorkProps {
@@ -24,10 +26,9 @@ export const Work = (props: WorkProps) => {
 
   return (
     <React.Fragment>
-      <HeroProject width={props.width} height={props.height} backgroundColor="blue" >
-        <HeroAnimation width={props.width} height={props.height} size="l"/>
+      <HeroProject width={props.width} height={props.height} backgroundColor="blue" size="l">
       </HeroProject>
-      {/* <Projects>
+      <Projects>
         <Project width={props.width} height={props.height} backgroundColor="red">
           <p>1</p>
         </Project>
@@ -37,7 +38,7 @@ export const Work = (props: WorkProps) => {
         <Project width={props.width} height={props.height} backgroundColor="blue">
           <p>3</p>
         </Project>
-      </Projects> */}
+      </Projects>
     </React.Fragment>
   );
 }
@@ -52,3 +53,6 @@ declare module 'react' {
     onclick?: any;
   }
 }
+
+
+HTMLVideoElement

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
+import { HeroImage } from "./HeroImage";
+
+
 interface ContainerProps {
   width: number;
   height: number;
@@ -27,7 +30,7 @@ const Viewport = styled.div<ViewportProps>`
   width: ${props => props.width + 'px' ?? 'auto'};
   height: ${props => props.height + 'px' ?? 'auto'};
   background-color: ${props => props.backgroundColor ?? 'green'};
-  z-index: 50;
+  z-index: 100;
 `;
 
 
@@ -47,7 +50,7 @@ const Stage = styled.div<StageProps>`
   display: flex;
   justify-content: center;
   overflow: hidden;
-  z-index: 51;
+  z-index: 101;
 `;
 
 const Text = styled.p`
@@ -65,6 +68,7 @@ export interface HeroProjectProps {
   width: number;
   height: number;
   backgroundColor: string;
+  size: string;
   children: React.ReactNode;
 };
 
@@ -91,7 +95,7 @@ export const HeroProject = (props: HeroProjectProps) => {
         <Stage width={props.width} height={props.height}>
           <Text>Managing Directory Users</Text>
         </Stage>
-        {props.children}
+        <HeroImage width={props.width} height={props.height} size={props.size} scrollPercent={scrollPercent} />
       </Viewport>
     </Container>
   );

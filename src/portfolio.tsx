@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
   p {
     margin: 0px;
   }
-
+  
 `;
 
 

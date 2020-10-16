@@ -33670,10 +33670,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./src/components/HeroAnimation.tsx":
-/*!******************************************!*\
-  !*** ./src/components/HeroAnimation.tsx ***!
-  \******************************************/
+/***/ "./src/components/HeroImage.tsx":
+/*!**************************************!*\
+  !*** ./src/components/HeroImage.tsx ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33702,19 +33702,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HeroAnimation = void 0;
+exports.HeroImage = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 const video_mp4_1 = __importDefault(__webpack_require__(/*! ../images/video.mp4 */ "./src/images/video.mp4"));
 ;
 const Overlay = styled_components_1.default.div `
   position: absolute;
+  top: 0px;
+  left: 0px;
   overflow: hidden;
   display: flex;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   justify-content: center;
-
 `;
 ;
 const Container = styled_components_1.default.div `
@@ -33728,9 +33729,9 @@ const Container = styled_components_1.default.div `
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
 
   background-color: red;
-  z-index: 101;
+  z-index: 102;
 
-  animation: scale;
+  animation: AnimateHeroImage;
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
@@ -33738,7 +33739,7 @@ const Container = styled_components_1.default.div `
   animation-delay: calc(var(--scroll) * -1s);
   animation-fill-mode: both;
 
-  @keyframes scale {
+  @keyframes AnimateHeroImage {
     0% {}
     5% {
       bottom: 0px;
@@ -33747,12 +33748,6 @@ const Container = styled_components_1.default.div `
       align-self: center;
       transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - 64) / props.heroAnimationWidth});
     }
-  }
-
-  video {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
   }
 `;
 ;
@@ -33770,21 +33765,19 @@ const Bezel = styled_components_1.default.div `
   background-color: transparent;
   z-index: 103
 `;
-;
-const Canvas = styled_components_1.default.canvas `
-  position: absolute;
+const Video = styled_components_1.default.video `
   box-sizing: border-box;
-  padding: 16px;
-  background-color: transparent;
-  z-index: 102
+  width: 100%;
+  height: 100%;
 `;
 ;
-exports.HeroAnimation = (props) => {
+exports.HeroImage = (props) => {
     const [HeroAnimationWidth, setHeroAnimationWidth] = react_1.useState(0);
     const [HeroAnimationHeight, setHeroAnimationHeight] = react_1.useState(0);
     const [playing, setPlaying] = react_1.useState(false);
     react_1.useEffect(() => {
         getHeroAnimationDimensions(props.size);
+        handleVideo();
     });
     const getHeroAnimationDimensions = (size) => {
         if (size === "l") {
@@ -33792,20 +33785,25 @@ exports.HeroAnimation = (props) => {
             setHeroAnimationHeight(580);
         }
     };
-    const handleScroll = () => {
-        var element = document.getElementById("HeroProjectContainer");
-        var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight);
-        element.style.setProperty('--scroll', String(scrollPercent));
-        if (scrollPercent >= .75 && !playing) {
-            const video = document.querySelector("video");
+    const handleVideo = () => {
+        const video = document.getElementById("HeroImageVideo");
+        if (props.scrollPercent <= 0 && !playing) {
+            video.currentTime = 0;
+            setPlaying(false);
+        }
+        else if (props.scrollPercent >= .75 && !playing) {
             video.play();
             setPlaying(true);
+        }
+        else if (props.scrollPercent <= .74 && playing) {
+            video.pause();
+            setPlaying(false);
         }
     };
     return (react_1.default.createElement(Overlay, { width: props.width, height: props.height },
         react_1.default.createElement(Container, { width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
             react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
-            react_1.default.createElement("video", { id: "video", src: video_mp4_1.default, muted: true }))));
+            react_1.default.createElement(Video, { id: "HeroImageVideo", src: video_mp4_1.default, muted: true }))));
 };
 
 
@@ -33846,6 +33844,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroProject = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const HeroImage_1 = __webpack_require__(/*! ./HeroImage */ "./src/components/HeroImage.tsx");
 ;
 const Container = styled_components_1.default.div `
   box-sizing: border-box;
@@ -33862,7 +33861,7 @@ const Viewport = styled_components_1.default.div `
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'green'; }};
-  z-index: 50;
+  z-index: 100;
 `;
 ;
 const Stage = styled_components_1.default.div `
@@ -33876,7 +33875,7 @@ const Stage = styled_components_1.default.div `
   display: flex;
   justify-content: center;
   overflow: hidden;
-  z-index: 51;
+  z-index: 101;
 `;
 const Text = styled_components_1.default.p `
   font-size: 4.0em;
@@ -33906,7 +33905,67 @@ exports.HeroProject = (props) => {
         react_1.default.createElement(Viewport, { width: props.width, height: props.height, backgroundColor: props.backgroundColor },
             react_1.default.createElement(Stage, { width: props.width, height: props.height },
                 react_1.default.createElement(Text, null, "Managing Directory Users")),
-            props.children)));
+            react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, size: props.size, scrollPercent: scrollPercent }))));
+};
+
+
+/***/ }),
+
+/***/ "./src/components/project.tsx":
+/*!************************************!*\
+  !*** ./src/components/project.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Project = void 0;
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+;
+const Container = styled_components_1.default.div `
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'white'; }};
+`;
+;
+exports.Project = (props) => {
+    return (react_1.default.createElement(Container, { width: props.width, height: props.height, backgroundColor: props.backgroundColor }, props.children));
+};
+
+
+/***/ }),
+
+/***/ "./src/components/projects.tsx":
+/*!*************************************!*\
+  !*** ./src/components/projects.tsx ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Projects = void 0;
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const Container = styled_components_1.default.div `
+  position: relative;
+`;
+;
+exports.Projects = (props) => {
+    return (react_1.default.createElement(Container, null, props.children));
 };
 
 
@@ -33994,15 +34053,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Work = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const HeroProject_1 = __webpack_require__(/*! ../components/HeroProject */ "./src/components/HeroProject.tsx");
-const HeroAnimation_1 = __webpack_require__(/*! ../components/HeroAnimation */ "./src/components/HeroAnimation.tsx");
+const projects_1 = __webpack_require__(/*! ../components/projects */ "./src/components/projects.tsx");
+const project_1 = __webpack_require__(/*! ../components/project */ "./src/components/project.tsx");
 ;
 exports.Work = (props) => {
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundColor: "blue" },
-            react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" }))));
+        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundColor: "blue", size: "l" }),
+        react_1.default.createElement(projects_1.Projects, null,
+            react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "red" },
+                react_1.default.createElement("p", null, "1")),
+            react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "white" },
+                react_1.default.createElement("p", null, "2")),
+            react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "blue" },
+                react_1.default.createElement("p", null, "3")))));
 };
+HTMLVideoElement;
 
 
 /***/ }),
@@ -34068,7 +34135,7 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
   p {
     margin: 0px;
   }
-
+  
 `;
 exports.Portfolio = () => {
     const [width, setWidth] = react_1.useState(window.innerWidth);
