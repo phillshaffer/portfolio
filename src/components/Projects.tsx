@@ -6,16 +6,6 @@ const Container = styled.div`
   position: relative;
 `;
 
-
-interface ViewPortProps {
-  height: number;
-};
-
-const ViewPort = styled.div<ViewPortProps>`
-
-  height: ${props => props.height + 'px' ?? 'auto'};
-
-`;
 /*
 const ViewPort = styled.div<ViewPortProps>`
   overflow-y: scroll;
@@ -31,16 +21,13 @@ const ViewPort = styled.div<ViewPortProps>`
 
 export interface ProjectsProps {
   children: React.ReactNode;
-  height: number;
 };
 
 export const Projects = (props: ProjectsProps) => {
 
   return (
     <Container>
-      <ViewPort height={props.height}>
       {props.children}
-      </ViewPort>
     </Container>
   );
 };

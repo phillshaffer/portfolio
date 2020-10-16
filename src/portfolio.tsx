@@ -1,88 +1,107 @@
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import styled, { createGlobalStyle } from "styled-components";
+
+// pages
+import { Work } from "./pages/work";
+
+export interface Projects extends Array<Project> {}
+
+export interface Project {
+  name: string;
+}
+
+const projects: Projects = [
+  {
+    name: "A"
+  },
+  {
+    name: "B"
+  },
+  {
+    name: "C"
+  }
+]
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
+
+  html {
+    font-size: calc(1em * .625);
+  }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    background-color: #ffffff;
+  }
 
 
-import { Projects } from "./components/Projects";
-
-import { HeroProject } from "./components/HeroProject"
-import { HeroAnimation } from "./components/HeroAnimation"
-
-import ObjectSummary from './images/ObjectSummary.png';
-
-
-
-/*
-interface ProjectsProps {
-  height: number;
-};
-
-const Projects = styled.div<ProjectsProps>`
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-padding: 0px;
 `;
-//  height: ${props => props.height + 'px' ?? 'auto'};  
-*/
-
-interface ProjectProps {
-  width: number;
-  height: number;
-  scrollYPosition: number;
-  color: string;
-};
-
-const Project = styled.div<ProjectProps>`
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-  width: ${props => props.width + 'px' ?? 'auto'};
-  height: ${props => props.height + 'px' ?? 'auto'};
-  background-color: ${props => props.color ?? 'green'};
-`;
-//  scroll-snap-align: start;
 
 
-export interface PortfolioProps {
-  width: number;
-  height: number;
-  scrollYPosition: number;
-  //projects: Projects;
-};
+export const Portfolio = () => {
 
-export const Portfolio = (props: PortfolioProps) => {
-
-  //const [projectCount, setProjectCount] = useState(props.projects.length);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
   useEffect(() => {
+    // initiate the event handler
+    window.addEventListener('load', handleWindowSize, false);
+    window.addEventListener('resize', handleWindowSize, false);
+    window.addEventListener('scroll', handleScroll, false);
+
+    // this will clean up the event every time the component is re-rendered
+    return function cleanup() {
+      window.removeEventListener('load', handleWindowSize, false);
+      window.removeEventListener('resize', handleWindowSize, false);
+      window.removeEventListener('scroll', handleScroll, false);
+    };
+
   });
+
+  const handleWindowSize = () => {
+    setWidth(window.innerWidth)
+    setHeight(window.innerHeight)
+  };
+
+  const handleScroll = () => {
+    setScrollYPosition(window.scrollY)
+  };
 
   return (
     <React.Fragment>
-      <HeroProject id={"1"} width={props.width} height={props.height} backgroundColor="blue" >
-        <HeroAnimation width={props.width} height={props.height} size="l"/>
-      </HeroProject>
-      <Projects height={props.height}>
-        <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="red">
-          <p>1</p>
-        </Project>
-        <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="white">
-          <p>2</p>
-        </Project>
-        <Project width={props.width} height={props.height} scrollYPosition={props.scrollYPosition} color="blue">
-          <p>3</p>
-        </Project>
-      </Projects>
+      <GlobalStyle />
+      <Router>
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route
+            path={["/", "/work"]}
+            render={() => <Work width={width} height={height} scrollYPosition={scrollYPosition} />}
+          />
+        </Switch>
+      </Router>
     </React.Fragment>
   );
 }
 
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    // extends React's HTMLAttributes
-    hidden?: boolean;
-    muted?: boolean;
-    autoPlay?: boolean;
-    controls?: boolean;
-    onclick?: any;
-  }
+//          
+
+
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
 }

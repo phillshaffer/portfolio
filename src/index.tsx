@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { PortfolioShell } from "./portfolioShell"
+import { Portfolio } from "./portfolio"
 
 ReactDOM.render(
-  <PortfolioShell/>,
+  <Portfolio/>,
   document.getElementById("portfolio")
 );

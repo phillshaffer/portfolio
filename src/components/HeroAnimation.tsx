@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import ObjectSummary from '../images/ObjectSummary.png';
-import Prototype from '../images/video.mp4'
+import Prototype from '../images/video.mp4';
 
 
 interface OverlayProps {
