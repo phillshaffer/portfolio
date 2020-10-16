@@ -81,10 +81,9 @@ export const Portfolio = () => {
           <Route path="/users">
             <Users />
           </Route>
-          <Route
-            path={["/", "/work"]}
-            render={() => <Work width={width} height={height} scrollYPosition={scrollYPosition} />}
-          />
+          <Route path={["/", "/work"]}>
+            <Work width={width} height={height} scrollYPosition={scrollYPosition}/>
+          </Route>
         </Switch>
       </Router>
     </React.Fragment>

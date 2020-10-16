@@ -34041,7 +34041,8 @@ exports.Portfolio = () => {
                     react_1.default.createElement(About, null)),
                 react_1.default.createElement(react_router_dom_1.Route, { path: "/users" },
                     react_1.default.createElement(Users, null)),
-                react_1.default.createElement(react_router_dom_1.Route, { path: ["/", "/work"], render: () => react_1.default.createElement(work_1.Work, { width: width, height: height, scrollYPosition: scrollYPosition }) })))));
+                react_1.default.createElement(react_router_dom_1.Route, { path: ["/", "/work"] },
+                    react_1.default.createElement(work_1.Work, { width: width, height: height, scrollYPosition: scrollYPosition }))))));
 };
 function Home() {
     return react_1.default.createElement("h2", null, "Home");
