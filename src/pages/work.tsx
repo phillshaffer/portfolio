@@ -24,7 +24,7 @@ export const Work = (props: WorkProps) => {
 
   return (
     <React.Fragment>
-      <HeroProject id={"1"} width={props.width} height={props.height} backgroundColor="blue" >
+      <HeroProject width={props.width} height={props.height} backgroundColor="blue" >
         <HeroAnimation width={props.width} height={props.height} size="l"/>
       </HeroProject>
       {/* <Projects>

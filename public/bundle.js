@@ -33708,7 +33708,7 @@ const styled_components_1 = __importDefault(__webpack_require__(/*! styled-compo
 const video_mp4_1 = __importDefault(__webpack_require__(/*! ../images/video.mp4 */ "./src/images/video.mp4"));
 ;
 const Overlay = styled_components_1.default.div `
-  position: sticky;
+  position: absolute;
   overflow: hidden;
   display: flex;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
@@ -33785,10 +33785,6 @@ exports.HeroAnimation = (props) => {
     const [playing, setPlaying] = react_1.useState(false);
     react_1.useEffect(() => {
         getHeroAnimationDimensions(props.size);
-        window.addEventListener('scroll', handleScroll, false);
-        return function cleanup() {
-            window.removeEventListener('scroll', handleScroll, false);
-        };
     });
     const getHeroAnimationDimensions = (size) => {
         if (size === "l") {
@@ -33797,7 +33793,7 @@ exports.HeroAnimation = (props) => {
         }
     };
     const handleScroll = () => {
-        var element = document.getElementById("1");
+        var element = document.getElementById("HeroProjectContainer");
         var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight);
         element.style.setProperty('--scroll', String(scrollPercent));
         if (scrollPercent >= .75 && !playing) {
@@ -33824,12 +33820,31 @@ exports.HeroAnimation = (props) => {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroProject = void 0;
-const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 ;
 const Container = styled_components_1.default.div `
@@ -33847,11 +33862,51 @@ const Viewport = styled_components_1.default.div `
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'green'; }};
+  z-index: 50;
+`;
+;
+const Stage = styled_components_1.default.div `
+  box-sizing: border-box;
+  position: absolute;
+  top: 0px; 
+  left: 0px;
+  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 51;
+`;
+const Text = styled_components_1.default.p `
+  font-size: 4.0em;
+  line-height: auto;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  top: 64px;
+  position: absolute;
+
 `;
 ;
 exports.HeroProject = (props) => {
-    return (react_1.default.createElement(Container, { id: props.id, width: props.width, height: props.height },
-        react_1.default.createElement(Viewport, { width: props.width, height: props.height, backgroundColor: props.backgroundColor }, props.children)));
+    const [scrollPercent, setScrollPercent] = react_1.useState(0);
+    react_1.useEffect(() => {
+        window.addEventListener('scroll', handleScroll, false);
+        return function cleanup() {
+            window.removeEventListener('scroll', handleScroll, false);
+        };
+    });
+    const handleScroll = () => {
+        var element = document.getElementById("HeroProjectContainer");
+        setScrollPercent(window.scrollY / (element.offsetHeight - window.innerHeight));
+        element.style.setProperty('--scroll', String(scrollPercent));
+    };
+    return (react_1.default.createElement(Container, { id: "HeroProjectContainer", width: props.width, height: props.height },
+        react_1.default.createElement(Viewport, { width: props.width, height: props.height, backgroundColor: props.backgroundColor },
+            react_1.default.createElement(Stage, { width: props.width, height: props.height },
+                react_1.default.createElement(Text, null, "Managing Directory Users")),
+            props.children)));
 };
 
 
@@ -33945,7 +34000,7 @@ exports.Work = (props) => {
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject_1.HeroProject, { id: "1", width: props.width, height: props.height, backgroundColor: "blue" },
+        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundColor: "blue" },
             react_1.default.createElement(HeroAnimation_1.HeroAnimation, { width: props.width, height: props.height, size: "l" }))));
 };
 
@@ -33998,7 +34053,7 @@ const projects = [
     }
 ];
 const GlobalStyle = styled_components_1.createGlobalStyle `
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&display=swap');
 
   html {
     font-size: calc(1em * .625);
@@ -34010,6 +34065,9 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
     background-color: #ffffff;
   }
 
+  p {
+    margin: 0px;
+  }
 
 `;
 exports.Portfolio = () => {

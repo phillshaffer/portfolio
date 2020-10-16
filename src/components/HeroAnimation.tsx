@@ -9,7 +9,7 @@ interface OverlayProps {
 };
 
 const Overlay = styled.div<OverlayProps>`
-  position: sticky;
+  position: absolute;
   overflow: hidden;
   display: flex;
   width: ${props => props.width + 'px' ?? 'auto'};
@@ -114,13 +114,6 @@ export const HeroAnimation = (props: HeroAnimationProps) => {
 
   useEffect(() => {
     getHeroAnimationDimensions(props.size)
-
-    window.addEventListener('scroll', handleScroll, false);
-
-    return function cleanup() {
-      window.removeEventListener('scroll', handleScroll, false);
-    };
-
   });
 
   const getHeroAnimationDimensions = (size: string): void => {
@@ -131,7 +124,7 @@ export const HeroAnimation = (props: HeroAnimationProps) => {
   }
 
   const handleScroll = () => {
-    var element = document.getElementById("1");
+    var element = document.getElementById("HeroProjectContainer");
     var scrollPercent = window.scrollY / (element.offsetHeight - window.innerHeight)
     element.style.setProperty('--scroll', String(scrollPercent));
     
@@ -148,7 +141,6 @@ export const HeroAnimation = (props: HeroAnimationProps) => {
     <Overlay width={props.width} height={props.height}>
       <Container width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
-        {/* <video id="video" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" muted autoPlay></video> */}
         <video id="video" src={Prototype} muted></video>
       </Container>
     </Overlay>
