@@ -65,10 +65,10 @@ const Text = styled.p`
 `;
 
 export interface HeroProjectProps {
+  mediaSize: string;
   width: number;
   height: number;
   backgroundColor: string;
-  size: string;
   children: React.ReactNode;
 };
 
@@ -95,7 +95,7 @@ export const HeroProject = (props: HeroProjectProps) => {
         <Stage width={props.width} height={props.height}>
           <Text>Managing Directory Users</Text>
         </Stage>
-        <HeroImage width={props.width} height={props.height} size={props.size} scrollPercent={scrollPercent} />
+        <HeroImage width={props.width} height={props.height} mediaSize={props.mediaSize} scrollPercent={scrollPercent} />
       </Viewport>
     </Container>
   );

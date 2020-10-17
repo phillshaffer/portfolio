@@ -33704,7 +33704,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroImage = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const styled_components_1 = __importStar(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 const video_mp4_1 = __importDefault(__webpack_require__(/*! ../images/video.mp4 */ "./src/images/video.mp4"));
 ;
 const Overlay = styled_components_1.default.div `
@@ -33731,13 +33731,16 @@ const Container = styled_components_1.default.div `
   background-color: red;
   z-index: 102;
 
-  animation: AnimateHeroImage;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-play-state: paused;
-  animation-delay: calc(var(--scroll) * -1s);
-  animation-fill-mode: both;
+  ${({ mediaSize }) => mediaSize === 'l' &&
+    styled_components_1.css `
+    animation: AnimateHeroImage;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+  `}
 
   @keyframes AnimateHeroImage {
     0% {}
@@ -33746,7 +33749,7 @@ const Container = styled_components_1.default.div `
     }
     100% {
       align-self: center;
-      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - 64) / props.heroAnimationWidth});
+      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
     }
   }
 `;
@@ -33776,11 +33779,15 @@ exports.HeroImage = (props) => {
     const [HeroAnimationHeight, setHeroAnimationHeight] = react_1.useState(0);
     const [playing, setPlaying] = react_1.useState(false);
     react_1.useEffect(() => {
-        getHeroAnimationDimensions(props.size);
+        getHeroAnimationDimensions(props.mediaSize);
         handleVideo();
     });
-    const getHeroAnimationDimensions = (size) => {
-        if (size === "l") {
+    const getHeroAnimationDimensions = (mediaSize) => {
+        if (mediaSize === "m") {
+            setHeroAnimationWidth(688);
+            setHeroAnimationHeight(430);
+        }
+        if (mediaSize === "l") {
             setHeroAnimationWidth(928);
             setHeroAnimationHeight(580);
         }
@@ -33801,7 +33808,7 @@ exports.HeroImage = (props) => {
         }
     };
     return (react_1.default.createElement(Overlay, { width: props.width, height: props.height },
-        react_1.default.createElement(Container, { width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
+        react_1.default.createElement(Container, { mediaSize: props.mediaSize, width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
             react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
             react_1.default.createElement(Video, { id: "HeroImageVideo", src: video_mp4_1.default, muted: true }))));
 };
@@ -33905,7 +33912,7 @@ exports.HeroProject = (props) => {
         react_1.default.createElement(Viewport, { width: props.width, height: props.height, backgroundColor: props.backgroundColor },
             react_1.default.createElement(Stage, { width: props.width, height: props.height },
                 react_1.default.createElement(Text, null, "Managing Directory Users")),
-            react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, size: props.size, scrollPercent: scrollPercent }))));
+            react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, mediaSize: props.mediaSize, scrollPercent: scrollPercent }))));
 };
 
 
@@ -34060,7 +34067,7 @@ exports.Work = (props) => {
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundColor: "blue", size: "l" }),
+        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundColor: "blue", mediaSize: props.mediaSize }),
         react_1.default.createElement(projects_1.Projects, null,
             react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "red" },
                 react_1.default.createElement("p", null, "1")),
@@ -34140,12 +34147,13 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
 exports.Portfolio = () => {
     const [width, setWidth] = react_1.useState(window.innerWidth);
     const [height, setHeight] = react_1.useState(window.innerHeight);
-    const [mediaSize, setMediaSize] = react_1.useState("l");
+    const [mediaSize, setMediaSize] = react_1.useState("");
     const [scrollYPosition, setScrollYPosition] = react_1.useState(window.scrollY);
     react_1.useEffect(() => {
         window.addEventListener('load', handleWindowSize, false);
         window.addEventListener('resize', handleWindowSize, false);
         window.addEventListener('scroll', handleScroll, false);
+        console.log(mediaSize);
         return function cleanup() {
             window.removeEventListener('load', handleWindowSize, false);
             window.removeEventListener('resize', handleWindowSize, false);
@@ -34155,19 +34163,17 @@ exports.Portfolio = () => {
     const handleWindowSize = () => {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
-        let mediaSizes = [
-            { size: "xs", maxWidth: 320 },
-            { size: "s", maxWidth: 768 },
-            { size: "m", maxWidth: 1020 },
-            { size: "l", maxWidth: 1440 }
+        let medias = [
+            { size: "xs", minWidth: 320 },
+            { size: "s", minWidth: 768 },
+            { size: "m", minWidth: 1020 },
+            { size: "l", minWidth: 1440 },
+            { size: "xl", minWidth: 1920 },
+            { size: "xxl", minWidth: 3840 },
+            { size: "xxxl", minWidth: 5120 },
         ];
-        mediaSizes.find((mediaSize) => {
-            if (window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches) {
-                console.log(window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches);
-                setMediaSize(mediaSize.size);
-            }
-        });
-        console.log(mediaSize);
+        let matchedMedia = medias.reverse().find((media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches);
+        setMediaSize(matchedMedia.size);
     };
     const handleScroll = () => {
         setScrollYPosition(window.scrollY);
@@ -34181,7 +34187,7 @@ exports.Portfolio = () => {
                 react_1.default.createElement(react_router_dom_1.Route, { path: "/users" },
                     react_1.default.createElement(Users, null)),
                 react_1.default.createElement(react_router_dom_1.Route, { path: ["/", "/work"] },
-                    react_1.default.createElement(work_1.Work, { width: width, height: height, scrollYPosition: scrollYPosition }))))));
+                    react_1.default.createElement(work_1.Work, { mediaSize: mediaSize, width: width, height: height, scrollYPosition: scrollYPosition }))))));
 };
 function Home() {
     return react_1.default.createElement("h2", null, "Home");

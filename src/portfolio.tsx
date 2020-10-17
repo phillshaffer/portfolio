@@ -47,7 +47,7 @@ export const Portfolio = () => {
 
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
-  const [mediaSize, setMediaSize] = useState("l");
+  const [mediaSize, setMediaSize] = useState("");
 
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
@@ -56,6 +56,7 @@ export const Portfolio = () => {
     window.addEventListener('load', handleWindowSize, false);
     window.addEventListener('resize', handleWindowSize, false);
     window.addEventListener('scroll', handleScroll, false);
+    console.log(mediaSize)
 
     // this will clean up the event every time the component is re-rendered
     return function cleanup() {
@@ -69,27 +70,25 @@ export const Portfolio = () => {
   const handleWindowSize = (): void => {
     setWidth(window.innerWidth)
     setHeight(window.innerHeight)
-
-    type mediaSize = {
+    
+    type media = {
       size: string;
-      maxWidth: number;
+      minWidth: number;
     }
 
-    let mediaSizes: Array<mediaSize> = [
-      {size: "xs", maxWidth: 320},
-      {size: "s", maxWidth: 768},
-      {size: "m", maxWidth: 1020},
-      {size: "l", maxWidth: 1440}
+    let medias: Array<media> = [
+      {size: "xs", minWidth: 320},
+      {size: "s", minWidth: 768},
+      {size: "m", minWidth: 1020},
+      {size: "l", minWidth: 1440},
+      {size: "xl", minWidth: 1920},
+      {size: "xxl", minWidth: 3840},
+      {size: "xxxl", minWidth: 5120},
     ]
 
-    mediaSizes.find((mediaSize: mediaSize) => {
-      if(window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches) {
-        console.log(window.matchMedia("(max-width: " + mediaSize.maxWidth + "px)").matches)
-        setMediaSize(mediaSize.size);
-      }
-    })
+    let matchedMedia = medias.reverse().find((media: media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches)
 
-    console.log(mediaSize)
+    setMediaSize(matchedMedia.size);
   };
 
   const handleScroll = () => {
@@ -108,7 +107,7 @@ export const Portfolio = () => {
             <Users />
           </Route>
           <Route path={["/", "/work"]}>
-            <Work width={width} height={height} scrollYPosition={scrollYPosition}/>
+            <Work mediaSize={mediaSize} width={width} height={height} scrollYPosition={scrollYPosition}/>
           </Route>
         </Switch>
       </Router>

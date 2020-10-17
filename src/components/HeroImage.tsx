@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import Prototype from '../images/video.mp4';
 
 
@@ -21,6 +21,7 @@ const Overlay = styled.div<OverlayProps>`
 
 
 interface ContainerProps {
+  mediaSize: string;
   width: number;
   height: number;
   heroAnimationWidth: number;
@@ -40,13 +41,16 @@ const Container = styled.div<ContainerProps>`
   background-color: red;
   z-index: 102;
 
-  animation: AnimateHeroImage;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-play-state: paused;
-  animation-delay: calc(var(--scroll) * -1s);
-  animation-fill-mode: both;
+  ${({ mediaSize }) => mediaSize === 'l' &&
+  css`
+    animation: AnimateHeroImage;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+  `}
 
   @keyframes AnimateHeroImage {
     0% {}
@@ -55,7 +59,7 @@ const Container = styled.div<ContainerProps>`
     }
     100% {
       align-self: center;
-      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - 64) / props.heroAnimationWidth});
+      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
     }
   }
 `;
@@ -90,9 +94,9 @@ const Video = styled.video`
 
 
 export interface HeroImageProps {
+  mediaSize: string;
   width: number;
   height: number;
-  size: string;
   scrollPercent: number;
 };
 
@@ -103,12 +107,16 @@ export const HeroImage = (props: HeroImageProps) => {
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
-    getHeroAnimationDimensions(props.size);
+    getHeroAnimationDimensions(props.mediaSize);
     handleVideo();
   });
 
-  const getHeroAnimationDimensions = (size: string): void => {
-    if (size === "l") {
+  const getHeroAnimationDimensions = (mediaSize: string): void => {
+    if (mediaSize === "m") {
+      setHeroAnimationWidth(688)
+      setHeroAnimationHeight(430)
+    }
+    if (mediaSize === "l") {
       setHeroAnimationWidth(928)
       setHeroAnimationHeight(580)
     }
@@ -136,7 +144,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   return (
     <Overlay width={props.width} height={props.height}>
-      <Container width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
+      <Container mediaSize={props.mediaSize} width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
         <Video id="HeroImageVideo" src={Prototype} muted></Video>
       </Container>
