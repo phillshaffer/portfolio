@@ -33731,7 +33731,7 @@ const Container = styled_components_1.default.div `
   background-color: red;
   z-index: 102;
 
-  ${({ mediaSize }) => mediaSize === 'l' &&
+  ${({ mediaSize }) => (mediaSize === 'l' || mediaSize === 'xl') &&
     styled_components_1.css `
     animation: AnimateHeroImage;
     animation-duration: 2s;
@@ -33790,6 +33790,10 @@ exports.HeroImage = (props) => {
         if (mediaSize === "l") {
             setHeroAnimationWidth(928);
             setHeroAnimationHeight(580);
+        }
+        if (mediaSize === "xl") {
+            setHeroAnimationWidth(1088);
+            setHeroAnimationHeight(680);
         }
     };
     const handleVideo = () => {

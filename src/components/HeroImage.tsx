@@ -41,7 +41,7 @@ const Container = styled.div<ContainerProps>`
   background-color: red;
   z-index: 102;
 
-  ${({ mediaSize }) => mediaSize === 'l' &&
+  ${({ mediaSize }) => (mediaSize === 'l' || mediaSize === 'xl') &&
   css`
     animation: AnimateHeroImage;
     animation-duration: 2s;
@@ -119,6 +119,10 @@ export const HeroImage = (props: HeroImageProps) => {
     if (mediaSize === "l") {
       setHeroAnimationWidth(928)
       setHeroAnimationHeight(580)
+    }
+    if (mediaSize === "xl") {
+      setHeroAnimationWidth(1088)
+      setHeroAnimationHeight(680)
     }
   }
 
