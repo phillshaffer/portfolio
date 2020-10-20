@@ -34172,6 +34172,7 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
   html {
     font-size: calc(1em * .625);
   }
+
   body {
     font-family: 'Open Sans', sans-serif;
     margin: 0px;

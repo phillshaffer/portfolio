@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: calc(1em * .625);
   }
+
   body {
     font-family: 'Open Sans', sans-serif;
     margin: 0px;
