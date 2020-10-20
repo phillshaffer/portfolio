@@ -33748,7 +33748,7 @@ const Container = styled_components_1.default.div `
     }
     100% {
       align-self: center;
-      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => (props.width - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
+      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => ((props.height * 1.6) - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
     }
   }
 `;
@@ -33800,8 +33800,12 @@ exports.HeroImage = (props) => {
             setHeroAnimationHeight(680);
         }
         if (media.size === "xxl") {
-            setHeroAnimationWidth(1088);
-            setHeroAnimationHeight(680);
+            setHeroAnimationWidth(1440);
+            setHeroAnimationHeight(900);
+        }
+        if (media.size === "xxxl") {
+            setHeroAnimationWidth(2880);
+            setHeroAnimationHeight(1800);
         }
     };
     const handleVideo = () => {
