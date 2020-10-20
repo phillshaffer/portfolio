@@ -33783,18 +33783,23 @@ exports.HeroImage = (props) => {
     });
     const getHeroAnimationDimensions = (media) => {
         if (media.size === "xs") {
-            setHeroAnimationWidth(272);
-            setHeroAnimationHeight(170);
+            let width = props.width - 48;
+            setHeroAnimationWidth(width);
+            setHeroAnimationHeight(width / 1.6);
         }
         if (media.size === "s" || media.size === "m") {
-            setHeroAnimationWidth(720);
-            setHeroAnimationHeight(450);
+            setHeroAnimationWidth(688);
+            setHeroAnimationHeight(430);
         }
         if (media.size === "l") {
             setHeroAnimationWidth(928);
             setHeroAnimationHeight(580);
         }
         if (media.size === "xl") {
+            setHeroAnimationWidth(1088);
+            setHeroAnimationHeight(680);
+        }
+        if (media.size === "xxl") {
             setHeroAnimationWidth(1088);
             setHeroAnimationHeight(680);
         }
@@ -33897,14 +33902,13 @@ const Viewport = styled_components_1.default.div `
   background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'green'; }};
   z-index: 100;
 `;
-;
 const Stage = styled_components_1.default.div `
   box-sizing: border-box;
   position: absolute;
   top: 0px; 
   left: 0px;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  width: 100%;
+  height: 100%;
 
   display: flex;
   justify-content: center;
@@ -33937,7 +33941,7 @@ exports.HeroProject = (props) => {
     };
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
         react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundColor: props.backgroundColor },
-            react_1.default.createElement(Stage, { width: props.width, height: props.height },
+            react_1.default.createElement(Stage, null,
                 react_1.default.createElement(Text, null, "Managing Directory Users")),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
 };
@@ -34197,7 +34201,7 @@ exports.Portfolio = () => {
             { size: "m", minWidth: 1020, orientation: "" },
             { size: "l", minWidth: 1440, orientation: "" },
             { size: "xl", minWidth: 1920, orientation: "" },
-            { size: "xxl", minWidth: 3840, orientation: "" },
+            { size: "xxl", minWidth: 3440, orientation: "" },
             { size: "xxxl", minWidth: 5120, orientation: "" },
         ];
         let matchedMedia = medias.reverse().find((media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches);

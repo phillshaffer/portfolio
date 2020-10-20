@@ -108,21 +108,23 @@ export const HeroImage = (props: HeroImageProps) => {
 
   const getHeroAnimationDimensions = (media: media): void => {
     if (media.size === "xs") {
-      //let width = props.width - 48
-      setHeroAnimationWidth(272)
-      setHeroAnimationHeight(170)
-      //setHeroAnimationWidth(width)
-      //setHeroAnimationHeight((9 * width) / 16)
+      let width = props.width - 48
+      setHeroAnimationWidth(width)
+      setHeroAnimationHeight(width / 1.6)
     }
     if (media.size === "s" || media.size === "m") {
-      setHeroAnimationWidth(720)
-      setHeroAnimationHeight(450)
+      setHeroAnimationWidth(688)
+      setHeroAnimationHeight(430)
     }
     if (media.size === "l") {
       setHeroAnimationWidth(928)
       setHeroAnimationHeight(580)
     }
     if (media.size === "xl") {
+      setHeroAnimationWidth(1088)
+      setHeroAnimationHeight(680)
+    }
+    if (media.size === "xxl") {
       setHeroAnimationWidth(1088)
       setHeroAnimationHeight(680)
     }

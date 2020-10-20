@@ -59,18 +59,13 @@ const Viewport = styled.div<ViewportProps>`
 `;
 
 
-interface StageProps {
-  width: number;
-  height: number;
-};
-
-const Stage = styled.div<StageProps>`
+const Stage = styled.div`
   box-sizing: border-box;
   position: absolute;
   top: 0px; 
   left: 0px;
-  width: ${props => props.width + 'px' ?? 'auto'};
-  height: ${props => props.height + 'px' ?? 'auto'};
+  width: 100%;
+  height: 100%;
 
   display: flex;
   justify-content: center;
@@ -117,7 +112,7 @@ export const HeroProject = (props: HeroProjectProps) => {
   return (
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
       <Viewport media={props.media} height={props.height} backgroundColor={props.backgroundColor}>
-        <Stage width={props.width} height={props.height}>
+        <Stage>
           <Text>Managing Directory Users</Text>
         </Stage>
         <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />

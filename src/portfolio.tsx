@@ -78,7 +78,7 @@ export const Portfolio = () => {
       {size: "m", minWidth: 1020, orientation: ""},
       {size: "l", minWidth: 1440, orientation: ""},
       {size: "xl", minWidth: 1920, orientation: ""},
-      {size: "xxl", minWidth: 3840, orientation: ""},
+      {size: "xxl", minWidth: 3440, orientation: ""},
       {size: "xxxl", minWidth: 5120, orientation: ""},
     ]
 
