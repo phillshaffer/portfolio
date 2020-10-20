@@ -33870,13 +33870,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroProject = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const styled_components_1 = __importStar(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 const font_1 = __webpack_require__(/*! ./font */ "./src/components/font.tsx");
 const HeroImage_1 = __webpack_require__(/*! ./HeroImage */ "./src/components/HeroImage.tsx");
 ;
@@ -33902,6 +33899,9 @@ const Viewport = styled_components_1.default.div `
   position: sticky;
   top: 24px; 
   left: 24px;
+  background-image: linear-gradient(${props => { var _a; return (_a = props.backgroundGradient) !== null && _a !== void 0 ? _a : 'white'; }});
+  z-index: 100;
+
   width: ${({ media, width }) => media.size === 'xs' && media.orientation === 'landscape' && width + 'px' ||
     media.size === 'xs' && media.orientation === 'portrait' && width + 'px' ||
     media.size === 's' && media.orientation === 'landscape' && width + 'px' ||
@@ -33923,9 +33923,25 @@ const Viewport = styled_components_1.default.div `
     media.size === 'xxl' && height - 48 + 'px' ||
     media.size === 'xxxl' && 1440 - 48 + 'px'};
 
-  background-image: linear-gradient(${props => { var _a; return (_a = props.backgroundGradient) !== null && _a !== void 0 ? _a : 'white'; }});
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+    styled_components_1.css `
+    animation: AnimateViewport;
+    animation-duration: .5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+ 
+    animation-fill-mode: both;
+  `}
 
-  z-index: 100;
+  @keyframes AnimateViewport {
+    100% {
+      top: 24px;
+      right: 24px;
+      width: ${props => props.width + 'px'};
+      height: ${props => props.height + 'px'};
+      transform: translate(-24px, -24px);
+    }
+  }
 `;
 ;
 const Stage = styled_components_1.default.div `

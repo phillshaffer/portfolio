@@ -42,6 +42,9 @@ const Viewport = styled.div<ViewportProps>`
   position: sticky;
   top: 24px; 
   left: 24px;
+  background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});
+  z-index: 100;
+
   width: ${({media, width}) => 	   
     media.size === 'xs' && media.orientation === 'landscape' && width + 'px' ||
     media.size === 'xs' && media.orientation === 'portrait' && width + 'px' ||  
@@ -67,9 +70,25 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'xxxl' && 1440 - 48 + 'px'
   };
 
-  background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  css`
+    animation: AnimateViewport;
+    animation-duration: .5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+ 
+    animation-fill-mode: both;
+  `}
 
-  z-index: 100;
+  @keyframes AnimateViewport {
+    100% {
+      top: 24px;
+      right: 24px;
+      width: ${props => props.width + 'px'};
+      height: ${props => props.height + 'px'};
+      transform: translate(-24px, -24px);
+    }
+  }
 `;
 
 interface StageProps {
