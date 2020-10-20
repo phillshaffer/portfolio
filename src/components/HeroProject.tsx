@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 import { HeroImage } from "./HeroImage";
 
 
 interface ContainerProps {
+  media: media;
   width: number;
   height: number;
 };
@@ -14,6 +15,16 @@ const Container = styled.div<ContainerProps>`
   width: ${props => props.width + 'px' ?? 'auto'};
   height: 400vh;
   position: relative;
+  
+  height: ${({media, height}) => 	   
+    media.size === 'xs' && height + 'px' || 
+    media.size === 's' && height + 'px' ||
+    media.size === 'm' && height + 'px' ||
+    media.size === 'l' && '400vh' ||
+    media.size === 'xl' && '400vh' ||
+    media.size === 'xxl' && '400vh' ||
+    media.size === 'xxxl' && '400vh'
+  };
 `;
 
 interface ViewportProps {
@@ -65,7 +76,7 @@ const Text = styled.p`
 `;
 
 export interface HeroProjectProps {
-  mediaSize: string;
+  media: media;
   width: number;
   height: number;
   backgroundColor: string;
@@ -90,12 +101,12 @@ export const HeroProject = (props: HeroProjectProps) => {
   };
 
   return (
-    <Container id="HeroProjectContainer" width={props.width} height={props.height}>
+    <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
       <Viewport width={props.width} height={props.height} backgroundColor={props.backgroundColor}>
         <Stage width={props.width} height={props.height}>
           <Text>Managing Directory Users</Text>
         </Stage>
-        <HeroImage width={props.width} height={props.height} mediaSize={props.mediaSize} scrollPercent={scrollPercent} />
+        <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />
       </Viewport>
     </Container>
   );

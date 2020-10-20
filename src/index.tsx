@@ -6,3 +6,10 @@ ReactDOM.render(
   <Portfolio/>,
   document.getElementById("portfolio")
 );
+
+declare global {
+  type media = {
+    size: string;
+    minWidth: number;
+  }
+}

@@ -47,7 +47,7 @@ export const Portfolio = () => {
 
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
-  const [mediaSize, setMediaSize] = useState("");
+  const [media, setMedia] = useState({size: "", minWidth: 0});
 
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
@@ -56,7 +56,7 @@ export const Portfolio = () => {
     window.addEventListener('load', handleWindowSize, false);
     window.addEventListener('resize', handleWindowSize, false);
     window.addEventListener('scroll', handleScroll, false);
-    console.log(mediaSize)
+    console.log(media.size)
 
     // this will clean up the event every time the component is re-rendered
     return function cleanup() {
@@ -70,11 +70,6 @@ export const Portfolio = () => {
   const handleWindowSize = (): void => {
     setWidth(window.innerWidth)
     setHeight(window.innerHeight)
-    
-    type media = {
-      size: string;
-      minWidth: number;
-    }
 
     let medias: Array<media> = [
       {size: "xs", minWidth: 320},
@@ -88,7 +83,7 @@ export const Portfolio = () => {
 
     let matchedMedia = medias.reverse().find((media: media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches)
 
-    setMediaSize(matchedMedia.size);
+    setMedia(matchedMedia);
   };
 
   const handleScroll = () => {
@@ -107,7 +102,7 @@ export const Portfolio = () => {
             <Users />
           </Route>
           <Route path={["/", "/work"]}>
-            <Work mediaSize={mediaSize} width={width} height={height} scrollYPosition={scrollYPosition}/>
+            <Work media={media} width={width} height={height} scrollYPosition={scrollYPosition}/>
           </Route>
         </Switch>
       </Router>

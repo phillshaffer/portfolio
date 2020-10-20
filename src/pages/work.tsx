@@ -11,7 +11,7 @@ import { Project } from "../components/project";
 
 
 export interface WorkProps {
-  mediaSize: string;
+  media: media;
   width: number;
   height: number;
   scrollYPosition: number;
@@ -27,7 +27,7 @@ export const Work = (props: WorkProps) => {
 
   return (
     <React.Fragment>
-      <HeroProject width={props.width} height={props.height} backgroundColor="blue" mediaSize={props.mediaSize}>
+      <HeroProject width={props.width} height={props.height} backgroundColor="blue" media={props.media}>
       </HeroProject>
       <Projects>
         <Project width={props.width} height={props.height} backgroundColor="red">

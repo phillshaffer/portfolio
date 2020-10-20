@@ -21,7 +21,7 @@ const Overlay = styled.div<OverlayProps>`
 
 
 interface ContainerProps {
-  mediaSize: string;
+  media: media;
   width: number;
   height: number;
   heroAnimationWidth: number;
@@ -41,7 +41,7 @@ const Container = styled.div<ContainerProps>`
   background-color: red;
   z-index: 102;
 
-  ${({ mediaSize }) => (mediaSize === 'l' || mediaSize === 'xl') &&
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl' || media.size === 'xxxl') &&
   css`
     animation: AnimateHeroImage;
     animation-duration: 2s;
@@ -94,7 +94,7 @@ const Video = styled.video`
 
 
 export interface HeroImageProps {
-  mediaSize: string;
+  media: media;
   width: number;
   height: number;
   scrollPercent: number;
@@ -107,20 +107,27 @@ export const HeroImage = (props: HeroImageProps) => {
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
-    getHeroAnimationDimensions(props.mediaSize);
+    getHeroAnimationDimensions(props.media);
     handleVideo();
   });
 
-  const getHeroAnimationDimensions = (mediaSize: string): void => {
-    if (mediaSize === "m") {
-      setHeroAnimationWidth(688)
-      setHeroAnimationHeight(430)
+  const getHeroAnimationDimensions = (media: media): void => {
+    if (media.size === "xs") {
+      //let width = props.width - 48
+      setHeroAnimationWidth(272)
+      setHeroAnimationHeight(170)
+      //setHeroAnimationWidth(width)
+      //setHeroAnimationHeight((9 * width) / 16)
     }
-    if (mediaSize === "l") {
+    if (media.size === "s" || media.size === "m") {
+      setHeroAnimationWidth(720)
+      setHeroAnimationHeight(450)
+    }
+    if (media.size === "l") {
       setHeroAnimationWidth(928)
       setHeroAnimationHeight(580)
     }
-    if (mediaSize === "xl") {
+    if (media.size === "xl") {
       setHeroAnimationWidth(1088)
       setHeroAnimationHeight(680)
     }
@@ -148,7 +155,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   return (
     <Overlay width={props.width} height={props.height}>
-      <Container mediaSize={props.mediaSize} width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
+      <Container media={props.media} width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
         <Video id="HeroImageVideo" src={Prototype} muted></Video>
       </Container>
