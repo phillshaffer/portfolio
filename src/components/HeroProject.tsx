@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, {css} from "styled-components";
 
+import { Title } from './font'
 import { HeroImage } from "./HeroImage";
 
 
@@ -79,15 +80,6 @@ const Stage = styled.div<StageProps>`
   z-index: 101;
 `;
 
-const Text = styled.p`
-  font-size: 3.6em;
-  line-height: auto;
-  font-weight: 600;
-  color: white;
-  display: flex;
-  position: relative;
-  text-align: center;
-`;
 
 export interface HeroProjectProps {
   media: media;
@@ -118,7 +110,7 @@ export const HeroProject = (props: HeroProjectProps) => {
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
       <Viewport media={props.media} height={props.height} backgroundGradient={props.backgroundGradient}>
         <Stage height={props.height}>
-          <Text>Managing Directory Users</Text>
+          <Title media={props.media}>Managing Directory Users</Title>
         </Stage>
         <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />
       </Viewport>

@@ -33869,6 +33869,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroProject = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const font_1 = __webpack_require__(/*! ./font */ "./src/components/font.tsx");
 const HeroImage_1 = __webpack_require__(/*! ./HeroImage */ "./src/components/HeroImage.tsx");
 ;
 const Container = styled_components_1.default.div `
@@ -33925,15 +33926,6 @@ const Stage = styled_components_1.default.div `
   overflow: hidden;
   z-index: 101;
 `;
-const Text = styled_components_1.default.p `
-  font-size: 3.6em;
-  line-height: auto;
-  font-weight: 600;
-  color: white;
-  display: flex;
-  position: relative;
-  text-align: center;
-`;
 ;
 exports.HeroProject = (props) => {
     const [scrollPercent, setScrollPercent] = react_1.useState(0);
@@ -33951,9 +33943,46 @@ exports.HeroProject = (props) => {
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
         react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundGradient: props.backgroundGradient },
             react_1.default.createElement(Stage, { height: props.height },
-                react_1.default.createElement(Text, null, "Managing Directory Users")),
+                react_1.default.createElement(font_1.Title, { media: props.media }, "Managing Directory Users")),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
 };
+
+
+/***/ }),
+
+/***/ "./src/components/font.tsx":
+/*!*********************************!*\
+  !*** ./src/components/font.tsx ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Title = void 0;
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+;
+exports.Title = styled_components_1.default.h1 `
+  font-size: ${({ media }) => media.size === 'xs' && '2.8em' ||
+    media.size === 's' && '3.6em' ||
+    media.size === 'm' && '3.6em' ||
+    media.size === 'l' && '4.8em' ||
+    media.size === 'xl' && '5.6em' ||
+    media.size === 'xxl' && '7.2em' ||
+    media.size === 'xxxl' && '12.8em'};
+
+  line-height: auto;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  position: relative;
+  text-align: center;
+  margin: 0px; 
+`;
 
 
 /***/ }),
