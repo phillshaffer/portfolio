@@ -33,7 +33,7 @@ const Container = styled.div<ContainerProps>`
   height: ${props => props.heroAnimationHeight + 'px' ?? 'auto'};
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
 
-  background-color: red;
+  background-color: #000000;
   z-index: 102;
 
   ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl' || media.size === 'xxxl') &&
@@ -103,7 +103,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   useEffect(() => {
     getHeroAnimationDimensions(props.media);
-    handleVideo();
+    handleVideo(props.media);
   });
 
   const getHeroAnimationDimensions = (media: media): void => {
@@ -117,8 +117,8 @@ export const HeroImage = (props: HeroImageProps) => {
       setHeroAnimationHeight(430)
     }
     if (media.size === "l") {
-      setHeroAnimationWidth(928)
-      setHeroAnimationHeight(580)
+      setHeroAnimationWidth(832)
+      setHeroAnimationHeight(520)
     }
     if (media.size === "xl") {
       setHeroAnimationWidth(1088)
@@ -134,22 +134,24 @@ export const HeroImage = (props: HeroImageProps) => {
     }
   }
 
-  const handleVideo = () => {  
+  const handleVideo = (media: media) => {  
     const video = document.getElementById("HeroImageVideo") as HTMLVideoElement;
   
-    if (props.scrollPercent <= 0 && !playing) {
-      video.currentTime = 0;
-      setPlaying(false)
-    }
+    if (media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
+      if (props.scrollPercent <= 0 && !playing) {
+        video.currentTime = 0;
+        setPlaying(false)
+      }
 
-    else if (props.scrollPercent >= .75 && !playing) {
-      video.play();
-      setPlaying(true)
-    }
+      else if (props.scrollPercent >= .75 && !playing) {
+        video.play();
+        setPlaying(true)
+      }
 
-    else if (props.scrollPercent <= .74 && playing) {
-      video.pause();
-      setPlaying(false)
+      else if (props.scrollPercent <= .74 && playing) {
+        video.pause();
+        setPlaying(false)
+      }
     }
 
   }

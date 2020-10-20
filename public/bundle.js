@@ -33727,7 +33727,7 @@ const Container = styled_components_1.default.div `
   height: ${props => { var _a; return (_a = props.heroAnimationHeight + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
   bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
 
-  background-color: red;
+  background-color: #000000;
   z-index: 102;
 
   ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl' || media.size === 'xxxl') &&
@@ -33779,7 +33779,7 @@ exports.HeroImage = (props) => {
     const [playing, setPlaying] = react_1.useState(false);
     react_1.useEffect(() => {
         getHeroAnimationDimensions(props.media);
-        handleVideo();
+        handleVideo(props.media);
     });
     const getHeroAnimationDimensions = (media) => {
         if (media.size === "xs") {
@@ -33792,8 +33792,8 @@ exports.HeroImage = (props) => {
             setHeroAnimationHeight(430);
         }
         if (media.size === "l") {
-            setHeroAnimationWidth(928);
-            setHeroAnimationHeight(580);
+            setHeroAnimationWidth(832);
+            setHeroAnimationHeight(520);
         }
         if (media.size === "xl") {
             setHeroAnimationWidth(1088);
@@ -33808,19 +33808,21 @@ exports.HeroImage = (props) => {
             setHeroAnimationHeight(1800);
         }
     };
-    const handleVideo = () => {
+    const handleVideo = (media) => {
         const video = document.getElementById("HeroImageVideo");
-        if (props.scrollPercent <= 0 && !playing) {
-            video.currentTime = 0;
-            setPlaying(false);
-        }
-        else if (props.scrollPercent >= .75 && !playing) {
-            video.play();
-            setPlaying(true);
-        }
-        else if (props.scrollPercent <= .74 && playing) {
-            video.pause();
-            setPlaying(false);
+        if (media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
+            if (props.scrollPercent <= 0 && !playing) {
+                video.currentTime = 0;
+                setPlaying(false);
+            }
+            else if (props.scrollPercent >= .75 && !playing) {
+                video.play();
+                setPlaying(true);
+            }
+            else if (props.scrollPercent <= .74 && playing) {
+                video.pause();
+                setPlaying(false);
+            }
         }
     };
     return (react_1.default.createElement(Overlay, null,
@@ -33903,9 +33905,11 @@ const Viewport = styled_components_1.default.div `
     media.size === 'xxl' && height + 'px' ||
     media.size === 'xxxl' && height + 'px'};
 
-  background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'green'; }};
+  background-image: linear-gradient(${props => { var _a; return (_a = props.backgroundGradient) !== null && _a !== void 0 ? _a : 'white'; }});
+
   z-index: 100;
 `;
+;
 const Stage = styled_components_1.default.div `
   box-sizing: border-box;
   position: absolute;
@@ -33913,6 +33917,8 @@ const Stage = styled_components_1.default.div `
   left: 0px;
   width: 100%;
   height: 100%;
+  padding: ${props => 64 * props.height / 900 + 'px'};
+
 
   display: flex;
   justify-content: center;
@@ -33920,14 +33926,13 @@ const Stage = styled_components_1.default.div `
   z-index: 101;
 `;
 const Text = styled_components_1.default.p `
-  font-size: 4.0em;
+  font-size: 3.6em;
   line-height: auto;
   font-weight: 600;
   color: white;
   display: flex;
-  top: 64px;
-  position: absolute;
-
+  position: relative;
+  text-align: center;
 `;
 ;
 exports.HeroProject = (props) => {
@@ -33944,8 +33949,8 @@ exports.HeroProject = (props) => {
         element.style.setProperty('--scroll', String(scrollPercent));
     };
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
-        react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundColor: props.backgroundColor },
-            react_1.default.createElement(Stage, null,
+        react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundGradient: props.backgroundGradient },
+            react_1.default.createElement(Stage, { height: props.height },
                 react_1.default.createElement(Text, null, "Managing Directory Users")),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
 };
@@ -34102,7 +34107,7 @@ exports.Work = (props) => {
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundColor: "blue", media: props.media }),
+        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundGradient: "#6F24E0, #3D147A", media: props.media }),
         react_1.default.createElement(projects_1.Projects, null,
             react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "red" },
                 react_1.default.createElement("p", null, "1")),

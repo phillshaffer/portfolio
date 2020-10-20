@@ -27,7 +27,7 @@ export const Work = (props: WorkProps) => {
 
   return (
     <React.Fragment>
-      <HeroProject width={props.width} height={props.height} backgroundColor="blue" media={props.media}>
+      <HeroProject width={props.width} height={props.height} backgroundGradient="#6F24E0, #3D147A" media={props.media}>
       </HeroProject>
       <Projects>
         <Project width={props.width} height={props.height} backgroundColor="red">

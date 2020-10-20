@@ -32,7 +32,7 @@ const Container = styled.div<ContainerProps>`
 interface ViewportProps {
   media: media;
   height: number;
-  backgroundColor: string;
+  backgroundGradient: string;
 };
 
 const Viewport = styled.div<ViewportProps>`
@@ -54,18 +54,24 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'xxxl' && height + 'px'
   };
 
-  background-color: ${props => props.backgroundColor ?? 'green'};
+  background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});
+
   z-index: 100;
 `;
 
+interface StageProps {
+  height: number;
+};
 
-const Stage = styled.div`
+const Stage = styled.div<StageProps>`
   box-sizing: border-box;
   position: absolute;
   top: 0px; 
   left: 0px;
   width: 100%;
   height: 100%;
+  padding: ${props => 64 * props.height / 900 + 'px'};
+
 
   display: flex;
   justify-content: center;
@@ -74,21 +80,20 @@ const Stage = styled.div`
 `;
 
 const Text = styled.p`
-  font-size: 4.0em;
+  font-size: 3.6em;
   line-height: auto;
   font-weight: 600;
   color: white;
   display: flex;
-  top: 64px;
-  position: absolute;
-
+  position: relative;
+  text-align: center;
 `;
 
 export interface HeroProjectProps {
   media: media;
   width: number;
   height: number;
-  backgroundColor: string;
+  backgroundGradient: string;
   children: React.ReactNode;
 };
 
@@ -111,8 +116,8 @@ export const HeroProject = (props: HeroProjectProps) => {
 
   return (
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
-      <Viewport media={props.media} height={props.height} backgroundColor={props.backgroundColor}>
-        <Stage>
+      <Viewport media={props.media} height={props.height} backgroundGradient={props.backgroundGradient}>
+        <Stage height={props.height}>
           <Text>Managing Directory Users</Text>
         </Stage>
         <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />
