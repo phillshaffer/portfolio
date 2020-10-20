@@ -9,7 +9,7 @@ export const Title = styled.h1<TitleProps>`
     media.size === 'xs' && '2.8em' ||
     media.size === 's' && '3.2em' ||
     media.size === 'm' && '3.2em' ||
-    media.size === 'l' && '3.6em' ||
+    media.size === 'l' && '3.5em' ||
     media.size === 'xl' && '4.8em' ||
     media.size === 'xxl' && '7.2em' ||
     media.size === 'xxxl' && '7.4em'

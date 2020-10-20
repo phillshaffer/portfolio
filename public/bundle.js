@@ -33900,19 +33900,28 @@ const Container = styled_components_1.default.div `
 const Viewport = styled_components_1.default.div `
   box-sizing: border-box;
   position: sticky;
-  top: 0px; 
-  left: 0px;
-  width: 100%;
+  top: 24px; 
+  left: 24px;
+  width: ${({ media, width }) => media.size === 'xs' && media.orientation === 'landscape' && width + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && width + 'px' ||
+    media.size === 's' && media.orientation === 'landscape' && width + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && width - 48 + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && width - 48 + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && width - 48 + 'px' ||
+    media.size === 'l' && width - 48 + 'px' ||
+    media.size === 'xl' && width - 48 + 'px' ||
+    media.size === 'xxl' && width - 48 + 'px' ||
+    media.size === 'xxxl' && width - 48 + 'px'};
   height: ${({ media, height }) => media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
-    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
-    media.size === 'l' && height + 'px' ||
-    media.size === 'xl' && height + 'px' ||
-    media.size === 'xxl' && height + 'px' ||
-    media.size === 'xxxl' && 1440 + 'px'};
+    media.size === 's' && media.orientation === 'portrait' && height / 1.6 - 48 + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && height - 48 + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 - 48 + 'px' ||
+    media.size === 'l' && height - 48 + 'px' ||
+    media.size === 'xl' && height - 48 + 'px' ||
+    media.size === 'xxl' && height - 48 + 'px' ||
+    media.size === 'xxxl' && 1440 - 48 + 'px'};
 
   background-image: linear-gradient(${props => { var _a; return (_a = props.backgroundGradient) !== null && _a !== void 0 ? _a : 'white'; }});
 
@@ -33949,7 +33958,7 @@ exports.HeroProject = (props) => {
         element.style.setProperty('--scroll', String(scrollPercent));
     };
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
-        react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundGradient: props.backgroundGradient },
+        react_1.default.createElement(Viewport, { media: props.media, width: props.width, height: props.height, backgroundGradient: props.backgroundGradient },
             react_1.default.createElement(Stage, { height: props.height },
                 react_1.default.createElement(font_1.Title, { media: props.media }, "Managing Directory Users")),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
@@ -33978,7 +33987,7 @@ exports.Title = styled_components_1.default.h1 `
   font-size: ${({ media }) => media.size === 'xs' && '2.8em' ||
     media.size === 's' && '3.2em' ||
     media.size === 'm' && '3.2em' ||
-    media.size === 'l' && '3.6em' ||
+    media.size === 'l' && '3.5em' ||
     media.size === 'xl' && '4.8em' ||
     media.size === 'xxl' && '7.2em' ||
     media.size === 'xxxl' && '7.4em'};

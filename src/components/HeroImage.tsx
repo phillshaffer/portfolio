@@ -137,8 +137,6 @@ export const HeroImage = (props: HeroImageProps) => {
       setHeroAnimationHeight(900)
     }
     if (media.size === "xxxl") {
-      //setHeroAnimationWidth(2880)
-      //setHeroAnimationHeight(1800)
       setHeroAnimationWidth(1568)
       setHeroAnimationHeight(980)
     }
