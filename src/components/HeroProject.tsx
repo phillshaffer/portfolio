@@ -26,7 +26,7 @@ const Container = styled.div<ContainerProps>`
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
     media.size === 'xxl' && '400vh' ||
-    media.size === 'xxxl' && '400vh'
+    media.size === 'xxxl' && 1440 + 'px'
   };
 `;
 
@@ -52,7 +52,7 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'l' && height + 'px' ||
     media.size === 'xl' && height + 'px' ||
     media.size === 'xxl' && height + 'px' ||
-    media.size === 'xxxl' && height + 'px'
+    media.size === 'xxxl' && 1440 + 'px'
   };
 
   background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});

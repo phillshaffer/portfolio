@@ -33730,7 +33730,7 @@ const Container = styled_components_1.default.div `
   background-color: #000000;
   z-index: 102;
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl' || media.size === 'xxxl') &&
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
     styled_components_1.css `
     animation: AnimateHeroImage;
     animation-duration: 2s;
@@ -33787,7 +33787,15 @@ exports.HeroImage = (props) => {
             setHeroAnimationWidth(width);
             setHeroAnimationHeight(width / 1.6);
         }
-        if (media.size === "s" || media.size === "m") {
+        if (media.size === "s" && media.orientation === "landscape") {
+            setHeroAnimationWidth(384);
+            setHeroAnimationHeight(240);
+        }
+        if (media.size === "s" && media.orientation === "portrait") {
+            setHeroAnimationWidth(688);
+            setHeroAnimationHeight(430);
+        }
+        if (media.size === "m") {
             setHeroAnimationWidth(688);
             setHeroAnimationHeight(430);
         }
@@ -33804,8 +33812,8 @@ exports.HeroImage = (props) => {
             setHeroAnimationHeight(900);
         }
         if (media.size === "xxxl") {
-            setHeroAnimationWidth(2880);
-            setHeroAnimationHeight(1800);
+            setHeroAnimationWidth(1568);
+            setHeroAnimationHeight(980);
         }
     };
     const handleVideo = (media) => {
@@ -33886,7 +33894,7 @@ const Container = styled_components_1.default.div `
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
     media.size === 'xxl' && '400vh' ||
-    media.size === 'xxxl' && '400vh'};
+    media.size === 'xxxl' && 1440 + 'px'};
 `;
 ;
 const Viewport = styled_components_1.default.div `
@@ -33904,7 +33912,7 @@ const Viewport = styled_components_1.default.div `
     media.size === 'l' && height + 'px' ||
     media.size === 'xl' && height + 'px' ||
     media.size === 'xxl' && height + 'px' ||
-    media.size === 'xxxl' && height + 'px'};
+    media.size === 'xxxl' && 1440 + 'px'};
 
   background-image: linear-gradient(${props => { var _a; return (_a = props.backgroundGradient) !== null && _a !== void 0 ? _a : 'white'; }});
 
@@ -33968,12 +33976,12 @@ const styled_components_1 = __importDefault(__webpack_require__(/*! styled-compo
 ;
 exports.Title = styled_components_1.default.h1 `
   font-size: ${({ media }) => media.size === 'xs' && '2.8em' ||
-    media.size === 's' && '3.6em' ||
-    media.size === 'm' && '3.6em' ||
-    media.size === 'l' && '4.8em' ||
-    media.size === 'xl' && '5.6em' ||
+    media.size === 's' && '3.2em' ||
+    media.size === 'm' && '3.2em' ||
+    media.size === 'l' && '3.6em' ||
+    media.size === 'xl' && '4.8em' ||
     media.size === 'xxl' && '7.2em' ||
-    media.size === 'xxxl' && '12.8em'};
+    media.size === 'xxxl' && '7.4em'};
 
   line-height: auto;
   font-weight: 600;
@@ -34241,7 +34249,7 @@ exports.Portfolio = () => {
             { size: "l", minWidth: 1440, orientation: "" },
             { size: "xl", minWidth: 1920, orientation: "" },
             { size: "xxl", minWidth: 3440, orientation: "" },
-            { size: "xxxl", minWidth: 5120, orientation: "" },
+            { size: "xxxl", minWidth: 3840, orientation: "" },
         ];
         let matchedMedia = medias.reverse().find((media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches);
         if (width > height) {

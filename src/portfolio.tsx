@@ -80,7 +80,7 @@ export const Portfolio = () => {
       {size: "l", minWidth: 1440, orientation: ""},
       {size: "xl", minWidth: 1920, orientation: ""},
       {size: "xxl", minWidth: 3440, orientation: ""},
-      {size: "xxxl", minWidth: 5120, orientation: ""},
+      {size: "xxxl", minWidth: 3840, orientation: ""},
     ]
 
     let matchedMedia = medias.reverse().find((media: media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches)

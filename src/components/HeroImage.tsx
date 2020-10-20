@@ -36,7 +36,7 @@ const Container = styled.div<ContainerProps>`
   background-color: #000000;
   z-index: 102;
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl' || media.size === 'xxxl') &&
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
   css`
     animation: AnimateHeroImage;
     animation-duration: 2s;
@@ -112,7 +112,15 @@ export const HeroImage = (props: HeroImageProps) => {
       setHeroAnimationWidth(width)
       setHeroAnimationHeight(width / 1.6)
     }
-    if (media.size === "s" || media.size === "m") {
+    if (media.size === "s" && media.orientation === "landscape") {
+      setHeroAnimationWidth(384)
+      setHeroAnimationHeight(240)
+    }
+    if (media.size === "s" && media.orientation === "portrait") {
+      setHeroAnimationWidth(688)
+      setHeroAnimationHeight(430)
+    }
+    if (media.size === "m") {
       setHeroAnimationWidth(688)
       setHeroAnimationHeight(430)
     }
@@ -129,8 +137,10 @@ export const HeroImage = (props: HeroImageProps) => {
       setHeroAnimationHeight(900)
     }
     if (media.size === "xxxl") {
-      setHeroAnimationWidth(2880)
-      setHeroAnimationHeight(1800)
+      //setHeroAnimationWidth(2880)
+      //setHeroAnimationHeight(1800)
+      setHeroAnimationWidth(1568)
+      setHeroAnimationHeight(980)
     }
   }
 
