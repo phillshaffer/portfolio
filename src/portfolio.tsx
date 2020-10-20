@@ -47,7 +47,7 @@ export const Portfolio = () => {
 
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
-  const [media, setMedia] = useState({size: "", minWidth: 0});
+  const [media, setMedia] = useState({size: "", minWidth: 0, orientation: ""});
 
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
@@ -56,7 +56,6 @@ export const Portfolio = () => {
     window.addEventListener('load', handleWindowSize, false);
     window.addEventListener('resize', handleWindowSize, false);
     window.addEventListener('scroll', handleScroll, false);
-    console.log(media.size)
 
     // this will clean up the event every time the component is re-rendered
     return function cleanup() {
@@ -68,21 +67,31 @@ export const Portfolio = () => {
   });
 
   const handleWindowSize = (): void => {
-    setWidth(window.innerWidth)
-    setHeight(window.innerHeight)
+    const width = window.innerWidth
+    const height = window.innerHeight
+    setWidth(width)
+    setHeight(height)
 
     let medias: Array<media> = [
-      {size: "xs", minWidth: 320},
-      {size: "s", minWidth: 768},
-      {size: "m", minWidth: 1020},
-      {size: "l", minWidth: 1440},
-      {size: "xl", minWidth: 1920},
-      {size: "xxl", minWidth: 3840},
-      {size: "xxxl", minWidth: 5120},
+      {size: "xs", minWidth: 320, orientation: ""},
+      {size: "s", minWidth: 768, orientation: ""},
+      {size: "m", minWidth: 1020, orientation: ""},
+      {size: "l", minWidth: 1440, orientation: ""},
+      {size: "xl", minWidth: 1920, orientation: ""},
+      {size: "xxl", minWidth: 3840, orientation: ""},
+      {size: "xxxl", minWidth: 5120, orientation: ""},
     ]
 
     let matchedMedia = medias.reverse().find((media: media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches)
 
+    if (width > height) {
+      matchedMedia.orientation = "landscape"
+    }
+    else if (height > width) {
+      matchedMedia.orientation = "portrait"
+    }
+
+    console.log(JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
   };
 

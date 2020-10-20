@@ -33706,15 +33706,14 @@ exports.HeroImage = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importStar(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 const video_mp4_1 = __importDefault(__webpack_require__(/*! ../images/video.mp4 */ "./src/images/video.mp4"));
-;
 const Overlay = styled_components_1.default.div `
   position: absolute;
   top: 0px;
   left: 0px;
   overflow: hidden;
   display: flex;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  width: 100%;
+  height: 100%;
   justify-content: center;
 `;
 ;
@@ -33815,7 +33814,7 @@ exports.HeroImage = (props) => {
             setPlaying(false);
         }
     };
-    return (react_1.default.createElement(Overlay, { width: props.width, height: props.height },
+    return (react_1.default.createElement(Overlay, null,
         react_1.default.createElement(Container, { media: props.media, width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
             react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
             react_1.default.createElement(Video, { id: "HeroImageVideo", src: video_mp4_1.default, muted: true }))));
@@ -33864,12 +33863,14 @@ const HeroImage_1 = __webpack_require__(/*! ./HeroImage */ "./src/components/Her
 const Container = styled_components_1.default.div `
   box-sizing: border-box;
   width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: 400vh;
   position: relative;
   
-  height: ${({ media, height }) => media.size === 'xs' && height + 'px' ||
-    media.size === 's' && height + 'px' ||
-    media.size === 'm' && height + 'px' ||
+  height: ${({ media, height }) => media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+    media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
     media.size === 'xxl' && '400vh' ||
@@ -33881,8 +33882,18 @@ const Viewport = styled_components_1.default.div `
   position: sticky;
   top: 0px; 
   left: 0px;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
+  width: 100%;
+  height: ${({ media, height }) => media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+    media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+    media.size === 'l' && height + 'px' ||
+    media.size === 'xl' && height + 'px' ||
+    media.size === 'xxl' && height + 'px' ||
+    media.size === 'xxxl' && height + 'px'};
+
   background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'green'; }};
   z-index: 100;
 `;
@@ -33925,7 +33936,7 @@ exports.HeroProject = (props) => {
         element.style.setProperty('--scroll', String(scrollPercent));
     };
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
-        react_1.default.createElement(Viewport, { width: props.width, height: props.height, backgroundColor: props.backgroundColor },
+        react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundColor: props.backgroundColor },
             react_1.default.createElement(Stage, { width: props.width, height: props.height },
                 react_1.default.createElement(Text, null, "Managing Directory Users")),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
@@ -34163,13 +34174,12 @@ const GlobalStyle = styled_components_1.createGlobalStyle `
 exports.Portfolio = () => {
     const [width, setWidth] = react_1.useState(window.innerWidth);
     const [height, setHeight] = react_1.useState(window.innerHeight);
-    const [media, setMedia] = react_1.useState({ size: "", minWidth: 0 });
+    const [media, setMedia] = react_1.useState({ size: "", minWidth: 0, orientation: "" });
     const [scrollYPosition, setScrollYPosition] = react_1.useState(window.scrollY);
     react_1.useEffect(() => {
         window.addEventListener('load', handleWindowSize, false);
         window.addEventListener('resize', handleWindowSize, false);
         window.addEventListener('scroll', handleScroll, false);
-        console.log(media.size);
         return function cleanup() {
             window.removeEventListener('load', handleWindowSize, false);
             window.removeEventListener('resize', handleWindowSize, false);
@@ -34177,18 +34187,27 @@ exports.Portfolio = () => {
         };
     });
     const handleWindowSize = () => {
-        setWidth(window.innerWidth);
-        setHeight(window.innerHeight);
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        setWidth(width);
+        setHeight(height);
         let medias = [
-            { size: "xs", minWidth: 320 },
-            { size: "s", minWidth: 768 },
-            { size: "m", minWidth: 1020 },
-            { size: "l", minWidth: 1440 },
-            { size: "xl", minWidth: 1920 },
-            { size: "xxl", minWidth: 3840 },
-            { size: "xxxl", minWidth: 5120 },
+            { size: "xs", minWidth: 320, orientation: "" },
+            { size: "s", minWidth: 768, orientation: "" },
+            { size: "m", minWidth: 1020, orientation: "" },
+            { size: "l", minWidth: 1440, orientation: "" },
+            { size: "xl", minWidth: 1920, orientation: "" },
+            { size: "xxl", minWidth: 3840, orientation: "" },
+            { size: "xxxl", minWidth: 5120, orientation: "" },
         ];
         let matchedMedia = medias.reverse().find((media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches);
+        if (width > height) {
+            matchedMedia.orientation = "landscape";
+        }
+        else if (height > width) {
+            matchedMedia.orientation = "portrait";
+        }
+        console.log(JSON.stringify(matchedMedia));
         setMedia(matchedMedia);
     };
     const handleScroll = () => {

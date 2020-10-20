@@ -3,19 +3,14 @@ import styled, {css} from 'styled-components';
 import Prototype from '../images/video.mp4';
 
 
-interface OverlayProps {
-  width: number;
-  height: number;
-};
-
-const Overlay = styled.div<OverlayProps>`
+const Overlay = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
   overflow: hidden;
   display: flex;
-  width: ${props => props.width + 'px' ?? 'auto'};
-  height: ${props => props.height + 'px' ?? 'auto'};
+  width: 100%;
+  height: 100%;
   justify-content: center;
 `;
 
@@ -154,7 +149,7 @@ export const HeroImage = (props: HeroImageProps) => {
   }
 
   return (
-    <Overlay width={props.width} height={props.height}>
+    <Overlay>
       <Container media={props.media} width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
         <Video id="HeroImageVideo" src={Prototype} muted></Video>

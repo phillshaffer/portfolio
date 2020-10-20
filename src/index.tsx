@@ -11,5 +11,6 @@ declare global {
   type media = {
     size: string;
     minWidth: number;
+    orientation: string;
   }
 }

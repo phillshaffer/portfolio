@@ -13,13 +13,15 @@ interface ContainerProps {
 const Container = styled.div<ContainerProps>`
   box-sizing: border-box;
   width: ${props => props.width + 'px' ?? 'auto'};
-  height: 400vh;
   position: relative;
   
   height: ${({media, height}) => 	   
-    media.size === 'xs' && height + 'px' || 
-    media.size === 's' && height + 'px' ||
-    media.size === 'm' && height + 'px' ||
+    media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
     media.size === 'xxl' && '400vh' ||
@@ -28,7 +30,7 @@ const Container = styled.div<ContainerProps>`
 `;
 
 interface ViewportProps {
-  width: number;
+  media: media;
   height: number;
   backgroundColor: string;
 };
@@ -38,8 +40,20 @@ const Viewport = styled.div<ViewportProps>`
   position: sticky;
   top: 0px; 
   left: 0px;
-  width: ${props => props.width + 'px' ?? 'auto'};
-  height: ${props => props.height + 'px' ?? 'auto'};
+  width: 100%;
+  height: ${({media, height}) => 	   
+    media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+    media.size === 'l' && height + 'px' ||
+    media.size === 'xl' && height + 'px' ||
+    media.size === 'xxl' && height + 'px' ||
+    media.size === 'xxxl' && height + 'px'
+  };
+
   background-color: ${props => props.backgroundColor ?? 'green'};
   z-index: 100;
 `;
@@ -102,7 +116,7 @@ export const HeroProject = (props: HeroProjectProps) => {
 
   return (
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
-      <Viewport width={props.width} height={props.height} backgroundColor={props.backgroundColor}>
+      <Viewport media={props.media} height={props.height} backgroundColor={props.backgroundColor}>
         <Stage width={props.width} height={props.height}>
           <Text>Managing Directory Users</Text>
         </Stage>
