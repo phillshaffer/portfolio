@@ -33,60 +33,58 @@ const Container = styled.div<ContainerProps>`
 interface ViewportProps {
   media: media;
   height: number;
-  width: number;
   backgroundGradient: string;
 };
 
 const Viewport = styled.div<ViewportProps>`
   box-sizing: border-box;
   position: sticky;
-  top: 24px; 
-  left: 24px;
+  top: 0px; 
+  left: 0px;
   background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});
   z-index: 100;
+  width: 100%;
+  border: ${props => 24 * props.height / 900 + 'px'} solid white;
 
-  width: ${({media, width}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && width + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && width + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && width + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && width - 48 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && width - 48 + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && width - 48 + 'px' ||  
-    media.size === 'l' && width - 48 + 'px' ||
-    media.size === 'xl' && width - 48 + 'px' ||
-    media.size === 'xxl' && width - 48 + 'px' ||
-    media.size === 'xxxl' && width - 48 + 'px'
+  border: ${({media, height}) => 	   
+    media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
+    media.size === 'xs' && media.orientation === 'portrait' && 'none' ||  
+    media.size === 's' && media.orientation === 'landscape' && 'none;' ||
+    media.size === 's' && media.orientation === 'portrait' && 24 * height / 900 + 'px solid white' ||  
+    media.size === 'm' && media.orientation === 'landscape' && 24 * height / 900 + 'px solid white' ||
+    media.size === 'm' && media.orientation === 'portrait' && 24 * height / 900 + 'px solid white' ||  
+    media.size === 'l' && 24 * height / 900 + 'px solid white' ||
+    media.size === 'xl' && 24 * height / 900 + 'px solid white' ||
+    media.size === 'xxl' && 24 * height / 900 + 'px solid white' ||
+    media.size === 'xxxl' && 24 * height / 900 + 'px solid white'
   };
   height: ${({media, height}) => 	   
     media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && height / 1.6 - 48 + 'px' ||  
+    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 'm' && media.orientation === 'landscape' && height - 48 + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 - 48 + 'px' ||  
-    media.size === 'l' && height - 48 + 'px' ||
-    media.size === 'xl' && height - 48 + 'px' ||
-    media.size === 'xxl' && height - 48 + 'px' ||
-    media.size === 'xxxl' && 1440 - 48 + 'px'
+    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+    media.size === 'l' && height + 'px' ||
+    media.size === 'xl' && height + 'px' ||
+    media.size === 'xxl' && height + 'px' ||
+    media.size === 'xxxl' && 1440 + 'px'
   };
 
   ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
   css`
     animation: AnimateViewport;
-    animation-duration: .5s;
+    animation-duration: .25s;
     animation-timing-function: ease-in;
     animation-iteration-count: 1;
- 
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
     animation-fill-mode: both;
   `}
 
   @keyframes AnimateViewport {
     100% {
-      top: 24px;
-      right: 24px;
-      width: ${props => props.width + 'px'};
-      height: ${props => props.height + 'px'};
-      transform: translate(-24px, -24px);
+      border: none;
     }
   }
 `;
@@ -139,7 +137,7 @@ export const HeroProject = (props: HeroProjectProps) => {
 
   return (
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
-      <Viewport media={props.media} width={props.width} height={props.height} backgroundGradient={props.backgroundGradient}>
+      <Viewport media={props.media} height={props.height} backgroundGradient={props.backgroundGradient}>
         <Stage height={props.height}>
           <Title media={props.media}>Managing Directory Users</Title>
         </Stage>
