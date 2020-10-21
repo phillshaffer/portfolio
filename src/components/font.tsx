@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface TitleProps {
   media: media;
@@ -22,4 +22,22 @@ export const Title = styled.h1<TitleProps>`
   position: relative;
   text-align: center;
   margin: 0px; 
+
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  css`
+    animation: AnimateFont;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-fill-mode: both;
+  `}
+
+  @keyframes AnimateFont {
+    100% {
+      opacity: 0;
+      transform: translateY(-25%)
+    }
+  }
 `;
