@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, {css} from 'styled-components';
+
+import Poster from '../images/ObjectSummary.png';
 import Prototype from '../images/ManagingDirectoryUsers.mp4';
 
 
@@ -147,7 +149,8 @@ export const HeroImage = (props: HeroImageProps) => {
   
     if (media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
       if (props.scrollPercent <= 0 && !playing) {
-        video.currentTime = 0;
+        //video.currentTime = 0;
+        video.load();
         setPlaying(false)
       }
 
@@ -168,7 +171,7 @@ export const HeroImage = (props: HeroImageProps) => {
     <Overlay>
       <Container media={props.media} width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
-        <Video id="HeroImageVideo" src={Prototype} muted></Video>
+        <Video id="HeroImageVideo" src={Prototype} poster={Poster} muted></Video>
       </Container>
     </Overlay>
   );

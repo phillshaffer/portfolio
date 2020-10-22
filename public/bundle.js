@@ -33705,7 +33705,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroImage = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importStar(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-const video_mp4_1 = __importDefault(__webpack_require__(/*! ../images/video.mp4 */ "./src/images/video.mp4"));
+const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ../images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
+const ManagingDirectoryUsers_mp4_1 = __importDefault(__webpack_require__(/*! ../images/ManagingDirectoryUsers.mp4 */ "./src/images/ManagingDirectoryUsers.mp4"));
 const Overlay = styled_components_1.default.div `
   position: absolute;
   top: 0px;
@@ -33820,7 +33821,7 @@ exports.HeroImage = (props) => {
         const video = document.getElementById("HeroImageVideo");
         if (media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
             if (props.scrollPercent <= 0 && !playing) {
-                video.currentTime = 0;
+                video.load();
                 setPlaying(false);
             }
             else if (props.scrollPercent >= .75 && !playing) {
@@ -33836,7 +33837,7 @@ exports.HeroImage = (props) => {
     return (react_1.default.createElement(Overlay, null,
         react_1.default.createElement(Container, { media: props.media, width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
             react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
-            react_1.default.createElement(Video, { id: "HeroImageVideo", src: video_mp4_1.default, muted: true }))));
+            react_1.default.createElement(Video, { id: "HeroImageVideo", src: ManagingDirectoryUsers_mp4_1.default, poster: ObjectSummary_png_1.default, muted: true }))));
 };
 
 
@@ -34110,16 +34111,29 @@ exports.Projects = (props) => {
 
 /***/ }),
 
-/***/ "./src/images/video.mp4":
-/*!******************************!*\
-  !*** ./src/images/video.mp4 ***!
-  \******************************/
+/***/ "./src/images/ManagingDirectoryUsers.mp4":
+/*!***********************************************!*\
+  !*** ./src/images/ManagingDirectoryUsers.mp4 ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("images/video.mp4");
+/* harmony default export */ __webpack_exports__["default"] = ("images/ManagingDirectoryUsers.mp4");
+
+/***/ }),
+
+/***/ "./src/images/ObjectSummary.png":
+/*!**************************************!*\
+  !*** ./src/images/ObjectSummary.png ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("images/ObjectSummary.png");
 
 /***/ }),
 

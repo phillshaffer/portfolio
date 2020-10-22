@@ -50,6 +50,7 @@ declare module 'react' {
     hidden?: boolean;
     muted?: boolean;
     autoPlay?: boolean;
+    poster?: string;
     controls?: boolean;
     onclick?: any;
   }
