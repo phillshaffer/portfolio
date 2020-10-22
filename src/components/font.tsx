@@ -7,13 +7,13 @@ interface HeadlineProps {
 
 export const Headline = styled.h1<HeadlineProps>`
   font-size: ${({media}) => 	   
-    media.size === 'xs' && '2.8em' ||
-    media.size === 's' && '3.2em' ||
-    media.size === 'm' && '3.2em' ||
+    media.size === 'xs' && '2em' ||
+    media.size === 's' && '2em' ||
+    media.size === 'm' && '3em' ||
     media.size === 'l' && '3.5em' ||
-    media.size === 'xl' && '4.8em' ||
-    media.size === 'xxl' && '7.2em' ||
-    media.size === 'xxxl' && '7.4em'
+    media.size === 'xl' && '4.25em' ||
+    media.size === 'xxl' && '5.5em' ||
+    media.size === 'xxxl' && '5.5em'
   };
 
   line-height: auto;
@@ -31,13 +31,13 @@ interface TitleProps {
 
 export const Title = styled.h2<TitleProps>`
   font-size: ${({media}) => 	   
-    media.size === 'xs' && '1.8em' ||
-    media.size === 's' && '2.2em' ||
-    media.size === 'm' && '2.2em' ||
+    media.size === 'xs' && '1em' ||
+    media.size === 's' && '1em' ||
+    media.size === 'm' && '1.25em' ||
     media.size === 'l' && '1.5em' ||
-    media.size === 'xl' && '3.8em' ||
-    media.size === 'xxl' && '5.2em' ||
-    media.size === 'xxxl' && '5.4em'
+    media.size === 'xl' && '1.75em' ||
+    media.size === 'xxl' && '2.25em' ||
+    media.size === 'xxxl' && '2.25em'
   };
 
   line-height: auto;

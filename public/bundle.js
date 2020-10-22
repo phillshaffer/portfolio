@@ -33731,7 +33731,7 @@ const Container = styled_components_1.default.div `
   background-color: #000000;
   z-index: 102;
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
     styled_components_1.css `
     animation: AnimateHeroImage;
     animation-duration: 2s;
@@ -33887,7 +33887,7 @@ const Container = styled_components_1.default.div `
     media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
-    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && '400vh' ||
     media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
@@ -33924,7 +33924,7 @@ const Viewport = styled_components_1.default.div `
     media.size === 'xxl' && height + 'px' ||
     media.size === 'xxxl' && 1440 + 'px'};
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
     styled_components_1.css `
     animation: AnimateViewport;
     animation-duration: .25s;
@@ -33977,7 +33977,7 @@ const StageCenter = styled_components_1.default.div `
   align-items: center;
   flex-direction: column;
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
     styled_components_1.css `
     {
       animation: AnimateFont;
@@ -34040,13 +34040,13 @@ exports.Title = exports.Headline = void 0;
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 ;
 exports.Headline = styled_components_1.default.h1 `
-  font-size: ${({ media }) => media.size === 'xs' && '2.8em' ||
-    media.size === 's' && '3.2em' ||
-    media.size === 'm' && '3.2em' ||
+  font-size: ${({ media }) => media.size === 'xs' && '2em' ||
+    media.size === 's' && '2em' ||
+    media.size === 'm' && '3em' ||
     media.size === 'l' && '3.5em' ||
-    media.size === 'xl' && '4.8em' ||
-    media.size === 'xxl' && '7.2em' ||
-    media.size === 'xxxl' && '7.4em'};
+    media.size === 'xl' && '4.25em' ||
+    media.size === 'xxl' && '5.5em' ||
+    media.size === 'xxxl' && '5.5em'};
 
   line-height: auto;
   font-weight: 700;
@@ -34057,13 +34057,13 @@ exports.Headline = styled_components_1.default.h1 `
 `;
 ;
 exports.Title = styled_components_1.default.h2 `
-  font-size: ${({ media }) => media.size === 'xs' && '1.8em' ||
-    media.size === 's' && '2.2em' ||
-    media.size === 'm' && '2.2em' ||
+  font-size: ${({ media }) => media.size === 'xs' && '1em' ||
+    media.size === 's' && '1em' ||
+    media.size === 'm' && '1.25em' ||
     media.size === 'l' && '1.5em' ||
-    media.size === 'xl' && '3.8em' ||
-    media.size === 'xxl' && '5.2em' ||
-    media.size === 'xxxl' && '5.4em'};
+    media.size === 'xl' && '1.75em' ||
+    media.size === 'xxl' && '2.25em' ||
+    media.size === 'xxxl' && '2.25em'};
 
   line-height: auto;
   font-weight: 600;

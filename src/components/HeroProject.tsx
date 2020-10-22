@@ -21,7 +21,7 @@ const Container = styled.div<ContainerProps>`
     media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && '400vh' ||
     media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
@@ -29,6 +29,8 @@ const Container = styled.div<ContainerProps>`
     media.size === 'xxxl' && 1440 + 'px'
   };
 `;
+//    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
+
 
 interface ViewportProps {
   media: media;
@@ -69,7 +71,7 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'xxxl' && 1440 + 'px'
   };
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
   css`
     animation: AnimateViewport;
     animation-duration: .25s;
@@ -133,7 +135,7 @@ const StageCenter = styled.div<StageCenterProps>`
   align-items: center;
   flex-direction: column;
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
   css`
     {
       animation: AnimateFont;
