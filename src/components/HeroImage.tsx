@@ -146,7 +146,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   const handleVideo = (media: media) => {  
     const video = document.getElementById("HeroImageVideo") as HTMLVideoElement;
-  
+
     if (media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
       if (props.scrollPercent <= 0 && !playing) {
         //video.currentTime = 0;
