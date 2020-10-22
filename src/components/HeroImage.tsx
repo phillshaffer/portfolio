@@ -119,8 +119,8 @@ export const HeroImage = (props: HeroImageProps) => {
       setHeroAnimationHeight(240)
     }
     if (media.size === "s" && media.orientation === "portrait") {
-      setHeroAnimationWidth(688)
-      setHeroAnimationHeight(430)
+      setHeroAnimationWidth(624)
+      setHeroAnimationHeight(390)
     }
     if (media.size === "m") {
       setHeroAnimationWidth(688)
