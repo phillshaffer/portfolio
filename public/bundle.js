@@ -34213,7 +34213,7 @@ exports.Work = (props) => {
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundGradient: "#6F24E0, #3D147A", media: props.media }),
+        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundGradient: "to bottom right, #7B00E9, #C300F4", media: props.media }),
         react_1.default.createElement(projects_1.Projects, null,
             react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "red" },
                 react_1.default.createElement("p", null, "1")),
