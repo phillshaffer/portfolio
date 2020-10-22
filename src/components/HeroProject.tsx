@@ -132,6 +132,15 @@ const Stage = styled.div<StageProps>`
       animation-delay: calc(var(--scroll) * -1s);
       animation-fill-mode: both;
     }
+    h2 {
+      animation: AnimateFont;
+      animation-duration: 1s;
+      animation-timing-function: ease-in;
+      animation-iteration-count: 1;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-fill-mode: both;
+    }
   `}
 
   @keyframes AnimateFont {

@@ -33980,6 +33980,15 @@ const Stage = styled_components_1.default.div `
       animation-delay: calc(var(--scroll) * -1s);
       animation-fill-mode: both;
     }
+    h2 {
+      animation: AnimateFont;
+      animation-duration: 1s;
+      animation-timing-function: ease-in;
+      animation-iteration-count: 1;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-fill-mode: both;
+    }
   `}
 
   @keyframes AnimateFont {
@@ -34052,7 +34061,7 @@ exports.Title = styled_components_1.default.h2 `
   font-size: ${({ media }) => media.size === 'xs' && '1.8em' ||
     media.size === 's' && '2.2em' ||
     media.size === 'm' && '2.2em' ||
-    media.size === 'l' && '3.5em' ||
+    media.size === 'l' && '1.5em' ||
     media.size === 'xl' && '3.8em' ||
     media.size === 'xxl' && '5.2em' ||
     media.size === 'xxxl' && '5.4em'};
@@ -34062,7 +34071,7 @@ exports.Title = styled_components_1.default.h2 `
   color: white;
   display: flex;
   position: relative;
-  margin: 0px; 
+  margin: 1em 0px 0px 0px;
 `;
 
 
