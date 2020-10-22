@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, {css} from 'styled-components';
 
-import Poster from '../images/ObjectSummary.png';
+import Poster from '../images/ObjectSummary@2x.png';
 import Prototype from '../images/ManagingDirectoryUsers.mp4';
 
 

@@ -33705,7 +33705,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroImage = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const styled_components_1 = __importStar(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-const ObjectSummary_png_1 = __importDefault(__webpack_require__(/*! ../images/ObjectSummary.png */ "./src/images/ObjectSummary.png"));
+const ObjectSummary_2x_png_1 = __importDefault(__webpack_require__(/*! ../images/ObjectSummary@2x.png */ "./src/images/ObjectSummary@2x.png"));
 const ManagingDirectoryUsers_mp4_1 = __importDefault(__webpack_require__(/*! ../images/ManagingDirectoryUsers.mp4 */ "./src/images/ManagingDirectoryUsers.mp4"));
 const Overlay = styled_components_1.default.div `
   position: absolute;
@@ -33837,7 +33837,7 @@ exports.HeroImage = (props) => {
     return (react_1.default.createElement(Overlay, null,
         react_1.default.createElement(Container, { media: props.media, width: props.width, height: props.height, heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight },
             react_1.default.createElement(Bezel, { heroAnimationWidth: HeroAnimationWidth, heroAnimationHeight: HeroAnimationHeight, onclick: stop }),
-            react_1.default.createElement(Video, { id: "HeroImageVideo", src: ManagingDirectoryUsers_mp4_1.default, poster: ObjectSummary_png_1.default, muted: true }))));
+            react_1.default.createElement(Video, { id: "HeroImageVideo", src: ManagingDirectoryUsers_mp4_1.default, poster: ObjectSummary_2x_png_1.default, muted: true }))));
 };
 
 
@@ -34124,16 +34124,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/images/ObjectSummary.png":
-/*!**************************************!*\
-  !*** ./src/images/ObjectSummary.png ***!
-  \**************************************/
+/***/ "./src/images/ObjectSummary@2x.png":
+/*!*****************************************!*\
+  !*** ./src/images/ObjectSummary@2x.png ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("images/ObjectSummary.png");
+/* harmony default export */ __webpack_exports__["default"] = ("images/ObjectSummary@2x.png");
 
 /***/ }),
 
