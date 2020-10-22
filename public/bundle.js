@@ -33964,7 +33964,8 @@ const Stage = styled_components_1.default.div `
 
 
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   overflow: hidden;
   z-index: 101;
 
@@ -34005,7 +34006,9 @@ exports.HeroProject = (props) => {
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
         react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundGradient: props.backgroundGradient },
             react_1.default.createElement(Stage, { media: props.media, height: props.height },
-                react_1.default.createElement(font_1.Title, { media: props.media }, "Managing Directory Users")),
+                react_1.default.createElement(font_1.Headline, { media: props.media }, "Managing Directory Users"),
+                react_1.default.createElement("br", null),
+                react_1.default.createElement(font_1.Title, { media: props.media }, "Binary Tree")),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
 };
 
@@ -34025,10 +34028,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Title = void 0;
+exports.Title = exports.Headline = void 0;
 const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 ;
-exports.Title = styled_components_1.default.h1 `
+exports.Headline = styled_components_1.default.h1 `
   font-size: ${({ media }) => media.size === 'xs' && '2.8em' ||
     media.size === 's' && '3.2em' ||
     media.size === 'm' && '3.2em' ||
@@ -34042,10 +34045,24 @@ exports.Title = styled_components_1.default.h1 `
   color: white;
   display: flex;
   position: relative;
-  text-align: center;
   margin: 0px; 
+`;
+;
+exports.Title = styled_components_1.default.h2 `
+  font-size: ${({ media }) => media.size === 'xs' && '1.8em' ||
+    media.size === 's' && '2.2em' ||
+    media.size === 'm' && '2.2em' ||
+    media.size === 'l' && '3.5em' ||
+    media.size === 'xl' && '3.8em' ||
+    media.size === 'xxl' && '5.2em' ||
+    media.size === 'xxxl' && '5.4em'};
 
-  
+  line-height: auto;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  position: relative;
+  margin: 0px; 
 `;
 
 

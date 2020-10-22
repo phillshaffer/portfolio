@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, {css} from "styled-components";
 
-import { Title } from './font'
+import { Headline, Title } from './font'
 import { HeroImage } from "./HeroImage";
 
 
@@ -116,7 +116,8 @@ const Stage = styled.div<StageProps>`
 
 
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   overflow: hidden;
   z-index: 101;
 
@@ -171,7 +172,9 @@ export const HeroProject = (props: HeroProjectProps) => {
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
       <Viewport media={props.media} height={props.height} backgroundGradient={props.backgroundGradient}>
         <Stage media={props.media} height={props.height}>
-          <Title media={props.media}>Managing Directory Users</Title>
+          <Headline media={props.media}>Managing Directory Users</Headline>
+          <br/>
+          <Title media={props.media}>Binary Tree</Title>
         </Stage>
         <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />
       </Viewport>
