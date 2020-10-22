@@ -17,7 +17,7 @@ export const Headline = styled.h1<HeadlineProps>`
   };
 
   line-height: auto;
-  font-weight: 600;
+  font-weight: 700;
   color: white;
   display: flex;
   position: relative;
@@ -41,7 +41,7 @@ export const Title = styled.h2<TitleProps>`
   };
 
   line-height: auto;
-  font-weight: 700;
+  font-weight: 600;
   color: white;
   display: flex;
   position: relative;

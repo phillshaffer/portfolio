@@ -33903,8 +33903,6 @@ const Viewport = styled_components_1.default.div `
   background-image: linear-gradient(${props => { var _a; return (_a = props.backgroundGradient) !== null && _a !== void 0 ? _a : 'white'; }});
   z-index: 100;
   width: 100%;
-  border: ${props => 24 * props.height / 900 + 'px'} solid white;
-
   border: ${({ media, height }) => media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
     media.size === 'xs' && media.orientation === 'portrait' && 'none' ||
     media.size === 's' && media.orientation === 'landscape' && 'none;' ||
@@ -33919,7 +33917,7 @@ const Viewport = styled_components_1.default.div `
     media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
-    media.size === 'm' && media.orientation === 'landscape' && height - 48 + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 'l' && height + 'px' ||
     media.size === 'xl' && height + 'px' ||
@@ -33964,23 +33962,24 @@ const Stage = styled_components_1.default.div `
 
 
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   z-index: 101;
 
+`;
+;
+const StageCenter = styled_components_1.default.div `
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
   ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
     styled_components_1.css `
-    h1 {
-      animation: AnimateFont;
-      animation-duration: 1s;
-      animation-timing-function: ease-in;
-      animation-iteration-count: 1;
-      animation-play-state: paused;
-      animation-delay: calc(var(--scroll) * -1s);
-      animation-fill-mode: both;
-    }
-    h2 {
+    {
       animation: AnimateFont;
       animation-duration: 1s;
       animation-timing-function: ease-in;
@@ -33994,7 +33993,7 @@ const Stage = styled_components_1.default.div `
   @keyframes AnimateFont {
     100% {
       opacity: 0;
-      transform: translateY(-25%)
+      transform: translateY(-50%)
     }
   }
 `;
@@ -34015,9 +34014,9 @@ exports.HeroProject = (props) => {
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
         react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundGradient: props.backgroundGradient },
             react_1.default.createElement(Stage, { media: props.media, height: props.height },
-                react_1.default.createElement(font_1.Headline, { media: props.media }, "Managing Directory Users"),
-                react_1.default.createElement("br", null),
-                react_1.default.createElement(font_1.Title, { media: props.media }, "Binary Tree")),
+                react_1.default.createElement(StageCenter, { media: props.media },
+                    react_1.default.createElement(font_1.Headline, { media: props.media }, "Managing Directory Users"),
+                    react_1.default.createElement(font_1.Title, { media: props.media }, "Binary Tree"))),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
 };
 
@@ -34050,7 +34049,7 @@ exports.Headline = styled_components_1.default.h1 `
     media.size === 'xxxl' && '7.4em'};
 
   line-height: auto;
-  font-weight: 600;
+  font-weight: 700;
   color: white;
   display: flex;
   position: relative;
@@ -34067,7 +34066,7 @@ exports.Title = styled_components_1.default.h2 `
     media.size === 'xxxl' && '5.4em'};
 
   line-height: auto;
-  font-weight: 700;
+  font-weight: 600;
   color: white;
   display: flex;
   position: relative;
@@ -34340,7 +34339,7 @@ exports.Portfolio = () => {
         let medias = [
             { size: "xs", minWidth: 320, orientation: "" },
             { size: "s", minWidth: 768, orientation: "" },
-            { size: "m", minWidth: 1020, orientation: "" },
+            { size: "m", minWidth: 1024, orientation: "" },
             { size: "l", minWidth: 1440, orientation: "" },
             { size: "xl", minWidth: 1920, orientation: "" },
             { size: "xxl", minWidth: 3440, orientation: "" },

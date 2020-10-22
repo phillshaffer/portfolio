@@ -44,8 +44,6 @@ const Viewport = styled.div<ViewportProps>`
   background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});
   z-index: 100;
   width: 100%;
-  border: ${props => 24 * props.height / 900 + 'px'} solid white;
-
   border: ${({media, height}) => 	   
     media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
     media.size === 'xs' && media.orientation === 'portrait' && 'none' ||  
@@ -63,7 +61,7 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && height - 48 + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 'l' && height + 'px' ||
     media.size === 'xl' && height + 'px' ||
@@ -116,23 +114,28 @@ const Stage = styled.div<StageProps>`
 
 
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   z-index: 101;
 
+`;
+
+interface StageCenterProps {
+  media: media;
+};
+
+const StageCenter = styled.div<StageCenterProps>`
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
   ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
   css`
-    h1 {
-      animation: AnimateFont;
-      animation-duration: 1s;
-      animation-timing-function: ease-in;
-      animation-iteration-count: 1;
-      animation-play-state: paused;
-      animation-delay: calc(var(--scroll) * -1s);
-      animation-fill-mode: both;
-    }
-    h2 {
+    {
       animation: AnimateFont;
       animation-duration: 1s;
       animation-timing-function: ease-in;
@@ -146,7 +149,7 @@ const Stage = styled.div<StageProps>`
   @keyframes AnimateFont {
     100% {
       opacity: 0;
-      transform: translateY(-25%)
+      transform: translateY(-50%)
     }
   }
 `;
@@ -181,9 +184,10 @@ export const HeroProject = (props: HeroProjectProps) => {
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
       <Viewport media={props.media} height={props.height} backgroundGradient={props.backgroundGradient}>
         <Stage media={props.media} height={props.height}>
-          <Headline media={props.media}>Managing Directory Users</Headline>
-          <br/>
-          <Title media={props.media}>Binary Tree</Title>
+          <StageCenter media={props.media}>
+            <Headline media={props.media}>Managing Directory Users</Headline>
+            <Title media={props.media}>Binary Tree</Title>
+          </StageCenter>
         </Stage>
         <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />
       </Viewport>

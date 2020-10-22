@@ -76,7 +76,7 @@ export const Portfolio = () => {
     let medias: Array<media> = [
       {size: "xs", minWidth: 320, orientation: ""},
       {size: "s", minWidth: 768, orientation: ""},
-      {size: "m", minWidth: 1020, orientation: ""},
+      {size: "m", minWidth: 1024, orientation: ""},
       {size: "l", minWidth: 1440, orientation: ""},
       {size: "xl", minWidth: 1920, orientation: ""},
       {size: "xxl", minWidth: 3440, orientation: ""},
