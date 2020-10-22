@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, {css} from 'styled-components';
-import Prototype from '../images/video.mp4';
+import Prototype from '../images/ManagingDirectoryUsers.mp4';
 
 
 const Overlay = styled.div`

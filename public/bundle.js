@@ -33907,13 +33907,13 @@ const Viewport = styled_components_1.default.div `
   border: ${({ media, height }) => media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
     media.size === 'xs' && media.orientation === 'portrait' && 'none' ||
     media.size === 's' && media.orientation === 'landscape' && 'none;' ||
-    media.size === 's' && media.orientation === 'portrait' && 24 * height / 900 + 'px solid white' ||
+    media.size === 's' && media.orientation === 'portrait' && 24 * (height / 1.6) / 900 + 'px solid white' ||
     media.size === 'm' && media.orientation === 'landscape' && 24 * height / 900 + 'px solid white' ||
     media.size === 'm' && media.orientation === 'portrait' && 24 * height / 900 + 'px solid white' ||
     media.size === 'l' && 24 * height / 900 + 'px solid white' ||
     media.size === 'xl' && 24 * height / 900 + 'px solid white' ||
     media.size === 'xxl' && 24 * height / 900 + 'px solid white' ||
-    media.size === 'xxxl' && 24 * height / 900 + 'px solid white'};
+    media.size === 'xxxl' && 24 * 1440 / 900 + 'px solid white'};
   height: ${({ media, height }) => media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
@@ -33950,13 +33950,42 @@ const Stage = styled_components_1.default.div `
   left: 0px;
   width: 100%;
   height: 100%;
-  padding: ${props => 64 * props.height / 900 + 'px'};
+  padding: ${({ media, height }) => media.size === 'xs' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||
+    media.size === 's' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && 64 * (height / 1.6) / 900 + 'px' ||
+    media.size === 'm' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||
+    media.size === 'l' && 64 * height / 900 + 'px' ||
+    media.size === 'xl' && 64 * height / 900 + 'px' ||
+    media.size === 'xxl' && 64 * height / 900 + 'px' ||
+    media.size === 'xxxl' && 64 * 1440 / 900 + 'px'};
 
 
   display: flex;
   justify-content: center;
   overflow: hidden;
   z-index: 101;
+
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+    styled_components_1.css `
+    h1 {
+      animation: AnimateFont;
+      animation-duration: 1s;
+      animation-timing-function: ease-in;
+      animation-iteration-count: 1;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-fill-mode: both;
+    }
+  `}
+
+  @keyframes AnimateFont {
+    100% {
+      opacity: 0;
+      transform: translateY(-25%)
+    }
+  }
 `;
 ;
 exports.HeroProject = (props) => {
@@ -33974,7 +34003,7 @@ exports.HeroProject = (props) => {
     };
     return (react_1.default.createElement(Container, { id: "HeroProjectContainer", media: props.media, width: props.width, height: props.height },
         react_1.default.createElement(Viewport, { media: props.media, height: props.height, backgroundGradient: props.backgroundGradient },
-            react_1.default.createElement(Stage, { height: props.height },
+            react_1.default.createElement(Stage, { media: props.media, height: props.height },
                 react_1.default.createElement(font_1.Title, { media: props.media }, "Managing Directory Users")),
             react_1.default.createElement(HeroImage_1.HeroImage, { width: props.width, height: props.height, media: props.media, scrollPercent: scrollPercent }))));
 };
@@ -33991,28 +34020,12 @@ exports.HeroProject = (props) => {
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Title = void 0;
-const styled_components_1 = __importStar(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
 ;
 exports.Title = styled_components_1.default.h1 `
   font-size: ${({ media }) => media.size === 'xs' && '2.8em' ||
@@ -34031,23 +34044,7 @@ exports.Title = styled_components_1.default.h1 `
   text-align: center;
   margin: 0px; 
 
-  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
-    styled_components_1.css `
-    animation: AnimateFont;
-    animation-duration: 1s;
-    animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    animation-play-state: paused;
-    animation-delay: calc(var(--scroll) * -1s);
-    animation-fill-mode: both;
-  `}
-
-  @keyframes AnimateFont {
-    100% {
-      opacity: 0;
-      transform: translateY(-25%)
-    }
-  }
+  
 `;
 
 

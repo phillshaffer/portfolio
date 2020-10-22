@@ -50,13 +50,13 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
     media.size === 'xs' && media.orientation === 'portrait' && 'none' ||  
     media.size === 's' && media.orientation === 'landscape' && 'none;' ||
-    media.size === 's' && media.orientation === 'portrait' && 24 * height / 900 + 'px solid white' ||  
+    media.size === 's' && media.orientation === 'portrait' && 24 * (height / 1.6) / 900 + 'px solid white' ||  
     media.size === 'm' && media.orientation === 'landscape' && 24 * height / 900 + 'px solid white' ||
     media.size === 'm' && media.orientation === 'portrait' && 24 * height / 900 + 'px solid white' ||  
     media.size === 'l' && 24 * height / 900 + 'px solid white' ||
     media.size === 'xl' && 24 * height / 900 + 'px solid white' ||
     media.size === 'xxl' && 24 * height / 900 + 'px solid white' ||
-    media.size === 'xxxl' && 24 * height / 900 + 'px solid white'
+    media.size === 'xxxl' && 24 * 1440 / 900 + 'px solid white'
   };
   height: ${({media, height}) => 	   
     media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
@@ -90,6 +90,7 @@ const Viewport = styled.div<ViewportProps>`
 `;
 
 interface StageProps {
+  media: media;
   height: number;
 };
 
@@ -100,13 +101,44 @@ const Stage = styled.div<StageProps>`
   left: 0px;
   width: 100%;
   height: 100%;
-  padding: ${props => 64 * props.height / 900 + 'px'};
+  padding: ${({media, height}) => 	   
+  media.size === 'xs' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+  media.size === 'xs' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
+  media.size === 's' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+  media.size === 's' && media.orientation === 'portrait' && 64 * (height / 1.6) / 900 + 'px' ||  
+  media.size === 'm' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+  media.size === 'm' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
+  media.size === 'l' && 64 * height / 900 + 'px' ||
+  media.size === 'xl' && 64 * height / 900 + 'px' ||
+  media.size === 'xxl' && 64 * height / 900 + 'px' ||
+  media.size === 'xxxl' && 64 * 1440 / 900 + 'px'
+};
 
 
   display: flex;
   justify-content: center;
   overflow: hidden;
   z-index: 101;
+
+  ${({ media }) => (media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  css`
+    h1 {
+      animation: AnimateFont;
+      animation-duration: 1s;
+      animation-timing-function: ease-in;
+      animation-iteration-count: 1;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-fill-mode: both;
+    }
+  `}
+
+  @keyframes AnimateFont {
+    100% {
+      opacity: 0;
+      transform: translateY(-25%)
+    }
+  }
 `;
 
 
@@ -138,7 +170,7 @@ export const HeroProject = (props: HeroProjectProps) => {
   return (
     <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
       <Viewport media={props.media} height={props.height} backgroundGradient={props.backgroundGradient}>
-        <Stage height={props.height}>
+        <Stage media={props.media} height={props.height}>
           <Title media={props.media}>Managing Directory Users</Title>
         </Stage>
         <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />
