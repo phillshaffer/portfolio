@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled, {css} from 'styled-components';
 
 import Poster from '../images/ObjectSummary@2x.png';
-import Prototype from '../images/ManagingDirectoryUsers.mp4';
-
+//import Prototype from '../images/ManagingDirectoryUsers.mp4';
+const Prototype = 'https://firebasestorage.googleapis.com/v0/b/portfolio-66447.appspot.com/o/ManagingDirectoryUsers.mp4?alt=media&token=98f8dd05-65ec-4a92-a772-804bbac12b85';
 
 const Overlay = styled.div`
   position: absolute;
@@ -50,13 +50,15 @@ const Container = styled.div<ContainerProps>`
   `}
 
   @keyframes AnimateHeroImage {
-    0% {}
+    0% {
+    }
     5% {
       bottom: 0px;
     }
     100% {
-      align-self: center;
-      transform: translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) scale(${props => ((props.height * 1.6) - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
+      transform: 
+        translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) 
+        scale(${props => ((props.height * 1.6) - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
     }
   }
 `;
@@ -82,7 +84,6 @@ const Bezel = styled.div<BezelProps>`
   z-index: 103
 `;
 
-
 const Video = styled.video`
   box-sizing: border-box;
   width: 100%;
@@ -101,7 +102,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   const [HeroAnimationWidth, setHeroAnimationWidth] = useState(0);
   const [HeroAnimationHeight, setHeroAnimationHeight] = useState(0);
-  const [playing, setPlaying] = useState(false)
+  const [playing, setPlaying] = useState(true)
 
   useEffect(() => {
     getHeroAnimationDimensions(props.media);
@@ -145,33 +146,45 @@ export const HeroImage = (props: HeroImageProps) => {
   }
 
   const handleVideo = (media: media) => {  
-    const video = document.getElementById("HeroImageVideo") as HTMLVideoElement;
+    const video = document.getElementById("HeroImageVideo") as HTMLVideoElement;   
 
-    if (media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
-      if (props.scrollPercent <= 0 && !playing) {
-        //video.currentTime = 0;
-        video.load();
-        setPlaying(false)
-      }
-
-      else if (props.scrollPercent >= .75 && !playing) {
-        video.play();
-        setPlaying(true)
-      }
-
-      else if (props.scrollPercent <= .74 && playing) {
+    if (media.size === 'm' && media.orientation === 'landscape' || media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
+      
+      if (props.scrollPercent <= 0) {
+        video.currentTime = 0;
         video.pause();
-        setPlaying(false)
+        setPlaying(false);
+        //console.log("0")
       }
-    }
+      else if (props.scrollPercent > 0 && props.scrollPercent <= .74 && playing) {
+        video.pause();
+        setPlaying(false);
+        //console.log(".74")
+      }
+      else if (props.scrollPercent >= .75 && !playing) {
+        var playPromise = video.play();
 
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            setPlaying(true);
+            //console.log(".75")
+          }).catch((error) => {
+            console.log(error)
+            console.log("video didn't auto play")
+          });
+        }
+      }
+
+    }
   }
 
   return (
     <Overlay>
       <Container media={props.media} width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
-        <Video id="HeroImageVideo" src={Prototype} poster={Poster} muted></Video>
+        <Video id="HeroImageVideo" poster={Poster} preload="auto" muted>
+          <source src={Prototype} type='video/mp4' />
+        </Video>
       </Container>
     </Overlay>
   );

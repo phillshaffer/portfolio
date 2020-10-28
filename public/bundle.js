@@ -33819,7 +33819,7 @@ exports.HeroImage = (props) => {
     };
     const handleVideo = (media) => {
         const video = document.getElementById("HeroImageVideo");
-        if (media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
+        if (media.size === 'm' && media.orientation === 'landscape' || media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
             if (props.scrollPercent <= 0 && !playing) {
                 video.load();
                 setPlaying(false);
@@ -34076,66 +34076,6 @@ exports.Title = styled_components_1.default.h2 `
 
 /***/ }),
 
-/***/ "./src/components/project.tsx":
-/*!************************************!*\
-  !*** ./src/components/project.tsx ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Project = void 0;
-const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-;
-const Container = styled_components_1.default.div `
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-  width: ${props => { var _a; return (_a = props.width + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  height: ${props => { var _a; return (_a = props.height + 'px') !== null && _a !== void 0 ? _a : 'auto'; }};
-  background-color: ${props => { var _a; return (_a = props.backgroundColor) !== null && _a !== void 0 ? _a : 'white'; }};
-`;
-;
-exports.Project = (props) => {
-    return (react_1.default.createElement(Container, { width: props.width, height: props.height, backgroundColor: props.backgroundColor }, props.children));
-};
-
-
-/***/ }),
-
-/***/ "./src/components/projects.tsx":
-/*!*************************************!*\
-  !*** ./src/components/projects.tsx ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Projects = void 0;
-const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-const styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-const Container = styled_components_1.default.div `
-  position: relative;
-`;
-;
-exports.Projects = (props) => {
-    return (react_1.default.createElement(Container, null, props.children));
-};
-
-
-/***/ }),
-
 /***/ "./src/images/ManagingDirectoryUsers.mp4":
 /*!***********************************************!*\
   !*** ./src/images/ManagingDirectoryUsers.mp4 ***!
@@ -34231,21 +34171,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Work = void 0;
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const HeroProject_1 = __webpack_require__(/*! ../components/HeroProject */ "./src/components/HeroProject.tsx");
-const projects_1 = __webpack_require__(/*! ../components/projects */ "./src/components/projects.tsx");
-const project_1 = __webpack_require__(/*! ../components/project */ "./src/components/project.tsx");
 ;
 exports.Work = (props) => {
     react_1.useEffect(() => {
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundGradient: "to bottom right, #7B00E9, #C300F4", media: props.media }),
-        react_1.default.createElement(projects_1.Projects, null,
-            react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "red" },
-                react_1.default.createElement("p", null, "1")),
-            react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "white" },
-                react_1.default.createElement("p", null, "2")),
-            react_1.default.createElement(project_1.Project, { width: props.width, height: props.height, backgroundColor: "blue" },
-                react_1.default.createElement("p", null, "3")))));
+        react_1.default.createElement(HeroProject_1.HeroProject, { width: props.width, height: props.height, backgroundGradient: "to bottom right, #7B00E9, #C300F4", media: props.media })));
 };
 HTMLVideoElement;
 

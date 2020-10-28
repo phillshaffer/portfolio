@@ -29,7 +29,7 @@ export const Work = (props: WorkProps) => {
     <React.Fragment>
       <HeroProject width={props.width} height={props.height} backgroundGradient="to bottom right, #7B00E9, #C300F4" media={props.media}>
       </HeroProject>
-      <Projects>
+      {/* <Projects>
         <Project width={props.width} height={props.height} backgroundColor="red">
           <p>1</p>
         </Project>
@@ -39,7 +39,7 @@ export const Work = (props: WorkProps) => {
         <Project width={props.width} height={props.height} backgroundColor="blue">
           <p>3</p>
         </Project>
-      </Projects>
+      </Projects> */}
     </React.Fragment>
   );
 }
@@ -52,6 +52,7 @@ declare module 'react' {
     autoPlay?: boolean;
     poster?: string;
     controls?: boolean;
+    type?: string;
     onclick?: any;
   }
 }
