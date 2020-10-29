@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 
 import Poster from '../images/ObjectSummary@2x.png';
 //import Prototype from '../images/ManagingDirectoryUsers.mp4';
@@ -16,13 +16,31 @@ const Overlay = styled.div`
   justify-content: center;
 `;
 
+/*
+interface AnimateHeroImageProps {
+  transformY: number;
+  //scale: number;
+}
+*/
+const AnimateHeroImage = (transformY: number, scale: number) => keyframes`
+    0% {
+    }
+    5% {
+      bottom: 0px;
+    }
+    100% {
+      transform: translateY(-${transformY + 'px'}) scale(${scale});
+    }
+`;
 
 interface ContainerProps {
   media: media;
-  width: number;
-  height: number;
+  //width: number;
+  //height: number;
   heroAnimationWidth: number;
   heroAnimationHeight: number;
+  transformY: number;
+  scale: number;
 };
 
 const Container = styled.div<ContainerProps>`
@@ -38,9 +56,9 @@ const Container = styled.div<ContainerProps>`
   background-color: #000000;
   z-index: 102;
 
-  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media, transformY, scale}) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
   css`
-    animation: AnimateHeroImage;
+    animation: ${AnimateHeroImage(transformY, scale)};
     animation-duration: 2s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
@@ -48,20 +66,13 @@ const Container = styled.div<ContainerProps>`
     animation-delay: calc(var(--scroll) * -1s);
     animation-fill-mode: both;
   `}
-
-  @keyframes AnimateHeroImage {
-    0% {
-    }
-    5% {
-      bottom: 0px;
-    }
-    100% {
-      transform: 
-        translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) 
-        scale(${props => ((props.height * 1.6) - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
-    }
-  }
 `;
+//scale(${props => props.scale});
+//        scale(${props => (props.height * 1.6 - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
+
+//        scale(${props => ((props.height * 1.6) - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
+
+//        translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) 
 
 
 interface BezelProps {
@@ -102,8 +113,11 @@ export const HeroImage = (props: HeroImageProps) => {
 
   const [HeroAnimationWidth, setHeroAnimationWidth] = useState(0);
   const [HeroAnimationHeight, setHeroAnimationHeight] = useState(0);
-  const [playing, setPlaying] = useState(true)
+  const [TransformY, setTransformY] = useState(0);
+  const [Scale, setScale] = useState(0);
 
+  const [playing, setPlaying] = useState(true)
+  
   useEffect(() => {
     getHeroAnimationDimensions(props.media);
     handleVideo(props.media);
@@ -130,6 +144,8 @@ export const HeroImage = (props: HeroImageProps) => {
     if (media.size === "l") {
       setHeroAnimationWidth(832)
       setHeroAnimationHeight(520)
+      setTransformY(props.height - 520 + (100 * 832 / 1440))
+      setScale((props.height * 1.6 - (64 * 832 / 1440)) / 832)
     }
     if (media.size === "xl") {
       setHeroAnimationWidth(1088)
@@ -180,7 +196,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   return (
     <Overlay>
-      <Container media={props.media} width={props.width} height={props.height} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
+      <Container media={props.media} transformY={TransformY} scale={Scale} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
         <Video id="HeroImageVideo" poster={Poster} preload="auto" muted>
           <source src={Prototype} type='video/mp4' />
