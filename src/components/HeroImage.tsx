@@ -124,41 +124,47 @@ export const HeroImage = (props: HeroImageProps) => {
   });
 
   const getHeroAnimationDimensions = (media: media): void => {
+    let heroAnimationWidth: number = 0;
+    let heroAnimationHeight: number = 0;
+
     if (media.size === "xs") {
       let width = props.width - 48
-      setHeroAnimationWidth(width)
-      setHeroAnimationHeight(width / 1.6)
+      heroAnimationWidth = width
+      heroAnimationHeight = width / 1.6
     }
-    if (media.size === "s" && media.orientation === "landscape") {
-      setHeroAnimationWidth(384)
-      setHeroAnimationHeight(240)
+   else if (media.size === "s" && media.orientation === "landscape") {
+      heroAnimationWidth = 384
+      heroAnimationHeight = 240
     }
-    if (media.size === "s" && media.orientation === "portrait") {
-      setHeroAnimationWidth(624)
-      setHeroAnimationHeight(390)
+    else if (media.size === "s" && media.orientation === "portrait") {
+      heroAnimationWidth = 624
+      heroAnimationHeight = 390
     }
-    if (media.size === "m") {
-      setHeroAnimationWidth(688)
-      setHeroAnimationHeight(430)
+    else if (media.size === "m") {
+      heroAnimationWidth = 688
+      heroAnimationHeight = 430
     }
-    if (media.size === "l") {
-      setHeroAnimationWidth(832)
-      setHeroAnimationHeight(520)
-      setTransformY(props.height - 520 + (100 * 832 / 1440))
-      setScale((props.height * 1.6 - (64 * 832 / 1440)) / 832)
+    else if (media.size === "l") {
+      heroAnimationWidth = 832
+      heroAnimationHeight = 520
     }
-    if (media.size === "xl") {
-      setHeroAnimationWidth(1088)
-      setHeroAnimationHeight(680)
+    else if (media.size === "xl") {
+      heroAnimationWidth = 1088
+      heroAnimationHeight = 680
     }
-    if (media.size === "xxl") {
-      setHeroAnimationWidth(1440)
-      setHeroAnimationHeight(900)
+    else if (media.size === "xxl") {
+      heroAnimationWidth = 1440
+      heroAnimationHeight = 900
     }
-    if (media.size === "xxxl") {
-      setHeroAnimationWidth(1568)
-      setHeroAnimationHeight(980)
+    else if (media.size === "xxxl") {
+      heroAnimationWidth = 1568
+      heroAnimationHeight = 980
     }
+
+    setHeroAnimationWidth(heroAnimationWidth)
+    setHeroAnimationHeight(heroAnimationHeight)
+    setTransformY(props.height - heroAnimationHeight + (100 * heroAnimationWidth / 1440))
+    setScale((props.height * 1.6 - (64 * heroAnimationWidth / 1440)) / heroAnimationWidth)
   }
 
   const handleVideo = (media: media) => {  

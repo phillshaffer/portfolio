@@ -4,6 +4,8 @@ import styled, { createGlobalStyle } from "styled-components";
 
 // pages
 import { Work } from "./pages/work";
+import { ThunderCast } from "./pages/thunderCast";
+
 
 export interface Projects extends Array<Project> {}
 
@@ -108,8 +110,8 @@ export const Portfolio = () => {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/users">
-            <Users />
+          <Route path="/thundercast">
+            <ThunderCast height={height}/>
           </Route>
           <Route path={["/", "/work"]}>
             <Work media={media} width={width} height={height} scrollYPosition={scrollYPosition}/>
@@ -120,17 +122,6 @@ export const Portfolio = () => {
   );
 }
 
-//          
-
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
 function About() {
   return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }

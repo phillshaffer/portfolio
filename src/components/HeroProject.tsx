@@ -65,9 +65,12 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
     media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
     media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
-    media.size === 'l' && height + 'px' ||
-    media.size === 'xl' && height + 'px' ||
-    media.size === 'xxl' && height + 'px' ||
+    media.size === 'l' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'l' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+    media.size === 'xl' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'xl' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+    media.size === 'xxl' && media.orientation === 'landscape' && height + 'px' ||
+    media.size === 'xxl' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
     media.size === 'xxxl' && 1440 + 'px'
   };
 
