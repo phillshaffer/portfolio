@@ -10,6 +10,9 @@ const Container = styled.div<ContainerProps>`
   width: 100%;
   position: relative;
   background-color: blue;
+  display: flex;
+  justify-content: center;
+
 
   p {
     font-size: 24px;
@@ -49,10 +52,10 @@ export const Section = (props: SectionProps) => {
 
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, false);
+    //window.addEventListener('scroll', handleScroll, false);
 
     return function cleanup() {
-      window.removeEventListener('scroll', handleScroll, false);
+      //window.removeEventListener('scroll', handleScroll, false);
     };
   });
 
@@ -79,7 +82,7 @@ export const Section = (props: SectionProps) => {
 
   return ( 
     <Container id={props.id} ref={refSection}>
-      {isShowScrim ? <Scrim height={props.height}/> : null}
+      {/* {isShowScrim ? <Scrim height={props.height}/> : null} */}
       {props.children}
     </Container>
   );

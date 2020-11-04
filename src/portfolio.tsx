@@ -93,6 +93,9 @@ export const Portfolio = () => {
     else if (height > width) {
       matchedMedia.orientation = "portrait"
     }
+    
+    matchedMedia.width = width;
+    matchedMedia.height = height;
 
     console.log(JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
@@ -111,7 +114,7 @@ export const Portfolio = () => {
             <About />
           </Route>
           <Route path="/thundercast">
-            <ThunderCast height={height}/>
+            <ThunderCast media={media} height={height}/>
           </Route>
           <Route path={["/", "/work"]}>
             <Work media={media} width={width} height={height} scrollYPosition={scrollYPosition}/>

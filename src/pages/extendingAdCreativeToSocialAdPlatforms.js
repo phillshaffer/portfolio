@@ -3,7 +3,7 @@ import Router from 'preact-router';
 import {Masthead} from '../components/masthead';
 import {Header} from '../components/header';
 import {Section} from '../components/section';
-import {SectionContent} from '../components/sectionContent';
+import {SectionContent} from '../components/sectionContentOld';
 import {SectionMediaGallery} from '../components/sectionMediaGallery';
 import {SectionMedia} from '../components/sectionMedia';
 import {SectionEmbed} from '../components/sectionEmbed';

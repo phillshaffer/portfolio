@@ -105,17 +105,17 @@ const Stage = styled.div<StageProps>`
   width: 100%;
   height: 100%;
   padding: ${({media, height}) => 	   
-  media.size === 'xs' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
-  media.size === 'xs' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
-  media.size === 's' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
-  media.size === 's' && media.orientation === 'portrait' && 64 * (height / 1.6) / 900 + 'px' ||  
-  media.size === 'm' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
-  media.size === 'm' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
-  media.size === 'l' && 64 * height / 900 + 'px' ||
-  media.size === 'xl' && 64 * height / 900 + 'px' ||
-  media.size === 'xxl' && 64 * height / 900 + 'px' ||
-  media.size === 'xxxl' && 64 * 1440 / 900 + 'px'
-};
+    media.size === 'xs' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && 64 * (height / 1.6) / 900 + 'px' ||  
+    media.size === 'm' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
+    media.size === 'l' && 64 * height / 900 + 'px' ||
+    media.size === 'xl' && 64 * height / 900 + 'px' ||
+    media.size === 'xxl' && 64 * height / 900 + 'px' ||
+    media.size === 'xxxl' && 64 * 1440 / 900 + 'px'
+  };
 
 
   display: flex;
