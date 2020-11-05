@@ -1,6 +1,10 @@
+// libraries
 import React, { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
+
+// storage
+import { useGlobalState } from './state';
 
 // pages
 import { Work } from "./pages/work";
@@ -53,6 +57,7 @@ export const Portfolio = () => {
   const [media, setMedia] = useState({size: "", minWidth: 0, orientation: ""});
 
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
+  const [media2, setMedia2] = useGlobalState('media');
 
   useEffect(() => {
     // initiate the event handler
@@ -99,6 +104,7 @@ export const Portfolio = () => {
 
     console.log(JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
+    setMedia2(matchedMedia as media2);
   };
 
   const handleScroll = () => {
