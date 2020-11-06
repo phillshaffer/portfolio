@@ -18,7 +18,6 @@ const Container = styled.div<ContainerProps>`
   min-width: 320px;
   max-width: 976px;
   position: relative;
-  background-color: red;
   padding: ${({media}) => getRelativeSizingInPXs(24, media)};
 
 
@@ -26,6 +25,8 @@ const Container = styled.div<ContainerProps>`
     font-size: 24px;
   }
 `;
+//  background-color: red;
+
 
 export interface SectionContentProps {
   children: React.ReactNode;
@@ -37,7 +38,6 @@ export const SectionContent = (props: SectionContentProps) => {
     <mediaContext.Consumer>
     {media =>
       <Container media={media}>
-        {media.orientation}
         {props.children}
       </Container>
     }   

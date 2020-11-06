@@ -6,7 +6,7 @@ import styled, {css} from "styled-components";
 import { mediaContext } from '../state';
 
 // components
-import { Headline, Title } from './font'
+import { Text } from './text'
 import { HeroImage } from "./HeroImage";
 
 
@@ -190,8 +190,8 @@ export const HeroProject = (props: HeroProjectProps) => {
           <Viewport media={media} backgroundGradient={props.backgroundGradient}>
             <Stage media={media}>
               <StageCenter media={media}>
-                <Headline media={media}>Managing Directory Users</Headline>
-                <Title media={media}>Binary Tree</Title>
+                <Text font="title" color="#ffffff">Managing Directory Users</Text>
+                <Text font="subtitle" color="#ffffff">Binary Tree</Text>
               </StageCenter>
             </Stage>
             <HeroImage media={media} scrollPercent={scrollPercent} />

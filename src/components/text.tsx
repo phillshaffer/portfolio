@@ -1,11 +1,17 @@
+// libraries
+import React from 'react';
 import styled from 'styled-components';
 
+// state
+import { mediaContext } from '../state';
 
-interface HeadlineProps {
+
+interface TitleProps {
   media: media;
+  color: string;
 };
 
-export const Headline = styled.h1<HeadlineProps>`
+const Title = styled.h1<TitleProps>`
   font-size: ${({media}) => 	   
     media.size === 'xs' && '2em' ||
     media.size === 's' && '2em' ||
@@ -18,18 +24,19 @@ export const Headline = styled.h1<HeadlineProps>`
 
   line-height: auto;
   font-weight: 700;
-  color: white;
+  color: ${props => props.color ?? 'black'};
   display: flex;
   position: relative;
   margin: 0px; 
 `;
 
 
-interface TitleProps {
+interface SubtitleProps {
   media: media;
+  color: string;
 };
 
-export const Title = styled.h2<TitleProps>`
+const Subtitle = styled.h2<SubtitleProps>`
   font-size: ${({media}) => 	   
     media.size === 'xs' && '1em' ||
     media.size === 's' && '1em' ||
@@ -42,8 +49,30 @@ export const Title = styled.h2<TitleProps>`
 
   line-height: auto;
   font-weight: 600;
-  color: white;
+  color: ${props => props.color ?? 'black'};
   display: flex;
   position: relative;
   margin: 1em 0px 0px 0px;
 `;
+
+
+export interface TextProps {
+  font: string;
+  color?: string;
+  children: React.ReactNode;
+}
+
+export const Text = (props: TextProps) => {  
+
+  return (
+    <mediaContext.Consumer>
+    {media =>
+      (
+        props.font === "title" && <Title media={media} color={props.color}>{props.children}</Title> ||
+        props.font === "subtitle" && <Subtitle media={media} color={props.color}>{props.children}</Subtitle>
+      )
+    }   
+    </mediaContext.Consumer>
+  );
+
+};

@@ -3,13 +3,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 
 interface ContainerProps {
+  backgroundColor: string;
 }
 
 const Container = styled.div<ContainerProps>`
   box-sizing: border-box;
   width: 100%;
   position: relative;
-  background-color: blue;
+  background-color: ${props => props.backgroundColor};
   display: flex;
   justify-content: center;
 
@@ -37,6 +38,7 @@ const Scrim = styled.div<ScrimProps>`
 
 export interface SectionProps {
   id: string;
+  backgroundColor: string;
   children: React.ReactNode;
 }
 
@@ -79,7 +81,7 @@ export const Section = (props: SectionProps) => {
   }
 
   return ( 
-    <Container id={props.id} ref={refSection}>
+    <Container ref={refSection} id={props.id} backgroundColor={props.backgroundColor} >
       {/* {isShowScrim ? <Scrim height={props.height}/> : null} */}
       {props.children}
     </Container>
