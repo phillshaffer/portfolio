@@ -2,10 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 
+
 interface ContainerProps {
 }
 
-const Container = styled.div<ContainerProps>`
+const Container = styled.section<ContainerProps>`
   box-sizing: border-box;
   width: 100%;
   position: relative;
@@ -19,6 +20,7 @@ const Container = styled.div<ContainerProps>`
   }
 `;
 
+/*
 interface ScrimProps {
   height: number;
 }
@@ -34,11 +36,10 @@ const Scrim = styled.div<ScrimProps>`
 
   z-index: 101
 `;
-
+*/
 
 export interface SectionProps {
   id: string;
-  height: number;
   children: React.ReactNode;
 }
 

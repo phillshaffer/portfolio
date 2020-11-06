@@ -51,13 +51,8 @@ const GlobalStyle = createGlobalStyle`
 
 
 export const Portfolio = () => {
-
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
-  const [media, setMedia] = useState({size: "", minWidth: 0, orientation: ""});
-
+  const [media, setMedia] = useGlobalState('media');
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
-  const [media2, setMedia2] = useGlobalState('media');
 
   useEffect(() => {
     // initiate the event handler
@@ -75,22 +70,29 @@ export const Portfolio = () => {
   });
 
   const handleWindowSize = (): void => {
+    let matchedMedia: media = media
     const width = window.innerWidth
     const height = window.innerHeight
-    setWidth(width)
-    setHeight(height)
 
-    let medias: Array<media> = [
-      {size: "xs", minWidth: 320, orientation: ""},
-      {size: "s", minWidth: 768, orientation: ""},
-      {size: "m", minWidth: 1024, orientation: ""},
-      {size: "l", minWidth: 1440, orientation: ""},
-      {size: "xl", minWidth: 1920, orientation: ""},
-      {size: "xxl", minWidth: 3440, orientation: ""},
-      {size: "xxxl", minWidth: 3840, orientation: ""},
+    type mediaSize = {
+      size: string;
+      minWidth: number;
+    }
+
+    let mediaSizes: Array<mediaSize> = [
+      {size: "xs", minWidth: 320},
+      {size: "s", minWidth: 768},
+      {size: "m", minWidth: 1024},
+      {size: "l", minWidth: 1440},
+      {size: "xl", minWidth: 1920},
+      {size: "xxl", minWidth: 3440},
+      {size: "xxxl", minWidth: 3840},
     ]
 
-    let matchedMedia = medias.reverse().find((media: media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches)
+    const matchedMediaSize: mediaSize = mediaSizes.reverse().find((mediaSize: mediaSize) => window.matchMedia("(min-width: " + mediaSize.minWidth + "px)").matches)
+    console.log(matchedMediaSize)
+
+    matchedMedia.size = matchedMediaSize.size
 
     if (width > height) {
       matchedMedia.orientation = "landscape"
@@ -99,12 +101,13 @@ export const Portfolio = () => {
       matchedMedia.orientation = "portrait"
     }
     
-    matchedMedia.width = width;
-    matchedMedia.height = height;
+    matchedMedia.width = window.innerWidth
+    matchedMedia.height = window.innerHeight
 
-    console.log(JSON.stringify(matchedMedia))
+    console.log("portfolio " + JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
-    setMedia2(matchedMedia as media2);
+    console.log("portfolio set media " + JSON.stringify(media))
+
   };
 
   const handleScroll = () => {
@@ -120,10 +123,10 @@ export const Portfolio = () => {
             <About />
           </Route>
           <Route path="/thundercast">
-            <ThunderCast media={media} height={height}/>
+            <ThunderCast/>
           </Route>
           <Route path={["/", "/work"]}>
-            <Work media={media} width={width} height={height} scrollYPosition={scrollYPosition}/>
+            <Work scrollYPosition={scrollYPosition}/>
           </Route>
         </Switch>
       </Router>

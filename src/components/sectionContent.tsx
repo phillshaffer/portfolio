@@ -2,7 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 
+// helpers
 import { getRelativeSizingInPXs } from '../utils/styleHelpers'
+
+// storage
+import { useGlobalState } from '../state';
 
 
 interface ContainerProps {
@@ -24,14 +28,16 @@ const Container = styled.div<ContainerProps>`
 `;
 
 export interface SectionContentProps {
-  media: media;
   children: React.ReactNode;
 }
 
 export const SectionContent = (props: SectionContentProps) => {  
+  const [media, setMedia] = useGlobalState('media');
+  console.log("SectionContent " + JSON.stringify(media))
 
   return ( 
-    <Container media={props.media}>
+    <Container media={media}>
+      {media.orientation}
       {props.children}
     </Container>
   );

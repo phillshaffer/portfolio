@@ -1,28 +1,31 @@
+// libraries
 import React, { useState, useEffect } from 'react';
 import styled, {css} from "styled-components";
 
+// storage
+import { useGlobalState } from '../state';
+
+// components
 import { Headline, Title } from './font'
 import { HeroImage } from "./HeroImage";
 
 
 interface ContainerProps {
   media: media;
-  width: number;
-  height: number;
 };
 
 const Container = styled.div<ContainerProps>`
   box-sizing: border-box;
-  width: ${props => props.width + 'px' ?? 'auto'};
+  width: ${props => props.media.width + 'px' ?? 'auto'};
   position: relative;
   
-  height: ${({media, height}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+  height: ${({media}) => 	   
+    media.size === 'xs' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
     media.size === 'm' && media.orientation === 'landscape' && '400vh' ||
-    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
+    media.size === 'm' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
     media.size === 'xxl' && '400vh' ||
@@ -34,7 +37,6 @@ const Container = styled.div<ContainerProps>`
 
 interface ViewportProps {
   media: media;
-  height: number;
   backgroundGradient: string;
 };
 
@@ -46,31 +48,31 @@ const Viewport = styled.div<ViewportProps>`
   background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});
   z-index: 100;
   width: 100%;
-  border: ${({media, height}) => 	   
+  border: ${({media}) => 	   
     media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
     media.size === 'xs' && media.orientation === 'portrait' && 'none' ||  
     media.size === 's' && media.orientation === 'landscape' && 'none;' ||
-    media.size === 's' && media.orientation === 'portrait' && 24 * (height / 1.6) / 900 + 'px solid white' ||  
-    media.size === 'm' && media.orientation === 'landscape' && 24 * height / 900 + 'px solid white' ||
-    media.size === 'm' && media.orientation === 'portrait' && 24 * height / 900 + 'px solid white' ||  
-    media.size === 'l' && 24 * height / 900 + 'px solid white' ||
-    media.size === 'xl' && 24 * height / 900 + 'px solid white' ||
-    media.size === 'xxl' && 24 * height / 900 + 'px solid white' ||
+    media.size === 's' && media.orientation === 'portrait' && 24 * (media.height / 1.6) / 900 + 'px solid white' ||  
+    media.size === 'm' && media.orientation === 'landscape' && 24 * media.height / 900 + 'px solid white' ||
+    media.size === 'm' && media.orientation === 'portrait' && 24 * media.height / 900 + 'px solid white' ||  
+    media.size === 'l' && 24 * media.height / 900 + 'px solid white' ||
+    media.size === 'xl' && 24 * media.height / 900 + 'px solid white' ||
+    media.size === 'xxl' && 24 * media.height / 900 + 'px solid white' ||
     media.size === 'xxxl' && 24 * 1440 / 900 + 'px solid white'
   };
-  height: ${({media, height}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && height / 1.6 + 'px' ||  
-    media.size === 'l' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 'l' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
-    media.size === 'xl' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 'xl' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
-    media.size === 'xxl' && media.orientation === 'landscape' && height + 'px' ||
-    media.size === 'xxl' && media.orientation === 'portrait' && height / 1.6 + 'px' ||
+  height: ${({media}) => 	   
+    media.size === 'xs' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 'm' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 'l' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'l' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
+    media.size === 'xl' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'xl' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
+    media.size === 'xxl' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'xxl' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
     media.size === 'xxxl' && 1440 + 'px'
   };
 
@@ -94,7 +96,6 @@ const Viewport = styled.div<ViewportProps>`
 
 interface StageProps {
   media: media;
-  height: number;
 };
 
 const Stage = styled.div<StageProps>`
@@ -104,16 +105,16 @@ const Stage = styled.div<StageProps>`
   left: 0px;
   width: 100%;
   height: 100%;
-  padding: ${({media, height}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && 64 * (height / 1.6) / 900 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && 64 * height / 900 + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && 64 * height / 900 + 'px' ||  
-    media.size === 'l' && 64 * height / 900 + 'px' ||
-    media.size === 'xl' && 64 * height / 900 + 'px' ||
-    media.size === 'xxl' && 64 * height / 900 + 'px' ||
+  padding: ${({media}) => 	   
+    media.size === 'xs' && media.orientation === 'landscape' && 64 * media.height / 900 + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && 64 * media.height / 900 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && 64 * media.height / 900 + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && 64 * (media.height / 1.6) / 900 + 'px' ||  
+    media.size === 'm' && media.orientation === 'landscape' && 64 * media.height / 900 + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && 64 * media.height / 900 + 'px' ||  
+    media.size === 'l' && 64 * media.height / 900 + 'px' ||
+    media.size === 'xl' && 64 * media.height / 900 + 'px' ||
+    media.size === 'xxl' && 64 * media.height / 900 + 'px' ||
     media.size === 'xxxl' && 64 * 1440 / 900 + 'px'
   };
 
@@ -161,15 +162,15 @@ const StageCenter = styled.div<StageCenterProps>`
 
 
 export interface HeroProjectProps {
-  media: media;
-  width: number;
-  height: number;
   backgroundGradient: string;
   children: React.ReactNode;
 };
 
 export const HeroProject = (props: HeroProjectProps) => {
+  const [media, setMedia] = useGlobalState('media');
   const [scrollPercent, setScrollPercent] = useState(0)
+
+  console.log("HeroProject " + JSON.stringify(media))
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, false);
@@ -186,15 +187,15 @@ export const HeroProject = (props: HeroProjectProps) => {
   };
 
   return (
-    <Container id="HeroProjectContainer" media={props.media} width={props.width} height={props.height}>
-      <Viewport media={props.media} height={props.height} backgroundGradient={props.backgroundGradient}>
-        <Stage media={props.media} height={props.height}>
-          <StageCenter media={props.media}>
-            <Headline media={props.media}>Managing Directory Users</Headline>
-            <Title media={props.media}>Binary Tree</Title>
+    <Container id="HeroProjectContainer" media={media}>
+      <Viewport media={media} backgroundGradient={props.backgroundGradient}>
+        <Stage media={media}>
+          <StageCenter media={media}>
+            <Headline media={media}>Managing Directory Users</Headline>
+            <Title media={media}>Binary Tree</Title>
           </StageCenter>
         </Stage>
-        <HeroImage width={props.width} height={props.height} media={props.media} scrollPercent={scrollPercent} />
+        <HeroImage scrollPercent={scrollPercent} />
       </Viewport>
     </Container>
   );
