@@ -57,7 +57,7 @@ export const Portfolio = () => {
     height: 900,
     orientation: "landscape"
   });
-
+  
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
   useEffect(() => {
@@ -76,7 +76,12 @@ export const Portfolio = () => {
   });
 
   const handleWindowSize = (): void => {
-    let matchedMedia: media = media
+    let matchedMedia: media = {
+      size: "l", 
+      width: 1440,
+      height: 900,
+      orientation: "landscape"
+    }
     const width = window.innerWidth
     const height = window.innerHeight
 
@@ -113,7 +118,16 @@ export const Portfolio = () => {
     console.log("portfolio " + JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
     console.log("portfolio set media " + JSON.stringify(media))
-
+    
+   /*
+    let testMedia = {
+      size: "s", 
+      width: 812,
+      height: 375,
+      orientation: "portrait"
+    }
+    setMedia(testMedia)
+    */
   };
 
   const handleScroll = () => {

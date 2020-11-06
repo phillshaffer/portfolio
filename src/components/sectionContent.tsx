@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from "styled-components";
 
 // helpers
@@ -33,16 +33,13 @@ export interface SectionContentProps {
 }
 
 export const SectionContent = (props: SectionContentProps) => {  
+  let media = useContext(mediaContext)
 
   return (
-    <mediaContext.Consumer>
-    {media =>
-      <Container media={media}>
-        {console.log("SectionContent " + JSON.stringify(media))}
-        {props.children}
-      </Container>
-    }   
-    </mediaContext.Consumer>
+    <Container media={media}>
+      {console.log("SectionContent " + JSON.stringify(media))}
+      {props.children}
+    </Container>
   );
 
 };
