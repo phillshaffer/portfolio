@@ -1,10 +1,10 @@
 // libraries
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
-// storage
-import { useGlobalState } from './state';
+// state
+import { mediaContext } from './state'
 
 // pages
 import { Work } from "./pages/work";
@@ -51,7 +51,13 @@ const GlobalStyle = createGlobalStyle`
 
 
 export const Portfolio = () => {
-  const [media, setMedia] = useGlobalState('media');
+  const [media, setMedia] = useState({
+    size: "l", 
+    width: 1440,
+    height: 900,
+    orientation: "landscape"
+  });
+
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
   useEffect(() => {
@@ -115,7 +121,7 @@ export const Portfolio = () => {
   };
 
   return (
-    <React.Fragment>
+    <mediaContext.Provider value={media}>
       <GlobalStyle />
       <Router>
         <Switch>
@@ -130,7 +136,7 @@ export const Portfolio = () => {
           </Route>
         </Switch>
       </Router>
-    </React.Fragment>
+    </mediaContext.Provider>
   );
 }
 

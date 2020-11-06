@@ -1,10 +1,8 @@
-import { createGlobalState } from 'react-hooks-global-state';
+import React from 'react';
 
-export const { useGlobalState } = createGlobalState({
-  media: {
-    size: "l", 
-    width: 1440,
-    height: 900,
-    orientation: "landscape"
-  }
+export const mediaContext = React.createContext({
+  size: "l", 
+  width: 1440,
+  height: 900,
+  orientation: "landscape"
 });

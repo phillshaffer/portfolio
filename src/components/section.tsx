@@ -2,11 +2,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 
-
 interface ContainerProps {
 }
 
-const Container = styled.section<ContainerProps>`
+const Container = styled.div<ContainerProps>`
   box-sizing: border-box;
   width: 100%;
   position: relative;
@@ -14,13 +13,11 @@ const Container = styled.section<ContainerProps>`
   display: flex;
   justify-content: center;
 
-
   p {
     font-size: 24px;
   }
 `;
 
-/*
 interface ScrimProps {
   height: number;
 }
@@ -36,7 +33,7 @@ const Scrim = styled.div<ScrimProps>`
 
   z-index: 101
 `;
-*/
+
 
 export interface SectionProps {
   id: string;

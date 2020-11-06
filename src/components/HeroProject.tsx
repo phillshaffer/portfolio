@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, {css} from "styled-components";
 
-// storage
-import { useGlobalState } from '../state';
+// state
+import { mediaContext } from '../state';
 
 // components
 import { Headline, Title } from './font'
@@ -167,10 +167,7 @@ export interface HeroProjectProps {
 };
 
 export const HeroProject = (props: HeroProjectProps) => {
-  const [media, setMedia] = useGlobalState('media');
   const [scrollPercent, setScrollPercent] = useState(0)
-
-  console.log("HeroProject " + JSON.stringify(media))
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, false);
@@ -187,17 +184,21 @@ export const HeroProject = (props: HeroProjectProps) => {
   };
 
   return (
-    <Container id="HeroProjectContainer" media={media}>
-      <Viewport media={media} backgroundGradient={props.backgroundGradient}>
-        <Stage media={media}>
-          <StageCenter media={media}>
-            <Headline media={media}>Managing Directory Users</Headline>
-            <Title media={media}>Binary Tree</Title>
-          </StageCenter>
-        </Stage>
-        <HeroImage scrollPercent={scrollPercent} />
-      </Viewport>
-    </Container>
+    <mediaContext.Consumer>
+      {media =>
+        <Container id="HeroProjectContainer" media={media}>
+          <Viewport media={media} backgroundGradient={props.backgroundGradient}>
+            <Stage media={media}>
+              <StageCenter media={media}>
+                <Headline media={media}>Managing Directory Users</Headline>
+                <Title media={media}>Binary Tree</Title>
+              </StageCenter>
+            </Stage>
+            <HeroImage media={media} scrollPercent={scrollPercent} />
+          </Viewport>
+        </Container>
+      }
+    </mediaContext.Consumer>
   );
 };
 

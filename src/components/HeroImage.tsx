@@ -2,10 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, {css, keyframes} from 'styled-components';
 
-// storage
-import { useGlobalState } from '../state';
-
-// images
+// media
 import Poster from '../images/ObjectSummary@2x.png';
 //import Prototype from '../images/ManagingDirectoryUsers.mp4';
 const Prototype = 'https://firebasestorage.googleapis.com/v0/b/portfolio-66447.appspot.com/o/ManagingDirectoryUsers.mp4?alt=media&token=98f8dd05-65ec-4a92-a772-804bbac12b85';
@@ -106,15 +103,11 @@ const Video = styled.video`
 
 
 export interface HeroImageProps {
+  media: media;
   scrollPercent: number;
 };
 
 export const HeroImage = (props: HeroImageProps) => {
-
-  const [media, setMedia] = useGlobalState('media');
-  console.log("HeroImage " + JSON.stringify(media))
-
-
   const [HeroAnimationWidth, setHeroAnimationWidth] = useState(0);
   const [HeroAnimationHeight, setHeroAnimationHeight] = useState(0);
   const [TransformY, setTransformY] = useState(0);
@@ -123,8 +116,8 @@ export const HeroImage = (props: HeroImageProps) => {
   const [playing, setPlaying] = useState(true)
   
   useEffect(() => {
-    getHeroAnimationDimensions(media);
-    handleVideo(media);
+    getHeroAnimationDimensions(props.media);
+    handleVideo(props.media);
   });
 
   const getHeroAnimationDimensions = (media: media): void => {
@@ -206,7 +199,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   return (
     <Overlay>
-      <Container media={media} transformY={TransformY} scale={Scale} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
+      <Container media={props.media} transformY={TransformY} scale={Scale} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
         <Video id="HeroImageVideo" poster={Poster} preload="auto" muted>
           <source src={Prototype} type='video/mp4' />

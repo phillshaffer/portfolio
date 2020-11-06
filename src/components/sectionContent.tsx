@@ -5,8 +5,8 @@ import styled from "styled-components";
 // helpers
 import { getRelativeSizingInPXs } from '../utils/styleHelpers'
 
-// storage
-import { useGlobalState } from '../state';
+// state
+import { mediaContext } from '../state';
 
 
 interface ContainerProps {
@@ -32,14 +32,16 @@ export interface SectionContentProps {
 }
 
 export const SectionContent = (props: SectionContentProps) => {  
-  const [media, setMedia] = useGlobalState('media');
-  console.log("SectionContent " + JSON.stringify(media))
 
-  return ( 
-    <Container media={media}>
-      {media.orientation}
-      {props.children}
-    </Container>
+  return (
+    <mediaContext.Consumer>
+    {media =>
+      <Container media={media}>
+        {media.orientation}
+        {props.children}
+      </Container>
+    }   
+    </mediaContext.Consumer>
   );
 
 };
