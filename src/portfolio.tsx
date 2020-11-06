@@ -64,13 +64,13 @@ export const Portfolio = () => {
     // initiate the event handler
     window.addEventListener('load', handleWindowSize, false);
     window.addEventListener('resize', handleWindowSize, false);
-    window.addEventListener('scroll', handleScroll, false);
+    //window.addEventListener('scroll', handleScroll, false);
 
     // this will clean up the event every time the component is re-rendered
     return function cleanup() {
       window.removeEventListener('load', handleWindowSize, false);
       window.removeEventListener('resize', handleWindowSize, false);
-      window.removeEventListener('scroll', handleScroll, false);
+      //window.removeEventListener('scroll', handleScroll, false);
     };
 
   });

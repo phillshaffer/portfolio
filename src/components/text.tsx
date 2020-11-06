@@ -13,13 +13,13 @@ interface TitleProps {
 
 const Title = styled.h1<TitleProps>`
   font-size: ${({media}) => 	   
-    media.size === 'xs' && '2em' ||
-    media.size === 's' && '2em' ||
-    media.size === 'm' && '3em' ||
-    media.size === 'l' && '3.5em' ||
-    media.size === 'xl' && '4.25em' ||
-    media.size === 'xxl' && '5.5em' ||
-    media.size === 'xxxl' && '5.5em'
+    media.size === 'xs' && '32px' ||
+    media.size === 's' && '32px' ||
+    media.size === 'm' && '48px' ||
+    media.size === 'l' && '56px' ||
+    media.size === 'xl' && '68px' ||
+    media.size === 'xxl' && '88px' ||
+    media.size === 'xxxl' && '88px'
   };
 
   line-height: auto;
@@ -38,13 +38,13 @@ interface SubtitleProps {
 
 const Subtitle = styled.h2<SubtitleProps>`
   font-size: ${({media}) => 	   
-    media.size === 'xs' && '1em' ||
-    media.size === 's' && '1em' ||
-    media.size === 'm' && '1.25em' ||
-    media.size === 'l' && '1.5em' ||
-    media.size === 'xl' && '1.75em' ||
-    media.size === 'xxl' && '2.25em' ||
-    media.size === 'xxxl' && '2.25em'
+    media.size === 'xs' && '16px' ||
+    media.size === 's' && '16px' ||
+    media.size === 'm' && '20px' ||
+    media.size === 'l' && '24px' ||
+    media.size === 'xl' && '28px' ||
+    media.size === 'xxl' && '36px' ||
+    media.size === 'xxxl' && '36px'
   };
 
   line-height: auto;

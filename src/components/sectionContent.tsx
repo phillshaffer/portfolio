@@ -38,6 +38,7 @@ export const SectionContent = (props: SectionContentProps) => {
     <mediaContext.Consumer>
     {media =>
       <Container media={media}>
+        {console.log("SectionContent " + JSON.stringify(media))}
         {props.children}
       </Container>
     }   

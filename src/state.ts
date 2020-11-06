@@ -1,6 +1,6 @@
-import React from 'react';
+import { createContext } from 'react';
 
-export const mediaContext = React.createContext({
+export const mediaContext = createContext({
   size: "l", 
   width: 1440,
   height: 900,
