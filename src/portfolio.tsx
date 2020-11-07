@@ -53,10 +53,10 @@ const GlobalStyle = createGlobalStyle`
 export const Portfolio = () => {
 
   const [media, setMedia] = useState({
-    size: "l", 
-    width: 1440,
-    height: 900,
-    orientation: "landscape"
+    size: "", 
+    width: window.innerWidth,
+    height: window.innerHeight,
+    orientation: ""
   });
   
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
@@ -78,10 +78,10 @@ export const Portfolio = () => {
 
   const handleWindowSize = (): void => {
     let matchedMedia: media = {
-      size: "l", 
-      width: 1440,
-      height: 900,
-      orientation: "landscape"
+      size: "", 
+      width: window.innerWidth,
+      height: window.innerHeight,
+      orientation: ""
     }
 
     const width = window.innerWidth
