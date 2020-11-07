@@ -51,6 +51,7 @@ const GlobalStyle = createGlobalStyle`
 
 
 export const Portfolio = () => {
+
   const [media, setMedia] = useState({
     size: "l", 
     width: 1440,
@@ -82,6 +83,7 @@ export const Portfolio = () => {
       height: 900,
       orientation: "landscape"
     }
+
     const width = window.innerWidth
     const height = window.innerHeight
 
@@ -96,14 +98,19 @@ export const Portfolio = () => {
       {size: "m", minWidth: 1024},
       {size: "l", minWidth: 1440},
       {size: "xl", minWidth: 1920},
-      {size: "xxl", minWidth: 3440},
-      {size: "xxxl", minWidth: 3840},
+      {size: "xxl", minWidth: 2560}
     ]
 
     const matchedMediaSize: mediaSize = mediaSizes.reverse().find((mediaSize: mediaSize) => window.matchMedia("(min-width: " + mediaSize.minWidth + "px)").matches)
+    
+    if (width >= 2560) {
+      matchedMedia.size = "xxl"
+    }
+    else {
+      matchedMedia.size = matchedMediaSize.size
+    }
+    
     console.log(matchedMediaSize)
-
-    matchedMedia.size = matchedMediaSize.size
 
     if (width > height) {
       matchedMedia.orientation = "landscape"
@@ -117,7 +124,6 @@ export const Portfolio = () => {
 
     console.log("portfolio " + JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
-    console.log("portfolio set media " + JSON.stringify(media))
     
    /*
     let testMedia = {

@@ -1,5 +1,5 @@
 // libraries
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 // state
@@ -56,6 +56,32 @@ const Subtitle = styled.h2<SubtitleProps>`
 `;
 
 
+interface NormalProps {
+  media: media;
+  color: string;
+};
+
+const Normal = styled.p<NormalProps>`
+  font-size: ${({media}) => 	   
+    media.size === 'xs' && '18px' ||
+    media.size === 's' && '21px' ||
+    media.size === 'm' && '21px' ||
+    media.size === 'l' && '21px' ||
+    media.size === 'xl' && '24px' ||
+    media.size === 'xxl' && '24px' ||
+    media.size === 'xxxl' && '24px'
+  };
+
+  line-height: 1.5;
+  font-weight: 500;
+  color: ${props => props.color ?? 'black'};
+  display: flex;
+  position: relative;
+  margin: 1em 0px 0px 0px;
+`;
+
+
+
 export interface TextProps {
   font: string;
   color?: string;
@@ -63,16 +89,12 @@ export interface TextProps {
 }
 
 export const Text = (props: TextProps) => {  
+  let media = useContext(mediaContext)
 
   return (
-    <mediaContext.Consumer>
-    {media =>
-      (
-        props.font === "title" && <Title media={media} color={props.color}>{props.children}</Title> ||
-        props.font === "subtitle" && <Subtitle media={media} color={props.color}>{props.children}</Subtitle>
-      )
-    }   
-    </mediaContext.Consumer>
+    props.font === "title" && <Title media={media} color={props.color}>{props.children}</Title> ||
+    props.font === "subtitle" && <Subtitle media={media} color={props.color}>{props.children}</Subtitle> ||
+    props.font === "normal" && <Normal media={media} color={props.color}>{props.children}</Normal>
   );
 
 };

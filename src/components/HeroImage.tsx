@@ -1,10 +1,12 @@
 // libraries
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, {css, keyframes} from 'styled-components';
+
+// state
+import { mediaContext } from '../state';
 
 // media
 import Poster from '../images/ObjectSummary@2x.png';
-//import Prototype from '../images/ManagingDirectoryUsers.mp4';
 const Prototype = 'https://firebasestorage.googleapis.com/v0/b/portfolio-66447.appspot.com/o/ManagingDirectoryUsers.mp4?alt=media&token=98f8dd05-65ec-4a92-a772-804bbac12b85';
 
 const Overlay = styled.div`
@@ -18,12 +20,7 @@ const Overlay = styled.div`
   justify-content: center;
 `;
 
-/*
-interface AnimateHeroImageProps {
-  transformY: number;
-  //scale: number;
-}
-*/
+
 const AnimateHeroImage = (transformY: number, scale: number) => keyframes`
     0% {
     }
@@ -67,13 +64,6 @@ const Container = styled.div<ContainerProps>`
     animation-fill-mode: both;
   `}
 `;
-//scale(${props => props.scale});
-//        scale(${props => (props.height * 1.6 - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
-
-//        scale(${props => ((props.height * 1.6) - (64 * props.heroAnimationWidth / 1440)) / props.heroAnimationWidth});
-
-//        translateY(-${props => props.height - props.heroAnimationHeight + (100 * props.heroAnimationWidth / 1440) + 'px'}) 
-
 
 interface BezelProps {
   heroAnimationWidth: number;
@@ -103,11 +93,12 @@ const Video = styled.video`
 
 
 export interface HeroImageProps {
-  media: media;
   scrollPercent: number;
 };
 
 export const HeroImage = (props: HeroImageProps) => {
+  let media = useContext(mediaContext)
+
   const [HeroAnimationWidth, setHeroAnimationWidth] = useState(0);
   const [HeroAnimationHeight, setHeroAnimationHeight] = useState(0);
   const [TransformY, setTransformY] = useState(0);
@@ -116,8 +107,8 @@ export const HeroImage = (props: HeroImageProps) => {
   const [playing, setPlaying] = useState(true)
   
   useEffect(() => {
-    getHeroAnimationDimensions(props.media);
-    handleVideo(props.media);
+    getHeroAnimationDimensions(media);
+    handleVideo(media);
   });
 
   const getHeroAnimationDimensions = (media: media): void => {
@@ -199,7 +190,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   return (
     <Overlay>
-      <Container media={props.media} transformY={TransformY} scale={Scale} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
+      <Container media={media} transformY={TransformY} scale={Scale} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
         <Video id="HeroImageVideo" poster={Poster} preload="auto" muted>
           <source src={Prototype} type='video/mp4' />

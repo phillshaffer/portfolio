@@ -19,13 +19,7 @@ const Container = styled.div<ContainerProps>`
   max-width: 976px;
   position: relative;
   padding: ${({media}) => getRelativeSizingInPXs(24, media)};
-
-
-  p {
-    font-size: 24px;
-  }
 `;
-//  background-color: red;
 
 
 export interface SectionContentProps {

@@ -13,10 +13,6 @@ const Container = styled.div<ContainerProps>`
   background-color: ${props => props.backgroundColor};
   display: flex;
   justify-content: center;
-
-  p {
-    font-size: 24px;
-  }
 `;
 
 interface ScrimProps {

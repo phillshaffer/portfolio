@@ -1,6 +1,5 @@
 // Libraries
-import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
+import React, { useEffect } from 'react';
 
 // Components
 import { Section } from '../components/section';
@@ -22,7 +21,9 @@ export const ThunderCast = (props: ThunderCastProps) => {
       <Section id="a" backgroundColor="#fafafa">
         <SectionContent>
           <Text font="title">Extending Ad Creative to Social Ad Platforms</Text>
-          <p>ThunderCast was the culmination of months of work to establish a new ad standardization to scale display ads across web and social ad platforms. This standardization was cemented within the Thunder Ad Framework, backend data model, ThunderKit RESTful API and ThunderCast mobile app designed to facilitate real time ad design collaboration. Together these projects proved the ad framework’s scalability, with the mobile app proving technology interoperability with newly created API and backend. </p>
+          <Text font="normal">
+            ThunderCast was the culmination of months of work to establish a new ad standardization to scale display ads across web and social ad platforms. This standardization was cemented within the Thunder Ad Framework, backend data model, ThunderKit RESTful API and ThunderCast mobile app designed to facilitate real time ad design collaboration. Together these projects proved the ad framework’s scalability, with the mobile app proving technology interoperability with newly created API and backend.
+          </Text>
         </SectionContent>
       </Section>
       <Section id="b" backgroundColor="#ffffff">

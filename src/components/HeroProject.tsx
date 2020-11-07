@@ -1,5 +1,5 @@
 // libraries
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, {css} from "styled-components";
 
 // state
@@ -32,7 +32,6 @@ const Container = styled.div<ContainerProps>`
     media.size === 'xxxl' && 1440 + 'px'
   };
 `;
-//    media.size === 'm' && media.orientation === 'landscape' && height + 'px' ||
 
 
 interface ViewportProps {
@@ -167,6 +166,7 @@ export interface HeroProjectProps {
 };
 
 export const HeroProject = (props: HeroProjectProps) => {
+  let media = useContext(mediaContext)
   const [scrollPercent, setScrollPercent] = useState(0)
 
   useEffect(() => {
@@ -184,21 +184,17 @@ export const HeroProject = (props: HeroProjectProps) => {
   };
 
   return (
-    <mediaContext.Consumer>
-      {media =>
-        <Container id="HeroProjectContainer" media={media}>
-          <Viewport media={media} backgroundGradient={props.backgroundGradient}>
-            <Stage media={media}>
-              <StageCenter media={media}>
-                <Text font="title" color="#ffffff">Managing Directory Users</Text>
-                <Text font="subtitle" color="#ffffff">Binary Tree</Text>
-              </StageCenter>
-            </Stage>
-            <HeroImage media={media} scrollPercent={scrollPercent} />
-          </Viewport>
-        </Container>
-      }
-    </mediaContext.Consumer>
+    <Container id="HeroProjectContainer" media={media}>
+      <Viewport media={media} backgroundGradient={props.backgroundGradient}>
+        <Stage media={media}>
+          <StageCenter media={media}>
+            <Text font="title" color="#ffffff">Managing Directory Users</Text>
+            <Text font="subtitle" color="#ffffff">Binary Tree</Text>
+          </StageCenter>
+        </Stage>
+        <HeroImage scrollPercent={scrollPercent} />
+      </Viewport>
+    </Container>
   );
 };
 
