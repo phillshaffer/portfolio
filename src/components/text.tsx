@@ -18,8 +18,7 @@ const Title = styled.h1<TitleProps>`
     media.size === 'm' && '48px' ||
     media.size === 'l' && '56px' ||
     media.size === 'xl' && '68px' ||
-    media.size === 'xxl' && '88px' ||
-    media.size === 'xxxl' && '88px'
+    media.size === 'xxl' && '88px'
   };
 
   line-height: auto;
@@ -43,8 +42,7 @@ const Subtitle = styled.h2<SubtitleProps>`
     media.size === 'm' && '20px' ||
     media.size === 'l' && '24px' ||
     media.size === 'xl' && '28px' ||
-    media.size === 'xxl' && '36px' ||
-    media.size === 'xxxl' && '36px'
+    media.size === 'xxl' && '36px'
   };
 
   line-height: auto;
@@ -68,8 +66,7 @@ const Normal = styled.p<NormalProps>`
     media.size === 'm' && '21px' ||
     media.size === 'l' && '21px' ||
     media.size === 'xl' && '24px' ||
-    media.size === 'xxl' && '24px' ||
-    media.size === 'xxxl' && '24px'
+    media.size === 'xxl' && '24px'
   };
 
   line-height: 1.5;

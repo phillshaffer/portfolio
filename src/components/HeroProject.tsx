@@ -28,8 +28,8 @@ const Container = styled.div<ContainerProps>`
     media.size === 'm' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
     media.size === 'l' && '400vh' ||
     media.size === 'xl' && '400vh' ||
-    media.size === 'xxl' && '400vh' ||
-    media.size === 'xxxl' && 1440 + 'px'
+    media.size === 'xxl' && media.height <= 1440 && '400vh' ||
+    1440 + 'px'
   };
 `;
 
@@ -56,8 +56,8 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'm' && media.orientation === 'portrait' && 24 * media.height / 900 + 'px solid white' ||  
     media.size === 'l' && 24 * media.height / 900 + 'px solid white' ||
     media.size === 'xl' && 24 * media.height / 900 + 'px solid white' ||
-    media.size === 'xxl' && 24 * media.height / 900 + 'px solid white' ||
-    media.size === 'xxxl' && 24 * 1440 / 900 + 'px solid white'
+    media.size === 'xxl' && media.height <= 1440 && 24 * media.height / 900 + 'px solid white' ||
+    24 * 1440 / 900 + 'px solid white'
   };
   height: ${({media}) => 	   
     media.size === 'xs' && media.orientation === 'landscape' && media.height + 'px' ||
@@ -70,12 +70,12 @@ const Viewport = styled.div<ViewportProps>`
     media.size === 'l' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
     media.size === 'xl' && media.orientation === 'landscape' && media.height + 'px' ||
     media.size === 'xl' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
-    media.size === 'xxl' && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 'xxl' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
-    media.size === 'xxxl' && 1440 + 'px'
+    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
+    1440 + 'px'
   };
 
-  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440 ) &&
   css`
     animation: AnimateViewport;
     animation-duration: .25s;
@@ -113,8 +113,8 @@ const Stage = styled.div<StageProps>`
     media.size === 'm' && media.orientation === 'portrait' && 64 * media.height / 900 + 'px' ||  
     media.size === 'l' && 64 * media.height / 900 + 'px' ||
     media.size === 'xl' && 64 * media.height / 900 + 'px' ||
-    media.size === 'xxl' && 64 * media.height / 900 + 'px' ||
-    media.size === 'xxxl' && 64 * 1440 / 900 + 'px'
+    media.size === 'xxl' && media.height <= 1440 && 64 * media.height / 900 + 'px' ||
+    64 * 1440 / 900 + 'px'
   };
 
 

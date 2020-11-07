@@ -144,10 +144,6 @@ export const HeroImage = (props: HeroImageProps) => {
       heroAnimationWidth = 1440
       heroAnimationHeight = 900
     }
-    else if (media.size === "xxxl") {
-      heroAnimationWidth = 1568
-      heroAnimationHeight = 980
-    }
 
     setHeroAnimationWidth(heroAnimationWidth)
     setHeroAnimationHeight(heroAnimationHeight)
@@ -158,7 +154,7 @@ export const HeroImage = (props: HeroImageProps) => {
   const handleVideo = (media: media) => {  
     const video = document.getElementById("HeroImageVideo") as HTMLVideoElement;   
 
-    if (media.size === 'm' && media.orientation === 'landscape' || media.size === "l" || media.size === "xl" || media.size === "xxl" || media.size === "xxxl") {
+    if (media.size === 'm' && media.orientation === 'landscape' || media.size === "l" || media.size === "xl" || media.size === "xxl" && media.height <= 1440 ) {
       
       if (props.scrollPercent <= 0) {
         video.currentTime = 0;
