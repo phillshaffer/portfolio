@@ -1,6 +1,6 @@
 // libraries
 import React, { useState, useEffect, useContext } from 'react';
-import styled, {css} from "styled-components";
+import styled, {css, keyframes} from "styled-components";
 
 // state
 import { mediaContext } from '../state';
@@ -33,6 +33,12 @@ const Container = styled.div<ContainerProps>`
   };
 `;
 
+
+const AnimateViewport = () => keyframes`
+  100% {
+    border: none;
+  }
+`;
 
 interface ViewportProps {
   media: media;
@@ -77,7 +83,7 @@ const Viewport = styled.div<ViewportProps>`
 
   ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440 ) &&
   css`
-    animation: AnimateViewport;
+    animation: ${AnimateViewport};
     animation-duration: .25s;
     animation-timing-function: ease-in;
     animation-iteration-count: 1;
@@ -85,13 +91,8 @@ const Viewport = styled.div<ViewportProps>`
     animation-delay: calc(var(--scroll) * -1s);
     animation-fill-mode: both;
   `}
-
-  @keyframes AnimateViewport {
-    100% {
-      border: none;
-    }
-  }
 `;
+
 
 interface StageProps {
   media: media;
@@ -125,6 +126,14 @@ const Stage = styled.div<StageProps>`
 
 `;
 
+
+const AnimateStage = () => keyframes`
+  100% {
+    opacity: 0;
+    transform: translateY(-50%)
+  }
+`;
+
 interface StageCenterProps {
   media: media;
 };
@@ -138,10 +147,10 @@ const StageCenter = styled.div<StageCenterProps>`
   align-items: center;
   flex-direction: column;
 
-  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440) &&
   css`
     {
-      animation: AnimateFont;
+      animation: ${AnimateStage};
       animation-duration: 1s;
       animation-timing-function: ease-in;
       animation-iteration-count: 1;
@@ -150,13 +159,6 @@ const StageCenter = styled.div<StageCenterProps>`
       animation-fill-mode: both;
     }
   `}
-
-  @keyframes AnimateFont {
-    100% {
-      opacity: 0;
-      transform: translateY(-50%)
-    }
-  }
 `;
 
 

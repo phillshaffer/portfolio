@@ -53,7 +53,7 @@ const Container = styled.div<ContainerProps>`
   background-color: #000000;
   z-index: 102;
 
-  ${({ media, transformY, scale}) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl') &&
+  ${({ media, transformY, scale}) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440) &&
   css`
     animation: ${AnimateHeroImage(transformY, scale)};
     animation-duration: 2s;
