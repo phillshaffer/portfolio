@@ -1,5 +1,5 @@
 import {h, render, Component } from 'preact';
-import {Image} from '../components/image';
+import {Image} from './image';
 
 export class SectionMediaGallery extends Component {
   constructor(props) {

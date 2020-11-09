@@ -1,12 +1,18 @@
 // Libraries
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from "styled-components";
 
-interface ContainerProps {
+// helpers
+import { getRelativeSizingInPXs } from '../utils/styleHelpers'
+
+// state
+import { mediaContext } from '../state';
+
+interface Styled_SectionWrapperProps {
   backgroundColor: string;
 }
 
-const Container = styled.div<ContainerProps>`
+const Styled_SectionWrapper = styled.div<Styled_SectionWrapperProps>`
   box-sizing: border-box;
   width: 100%;
   position: relative;
@@ -15,6 +21,20 @@ const Container = styled.div<ContainerProps>`
   justify-content: center;
 `;
 
+
+interface Styled_SectionProps {
+  media: media;
+}
+
+const Styled_Section = styled.div<Styled_SectionProps>`
+  box-sizing: border-box;  
+  min-width: 320px;
+  max-width: 976px;
+  position: relative;
+  padding: ${({media}) => getRelativeSizingInPXs(24, media)};
+`;
+
+/*
 interface ScrimProps {
   height: number;
 }
@@ -30,7 +50,7 @@ const Scrim = styled.div<ScrimProps>`
 
   z-index: 101
 `;
-
+*/
 
 export interface SectionProps {
   id: string;
@@ -39,26 +59,23 @@ export interface SectionProps {
 }
 
 export const Section = (props: SectionProps) => {  
+  let media = useContext(mediaContext)
+
   const refSection = useRef(null)
-  const [isShowScrim, setIsShowScrim] = useState(false)
+  //const [isShowScrim, setIsShowScrim] = useState(false)
  
-  //const [sectionHeight, setSectionHeight] = useState(0)
-  //const [sectionYPosition, setSectionYPosition] = useState(0)
-
-
-
+  /*
   useEffect(() => {
-    //window.addEventListener('scroll', handleScroll, false);
+    window.addEventListener('scroll', handleScroll, false);
 
     return function cleanup() {
-      //window.removeEventListener('scroll', handleScroll, false);
+      window.removeEventListener('scroll', handleScroll, false);
     };
   });
-
+  */
+  /*
   const handleScroll = () => {  
     const section = refSection.current.getBoundingClientRect()
-
-
 
     if (window.scrollY >= section.y + window.scrollY && window.scrollY <= (section.y + window.scrollY) + section.height) {
       let scrollPercent = (window.scrollY - section.y) / section.height
@@ -75,12 +92,15 @@ export const Section = (props: SectionProps) => {
       setIsShowScrim(false)
     }
   }
+  */
 
   return ( 
-    <Container ref={refSection} id={props.id} backgroundColor={props.backgroundColor} >
+    <Styled_SectionWrapper ref={refSection} id={props.id} backgroundColor={props.backgroundColor} >
       {/* {isShowScrim ? <Scrim height={props.height}/> : null} */}
-      {props.children}
-    </Container>
+      <Styled_Section media={media}>
+        {props.children}
+      </Styled_Section>
+    </Styled_SectionWrapper>
   );
 
 };
