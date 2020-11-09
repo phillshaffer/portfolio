@@ -1,5 +1,5 @@
 // libraries
-import React from 'react';
+import React, { useRef } from 'react';
 //import React, { useEffect, useRef, useContext, useState } from 'react';
 import styled from 'styled-components';
 
@@ -24,10 +24,10 @@ export interface ImageGalleryProps {
 }
 
 export const ImageGallery = (props: ImageGalleryProps) => {
-  /*
-  let media = useContext(mediaContext)
+  
+  //let media = useContext(mediaContext)
   const refImageGallery = useRef(null)
-
+  /*
   const [imageGalleryWidth, setImageGalleryWidth] = useState(null)
 
   useEffect(() => {

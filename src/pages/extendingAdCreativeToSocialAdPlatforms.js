@@ -125,7 +125,6 @@ export const extendingAdCreativeToSocialAdPlatforms = (props) => {
             h('h3', null, 'Viewing Larger Ad Units'),
             h('p', null, 'Some larger format ad designs can encroach into the menu bars given mobile device’s small form factor. To solve for this we implemented a solution to hide the menu when a user taps on an ad design. Much like viewing an image in a photo app, simply swipe upwards and the user is returned back to the main ad design viewing experience.')
           ),
-
           h(SectionMediaGallery, {galleryItems: ['AdPreview_300x600@2x.png', 'AdPreview_300x600_TapZoom@2x.png'], galleryItemPadding: '8'}
           ),
           h(SectionContent, null,

@@ -31,7 +31,7 @@ const Styled_Section = styled.div<Styled_SectionProps>`
   min-width: 320px;
   max-width: 976px;
   position: relative;
-  padding: ${({media}) => getRelativeSizingInPXs(24, media)};
+  padding: ${({media}) => getRelativeSizingInPXs(24, media) + 'px'};
 `;
 
 /*

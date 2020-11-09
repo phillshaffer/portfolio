@@ -1,15 +1,21 @@
 // libraries
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
+// helpers
+import { getRelativeSizingInPXs } from '../utils/styleHelpers'
+
+// state
+import { mediaContext } from '../state';
 
 interface Style_ImageProps {
+  media: media;
   maxWidth?: number;
 }
 
 const Style_Image = styled.img<Style_ImageProps>`
-  min-width: 320px;  
-  max-width: ${({ maxWidth }) => maxWidth ? maxWidth + 'px' : '100%'}; 
+  max-width: ${({ media, maxWidth }) => 
+    maxWidth ? media.width <= maxWidth ? media.width - Number(getRelativeSizingInPXs(24, media)) + 'px' : maxWidth + 'px' : '100%'};
   height: auto;
   display: block;
   margin-left: auto;
@@ -23,7 +29,9 @@ export interface ImageProps {
 }
 
 export const Image = (props: ImageProps) => {
+  let media = useContext(mediaContext)
+
   return (
-    <Style_Image maxWidth={props.maxWidth} src={props.src} />
+    <Style_Image maxWidth={props.maxWidth} media={media} src={props.src} />
   );
 };

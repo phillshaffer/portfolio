@@ -14,6 +14,14 @@ import ThunderCast_InitalWireframes from '../images/thunderCast/ThunderCast_Init
 import ThunderCast_FinalWireframes from '../images/thunderCast/ThunderCast_FinalWireframes.png'
 import Ads from '../images/thunderCast/Ads@2x.png'
 import AdPreview_300x250 from '../images/thunderCast/AdPreview_300x250@2x.png'
+import AdPreview_300x600 from '../images/thunderCast/AdPreview_300x600@2x.png'
+import AdPreview_300x600_TapZoom from '../images/thunderCast/AdPreview_300x600_TapZoom@2x.png'
+import AdPreview_300x600_PinchZoom from '../images/thunderCast/AdPreview_300x600_PinchZoom@2x.png'
+import AdPreview_CommentMode from '../images/thunderCast/AdPreview_CommentMode@2x.png'
+import AdPreview_CommentMode_ViewingComment from '../images/thunderCast/AdPreview_CommentMode_ViewingComment@2x.png'
+import AdPreview_CommentMode_AddingToCommentThread from '../images/thunderCast/AdPreview_CommentMode_AddingToCommentThread@2x.png'
+import AdPreview_CommentMode_AddingNewComment from '../images/thunderCast/AdPreview_CommentMode_AddingNewComment@2x.png'
+import AdPreview_CommentMode_WithNewComment from '../images/thunderCast/AdPreview_CommentMode_WithNewComment@2x.png'
 
 interface ThunderCastProps {
 }
@@ -119,6 +127,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
         <Text font="normal">
           It was at this stage in the process where ThunderCast became a valuable tool for those users without access to creative studio or not directly involved in the ad design process. With the push of a button a designer could compile an ad and internal stakeholders or clients could offer feedback. When first signing into the app, it is this list of compiled ads users first see.
         </Text>
+
         <Text font="normal">
           Viewing Ad Designs
         </Text>
@@ -129,8 +138,80 @@ export const ThunderCast = (props: ThunderCastProps) => {
           <Image src={Ads} maxWidth={375}/>
           <Image src={AdPreview_300x250} maxWidth={375} />
         </ImageGallery>
+
+        <Text font="normal">
+          Viewing True Render
+        </Text>
+        <Text font="normal">
+          Not only were users now able to view ads designs on the go, because they were viewing on a mobile device ads were now displayed at true native device DPI. This reduced some the challenges with viewing higher dpi ad designs within Thunder’s Creative Studio web editor that was limited to 72 and 96 browser dpi. In addition to viewing ad designs on the go, viewing on a mobile device was quickly creating unanticipated added value for our users. 
+        </Text>
+        <ImageGallery maxItemsPerRow={2}>
+          <Image src={AdPreview_300x600} maxWidth={375}/>
+          <Image src={AdPreview_300x600_TapZoom} maxWidth={375} />
+        </ImageGallery>
+
+        <Text font="normal">
+          Viewing Larger Ad Units
+        </Text>
+        <Text font="normal">
+          Some larger format ad designs can encroach into the menu bars given mobile device’s small form factor. To solve for this we implemented a solution to hide the menu when a user taps on an ad design. Much like viewing an image in a photo app, simply swipe upwards and the user is returned back to the main ad design viewing experience.
+        </Text>
+        <ImageGallery maxItemsPerRow={2}>
+          <Image src={AdPreview_300x600_TapZoom} maxWidth={375}/>
+          <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} />
+        </ImageGallery>
+
+        <Text font="normal">
+          Viewing Ad Design Details
+        </Text>
+        <Text font="normal">
+          Our new mobile app provided users the ability view ad designs at true size. Again given mobile device’s small form factor combined with an ad’s complexity, users sometimes found it difficult to view small important details. To solve for this we implemented a solution to zoom in on ad designs. Once a user has tapped to view an ad design, they can pinch to zoom and drag their finger to pan around the add design.
+        </Text>
+        <ImageGallery maxItemsPerRow={2}>
+          <Image src={AdPreview_300x600_TapZoom} maxWidth={375}/>
+          <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} />
+        </ImageGallery>
+
+        <Text font="normal">
+          Viewing Ad Animations
+        </Text>
+        <Text font="normal">
+          Many HTML5 ads are designed with animation in mind. When viewing an animated ad design, the ad will animate the first time the ad loads. Users can replay the animation by clicking the large replay button in the center of the ad viewing menu. 
+        </Text>
+        <Text font="normal">
+          Given the relative shortness of most display ad animations, we opted for the simplicity of a replay button over a timeline animation scrubber interaction model. Designs also highlighted the replay capability because Thunder’s animated HTML5 ads were viewed as a differentiator against other ad design products.
+        </Text>
+        <ImageGallery maxItemsPerRow={2}>
+          <Image src={AdPreview_300x250} maxWidth={375}/>
+        </ImageGallery>
+
+        <Text font="normal">
+          Viewing Multiple Ad Sizes
+        </Text>
+        <Text font="normal">
+          Ads are ultimately made up of many different ad sizes, or what the Thunder Ad Framework refers to as ad units. We wanted to make it natural for users to quickly scan between ad units. Designs made this possible by swiping upwards, each swipe would advance the user to the next ad design.
+        </Text>
+        <ImageGallery maxItemsPerRow={2}>
+          <Image src={AdPreview_300x250} maxWidth={375}/>
+          <Image src={AdPreview_300x600} maxWidth={375} />
+        </ImageGallery>
+        <Text font="normal">
+          Lastly all ad information is being pulled from the ThudnerKit api, with in app ad design metadata informed by the Thunder Ad Framework.
+        </Text>
       </Section>
 
+      <Section id="a" backgroundColor="#fafafa">
+        <Text font="subtitle">Commenting</Text>
+        <Text font="title">Commenting Story Coming Soon</Text>
+        <ImageGallery maxItemsPerRow={2}>
+          <Image src={AdPreview_CommentMode} maxWidth={375}/>
+          <Image src={AdPreview_CommentMode_ViewingComment} maxWidth={375} />
+          <Image src={AdPreview_CommentMode_AddingToCommentThread} maxWidth={375}/>
+          <Image src={AdPreview_CommentMode_AddingNewComment} maxWidth={375} />
+          <Image src={AdPreview_CommentMode_WithNewComment} maxWidth={375}/>
+        </ImageGallery>
+      </Section>
     </React.Fragment>
   );
 };
+
