@@ -36,14 +36,14 @@ export const ThunderCast = (props: ThunderCastProps) => {
   return (
     <React.Fragment>
 
-      <Section id="a" backgroundColor="#fafafa">
+      <Section id="a" backgroundColor="#222222">
         <Text font="title">Extending Ad Creative to Social Ad Platforms</Text>
         <Text font="normal">
           ThunderCast was the culmination of months of work to establish a new ad standardization to scale display ads across web and social ad platforms. This standardization was cemented within the Thunder Ad Framework, backend data model, ThunderKit RESTful API and ThunderCast mobile app designed to facilitate real time ad design collaboration. Together these projects proved the ad framework’s scalability, with the mobile app proving technology interoperability with newly created API and backend.
         </Text>
       </Section>
 
-      <Section id="a" backgroundColor="#ffffff">
+      <Section id="a" backgroundColor="#333333">
         <Text font="subtitle">The Challenge</Text>
         <Text font="title">Scale Thunder’s Display Ad Technology to Social ad platforms</Text>
         <Text font="normal">
@@ -64,7 +64,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
         <Image src={ElevatorPitch} />
       </Section>
 
-      <Section id="a" backgroundColor="#fafafa">
+      <Section id="a" backgroundColor="#222222">
         <Text font="subtitle">ThunderCast Elevator Pitch</Text>
         <Text font="title">Real Time Ad Design and Collaboration</Text>
         <Text font="normal">
@@ -80,7 +80,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
         </List>
       </Section>
 
-      <Section id="a" backgroundColor="#ffffff">
+      <Section id="a" backgroundColor="#333333">
         <Text font="subtitle">The Approach</Text>
         <Text font="title">Real Time Ad Design and Collaboration</Text>
         <Text font="normal">
@@ -118,7 +118,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
         <Image src={ThunderCast_FinalWireframes} />
       </Section>
 
-      <Section id="a" backgroundColor="#fafafa">
+      <Section id="a" backgroundColor="#222222">
         <Text font="subtitle">Viewing Ads</Text>
         <Text font="title">Ad Selection and Viewing by Ad Unit</Text>
         <Text font="normal">
@@ -200,7 +200,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
         </Text>
       </Section>
 
-      <Section id="a" backgroundColor="#fafafa">
+      <Section id="a" backgroundColor="#222222">
         <Text font="subtitle">Commenting</Text>
         <Text font="title">Commenting Story Coming Soon</Text>
         <ImageGallery maxItemsPerRow={2}>

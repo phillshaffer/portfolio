@@ -23,7 +23,7 @@ const Title = styled.h1<TitleProps>`
 
   line-height: auto;
   font-weight: 700;
-  color: ${props => props.color ?? 'black'};
+  color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
   margin: 0px; 
@@ -47,7 +47,7 @@ const Subtitle = styled.h2<SubtitleProps>`
 
   line-height: auto;
   font-weight: 600;
-  color: ${props => props.color ?? 'black'};
+  color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
   margin: 1em 0px 0px 0px;
@@ -71,7 +71,7 @@ const Normal = styled.p<NormalProps>`
 
   line-height: 1.5;
   font-weight: 500;
-  color: ${props => props.color ?? 'black'};
+  color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
   margin: 1em 0px 0px 0px;
