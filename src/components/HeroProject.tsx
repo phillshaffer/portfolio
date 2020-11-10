@@ -34,6 +34,8 @@ const Container = styled.div<ContainerProps>`
     media.size === 'xxl' && media.height <= 1440 && '400vh' ||
     1440 + 'px'
   };
+
+  background-color: #222222;
 `;
 
 interface AnimateViewportProps {
@@ -72,6 +74,11 @@ const Viewport = styled.div<ViewportProps>`
     media.orientation === 'portrait' && media.size === 'xxl' && media.height <= 1440 && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||
     1440 - (getStyling(media).padding * 2) + 'px'
   };
+
+  border-radius: ${props => getStyling(props.media).cardBorderRadius + 'px'};	   
+
+  };
+
 
   ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440 ) &&
   css`

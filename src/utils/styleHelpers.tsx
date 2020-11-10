@@ -7,30 +7,39 @@ export const getRelativeSizingInPXs = (value: number, media: media) => `${
 
 export const getStyling = (media: media) => {
   let styling = {
-    padding: 0
+    padding: 0,
+    cardBorderRadius: 0
   }
 
   if (media.size === 'xs') {
     styling.padding = 0;
+    styling.cardBorderRadius = 0;
   }
   else if (media.size === 's') {
-    if (media.orientation === "landscape")
+    if (media.orientation === "landscape") {
       styling.padding = 0;
+      styling.cardBorderRadius = 0;
+    }
     else {
       styling.padding = 20;
+      styling.cardBorderRadius = 2;
     }
   }
   else if (media.size === 'm') {
     styling.padding = 20;
+    styling.cardBorderRadius = 2;
   }
   else if (media.size === 'l') {
     styling.padding = 24;
+    styling.cardBorderRadius = 4;
   }
   else if (media.size === 'xl') {
     styling.padding = 32;
+    styling.cardBorderRadius = 6;
   }
   else if (media.size === 'xxl') {
     styling.padding = 44;
+    styling.cardBorderRadius = 8;
   }
 
   return styling;
