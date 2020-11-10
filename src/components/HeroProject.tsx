@@ -66,18 +66,10 @@ const Viewport = styled.div<ViewportProps>`
   width: ${props => props.media.width - (getStyling(props.media).padding * 2) + 'px'};
   background-image: linear-gradient(${props => props.scrollPercent < .75 ? props.backgroundGradient : 'to bottom right, #222222, #222222'});
   height: ${({media}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
-    media.size === 'l' && media.orientation === 'landscape' && media.height - getStyling(media).padding * 2 + 'px' ||
-    media.size === 'l' && media.orientation === 'portrait' && media.height / 1.6 - getStyling(media).padding * 2 + 'px' ||
-    media.size === 'xl' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xl' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||
+    media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
+    media.orientation === 'landscape' && media.size === 'xxl' && media.height <= 1440 && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.orientation === 'portrait' && media.size === 'xxl' && media.height <= 1440 && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||
     1440 - (getStyling(media).padding * 2) + 'px'
   };
 
@@ -146,6 +138,7 @@ const StageCenter = styled.div<StageCenterProps>`
   display: flex;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 
   ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440) &&
   css`
