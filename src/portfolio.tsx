@@ -59,6 +59,8 @@ export const Portfolio = () => {
     orientation: ""
   });
   
+  const [isLoading, setIsLoading] = useState(true);
+
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
   useEffect(() => {
@@ -77,6 +79,8 @@ export const Portfolio = () => {
   });
 
   const handleWindowSize = (): void => {
+    setIsLoading(true)
+
     let matchedMedia: media = {
       size: "", 
       width: window.innerWidth,
@@ -124,7 +128,7 @@ export const Portfolio = () => {
 
     console.log("portfolio " + JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
-    
+    setIsLoading(false)
    /*
     let testMedia = {
       size: "s", 
@@ -145,21 +149,14 @@ export const Portfolio = () => {
       <GlobalStyle />
       <Router>
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
           <Route path="/thundercast">
-            <ThunderCast/>
+            {!isLoading ? <ThunderCast/> : null}
           </Route>
           <Route path={["/", "/work"]}>
-            <Work scrollYPosition={scrollYPosition}/>
+            {!isLoading ? <Work scrollYPosition={scrollYPosition}/> : null}
           </Route>
         </Switch>
       </Router>
     </mediaContext.Provider>
   );
-}
-
-function About() {
-  return <h2>About</h2>;
 }
