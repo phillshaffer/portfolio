@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled, {css, keyframes} from 'styled-components';
 
+// helpers
+import { getStyling } from '../utils/styleHelpers'
+
 // state
 import { mediaContext } from '../state';
 
@@ -147,7 +150,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
     setHeroAnimationWidth(heroAnimationWidth)
     setHeroAnimationHeight(heroAnimationHeight)
-    setTransformY(media.height - heroAnimationHeight + (100 * heroAnimationWidth / 1440))
+    setTransformY(media.height - getStyling(media).padding * 2 - heroAnimationHeight + (100 * heroAnimationWidth / 1440))
     setScale((media.height * 1.6 - (64 * heroAnimationWidth / 1440)) / heroAnimationWidth)
   }
 

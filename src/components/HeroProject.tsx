@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled, {css, keyframes} from "styled-components";
 
+// helpers
+import { getStyling } from '../utils/styleHelpers'
+
 // state
 import { mediaContext } from '../state';
 
@@ -33,74 +36,56 @@ const Container = styled.div<ContainerProps>`
   };
 `;
 
+interface AnimateViewportProps {
+  media: media;
+  backgroundGradient: string;
+};
 
-const AnimateViewport = () => keyframes`
+const AnimateViewport = (props: AnimateViewportProps) => keyframes`
+  0% {
+  }
+  50% {
+    transform: scale(${props.media.width / (props.media.width - (getStyling(props.media).padding * 2))}, ${props.media.height / (props.media.height - (getStyling(props.media).padding * 2))});
+  }
   100% {
-    border: none;
-    background-image: linear-gradient(#222222, #222222);
   }
 `;
 
 interface ViewportProps {
   media: media;
   backgroundGradient: string;
+  scrollPercent: number;
 };
 
 const Viewport = styled.div<ViewportProps>`
   box-sizing: border-box;
   position: sticky;
-  top: 0px; 
-  left: 0px;
-  background-image: linear-gradient(${props => props.backgroundGradient ?? 'white'});
+  top: ${props => getStyling(props.media).padding + 'px'}; 
+  left: ${props => getStyling(props.media).padding + 'px'};
   z-index: 100;
-  width: 100%;
-  border-color: #222222;
-  border-style: solid;
-  border-width: ${({media}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
-    media.size === 'xs' && media.orientation === 'portrait' && 'none' ||  
-    media.size === 's' && media.orientation === 'landscape' && 'none;' ||
-    media.size === 's' && media.orientation === 'portrait' && 20 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && 20 + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && 20 + 'px' ||  
-    media.size === 'l' && 24 + 'px' ||
-    media.size === 'xl' && 32 + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && 44 + 'px' ||
-    44 + 'px'
-  };
-  border-radius: ${({media}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && 'none' ||
-    media.size === 'xs' && media.orientation === 'portrait' && 'none' ||  
-    media.size === 's' && media.orientation === 'landscape' && 'none;' ||
-    media.size === 's' && media.orientation === 'portrait' && 2 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && 2 + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && 2 + 'px' ||  
-    media.size === 'l' && 4 + 'px' ||
-    media.size === 'xl' && 6 + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && 8 + 'px' ||
-    44 + 'px'
-  };
+  width: ${props => props.media.width - (getStyling(props.media).padding * 2) + 'px'};
+  background-image: linear-gradient(${props => props.scrollPercent < .75 ? props.backgroundGradient : 'to bottom right, #222222, #222222'});
   height: ${({media}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
-    media.size === 'l' && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 'l' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
-    media.size === 'xl' && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 'xl' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||
-    1440 + 'px'
+    media.size === 'xs' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
+    media.size === 'm' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
+    media.size === 'l' && media.orientation === 'landscape' && media.height - getStyling(media).padding * 2 + 'px' ||
+    media.size === 'l' && media.orientation === 'portrait' && media.height / 1.6 - getStyling(media).padding * 2 + 'px' ||
+    media.size === 'xl' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xl' && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||
+    1440 - (getStyling(media).padding * 2) + 'px'
   };
 
   ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440 ) &&
   css`
     animation: ${AnimateViewport};
-    animation-duration: 1.25s;
-    animation-timing-function: ease-in;
+    animation-duration: 2s;
+    animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-play-state: paused;
     animation-delay: calc(var(--scroll) * -1s);
@@ -188,7 +173,7 @@ export const HeroProject = (props: HeroProjectProps) => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, false);
-
+    console.log(getStyling(media).padding)
     return function cleanup() {
       window.removeEventListener('scroll', handleScroll, false);
     };
@@ -202,7 +187,7 @@ export const HeroProject = (props: HeroProjectProps) => {
 
   return (
     <Container id="HeroProjectContainer" media={media}>
-      <Viewport media={media} backgroundGradient={props.backgroundGradient}>
+      <Viewport media={media} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
         <Stage media={media}>
           <StageCenter media={media}>
             <Text font="title" color="#ffffff">Managing Directory Users</Text>
