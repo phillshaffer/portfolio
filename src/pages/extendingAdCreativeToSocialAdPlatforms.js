@@ -1,7 +1,7 @@
 import {h, render, Component} from 'preact';
 import Router from 'preact-router';
 import {Masthead} from '../components/masthead';
-import {Header} from '../components/header';
+import {Header} from '../components/globalNav';
 import {Section} from '../components/section';
 import {SectionContent} from '../components/sectionContentOld';
 import {SectionMediaGallery} from '../components/sectionMediaGallery';

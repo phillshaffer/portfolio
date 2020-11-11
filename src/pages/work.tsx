@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
 // Components
-import { Header } from '../components/header'
+import { GlobalNav } from '../components/globalNav'
 import { HeroProject } from "../components/HeroProject";
 import { Projects } from "../components/projects";
 import { Project } from "../components/project";
@@ -33,7 +33,7 @@ export const Work = (props: WorkProps) => {
 
   return (
     <React.Fragment>
-      <Header />
+      <GlobalNav />
       <Styled_Projects>
         <HeroProject backgroundGradient="to bottom right, #7B00E9, #C300F4"></HeroProject>
         {/* <Projects>

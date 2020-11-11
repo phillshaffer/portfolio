@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import styled from "styled-components";
 
 // Components
-import { Header } from '../components/header'
+import { GlobalNav } from '../components/globalNav'
 import { Section } from '../components/section';
 import { Text } from '../components/text'
 import { List, Item } from '../components/listItems'
@@ -50,7 +50,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
 
   return (
     <React.Fragment>
-      <Header />
+      <GlobalNav />
       <Styled_Main>
         <Section id="a" backgroundColor="#222222">
           <Text font="title">Extending Ad Creative to Social Ad Platforms</Text>

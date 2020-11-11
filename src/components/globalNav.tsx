@@ -9,13 +9,13 @@ import { getStyling } from '../utils/styleHelpers'
 import { mediaContext } from '../state';
 
 // components
-import { Text } from '../components/text'
+import { Text } from './text'
 
-interface Styled_HeaderProps {
+interface Styled_GlobalNavProps {
   media: media;
 };
 
-const Styled_Header = styled.nav<Styled_HeaderProps>`
+const Styled_GlobalNav = styled.nav<Styled_GlobalNavProps>`
   position: fixed;
   top: 0px;
   left: 0px;
@@ -32,13 +32,13 @@ const Styled_Header = styled.nav<Styled_HeaderProps>`
 export interface HeaderProps {
 }
 
-export const Header = (props: HeaderProps) => {  
+export const GlobalNav = (props: HeaderProps) => {  
   let media = useContext(mediaContext)
 
   return (
-    <Styled_Header media={media}>
+    <Styled_GlobalNav media={media}>
       <Text font="normal">Phill Shaffer</Text>
-    </Styled_Header>
+    </Styled_GlobalNav>
   );
 
 };
