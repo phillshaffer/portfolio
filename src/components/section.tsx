@@ -12,7 +12,7 @@ interface Styled_SectionWrapperProps {
   backgroundColor: string;
 }
 
-const Styled_SectionWrapper = styled.div<Styled_SectionWrapperProps>`
+const Styled_SectionWrapper = styled.section<Styled_SectionWrapperProps>`
   box-sizing: border-box;
   width: 100%;
   position: relative;

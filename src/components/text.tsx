@@ -74,7 +74,7 @@ const Normal = styled.p<NormalProps>`
   color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
-  margin: 1em 0px 0px 0px;
+  margin: 0px;
 `;
 
 

@@ -164,7 +164,7 @@ const StageCenter = styled.div<StageCenterProps>`
 
 export interface HeroProjectProps {
   backgroundGradient: string;
-  children: React.ReactNode;
+  //children: React.ReactNode;
 };
 
 export const HeroProject = (props: HeroProjectProps) => {

@@ -3,11 +3,20 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
 // Components
+import { Header } from '../components/header'
 import { HeroProject } from "../components/HeroProject";
 import { Projects } from "../components/projects";
 import { Project } from "../components/project";
 
 
+const Styled_Projects = styled.main`
+  position: absolute;
+  top: 0px; 
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 
 export interface WorkProps {
@@ -24,19 +33,21 @@ export const Work = (props: WorkProps) => {
 
   return (
     <React.Fragment>
-      <HeroProject backgroundGradient="to bottom right, #7B00E9, #C300F4" >
-      </HeroProject>
-      {/* <Projects>
-        <Project width={props.width} height={props.height} backgroundColor="red">
-          <p>1</p>
-        </Project>
-        <Project width={props.width} height={props.height} backgroundColor="white">
-          <p>2</p>
-        </Project>
-        <Project width={props.width} height={props.height} backgroundColor="blue">
-          <p>3</p>
-        </Project>
-      </Projects> */}
+      <Header />
+      <Styled_Projects>
+        <HeroProject backgroundGradient="to bottom right, #7B00E9, #C300F4"></HeroProject>
+        {/* <Projects>
+          <Project width={props.width} height={props.height} backgroundColor="red">
+            <p>1</p>
+          </Project>
+          <Project width={props.width} height={props.height} backgroundColor="white">
+            <p>2</p>
+          </Project>
+          <Project width={props.width} height={props.height} backgroundColor="blue">
+            <p>3</p>
+          </Project>
+        </Projects> */}
+      </Styled_Projects>
     </React.Fragment>
   );
 }
