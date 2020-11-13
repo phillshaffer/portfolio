@@ -39,14 +39,14 @@ const Styled_SubHeadline = styled.h3<Styled_SubHeadlineProps>`
   font-size: ${({media}) => 	   
     media.size === 'xs' && '14px' ||
     media.size === 's' && '16px' ||
-    media.size === 'm' && '16px' ||
-    media.size === 'l' && '24px' ||
-    media.size === 'xl' && '28px' ||
-    media.size === 'xxl' && '36px'
+    media.size === 'm' && '20px' ||
+    media.size === 'l' && '28px' ||
+    media.size === 'xl' && '36px' ||
+    media.size === 'xxl' && '44px'
   };
 
   line-height: auto;
-  font-weight: 600;
+  font-weight: 500;
   color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;

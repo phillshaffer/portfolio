@@ -125,29 +125,25 @@ export const HeroImage = (props: HeroImageProps) => {
       heroAnimationWidth = width
       heroAnimationHeight = width / 1.6
     }
-   else if (media.size === "s" && media.orientation === "landscape") {
-      heroAnimationWidth = 384
-      heroAnimationHeight = 240
-    }
-    else if (media.size === "s" && media.orientation === "portrait") {
-      heroAnimationWidth = 624
-      heroAnimationHeight = 390
+    else if (media.size === "s") {
+      heroAnimationWidth = 480
+      heroAnimationHeight = 300
     }
     else if (media.size === "m") {
       heroAnimationWidth = 688
       heroAnimationHeight = 430
     }
     else if (media.size === "l") {
-      heroAnimationWidth = 832
-      heroAnimationHeight = 520
+      heroAnimationWidth = 736 // 832
+      heroAnimationHeight = 460 // 520
     }
     else if (media.size === "xl") {
-      heroAnimationWidth = 1088
-      heroAnimationHeight = 680
+      heroAnimationWidth = 960 //1088
+      heroAnimationHeight = 600 //680
     }
     else if (media.size === "xxl") {
-      heroAnimationWidth = 1440
-      heroAnimationHeight = 900
+      heroAnimationWidth = 1280 //1440
+      heroAnimationHeight = 800 //900
     }
 
     setHeroAnimationWidth(heroAnimationWidth)

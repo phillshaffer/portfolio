@@ -133,7 +133,7 @@ const Stage = styled.div<StageProps>`
   left: 0px;
   width: 100%;
   height: auto;
-  padding-top: ${({media}) => media.width / media.height <= 1.6 ? (getStyling(media).padding * 3) + 'px' : (getStyling(media).padding * 4 + 'px')};
+  padding-top: ${({media}) => (getStyling(media).padding * 2) + 'px'};
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -216,9 +216,9 @@ export const HeroProject = (props: HeroProjectProps) => {
       <Viewport media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
         <Stage media={media}>
           <StageCenter media={media} isAnimatable={isAnimatable}>
-            <Text font="headline" color="#ffffff">Manage Directory Users</Text>
+            <Text font="headline" color="#ffffff">Object Properties Panel</Text>
             <Text font="subheadline" color="#ffffff">
-              Enabling Active Directory Administrators to manage the multiple identities, mailboxes, teams, and app entitlements of their user base, across all environments
+              Manage directory users for multiple identities, mailboxes, teams, and app entitlements of their user base, across all environments.
             </Text>
           </StageCenter>
         </Stage>
