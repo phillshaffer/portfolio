@@ -36,7 +36,7 @@ const AnimateHeroImage = (transformY: number, scale: number) => keyframes`
 `;
 
 interface ContainerProps {
-  media: media;
+  isAnimatable: boolean;
   heroAnimationWidth: number;
   heroAnimationHeight: number;
   transformY: number;
@@ -56,7 +56,7 @@ const Container = styled.div<ContainerProps>`
   background-color: #000000;
   z-index: 102;
 
-  ${({ media, transformY, scale}) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440) &&
+  ${({isAnimatable, transformY, scale}) => isAnimatable &&
   css`
     animation: ${AnimateHeroImage(transformY, scale)};
     animation-duration: 2s;
@@ -104,6 +104,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   const [HeroAnimationWidth, setHeroAnimationWidth] = useState(0);
   const [HeroAnimationHeight, setHeroAnimationHeight] = useState(0);
+  const [isAnimatable, setIsAnimatable] = useState(false)
   const [TransformY, setTransformY] = useState(0);
   const [Scale, setScale] = useState(0);
 
@@ -111,6 +112,7 @@ export const HeroImage = (props: HeroImageProps) => {
   
   useEffect(() => {
     getHeroAnimationDimensions(media);
+    getIsAnimatable(media);
     handleVideo(media);
   });
 
@@ -154,10 +156,19 @@ export const HeroImage = (props: HeroImageProps) => {
     setScale((media.height * 1.6 - (64 * heroAnimationWidth / 1440)) / heroAnimationWidth)
   }
 
+
+  const getIsAnimatable = (media: media) => {
+    if (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' && media.orientation === 'landscape' || media.size === 'xl' && media.orientation === 'landscape' || media.size === 'xxl' && media.orientation === 'landscape' && media.height <= 1440) {
+      setIsAnimatable(true)
+    }
+    else { setIsAnimatable(false) }
+  }
+
+
   const handleVideo = (media: media) => {  
     const video = document.getElementById("HeroImageVideo") as HTMLVideoElement;   
 
-    if (media.size === 'm' && media.orientation === 'landscape' || media.size === "l" || media.size === "xl" || media.size === "xxl" && media.height <= 1440 ) {
+    if (isAnimatable) {
       
       if (props.scrollPercent <= 0) {
         video.currentTime = 0;
@@ -189,7 +200,7 @@ export const HeroImage = (props: HeroImageProps) => {
 
   return (
     <Overlay>
-      <Container media={media} transformY={TransformY} scale={Scale} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
+      <Container isAnimatable={isAnimatable} transformY={TransformY} scale={Scale} heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight}>
         <Bezel heroAnimationWidth={HeroAnimationWidth} heroAnimationHeight={HeroAnimationHeight} onclick={stop}/>
         <Video id="HeroImageVideo" poster={Poster} preload="auto" muted>
           <source src={Prototype} type='video/mp4' />

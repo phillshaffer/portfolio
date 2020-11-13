@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import { mediaContext } from '../state';
 
 
-interface TitleProps {
+interface Styled_HeadlineProps {
   media: media;
   color: string;
 };
 
-const Title = styled.h1<TitleProps>`
+const Styled_Headline = styled.h2<Styled_HeadlineProps>`
   font-size: ${({media}) => 	   
     media.size === 'xs' && '32px' ||
     media.size === 's' && '32px' ||
@@ -26,6 +26,30 @@ const Title = styled.h1<TitleProps>`
   color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
+  margin: 0px 0px 16px 0px; 
+`;
+
+
+interface Styled_SubHeadlineProps {
+  media: media;
+  color: string;
+};
+
+const Styled_SubHeadline = styled.h3<Styled_SubHeadlineProps>`
+  font-size: ${({media}) => 	   
+    media.size === 'xs' && '14px' ||
+    media.size === 's' && '16px' ||
+    media.size === 'm' && '16px' ||
+    media.size === 'l' && '24px' ||
+    media.size === 'xl' && '28px' ||
+    media.size === 'xxl' && '36px'
+  };
+
+  line-height: auto;
+  font-weight: 600;
+  color: ${props => props.color ?? '#f5f5f5'};
+  display: flex;
+  position: relative;
   margin: 0px; 
 `;
 
@@ -35,7 +59,7 @@ interface SubtitleProps {
   color: string;
 };
 
-const Subtitle = styled.h2<SubtitleProps>`
+const Subtitle = styled.h4<SubtitleProps>`
   font-size: ${({media}) => 	   
     media.size === 'xs' && '16px' ||
     media.size === 's' && '16px' ||
@@ -89,7 +113,8 @@ export const Text = (props: TextProps) => {
   let media = useContext(mediaContext)
 
   return (
-    props.font === "title" && <Title media={media} color={props.color}>{props.children}</Title> ||
+    props.font === "headline" && <Styled_Headline media={media} color={props.color}>{props.children}</Styled_Headline> ||
+    props.font === "subheadline" && <Styled_SubHeadline media={media} color={props.color}>{props.children}</Styled_SubHeadline> ||
     props.font === "subtitle" && <Subtitle media={media} color={props.color}>{props.children}</Subtitle> ||
     props.font === "normal" && <Normal media={media} color={props.color}>{props.children}</Normal>
   );

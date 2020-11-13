@@ -100,7 +100,7 @@ export const Portfolio = () => {
       {size: "xs", minWidth: 320},
       {size: "s", minWidth: 768},
       {size: "m", minWidth: 1024},
-      {size: "l", minWidth: 1440},
+      {size: "l", minWidth: 1366},
       {size: "xl", minWidth: 1920},
       {size: "xxl", minWidth: 2560}
     ]

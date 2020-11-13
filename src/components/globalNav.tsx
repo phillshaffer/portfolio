@@ -8,8 +8,36 @@ import { getStyling } from '../utils/styleHelpers'
 // state
 import { mediaContext } from '../state';
 
-// components
-import { Text } from './text'
+interface Styled_TextProps {
+  media: media;
+};
+
+const Styled_Text = styled.p<Styled_TextProps>`
+  font-size: ${({media}) => 	   
+    media.size === 'xs' && '12px' || //18
+    media.size === 's' && '15px' || //21
+    media.size === 'm' && '15px' || //21
+    media.size === 'l' && '15px' || //21
+    media.size === 'xl' && '20px' || //24
+    media.size === 'xxl' && '20px' //24
+  };
+
+  line-height: ${({media}) => 	   
+    media.size === 'xs' && '16px' || //18
+    media.size === 's' && '20px' || //21
+    media.size === 'm' && '20px' || //21
+    media.size === 'l' && '20px' || //21
+    media.size === 'xl' && '32px' || //24
+    media.size === 'xxl' && '32px' //24
+  };
+  
+  font-weight: 500;
+  color: rgba(255, 255, 255, .64);
+  display: flex;
+  position: relative;
+  margin: 0px;
+`;
+
 
 interface Styled_GlobalNavProps {
   media: media;
@@ -19,7 +47,7 @@ const Styled_GlobalNav = styled.nav<Styled_GlobalNavProps>`
   position: fixed;
   top: 0px;
   left: 0px;
-  padding: ${props => getStyling(props.media).padding * 1.5 + 'px ' + getStyling(props.media).padding * 2 + 'px' };
+  padding: ${({media}) => getStyling(media).padding * 1.5 + 'px ' + getStyling(media).padding * 2 + 'px'};
   height: auto;
   width: 100%;
   background-color: transparent;
@@ -37,7 +65,7 @@ export const GlobalNav = (props: HeaderProps) => {
 
   return (
     <Styled_GlobalNav media={media}>
-      <Text font="normal">Phill Shaffer</Text>
+      <Styled_Text media={media}>Phill Shaffer</Styled_Text>
     </Styled_GlobalNav>
   );
 

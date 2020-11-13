@@ -12,12 +12,12 @@ export const getStyling = (media: media) => {
   }
 
   if (media.size === 'xs') {
-    styling.padding = 0;
+    styling.padding = 8;
     styling.cardBorderRadius = 0;
   }
   else if (media.size === 's') {
     if (media.orientation === "landscape") {
-      styling.padding = 0;
+      styling.padding = 14;
       styling.cardBorderRadius = 0;
     }
     else {

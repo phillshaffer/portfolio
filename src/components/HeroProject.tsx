@@ -23,14 +23,16 @@ const Container = styled.div<ContainerProps>`
   position: relative;
   
   height: ${({media}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && media.height + 'px' ||
+    media.size === 'xs' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
     media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && media.height + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && media.width / 1.3 + 'px' ||  
     media.size === 'm' && media.orientation === 'landscape' && '400vh' ||
-    media.size === 'm' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
-    media.size === 'l' && '400vh' ||
-    media.size === 'xl' && '400vh' ||
+    media.size === 'm' && media.orientation === 'portrait' && media.width / 1.3 + 'px' ||  
+    media.size === 'l' && media.orientation === 'landscape' && '400vh' ||
+    media.size === 'l' && media.orientation === 'portrait' && media.width / 1.6 + 'px' ||
+    media.size === 'xl' && media.orientation === 'landscape' && '400vh' ||
+    media.size === 'xl' && media.orientation === 'portrait' && media.width / 1.6 + 'px' ||
     media.size === 'xxl' && media.height <= 1440 && '400vh' ||
     1440 + 'px'
   };
@@ -55,6 +57,7 @@ const AnimateViewport = (props: AnimateViewportProps) => keyframes`
 
 interface ViewportProps {
   media: media;
+  isAnimatable: boolean;
   backgroundGradient: string;
   scrollPercent: number;
 };
@@ -62,16 +65,42 @@ interface ViewportProps {
 const Viewport = styled.div<ViewportProps>`
   box-sizing: border-box;
   position: sticky;
-  top: ${props => getStyling(props.media).padding + 'px'}; 
-  left: ${props => getStyling(props.media).padding + 'px'};
+  top: ${({media}) =>
+    media.size === 'xs' && media.orientation === 'landscape' && 0 + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && 0 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && 0 + 'px' ||
+    getStyling(media).padding + 'px'
+  }; 
+  left: ${({media}) => 	 
+    media.size === 'xs' && media.orientation === 'landscape' && 0 + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && 0 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && 0 + 'px' ||
+    getStyling(media).padding + 'px'
+  }; 
   z-index: 100;
-  width: ${props => props.media.width - (getStyling(props.media).padding * 2) + 'px'};
-  background-image: linear-gradient(${props => props.scrollPercent < .75 ? props.backgroundGradient : 'to bottom right, #222222, #222222'});
-  height: ${({media}) => 	   
-    media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.orientation === 'portrait' && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||  
-    media.orientation === 'landscape' && media.size === 'xxl' && media.height <= 1440 && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.orientation === 'portrait' && media.size === 'xxl' && media.height <= 1440 && media.height / 1.6 - (getStyling(media).padding * 2) + 'px' ||
+  width: ${({media}) => 	   	    
+  media.size === 'xs' && media.orientation === 'landscape' && media.width + 'px' ||
+  media.size === 'xs' && media.orientation === 'portrait' && media.width + 'px' ||  
+  media.size === 's' && media.orientation === 'landscape' && media.width + 'px' ||
+  media.width - (getStyling(media).padding * 2) + 'px'
+  };
+  background-image: linear-gradient(${({isAnimatable, scrollPercent, backgroundGradient}) => isAnimatable ? 
+      scrollPercent < .75 ? backgroundGradient : 'to bottom right, #222222, #222222' :
+    backgroundGradient
+  });
+  height: ${({media}) => 	   	    
+    media.size === 'xs' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
+    media.size === 's' && media.orientation === 'portrait' && media.width / 1.3 - (getStyling(media).padding * 2) + 'px' ||  
+    media.size === 'm' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'm' && media.orientation === 'portrait' && media.width / 1.3 - (getStyling(media).padding * 2) + 'px' ||  
+    media.size === 'l' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'l' && media.orientation === 'portrait' && media.width / 1.6 - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xl' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xl' && media.orientation === 'portrait' && media.width / 1.6 - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
+    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'portrait' && media.width / 1.6 - (getStyling(media).padding * 2) + 'px' ||
     1440 - (getStyling(media).padding * 2) + 'px'
   };
 
@@ -80,7 +109,7 @@ const Viewport = styled.div<ViewportProps>`
   };
 
 
-  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440 ) &&
+  ${({ isAnimatable }) => isAnimatable &&
   css`
     animation: ${AnimateViewport};
     animation-duration: 2s;
@@ -103,21 +132,8 @@ const Stage = styled.div<StageProps>`
   top: 0px; 
   left: 0px;
   width: 100%;
-  height: 100%;
-  padding: ${({media}) => 	   
-    media.size === 'xs' && media.orientation === 'landscape' && 64 * media.height / 900 + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && 64 * media.height / 900 + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && 64 * media.height / 900 + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && 64 * (media.height / 1.6) / 900 + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && 64 * media.height / 900 + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && 64 * media.height / 900 + 'px' ||  
-    media.size === 'l' && 64 * media.height / 900 + 'px' ||
-    media.size === 'xl' && 64 * media.height / 900 + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && 64 * media.height / 900 + 'px' ||
-    64 * 1440 / 900 + 'px'
-  };
-
-
+  height: auto;
+  padding-top: ${({media}) => media.width / media.height <= 1.6 ? (getStyling(media).padding * 3) + 'px' : (getStyling(media).padding * 4 + 'px')};
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -127,7 +143,7 @@ const Stage = styled.div<StageProps>`
 
 
 const AnimateStage = () => keyframes`
-  100% {
+  50% {
     opacity: 0;
     transform: translateY(-50%)
   }
@@ -135,23 +151,24 @@ const AnimateStage = () => keyframes`
 
 interface StageCenterProps {
   media: media;
+  isAnimatable: boolean;
 };
 
 const StageCenter = styled.div<StageCenterProps>`
   box-sizing: border-box;
   position: relative;
-  width: 100%;
+  max-width: 75%;
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
 
-  ${({ media }) => (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' || media.size === 'xl' || media.size === 'xxl' && media.height <= 1440) &&
+  ${({ isAnimatable }) => isAnimatable &&
   css`
     {
       animation: ${AnimateStage};
-      animation-duration: 1s;
+      animation-duration: 2s;
       animation-timing-function: ease-in;
       animation-iteration-count: 1;
       animation-play-state: paused;
@@ -169,15 +186,24 @@ export interface HeroProjectProps {
 
 export const HeroProject = (props: HeroProjectProps) => {
   let media = useContext(mediaContext)
+  const [isAnimatable, setIsAnimatable] = useState(false)
   const [scrollPercent, setScrollPercent] = useState(0)
 
   useEffect(() => {
+    getIsAnimatable(media)
     window.addEventListener('scroll', handleScroll, false);
     console.log(getStyling(media).padding)
     return function cleanup() {
       window.removeEventListener('scroll', handleScroll, false);
     };
   });
+
+  const getIsAnimatable = (media: media) => {
+    if (media.size === 'm' && media.orientation === 'landscape' || media.size === 'l' && media.orientation === 'landscape' || media.size === 'xl' && media.orientation === 'landscape' || media.size === 'xxl' && media.orientation === 'landscape' && media.height <= 1440) {
+      setIsAnimatable(true)
+    }
+    else { setIsAnimatable(false) }
+  }
 
   const handleScroll = () => {
     var element = document.getElementById("HeroProjectContainer");
@@ -187,11 +213,13 @@ export const HeroProject = (props: HeroProjectProps) => {
 
   return (
     <Container id="HeroProjectContainer" media={media}>
-      <Viewport media={media} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
+      <Viewport media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
         <Stage media={media}>
-          <StageCenter media={media}>
-            <Text font="title" color="#ffffff">Managing Directory Users</Text>
-            <Text font="subtitle" color="#ffffff">Binary Tree</Text>
+          <StageCenter media={media} isAnimatable={isAnimatable}>
+            <Text font="headline" color="#ffffff">Manage Directory Users</Text>
+            <Text font="subheadline" color="#ffffff">
+              Enabling Active Directory Administrators to manage the multiple identities, mailboxes, teams, and app entitlements of their user base, across all environments
+            </Text>
           </StageCenter>
         </Stage>
         <HeroImage scrollPercent={scrollPercent} />
