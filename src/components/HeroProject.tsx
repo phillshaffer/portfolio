@@ -9,6 +9,7 @@ import { getStyling } from '../utils/styleHelpers'
 import { mediaContext } from '../state';
 
 // components
+import { Section } from './section'
 import { Text } from './text'
 import { HeroImage } from "./HeroImage";
 
@@ -122,26 +123,6 @@ const Viewport = styled.div<ViewportProps>`
 `;
 
 
-interface StageProps {
-  media: media;
-};
-
-const Stage = styled.div<StageProps>`
-  box-sizing: border-box;
-  position: absolute;
-  top: 0px; 
-  left: 0px;
-  width: 100%;
-  height: auto;
-  padding-top: ${({media}) => (getStyling(media).padding * 2) + 'px'};
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 101;
-
-`;
-
-
 const AnimateStage = () => keyframes`
   50% {
     opacity: 0;
@@ -157,12 +138,11 @@ interface StageCenterProps {
 const StageCenter = styled.div<StageCenterProps>`
   box-sizing: border-box;
   position: relative;
-  max-width: 75%;
-  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
+  padding-top: ${({media}) => (getStyling(media).padding * 2) + 'px'};
 
   ${({ isAnimatable }) => isAnimatable &&
   css`
@@ -214,14 +194,14 @@ export const HeroProject = (props: HeroProjectProps) => {
   return (
     <Container id="HeroProjectContainer" media={media}>
       <Viewport media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
-        <Stage media={media}>
+        <Section>
           <StageCenter media={media} isAnimatable={isAnimatable}>
             <Text font="headline" color="#ffffff">Object Properties Panel</Text>
             <Text font="subheadline" color="#ffffff">
               Manage directory users for multiple identities, mailboxes, teams, and app entitlements of their user base, across all environments.
             </Text>
           </StageCenter>
-        </Stage>
+        </Section>
         <HeroImage scrollPercent={scrollPercent} />
       </Viewport>
     </Container>

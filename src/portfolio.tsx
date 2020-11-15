@@ -52,15 +52,9 @@ const GlobalStyle = createGlobalStyle`
 
 export const Portfolio = () => {
 
-  const [media, setMedia] = useState({
-    size: "", 
-    width: window.innerWidth,
-    height: window.innerHeight,
-    orientation: ""
-  });
-  
   const [isLoading, setIsLoading] = useState(true);
-
+  const [media, setMedia] = useState(null);
+  
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
   useEffect(() => {
@@ -80,42 +74,24 @@ export const Portfolio = () => {
 
   const handleWindowSize = (): void => {
     setIsLoading(true)
-
-    let matchedMedia: media = {
-      size: "", 
-      width: window.innerWidth,
-      height: window.innerHeight,
-      orientation: ""
-    }
-
     const width = window.innerWidth
     const height = window.innerHeight
 
-    type mediaSize = {
-      size: string;
-      minWidth: number;
-    }
-
-    let mediaSizes: Array<mediaSize> = [
-      {size: "xs", minWidth: 320},
-      {size: "s", minWidth: 768},
-      {size: "m", minWidth: 1024},
-      {size: "l", minWidth: 1366},
-      {size: "xl", minWidth: 1920},
-      {size: "xxl", minWidth: 2560}
+    let medias: Array<media> = [
+      {size: "xs", minWidth: 320, width: 0, height: 0, orientation: "landscape"},
+      {size: "s", minWidth: 768, width: 0, height: 0, orientation: "landscape" },
+      {size: "m", minWidth: 1024, width: 0, height: 0, orientation: "landscape" },
+      {size: "l", minWidth: 1366, width: 0, height: 0, orientation: "landscape" },
+      {size: "xl", minWidth: 1920, width: 0, height: 0, orientation: "landscape" },
+      {size: "xxl", minWidth: 2560, width: 0, height: 0, orientation: "landscape" }
     ]
 
-    const matchedMediaSize: mediaSize = mediaSizes.reverse().find((mediaSize: mediaSize) => window.matchMedia("(min-width: " + mediaSize.minWidth + "px)").matches)
+    const matchedMedia: media = medias.reverse().find((media: media) => window.matchMedia("(min-width: " + media.minWidth + "px)").matches)
     
     if (width >= 2560) {
       matchedMedia.size = "xxl"
     }
-    else {
-      matchedMedia.size = matchedMediaSize.size
-    }
     
-    console.log(matchedMediaSize)
-
     if (width > height) {
       matchedMedia.orientation = "landscape"
     }

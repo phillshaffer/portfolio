@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from "styled-components";
 
 // helpers
-import { getRelativeSizingInPXs } from '../utils/styleHelpers'
+import { getStyling } from '../utils/styleHelpers'
 
 // state
 import { mediaContext } from '../state';
@@ -29,10 +29,13 @@ interface Styled_SectionProps {
 const Styled_Section = styled.div<Styled_SectionProps>`
   box-sizing: border-box;  
   min-width: 320px;
-  max-width: 976px;
+  max-width: ${({media}) => getStyling(media).section.maxWidth + 'px'};
+  padding: ${({media}) => getStyling(media).padding + 'px'};
   position: relative;
-  padding: ${({media}) => getRelativeSizingInPXs(24, media) + 'px'};
 `;
+//max-width: ${({media}) => media.width < 1366 ? media.width + 'px' : 16 * Math.round(media.minWidth * .5 / 16) + 'px' };
+
+//padding: ${({media}) => getStyling(media).section.padding + 'px'};
 
 /*
 interface ScrimProps {
@@ -53,8 +56,8 @@ const Scrim = styled.div<ScrimProps>`
 */
 
 export interface SectionProps {
-  id: string;
-  backgroundColor: string;
+  id?: string;
+  backgroundColor?: string;
   children: React.ReactNode;
 }
 
