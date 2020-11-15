@@ -25,7 +25,7 @@ const Container = styled.div<ContainerProps>`
   
   height: ${({media}) => 	   
     media.size === 'xs' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 'xs' && media.orientation === 'portrait' && media.width * 1.3 + 'px' ||  
     media.size === 's' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
     media.size === 's' && media.orientation === 'portrait' && media.width / 1.3 + 'px' ||  
     media.size === 'm' && media.orientation === 'landscape' && '400vh' ||
@@ -91,7 +91,7 @@ const Styled_HeroDisplayBoard = styled.div<Styled_HeroDisplayBoardProps>`
   });
   height: ${({media}) => 	   	    
     media.size === 'xs' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && media.height / 1.6 + 'px' ||  
+    media.size === 'xs' && media.orientation === 'portrait' && media.width * 1.3 + 'px' ||  
     media.size === 's' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
     media.size === 's' && media.orientation === 'portrait' && media.width / 1.3 - (getStyling(media).padding * 2) + 'px' ||  
     media.size === 'm' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||

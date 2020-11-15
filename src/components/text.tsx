@@ -101,7 +101,7 @@ const Normal = styled.p<NormalProps>`
   color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
-  margin: 0px;
+  margin: ${({media}) => '0px 0px ' + getStyling(media).padding + 'px 0px'};
 `;
 
 

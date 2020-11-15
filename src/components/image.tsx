@@ -3,23 +3,22 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 // helpers
-import { getRelativeSizingInPXs } from '../utils/styleHelpers'
+import { getRelativeSizingInPXs, getStyling } from '../utils/styleHelpers'
 
 // state
 import { mediaContext } from '../state';
 
-interface Style_ImageProps {
+interface Styled_ImageProps {
   media: media;
   maxWidth?: number;
 }
 
-const Style_Image = styled.img<Style_ImageProps>`
+const Styled_Image = styled.img<Styled_ImageProps>`
   max-width: ${({ media, maxWidth }) => 
-    maxWidth ? media.width <= maxWidth ? media.width - Number(getRelativeSizingInPXs(24, media)) + 'px' : maxWidth + 'px' : '100%'};
+    maxWidth ? media.width <= maxWidth ? media.width - getStyling(media).padding * 2 + 'px' : maxWidth + 'px' : '100%'};
   height: auto;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: ${({media}) => '0px 0px ' + getStyling(media).padding + 'px 0px'};
 `;
 
 
@@ -32,6 +31,6 @@ export const Image = (props: ImageProps) => {
   let media = useContext(mediaContext)
 
   return (
-    <Style_Image maxWidth={props.maxWidth} media={media} src={props.src} />
+    <Styled_Image maxWidth={props.maxWidth} media={media} src={props.src} />
   );
 };

@@ -12,7 +12,7 @@ interface Style_ImageGallery {
 const Style_ImageGallery = styled.div<Style_ImageGallery>`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   position: relative;
 `;

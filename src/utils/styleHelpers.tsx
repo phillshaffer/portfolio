@@ -52,7 +52,7 @@ export const getStyling = (media: media) => {
   else if (media.size === 'l') {
     styling.padding = 24;
     styling.section.padding = 24;
-    styling.section.maxWidth = 768;
+    styling.section.maxWidth = 824;
     styling.cardBorderRadius = 4;
   }
   else if (media.size === 'xl') {
