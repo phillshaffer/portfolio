@@ -125,6 +125,10 @@ export const HeroImage = (props: HeroImageProps) => {
       heroAnimationWidth = width
       heroAnimationHeight = width / 1.6
     }
+    if (media.size === "xs" && media.orientation === "landscape") {
+      heroAnimationWidth = 352
+      heroAnimationHeight = 220
+    }
     else if (media.size === "s") {
       heroAnimationWidth = 480
       heroAnimationHeight = 300
