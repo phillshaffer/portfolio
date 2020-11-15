@@ -2,6 +2,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
+// helpers
+import { getStyling } from '../utils/styleHelpers'
+
 // state
 import { mediaContext } from '../state';
 
@@ -13,12 +16,12 @@ interface Styled_HeadlineProps {
 
 const Styled_Headline = styled.h2<Styled_HeadlineProps>`
   font-size: ${({media}) => 	   
-    media.size === 'xs' && '32px' ||
-    media.size === 's' && '32px' ||
-    media.size === 'm' && '48px' ||
-    media.size === 'l' && '56px' ||
-    media.size === 'xl' && '68px' ||
-    media.size === 'xxl' && '88px'
+    media.size === 'xs' && '24px' ||
+    media.size === 's' && '28px' ||
+    media.size === 'm' && '36px' ||
+    media.size === 'l' && '48px' ||
+    media.size === 'xl' && '64px' ||
+    media.size === 'xxl' && '84px'
   };
 
   line-height: auto;
@@ -26,7 +29,7 @@ const Styled_Headline = styled.h2<Styled_HeadlineProps>`
   color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
-  margin: 0px 0px 16px 0px; 
+  margin: ${({media}) => '0px 0px ' + getStyling(media).padding + 'px 0px'};
 `;
 
 
@@ -37,12 +40,12 @@ interface Styled_SubHeadlineProps {
 
 const Styled_SubHeadline = styled.h3<Styled_SubHeadlineProps>`
   font-size: ${({media}) => 	   
-    media.size === 'xs' && '14px' ||
-    media.size === 's' && '16px' ||
+    media.size === 'xs' && '13px' ||
+    media.size === 's' && '15px' ||
     media.size === 'm' && '20px' ||
-    media.size === 'l' && '28px' ||
-    media.size === 'xl' && '36px' ||
-    media.size === 'xxl' && '44px'
+    media.size === 'l' && '24px' ||
+    media.size === 'xl' && '32px' ||
+    media.size === 'xxl' && '42px'
   };
 
   line-height: auto;

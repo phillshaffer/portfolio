@@ -51,7 +51,7 @@ const Container = styled.div<ContainerProps>`
   box-sizing: content-box;
   width: ${props => props.heroAnimationWidth + 'px' ?? 'auto'};
   height: ${props => props.heroAnimationHeight + 'px' ?? 'auto'};
-  bottom: -${props => 100 * props.heroAnimationWidth / 1440 + 'px'};
+  bottom: -${props => 128 * props.heroAnimationWidth / 1440 + 'px'};
 
   background-color: #000000;
   z-index: 102;
@@ -117,42 +117,47 @@ export const HeroImage = (props: HeroImageProps) => {
   });
 
   const getHeroAnimationDimensions = (media: media): void => {
+    
     let heroAnimationWidth: number = 0;
     let heroAnimationHeight: number = 0;
 
-    if (media.size === "xs") {
-      let width = media.width - 48
+    if (media.size === "xs" && media.orientation === "landscape") {
+      heroAnimationWidth = getStyling(media).section.maxWidth
+      heroAnimationHeight = getStyling(media).section.maxWidth / 1.6
+    }
+    else if (media.size === "xs") {
+      let width = media.width - getStyling(media).padding
       heroAnimationWidth = width
       heroAnimationHeight = width / 1.6
     }
-    if (media.size === "xs" && media.orientation === "landscape") {
-      heroAnimationWidth = 352
-      heroAnimationHeight = 220
+    else if (media.size === "s" && media.orientation === "landscape") {
+      heroAnimationWidth = getStyling(media).section.maxWidth
+      heroAnimationHeight = getStyling(media).section.maxWidth / 1.6
     }
     else if (media.size === "s") {
-      heroAnimationWidth = 480
-      heroAnimationHeight = 300
+      heroAnimationWidth = getStyling(media).section.maxWidth
+      heroAnimationHeight = getStyling(media).section.maxWidth / 1.6
     }
     else if (media.size === "m") {
-      heroAnimationWidth = 688
-      heroAnimationHeight = 430
+      heroAnimationWidth = getStyling(media).section.maxWidth
+      heroAnimationHeight = getStyling(media).section.maxWidth / 1.6
     }
     else if (media.size === "l") {
-      heroAnimationWidth = 736 // 832
-      heroAnimationHeight = 460 // 520
+      heroAnimationWidth = getStyling(media).section.maxWidth
+      heroAnimationHeight = getStyling(media).section.maxWidth / 1.6
     }
     else if (media.size === "xl") {
-      heroAnimationWidth = 960 //1088
-      heroAnimationHeight = 600 //680
+      heroAnimationWidth = getStyling(media).section.maxWidth
+      heroAnimationHeight = getStyling(media).section.maxWidth / 1.6
     }
     else if (media.size === "xxl") {
-      heroAnimationWidth = 1280 //1440
-      heroAnimationHeight = 800 //900
+      heroAnimationWidth = getStyling(media).section.maxWidth
+      heroAnimationHeight = getStyling(media).section.maxWidth / 1.6
     }
 
     setHeroAnimationWidth(heroAnimationWidth)
     setHeroAnimationHeight(heroAnimationHeight)
-    setTransformY(media.height - getStyling(media).padding * 2 - heroAnimationHeight + (100 * heroAnimationWidth / 1440))
+    setTransformY(media.height - getStyling(media).padding * 2 - heroAnimationHeight + (128 * heroAnimationWidth / 1440))
     setScale((media.height * 1.6 - (64 * heroAnimationWidth / 1440)) / heroAnimationWidth)
   }
 

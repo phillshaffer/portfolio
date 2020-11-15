@@ -46,7 +46,7 @@ interface AnimateViewportProps {
   backgroundGradient: string;
 };
 
-const AnimateViewport = (props: AnimateViewportProps) => keyframes`
+const AnimateHeroDisplayBoard = (props: AnimateViewportProps) => keyframes`
   0% {
   }
   50% {
@@ -56,14 +56,14 @@ const AnimateViewport = (props: AnimateViewportProps) => keyframes`
   }
 `;
 
-interface ViewportProps {
+interface Styled_HeroDisplayBoardProps {
   media: media;
   isAnimatable: boolean;
   backgroundGradient: string;
   scrollPercent: number;
 };
 
-const Viewport = styled.div<ViewportProps>`
+const Styled_HeroDisplayBoard = styled.div<Styled_HeroDisplayBoardProps>`
   box-sizing: border-box;
   position: sticky;
   top: ${({media}) =>
@@ -112,7 +112,7 @@ const Viewport = styled.div<ViewportProps>`
 
   ${({ isAnimatable }) => isAnimatable &&
   css`
-    animation: ${AnimateViewport};
+    animation: ${AnimateHeroDisplayBoard};
     animation-duration: 2s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
@@ -123,19 +123,19 @@ const Viewport = styled.div<ViewportProps>`
 `;
 
 
-const AnimateStage = () => keyframes`
+const AnimateHeroHeadline = () => keyframes`
   50% {
     opacity: 0;
     transform: translateY(-50%)
   }
 `;
 
-interface StageCenterProps {
+interface Styled_HeroHeadlineProps {
   media: media;
   isAnimatable: boolean;
 };
-
-const StageCenter = styled.div<StageCenterProps>`
+// maybe add padding to card, i.e. viewPort
+const Styled_HeroHeadline = styled.div<Styled_HeroHeadlineProps>`
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -147,7 +147,7 @@ const StageCenter = styled.div<StageCenterProps>`
   ${({ isAnimatable }) => isAnimatable &&
   css`
     {
-      animation: ${AnimateStage};
+      animation: ${AnimateHeroHeadline};
       animation-duration: 2s;
       animation-timing-function: ease-in;
       animation-iteration-count: 1;
@@ -193,17 +193,17 @@ export const HeroProject = (props: HeroProjectProps) => {
 
   return (
     <Container id="HeroProjectContainer" media={media}>
-      <Viewport media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
+      <Styled_HeroDisplayBoard media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
         <Section>
-          <StageCenter media={media} isAnimatable={isAnimatable}>
+          <Styled_HeroHeadline media={media} isAnimatable={isAnimatable}>
             <Text font="headline" color="#ffffff">Object Properties Panel</Text>
             <Text font="subheadline" color="#ffffff">
-              Manage directory users for multiple identities, mailboxes, teams, and app entitlements of their user base, across all environments.
+              Enabling admins to manage multiple identities, mailboxes, and apps for all users, across all environments.
             </Text>
-          </StageCenter>
+          </Styled_HeroHeadline>
         </Section>
         <HeroImage scrollPercent={scrollPercent} />
-      </Viewport>
+      </Styled_HeroDisplayBoard>
     </Container>
   );
 };

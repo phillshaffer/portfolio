@@ -16,22 +16,30 @@ export const getStyling = (media: media) => {
   }
 
   if (media.size === 'xs') {
-    styling.padding = 16;
-    styling.section.padding = 0;
-    styling.section.maxWidth = 640;
-    styling.cardBorderRadius = 0;
+    if (media.orientation === "landscape") {
+      styling.padding = 16;
+      styling.section.padding = 0;
+      styling.section.maxWidth = 384;
+      styling.cardBorderRadius = 0;
+    }
+    else {
+      styling.padding = 16;
+      styling.section.padding = 0;
+      styling.section.maxWidth = 320;
+      styling.cardBorderRadius = 0;
+    }
   }
   else if (media.size === 's') {
     if (media.orientation === "landscape") {
       styling.padding = 16;
       styling.section.padding = 0;
-      styling.section.maxWidth = 688;
+      styling.section.maxWidth = 480;
       styling.cardBorderRadius = 0;
     }
     else {
       styling.padding = 20;
       styling.section.padding = 20;
-      styling.section.maxWidth = 688;
+      styling.section.maxWidth = 480;
       styling.cardBorderRadius = 2;
     }
   }
