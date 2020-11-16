@@ -50,8 +50,13 @@ export const Styled_DisplayBoard = styled.div<Styled_DisplayBoardProps>`
   };
   border-radius: ${props => getStyling(props.media).cardBorderRadius + 'px'};
   background-color: ${props => props.backgroundColor};
-  background-image: linear-gradient(${({backgroundGradient}) => backgroundGradient});  
-  margin-bottom: ${props => getStyling(props.media).padding + 'px'};
+  background-image: linear-gradient(${({backgroundGradient}) => backgroundGradient});
+  margin-bottom: ${({media}) => 	   	    
+    media.size === 'xs' && media.orientation === 'landscape' && 0 + 'px' ||
+    media.size === 'xs' && media.orientation === 'portrait' && 0 + 'px' ||  
+    media.size === 's' && media.orientation === 'landscape' && 0 + 'px' ||
+    getStyling(media).padding + 'px'
+  };  
 `;
 
 
