@@ -4,9 +4,10 @@ import styled from "styled-components";
 
 // Components
 import { GlobalNav } from '../components/globalNav'
-import { HeroProject } from "../components/HeroProject";
-import { Projects } from "../components/projects";
-import { Project } from "../components/project";
+import { HeroProject } from '../components/HeroProject';
+import { DisplayBoard } from '../components/displayBoard';
+import { Projects } from '../components/projects';
+import { Project } from '../components/project';
 
 
 const Styled_Projects = styled.main`
@@ -36,6 +37,7 @@ export const Work = (props: WorkProps) => {
       <GlobalNav />
       <Styled_Projects>
         <HeroProject backgroundGradient="to bottom right, #7B00E9, #C300F4"></HeroProject>
+        <DisplayBoard backgroundColor="#444444"/>
         {/* <Projects>
           <Project width={props.width} height={props.height} backgroundColor="red">
             <p>1</p>

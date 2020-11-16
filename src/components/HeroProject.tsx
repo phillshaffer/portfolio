@@ -9,6 +9,7 @@ import { getStyling } from '../utils/styleHelpers'
 import { mediaContext } from '../state';
 
 // components
+import { Styled_DisplayBoard } from './displayBoard'
 import { Section } from './section'
 import { Text } from './text'
 import { HeroImage } from "./HeroImage";
@@ -63,8 +64,7 @@ interface Styled_HeroDisplayBoardProps {
   scrollPercent: number;
 };
 
-const Styled_HeroDisplayBoard = styled.div<Styled_HeroDisplayBoardProps>`
-  box-sizing: border-box;
+const Styled_HeroDisplayBoard = styled(Styled_DisplayBoard)<Styled_HeroDisplayBoardProps>`
   position: sticky;
   top: ${({media}) =>
     media.size === 'xs' && media.orientation === 'landscape' && 0 + 'px' ||
@@ -78,38 +78,11 @@ const Styled_HeroDisplayBoard = styled.div<Styled_HeroDisplayBoardProps>`
     media.size === 's' && media.orientation === 'landscape' && 0 + 'px' ||
     getStyling(media).padding + 'px'
   }; 
-  z-index: 100;
-  width: ${({media}) => 	   	    
-  media.size === 'xs' && media.orientation === 'landscape' && media.width + 'px' ||
-  media.size === 'xs' && media.orientation === 'portrait' && media.width + 'px' ||  
-  media.size === 's' && media.orientation === 'landscape' && media.width + 'px' ||
-  media.width - (getStyling(media).padding * 2) + 'px'
-  };
   background-image: linear-gradient(${({isAnimatable, scrollPercent, backgroundGradient}) => isAnimatable ? 
-      scrollPercent < .75 ? backgroundGradient : 'to bottom right, #222222, #222222' :
+    scrollPercent < .75 ? backgroundGradient : 'to bottom right, #222222, #222222' :
     backgroundGradient
   });
-  height: ${({media}) => 	   	    
-    media.size === 'xs' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
-    media.size === 'xs' && media.orientation === 'portrait' && media.width * 1.3 + 'px' ||  
-    media.size === 's' && media.orientation === 'landscape' && media.width / 1.6 + 'px' ||
-    media.size === 's' && media.orientation === 'portrait' && media.width / 1.3 - (getStyling(media).padding * 2) + 'px' ||  
-    media.size === 'm' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'm' && media.orientation === 'portrait' && media.width / 1.3 - (getStyling(media).padding * 2) + 'px' ||  
-    media.size === 'l' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'l' && media.orientation === 'portrait' && media.width / 1.6 - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xl' && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xl' && media.orientation === 'portrait' && media.width / 1.6 - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'landscape' && media.height - (getStyling(media).padding * 2) + 'px' ||
-    media.size === 'xxl' && media.height <= 1440 && media.orientation === 'portrait' && media.width / 1.6 - (getStyling(media).padding * 2) + 'px' ||
-    1440 - (getStyling(media).padding * 2) + 'px'
-  };
-
-  border-radius: ${props => getStyling(props.media).cardBorderRadius + 'px'};	   
-
-  };
-
-
+ 
   ${({ isAnimatable }) => isAnimatable &&
   css`
     animation: ${AnimateHeroDisplayBoard};
