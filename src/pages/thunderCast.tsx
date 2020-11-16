@@ -44,6 +44,7 @@ interface ThunderCastProps {
 export const ThunderCast = (props: ThunderCastProps) => {
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     return function cleanup() {
     };
   });

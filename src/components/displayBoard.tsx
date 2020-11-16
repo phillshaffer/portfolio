@@ -1,6 +1,7 @@
 // libraries
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 // helpers
 import { getRelativeSizingInPXs, getStyling } from '../utils/styleHelpers'
@@ -47,13 +48,17 @@ export const Styled_DisplayBoard = styled.div<Styled_DisplayBoardProps>`
 
 
 export interface DisplayBoardProps {
+  path?: string;
   backgroundColor: string;
 }
 
 export const DisplayBoard = (props: DisplayBoardProps) => {
   let media = useContext(mediaContext)
+  
+  const history = useHistory();
+  const handleClick = () => history.push(props.path);
 
   return (
-    <Styled_DisplayBoard media={media} backgroundColor={props.backgroundColor}/>
+    <Styled_DisplayBoard media={media} backgroundColor={props.backgroundColor} onClick={handleClick}/>
   );
 };
