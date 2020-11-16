@@ -4,8 +4,10 @@ import styled from "styled-components";
 
 // Components
 import { GlobalNav } from '../components/globalNav'
-import { HeroProject } from '../components/HeroProject';
+import { HeroDisplayBoard } from '../components/heroDisplayBoard';
 import { DisplayBoard } from '../components/displayBoard';
+import { Section } from '../components/section';
+import { Text } from '../components/text'
 import { Projects } from '../components/projects';
 import { Project } from '../components/project';
 
@@ -36,8 +38,15 @@ export const Work = (props: WorkProps) => {
     <React.Fragment>
       <GlobalNav />
       <Styled_Projects>
-        <HeroProject backgroundGradient="to bottom right, #7B00E9, #C300F4"></HeroProject>
-        <DisplayBoard path="/thundercast" backgroundColor="#444444"/>
+        <HeroDisplayBoard 
+          backgroundGradient="to bottom right, #7B00E9, #C300F4" 
+          headline="Object Properties Panel" 
+          subhealine="Enabling admins to manage multiple identities, mailboxes, and apps for all users, across all environments." />
+        <DisplayBoard 
+          path="/thundercast" 
+          backgroundGradient="to bottom right, #222222, #333333" 
+          headline="Previewing Ad Creative" 
+          subhealine="Enabling admins to manage multiple identities, mailboxes, and apps for all users, across all environments." />
         {/* <Projects>
           <Project width={props.width} height={props.height} backgroundColor="red">
             <p>1</p>

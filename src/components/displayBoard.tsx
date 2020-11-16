@@ -9,10 +9,15 @@ import { getRelativeSizingInPXs, getStyling } from '../utils/styleHelpers'
 // state
 import { mediaContext } from '../state';
 
+// components
+import { Section } from './section'
+import { Text } from './text'
 
-export interface Styled_DisplayBoardProps {
+
+interface Styled_DisplayBoardProps {
   media: media;
   backgroundColor?: string;
+  backgroundGradient?: string;
 };
 
 export const Styled_DisplayBoard = styled.div<Styled_DisplayBoardProps>`
@@ -43,13 +48,32 @@ export const Styled_DisplayBoard = styled.div<Styled_DisplayBoardProps>`
   };
   border-radius: ${props => getStyling(props.media).cardBorderRadius + 'px'};
   background-color: ${props => props.backgroundColor};
+  background-image: linear-gradient(${({backgroundGradient}) => backgroundGradient});
   margin-bottom: ${props => getStyling(props.media).padding + 'px'};
+`;
+
+
+interface Styled_HeadlineProps {
+  media: media;
+};
+
+export const Styled_Headline = styled.div<Styled_HeadlineProps>`
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding-top: ${({media}) => (getStyling(media).padding * 2) + 'px'};
 `;
 
 
 export interface DisplayBoardProps {
   path?: string;
-  backgroundColor: string;
+  backgroundColor?: string;
+  backgroundGradient?: string;
+  headline: string;
+  subhealine: string;
 }
 
 export const DisplayBoard = (props: DisplayBoardProps) => {
@@ -59,6 +83,13 @@ export const DisplayBoard = (props: DisplayBoardProps) => {
   const handleClick = () => history.push(props.path);
 
   return (
-    <Styled_DisplayBoard media={media} backgroundColor={props.backgroundColor} onClick={handleClick}/>
+    <Styled_DisplayBoard media={media} backgroundColor={props.backgroundColor} backgroundGradient={props.backgroundGradient} onClick={handleClick}>
+      <Section>
+        <Styled_Headline media={media}>
+          <Text font="headline" color="#ffffff">{props.headline}</Text>
+          <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>
+        </Styled_Headline>
+      </Section>  
+    </Styled_DisplayBoard>
   );
 };

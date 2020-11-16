@@ -9,7 +9,7 @@ import { getStyling } from '../utils/styleHelpers'
 import { mediaContext } from '../state';
 
 // components
-import { Styled_DisplayBoard } from './displayBoard'
+import { Styled_DisplayBoard, Styled_Headline } from './displayBoard'
 import { Section } from './section'
 import { Text } from './text'
 import { HeroImage } from "./HeroImage";
@@ -107,16 +107,8 @@ interface Styled_HeroHeadlineProps {
   media: media;
   isAnimatable: boolean;
 };
-// maybe add padding to card, i.e. viewPort
-const Styled_HeroHeadline = styled.div<Styled_HeroHeadlineProps>`
-  box-sizing: border-box;
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding-top: ${({media}) => (getStyling(media).padding * 2) + 'px'};
 
+const Styled_HeroHeadline = styled(Styled_Headline)<Styled_HeroHeadlineProps>`
   ${({ isAnimatable }) => isAnimatable &&
   css`
     {
@@ -132,12 +124,15 @@ const Styled_HeroHeadline = styled.div<Styled_HeroHeadlineProps>`
 `;
 
 
-export interface HeroProjectProps {
-  backgroundGradient: string;
-  //children: React.ReactNode;
+export interface HeroDisplayBoardProps {
+  path?: string;
+  backgroundColor?: string;
+  backgroundGradient?: string;
+  headline: string;
+  subhealine: string;
 };
 
-export const HeroProject = (props: HeroProjectProps) => {
+export const HeroDisplayBoard = (props: HeroDisplayBoardProps) => {
   let media = useContext(mediaContext)
   const [isAnimatable, setIsAnimatable] = useState(false)
   const [scrollPercent, setScrollPercent] = useState(0)
@@ -169,10 +164,8 @@ export const HeroProject = (props: HeroProjectProps) => {
       <Styled_HeroDisplayBoard media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
         <Section>
           <Styled_HeroHeadline media={media} isAnimatable={isAnimatable}>
-            <Text font="headline" color="#ffffff">Object Properties Panel</Text>
-            <Text font="subheadline" color="#ffffff">
-              Enabling admins to manage multiple identities, mailboxes, and apps for all users, across all environments.
-            </Text>
+            <Text font="headline" color="#ffffff">{props.headline}</Text>
+            <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>
           </Styled_HeroHeadline>
         </Section>
         <HeroImage scrollPercent={scrollPercent} />
