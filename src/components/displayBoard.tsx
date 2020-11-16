@@ -12,6 +12,7 @@ import { mediaContext } from '../state';
 // components
 import { Section } from './section'
 import { Text } from './text'
+import { Image } from './image'
 
 
 interface Styled_DisplayBoardProps {
@@ -22,6 +23,7 @@ interface Styled_DisplayBoardProps {
 
 export const Styled_DisplayBoard = styled.div<Styled_DisplayBoardProps>`
   box-sizing: border-box;
+  overflow: hidden;
   z-index: 100;
   display: flex;
   align-self: center;
@@ -48,7 +50,7 @@ export const Styled_DisplayBoard = styled.div<Styled_DisplayBoardProps>`
   };
   border-radius: ${props => getStyling(props.media).cardBorderRadius + 'px'};
   background-color: ${props => props.backgroundColor};
-  background-image: linear-gradient(${({backgroundGradient}) => backgroundGradient});
+  background-image: linear-gradient(${({backgroundGradient}) => backgroundGradient});  
   margin-bottom: ${props => getStyling(props.media).padding + 'px'};
 `;
 
@@ -74,7 +76,8 @@ export interface DisplayBoardProps {
   backgroundGradient?: string;
   headline: string;
   subhealine: string;
-}
+  image: string;
+};
 
 export const DisplayBoard = (props: DisplayBoardProps) => {
   let media = useContext(mediaContext)
@@ -89,6 +92,7 @@ export const DisplayBoard = (props: DisplayBoardProps) => {
           <Text font="headline" color="#ffffff">{props.headline}</Text>
           <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>
         </Styled_Headline>
+        <Image src={props.image} />
       </Section>  
     </Styled_DisplayBoard>
   );
