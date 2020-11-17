@@ -53,7 +53,8 @@ const Styled_SubHeadline = styled.h3<Styled_SubHeadlineProps>`
   color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
-  margin: 0px; 
+  margin: ${({media}) => '0px 0px ' + getStyling(media).padding + 'px 0px'};
+
 `;
 
 
@@ -81,12 +82,12 @@ const Title = styled.h4<TitleProps>`
 `;
 
 
-interface NormalProps {
+interface Styled_TextNormalProps {
   media: media;
   color: string;
 };
 
-const Normal = styled.p<NormalProps>`
+const Styled_TextNormal = styled.p<Styled_TextNormalProps>`
   font-size: ${({media}) => 	   
     media.size === 'xs' && '18px' ||
     media.size === 's' && '21px' ||
@@ -119,7 +120,7 @@ export const Text = (props: TextProps) => {
     props.font === "headline" && <Styled_Headline media={media} color={props.color}>{props.children}</Styled_Headline> ||
     props.font === "subheadline" && <Styled_SubHeadline media={media} color={props.color}>{props.children}</Styled_SubHeadline> ||
     props.font === "title" && <Title media={media} color={props.color}>{props.children}</Title> ||
-    props.font === "normal" && <Normal media={media} color={props.color}>{props.children}</Normal>
+    props.font === "normal" && <Styled_TextNormal media={media} color={props.color}>{props.children}</Styled_TextNormal>
   );
 
 };

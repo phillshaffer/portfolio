@@ -24,13 +24,26 @@ const Styled_DisplayBoards = styled.main`
 
 
 export interface WorkProps {
-  scrollYPosition: number;
 };
 
 export const Work = (props: WorkProps) => {
 
+  const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
+
+
   useEffect(() => {
+    window.scrollTo(0, scrollYPosition);
+    window.addEventListener('scroll', handleScroll, false);
+
+    // this will clean up the event every time the component is re-rendered
+    return function cleanup() {
+      window.removeEventListener('scroll', handleScroll, false);
+    };
   });
+
+  const handleScroll = () => {
+    setScrollYPosition(window.scrollY)
+  };
 
   return (
     <React.Fragment>
@@ -46,8 +59,10 @@ export const Work = (props: WorkProps) => {
           headline="Previewing Ad Creative" 
           subhealine="Thunder Cast is a mobile application that facilitates real time ad design collaboration for today’s
           top brands."
+          buttonText="Case Study"
           image={Sample}
-          imageMaxWidth={400}/>
+          imageMaxWidth={320}
+          imageMaxHeight={398}/>
       </Styled_DisplayBoards>
     </React.Fragment>
   );

@@ -68,7 +68,6 @@ export const Section = (props: SectionProps) => {
 
   const refSection = useRef(null)
 
-  console.log(props.isPadding)
   //const [isShowScrim, setIsShowScrim] = useState(false)
  
   /*

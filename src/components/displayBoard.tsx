@@ -13,6 +13,7 @@ import { mediaContext } from '../state';
 import { Section } from './section'
 import { Text } from './text'
 import { Image } from './image'
+import { Button } from './button'
 
 
 interface Styled_DisplayBoardProps {
@@ -106,8 +107,10 @@ export interface DisplayBoardProps {
   backgroundGradient?: string;
   headline: string;
   subhealine: string;
+  buttonText: string;
   image: string;
   imageMaxWidth?: number;
+  imageMaxHeight?: number;
 };
 
 export const DisplayBoard = (props: DisplayBoardProps) => {
@@ -124,10 +127,11 @@ export const DisplayBoard = (props: DisplayBoardProps) => {
             <Styled_Headline media={media}>
               <Text font="headline" color="#ffffff">{props.headline}</Text>
               <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>
+              <Button path={props.path}>{props.buttonText}</Button>
             </Styled_Headline>
           </Styled_TopContent>
           <Styled_BottomContent>
-            <Image src={props.image} maxWidth={props.imageMaxWidth}/>
+            <Image src={props.image} maxWidth={props.imageMaxWidth} maxHeight={props.imageMaxHeight}/>
           </Styled_BottomContent>
         </Styled_Content>
       </Section>  

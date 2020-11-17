@@ -9,7 +9,7 @@ import { mediaContext } from './state'
 // pages
 import { Work } from "./pages/work";
 import { ThunderCast } from "./pages/thunderCast";
-
+import { AccessibilityFirstDesignSystem } from './pages/accessibilityFirstDesignSystem'
 
 export interface Projects extends Array<Project> {}
 
@@ -55,19 +55,15 @@ export const Portfolio = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [media, setMedia] = useState(null);
   
-  const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
-
   useEffect(() => {
     // initiate the event handler
     window.addEventListener('load', handleWindowSize, false);
     window.addEventListener('resize', handleWindowSize, false);
-    //window.addEventListener('scroll', handleScroll, false);
 
     // this will clean up the event every time the component is re-rendered
     return function cleanup() {
       window.removeEventListener('load', handleWindowSize, false);
       window.removeEventListener('resize', handleWindowSize, false);
-      //window.removeEventListener('scroll', handleScroll, false);
     };
 
   });
@@ -102,22 +98,10 @@ export const Portfolio = () => {
     matchedMedia.width = window.innerWidth
     matchedMedia.height = window.innerHeight
 
-    console.log("portfolio " + JSON.stringify(matchedMedia))
+    //console.log("portfolio " + JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
     setIsLoading(false)
-   /*
-    let testMedia = {
-      size: "s", 
-      width: 812,
-      height: 375,
-      orientation: "portrait"
-    }
-    setMedia(testMedia)
-    */
-  };
-
-  const handleScroll = () => {
-    setScrollYPosition(window.scrollY)
+    
   };
 
   return (
@@ -128,8 +112,11 @@ export const Portfolio = () => {
           <Route path="/thundercast">
             {!isLoading ? <ThunderCast/> : null}
           </Route>
+          <Route path="/accessibilityfirstdesignsystem">
+            {!isLoading ? <AccessibilityFirstDesignSystem/> : null}
+          </Route>
           <Route path={["/", "/work"]}>
-            {!isLoading ? <Work scrollYPosition={scrollYPosition}/> : null}
+            {!isLoading ? <Work/> : null}
           </Route>
         </Switch>
       </Router>

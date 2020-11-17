@@ -140,7 +140,6 @@ export const HeroDisplayBoard = (props: HeroDisplayBoardProps) => {
   useEffect(() => {
     getIsAnimatable(media)
     window.addEventListener('scroll', handleScroll, false);
-    console.log(getStyling(media).padding)
     return function cleanup() {
       window.removeEventListener('scroll', handleScroll, false);
     };

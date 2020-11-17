@@ -152,8 +152,8 @@ export const ThunderCast = (props: ThunderCastProps) => {
             Once an ad is selected from the the apps main landing screen, users can navigate to the main viewing experience. It was important the ad viewing experience not distract from the ad design itself. We solved for this by exposing app functionality and related metadata about the ad using an overlay menu design with opacities to reduce visual conflict.
           </Text>
           <ImageGallery maxItemsPerRow={2}>
-            <Image src={Ads} maxWidth={375}/>
-            <Image src={AdPreview_300x250} maxWidth={375} />
+            <Image src={Ads} maxWidth={375} maxHeight={667}/>
+            <Image src={AdPreview_300x250} maxWidth={375} maxHeight={667} />
           </ImageGallery>
 
           <Text font="title">
@@ -163,8 +163,8 @@ export const ThunderCast = (props: ThunderCastProps) => {
             Not only were users now able to view ads designs on the go, because they were viewing on a mobile device ads were now displayed at true native device DPI. This reduced some the challenges with viewing higher dpi ad designs within Thunder’s Creative Studio web editor that was limited to 72 and 96 browser dpi. In addition to viewing ad designs on the go, viewing on a mobile device was quickly creating unanticipated added value for our users. 
           </Text>
           <ImageGallery maxItemsPerRow={2}>
-            <Image src={AdPreview_300x600} maxWidth={375}/>
-            <Image src={AdPreview_300x600_TapZoom} maxWidth={375} />
+            <Image src={AdPreview_300x600} maxWidth={375} maxHeight={667}/>
+            <Image src={AdPreview_300x600_TapZoom} maxWidth={375} maxHeight={667}/>
           </ImageGallery>
 
           <Text font="title">
@@ -174,8 +174,8 @@ export const ThunderCast = (props: ThunderCastProps) => {
             Some larger format ad designs can encroach into the menu bars given mobile device’s small form factor. To solve for this we implemented a solution to hide the menu when a user taps on an ad design. Much like viewing an image in a photo app, simply swipe upwards and the user is returned back to the main ad design viewing experience.
           </Text>
           <ImageGallery maxItemsPerRow={2}>
-            <Image src={AdPreview_300x600_TapZoom} maxWidth={375}/>
-            <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} />
+            <Image src={AdPreview_300x600_TapZoom} maxWidth={375} maxHeight={667}/>
+            <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} maxHeight={667} />
           </ImageGallery>
 
           <Text font="title">
@@ -185,8 +185,8 @@ export const ThunderCast = (props: ThunderCastProps) => {
             Our new mobile app provided users the ability view ad designs at true size. Again given mobile device’s small form factor combined with an ad’s complexity, users sometimes found it difficult to view small important details. To solve for this we implemented a solution to zoom in on ad designs. Once a user has tapped to view an ad design, they can pinch to zoom and drag their finger to pan around the add design.
           </Text>
           <ImageGallery maxItemsPerRow={2}>
-            <Image src={AdPreview_300x600_TapZoom} maxWidth={375}/>
-            <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} />
+            <Image src={AdPreview_300x600_TapZoom} maxWidth={375} maxHeight={667}/>
+            <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} maxHeight={667}/>
           </ImageGallery>
 
           <Text font="title">
@@ -199,7 +199,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             Given the relative shortness of most display ad animations, we opted for the simplicity of a replay button over a timeline animation scrubber interaction model. Designs also highlighted the replay capability because Thunder’s animated HTML5 ads were viewed as a differentiator against other ad design products.
           </Text>
           <ImageGallery maxItemsPerRow={2}>
-            <Image src={AdPreview_300x250} maxWidth={375}/>
+            <Image src={AdPreview_300x250} maxWidth={375} maxHeight={667}/>
           </ImageGallery>
 
           <Text font="title">
@@ -209,8 +209,8 @@ export const ThunderCast = (props: ThunderCastProps) => {
             Ads are ultimately made up of many different ad sizes, or what the Thunder Ad Framework refers to as ad units. We wanted to make it natural for users to quickly scan between ad units. Designs made this possible by swiping upwards, each swipe would advance the user to the next ad design.
           </Text>
           <ImageGallery maxItemsPerRow={2}>
-            <Image src={AdPreview_300x250} maxWidth={375}/>
-            <Image src={AdPreview_300x600} maxWidth={375} />
+            <Image src={AdPreview_300x250} maxWidth={375} maxHeight={667}/>
+            <Image src={AdPreview_300x600} maxWidth={375} maxHeight={667}/>
           </ImageGallery>
           <Text font="normal">
             Lastly all ad information is being pulled from the ThudnerKit api, with in app ad design metadata informed by the Thunder Ad Framework.
@@ -221,11 +221,11 @@ export const ThunderCast = (props: ThunderCastProps) => {
           <Text font="subtitle">Commenting</Text>
           <Text font="headline">Commenting Story Coming Soon</Text>
           <ImageGallery maxItemsPerRow={2}>
-            <Image src={AdPreview_CommentMode} maxWidth={375}/>
-            <Image src={AdPreview_CommentMode_ViewingComment} maxWidth={375} />
-            <Image src={AdPreview_CommentMode_AddingToCommentThread} maxWidth={375}/>
-            <Image src={AdPreview_CommentMode_AddingNewComment} maxWidth={375} />
-            <Image src={AdPreview_CommentMode_WithNewComment} maxWidth={375}/>
+            <Image src={AdPreview_CommentMode} maxWidth={375} maxHeight={667}/>
+            <Image src={AdPreview_CommentMode_ViewingComment} maxWidth={375} maxHeight={667} />
+            <Image src={AdPreview_CommentMode_AddingToCommentThread} maxWidth={375} maxHeight={667}/>
+            <Image src={AdPreview_CommentMode_AddingNewComment} maxWidth={375} maxHeight={667} />
+            <Image src={AdPreview_CommentMode_WithNewComment} maxWidth={375} maxHeight={667}/>
           </ImageGallery>
         </Section>
       </Styled_Main>
