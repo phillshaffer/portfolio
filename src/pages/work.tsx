@@ -11,6 +11,7 @@ import { Text } from '../components/text'
 
 // Assets
 import Sample from '../images/thunderCast/Sample.png'
+import WCAG20AARequirementHeatmap from '../images/AccessibilityFirstDesignSystem/WCAG_2.0_AA_Requirement_Heatmap@2x.png'
 
 
 const Styled_DisplayBoards = styled.main`
@@ -63,6 +64,13 @@ export const Work = (props: WorkProps) => {
           image={Sample}
           imageMaxWidth={320}
           imageMaxHeight={398}/>
+        <DisplayBoard 
+          path="/accessibilityfirstdesignsystem" 
+          backgroundGradient="to bottom right, #222222, #333333" 
+          headline="Accessibility First Design System" 
+          subhealine="Design system following industry standard techniques and best practices, while maintaining WCAG 2.0 AA compliance."
+          buttonText="Case Study"
+          image={WCAG20AARequirementHeatmap}/>
       </Styled_DisplayBoards>
     </React.Fragment>
   );
