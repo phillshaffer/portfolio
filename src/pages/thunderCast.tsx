@@ -51,7 +51,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
 
   return (
     <React.Fragment>
-      <GlobalNav />
+      <GlobalNav isBack={true} />
       <Styled_Main>
         <Section id="a" backgroundColor="#222222">
           <Text font="headline">Extending Ad Creative to Social Ad Platforms</Text>

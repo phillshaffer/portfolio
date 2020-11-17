@@ -10,7 +10,7 @@ import { Section } from '../components/section';
 import { Text } from '../components/text'
 
 // Assets
-import ElevatorPitch from '../images/thunderCast/ElevatorPitch@2x.png'
+import Sample from '../images/thunderCast/Sample.png'
 
 
 const Styled_DisplayBoards = styled.main`
@@ -34,7 +34,7 @@ export const Work = (props: WorkProps) => {
 
   return (
     <React.Fragment>
-      <GlobalNav />
+      <GlobalNav isBack={false}/>
       <Styled_DisplayBoards>
         <HeroDisplayBoard 
           backgroundGradient="to bottom right, #7B00E9, #C300F4" 
@@ -45,7 +45,8 @@ export const Work = (props: WorkProps) => {
           backgroundGradient="to bottom right, #222222, #333333" 
           headline="Previewing Ad Creative" 
           subhealine="Enabling admins to manage multiple identities, mailboxes, and apps for all users, across all environments."
-          image={ElevatorPitch} />
+          image={Sample}
+          imageMaxWidth={400}/>
       </Styled_DisplayBoards>
     </React.Fragment>
   );

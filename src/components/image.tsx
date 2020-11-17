@@ -13,12 +13,13 @@ interface Styled_ImageProps {
   maxWidth?: number;
 }
 
-const Styled_Image = styled.img<Styled_ImageProps>`
+export const Styled_Image = styled.img<Styled_ImageProps>`
+  display: flex;
+  align-items: center;    
   max-width: ${({ media, maxWidth }) => 
     maxWidth ? media.width <= maxWidth ? media.width - getStyling(media).padding * 2 + 'px' : maxWidth + 'px' : '100%'};
   height: auto;
   display: block;
-  margin: ${({media}) => '0px 0px ' + getStyling(media).padding + 'px 0px'};
 `;
 
 

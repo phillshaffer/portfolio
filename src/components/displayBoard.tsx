@@ -59,6 +59,26 @@ export const Styled_DisplayBoard = styled.div<Styled_DisplayBoardProps>`
   };  
 `;
 
+export const Styled_Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
+
+export const Styled_TopContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+export const Styled_BottomContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 
 interface Styled_HeadlineProps {
   media: media;
@@ -75,6 +95,12 @@ export const Styled_Headline = styled.div<Styled_HeadlineProps>`
 `;
 
 
+export const Styled_Image = styled(Image)`
+  display: flex;
+  align-items: center;
+`;
+
+
 export interface DisplayBoardProps {
   path?: string;
   backgroundColor?: string;
@@ -82,6 +108,7 @@ export interface DisplayBoardProps {
   headline: string;
   subhealine: string;
   image: string;
+  imageMaxWidth?: number;
 };
 
 export const DisplayBoard = (props: DisplayBoardProps) => {
@@ -92,12 +119,18 @@ export const DisplayBoard = (props: DisplayBoardProps) => {
 
   return (
     <Styled_DisplayBoard media={media} backgroundColor={props.backgroundColor} backgroundGradient={props.backgroundGradient} onClick={handleClick}>
-      <Section>
-        <Styled_Headline media={media}>
-          <Text font="headline" color="#ffffff">{props.headline}</Text>
-          <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>
-        </Styled_Headline>
-        <Image src={props.image} />
+      <Section isPadding={false}>
+        <Styled_Content>
+          <Styled_TopContent>
+            <Styled_Headline media={media}>
+              <Text font="headline" color="#ffffff">{props.headline}</Text>
+              <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>
+            </Styled_Headline>
+          </Styled_TopContent>
+          <Styled_BottomContent>
+            <Image src={props.image} maxWidth={props.imageMaxWidth}/>
+          </Styled_BottomContent>
+        </Styled_Content>
       </Section>  
     </Styled_DisplayBoard>
   );

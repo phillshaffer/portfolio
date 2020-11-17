@@ -1,12 +1,16 @@
 // libraries
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 //import React, { useEffect, useRef, useContext, useState } from 'react';
 import styled from 'styled-components';
 
+// helpers
+import { getStyling } from '../utils/styleHelpers'
+
 // state
-//import { mediaContext } from '../state';
+import { mediaContext } from '../state';
 
 interface Style_ImageGallery {
+  media: media;
 }
 
 const Style_ImageGallery = styled.div<Style_ImageGallery>`
@@ -15,6 +19,10 @@ const Style_ImageGallery = styled.div<Style_ImageGallery>`
   justify-content: space-between;
   flex-wrap: wrap;
   position: relative;
+
+  img {
+    margin: ${({media}) => '0px 0px ' + getStyling(media).padding + 'px 0px'};
+  }
 `;
 
 
@@ -25,7 +33,7 @@ export interface ImageGalleryProps {
 
 export const ImageGallery = (props: ImageGalleryProps) => {
   
-  //let media = useContext(mediaContext)
+  let media = useContext(mediaContext)
   const refImageGallery = useRef(null)
   /*
   const [imageGalleryWidth, setImageGalleryWidth] = useState(null)
@@ -40,7 +48,7 @@ export const ImageGallery = (props: ImageGalleryProps) => {
   }
   */
   return (
-    <Style_ImageGallery ref={refImageGallery}>
+    <Style_ImageGallery ref={refImageGallery} media={media}>
       { props.children
         //React.cloneElement(props.children as React.ReactElement<any>, {width: 400})
       }

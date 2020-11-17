@@ -24,13 +24,14 @@ const Styled_SectionWrapper = styled.section<Styled_SectionWrapperProps>`
 
 interface Styled_SectionProps {
   media: media;
+  isPadding: boolean;
 }
 
 const Styled_Section = styled.div<Styled_SectionProps>`
   box-sizing: border-box;  
   min-width: 320px;
   max-width: ${({media}) => getStyling(media).section.maxWidth + 'px'};
-  padding: ${({media}) => getStyling(media).padding + 'px'};
+  padding: ${({isPadding, media}) => isPadding ? getStyling(media).padding + 'px' : null};
   position: relative;
 `;
 //max-width: ${({media}) => media.width < 1366 ? media.width + 'px' : 16 * Math.round(media.minWidth * .5 / 16) + 'px' };
@@ -58,6 +59,7 @@ const Scrim = styled.div<ScrimProps>`
 export interface SectionProps {
   id?: string;
   backgroundColor?: string;
+  isPadding?: boolean;
   children: React.ReactNode;
 }
 
@@ -65,6 +67,8 @@ export const Section = (props: SectionProps) => {
   let media = useContext(mediaContext)
 
   const refSection = useRef(null)
+
+  console.log(props.isPadding)
   //const [isShowScrim, setIsShowScrim] = useState(false)
  
   /*
@@ -100,7 +104,7 @@ export const Section = (props: SectionProps) => {
   return ( 
     <Styled_SectionWrapper ref={refSection} id={props.id} backgroundColor={props.backgroundColor} >
       {/* {isShowScrim ? <Scrim height={props.height}/> : null} */}
-      <Styled_Section media={media}>
+      <Styled_Section media={media} isPadding={props.isPadding === undefined ? true : props.isPadding }>
         {props.children}
       </Styled_Section>
     </Styled_SectionWrapper>

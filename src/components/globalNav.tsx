@@ -1,6 +1,7 @@
 // libraries
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 // helpers
 import { getStyling } from '../utils/styleHelpers'
@@ -12,7 +13,7 @@ interface Styled_TextProps {
   media: media;
 };
 
-const Styled_Text = styled.p<Styled_TextProps>`
+const Styled_Text = styled(Link)<Styled_TextProps>`
   font-size: ${({media}) => 	   
     media.size === 'xs' && '12px' || //18
     media.size === 's' && '15px' || //21
@@ -32,6 +33,7 @@ const Styled_Text = styled.p<Styled_TextProps>`
   };
   
   font-weight: 500;
+  text-decoration: none;
   color: rgba(255, 255, 255, .64);
   display: flex;
   position: relative;
@@ -58,6 +60,7 @@ const Styled_GlobalNav = styled.nav<Styled_GlobalNavProps>`
 //height: 92px;
 
 export interface HeaderProps {
+  isBack: boolean;
 }
 
 export const GlobalNav = (props: HeaderProps) => {  
@@ -65,7 +68,10 @@ export const GlobalNav = (props: HeaderProps) => {
 
   return (
     <Styled_GlobalNav media={media}>
-      <Styled_Text media={media}>Phill Shaffer</Styled_Text>
+      {
+        !props.isBack ? <Styled_Text to="/work" media={media}>Phill Shaffer</Styled_Text> : <Styled_Text to="/work" media={media}>Go Back</Styled_Text>
+      }
+      
     </Styled_GlobalNav>
   );
 
