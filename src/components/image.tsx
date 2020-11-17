@@ -16,10 +16,10 @@ interface Styled_ImageProps {
 
 export const Styled_Image = styled.img<Styled_ImageProps>`
   display: flex;
-  align-items: center;    
+  align-self: center;    
   max-width: ${({ media, maxWidth }) => 
     maxWidth ? media.width <= maxWidth ? media.width - getStyling(media).padding * 2 + 'px' : maxWidth + 'px' : '100%'};
-  max-height: ${({ maxHeight }) => maxHeight !== undefined ? maxHeight + 'px' : '100%' };
+  max-height: ${({ maxHeight }) => maxHeight !== undefined ? maxHeight + 'px' : 'auto' };
   height: auto;
   display: block;
 `;
