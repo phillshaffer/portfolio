@@ -57,27 +57,27 @@ const Styled_SubHeadline = styled.h3<Styled_SubHeadlineProps>`
 `;
 
 
-interface SubtitleProps {
+interface TitleProps {
   media: media;
   color: string;
 };
 
-const Subtitle = styled.h4<SubtitleProps>`
+const Title = styled.h4<TitleProps>`
   font-size: ${({media}) => 	   
-    media.size === 'xs' && '16px' ||
-    media.size === 's' && '16px' ||
-    media.size === 'm' && '20px' ||
-    media.size === 'l' && '24px' ||
-    media.size === 'xl' && '28px' ||
-    media.size === 'xxl' && '36px'
+    media.size === 'xs' && '20px' ||
+    media.size === 's' && '24px' ||
+    media.size === 'm' && '24px' ||
+    media.size === 'l' && '32px' ||
+    media.size === 'xl' && '32px' ||
+    media.size === 'xxl' && '44px'
   };
 
   line-height: auto;
-  font-weight: 600;
+  font-weight: 700;
   color: ${props => props.color ?? '#f5f5f5'};
   display: flex;
   position: relative;
-  margin: 1em 0px 0px 0px;
+  margin: ${({media}) => getStyling(media).padding * 2 + 'px 0px ' + getStyling(media).padding + 'px 0px'};
 `;
 
 
@@ -118,7 +118,7 @@ export const Text = (props: TextProps) => {
   return (
     props.font === "headline" && <Styled_Headline media={media} color={props.color}>{props.children}</Styled_Headline> ||
     props.font === "subheadline" && <Styled_SubHeadline media={media} color={props.color}>{props.children}</Styled_SubHeadline> ||
-    props.font === "subtitle" && <Subtitle media={media} color={props.color}>{props.children}</Subtitle> ||
+    props.font === "title" && <Title media={media} color={props.color}>{props.children}</Title> ||
     props.font === "normal" && <Normal media={media} color={props.color}>{props.children}</Normal>
   );
 

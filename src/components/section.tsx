@@ -31,7 +31,7 @@ const Styled_Section = styled.div<Styled_SectionProps>`
   box-sizing: border-box;  
   min-width: 320px;
   max-width: ${({media}) => getStyling(media).section.maxWidth + 'px'};
-  padding: ${({isPadding, media}) => isPadding ? getStyling(media).padding + 'px' : null};
+  padding: ${({isPadding, media}) => isPadding ? getStyling(media).padding * 2 + 'px 0px' : null};
   position: relative;
 `;
 //max-width: ${({media}) => media.width < 1366 ? media.width + 'px' : 16 * Math.round(media.minWidth * .5 / 16) + 'px' };

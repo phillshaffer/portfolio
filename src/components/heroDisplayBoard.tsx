@@ -162,7 +162,7 @@ export const HeroDisplayBoard = (props: HeroDisplayBoardProps) => {
   return (
     <Container id="HeroProjectContainer" media={media}>
       <Styled_HeroDisplayBoard media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
-        <Section>
+        <Section isPadding={false}>
           <Styled_HeroHeadline media={media} isAnimatable={isAnimatable}>
             <Text font="headline" color="#ffffff">{props.headline}</Text>
             <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>

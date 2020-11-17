@@ -91,7 +91,6 @@ export const Styled_Headline = styled.div<Styled_HeadlineProps>`
   align-items: center;
   flex-direction: column;
   text-align: center;
-  padding-top: ${({media}) => (getStyling(media).padding * 2) + 'px'};
 `;
 
 

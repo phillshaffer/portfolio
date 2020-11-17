@@ -74,7 +74,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             <Item>Better Integrate with industry partners to create more platform added value.</Item>
             <Item>Expand platform products and tools beyond the web.</Item>
           </List>
-          <Text font="subtitle">My Role</Text>
+          <Text font="title">My Role</Text>
           <Text font="normal">
             Over the coming months, I would lead in both a product management and product design capacity a series of high profile initiatives to standardize our approach to ad creative, improve ad creative storage and access, and developed the business case and designed the company’s first mobile app.
           </Text>
@@ -87,7 +87,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
           <Text font="normal">
             Thunder Cast is a mobile application that facilitates real time ad design collaboration for today’s top brands. While on the go or in between meetings, brand managers, creative directors, designers and other team collaborators can easily preview and comment on submitted Ad designs. When an ad design is ready for feedback, simply submit an ad for review from Thunder Creative Studio. Whether responding to a notification or leaving feedback, our intuitive user experience enables teams to cycle through each size of the final ad design. With a simple flip, teams can review ad designs across web and social media platforms. With the power of Thunder Cast everyone on the team can participate, enabling today’s marketing teams to finalize ad designs faster than ever.
           </Text>
-          <Text font="normal">
+          <Text font="title">
             User Goals
           </Text>
           <List>
@@ -103,7 +103,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
           <Text font="normal">
             With our initial set of user goals in hand, I led the feature crew to define the set of user tasks required to satisfy our identified goals. Additionally we had a business directive to have a proof of concept designed, coded and deployable to internal stakeholders within two weeks. This shortened timeline meant we had to be very disciplined in defining our core user tasks and subsequent user experience.
           </Text>
-          <Text font="normal">
+          <Text font="title">
             User Tasks
           </Text>
           <List>
@@ -116,7 +116,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             <Item>Ability to be notified of new comments or responses.</Item>
             <Item>Ability to navigate between ad units for a selected ad design.</Item>
           </List>
-          <Text font="normal">
+          <Text font="title">
             Core Workflows and App Navigation
           </Text>
           <Text font="normal">
@@ -145,7 +145,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             It was at this stage in the process where ThunderCast became a valuable tool for those users without access to creative studio or not directly involved in the ad design process. With the push of a button a designer could compile an ad and internal stakeholders or clients could offer feedback. When first signing into the app, it is this list of compiled ads users first see.
           </Text>
 
-          <Text font="normal">
+          <Text font="title">
             Viewing Ad Designs
           </Text>
           <Text font="normal">
@@ -156,7 +156,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             <Image src={AdPreview_300x250} maxWidth={375} />
           </ImageGallery>
 
-          <Text font="normal">
+          <Text font="title">
             Viewing True Render
           </Text>
           <Text font="normal">
@@ -167,7 +167,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             <Image src={AdPreview_300x600_TapZoom} maxWidth={375} />
           </ImageGallery>
 
-          <Text font="normal">
+          <Text font="title">
             Viewing Larger Ad Units
           </Text>
           <Text font="normal">
@@ -178,7 +178,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} />
           </ImageGallery>
 
-          <Text font="normal">
+          <Text font="title">
             Viewing Ad Design Details
           </Text>
           <Text font="normal">
@@ -189,7 +189,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             <Image src={AdPreview_300x600_PinchZoom} maxWidth={375} />
           </ImageGallery>
 
-          <Text font="normal">
+          <Text font="title">
             Viewing Ad Animations
           </Text>
           <Text font="normal">
@@ -202,7 +202,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
             <Image src={AdPreview_300x250} maxWidth={375}/>
           </ImageGallery>
 
-          <Text font="normal">
+          <Text font="title">
             Viewing Multiple Ad Sizes
           </Text>
           <Text font="normal">
