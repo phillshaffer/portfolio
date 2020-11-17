@@ -76,7 +76,7 @@ export const Styled_TopContent = styled.div`
 export const Styled_BottomContent = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   height: 100%;
 `;
 
