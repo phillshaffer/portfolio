@@ -78,7 +78,7 @@ export const Styled_BottomContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 100%;
+  height: 150%;
 `;
 
 interface Styled_HeadlineProps {
