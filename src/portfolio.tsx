@@ -8,6 +8,7 @@ import { mediaContext } from './state'
 
 // pages
 import { Work } from "./pages/work";
+import { UserPropertiesPanel } from './pages/userPropertiesPanel'
 import { ThunderCast } from "./pages/thunderCast";
 import { AccessibilityFirstDesignSystem } from './pages/accessibilityFirstDesignSystem'
 
@@ -109,12 +110,15 @@ export const Portfolio = () => {
       <GlobalStyle />
       <Router>
         <Switch>
+          <Route path="/userPropertiesPanel">
+            {!isLoading ? <UserPropertiesPanel/> : null}
+          </Route>
           <Route path="/thundercast">
             {!isLoading ? <ThunderCast/> : null}
           </Route>
           <Route path="/accessibilityfirstdesignsystem">
             {!isLoading ? <AccessibilityFirstDesignSystem/> : null}
-          </Route>
+          </Route>   
           <Route path={["/", "/work"]}>
             {!isLoading ? <Work/> : null}
           </Route>

@@ -1,12 +1,12 @@
 // libraries
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 
 // helpers
 import { getRelativeSizingInPXs, getStyling } from '../utils/styleHelpers'
 
 // state
+import { useHistory } from 'react-router-dom';
 import { mediaContext } from '../state';
 
 // components

@@ -50,10 +50,12 @@ export const Work = (props: WorkProps) => {
     <React.Fragment>
       <GlobalNav isBack={false}/>
       <Styled_DisplayBoards>
-        <HeroDisplayBoard 
+        <HeroDisplayBoard
+          path="/userPropertiesPanel"  
           backgroundGradient="to bottom right, #7B00E9, #C300F4" 
           headline="Object Properties Panel" 
-          subhealine="Enabling admins to manage multiple identities, mailboxes, and apps for all users, across all environments." />
+          subhealine="Enabling admins to manage multiple identities, mailboxes, and apps for all users, across all environments."
+          buttonText="Case Study" />
         <DisplayBoard 
           path="/thundercast" 
           backgroundGradient="to bottom right, #222222, #333333" 

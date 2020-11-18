@@ -6,12 +6,14 @@ import styled, {css, keyframes} from "styled-components";
 import { getStyling } from '../utils/styleHelpers'
 
 // state
+import { useHistory } from 'react-router-dom';
 import { mediaContext } from '../state';
 
 // components
 import { Styled_DisplayBoard, Styled_Headline, Styled_Content, Styled_TopContent, Styled_BottomContent } from './displayBoard'
 import { Section } from './section'
 import { Text } from './text'
+import { Button } from './button'
 import { HeroImage } from "./HeroImage";
 
 
@@ -130,12 +132,16 @@ export interface HeroDisplayBoardProps {
   backgroundGradient?: string;
   headline: string;
   subhealine: string;
+  buttonText: string;
 };
 
 export const HeroDisplayBoard = (props: HeroDisplayBoardProps) => {
   let media = useContext(mediaContext)
   const [isAnimatable, setIsAnimatable] = useState(false)
   const [scrollPercent, setScrollPercent] = useState(0)
+
+  const history = useHistory();
+  const handleClick = () => history.push(props.path);
 
   useEffect(() => {
     getIsAnimatable(media)
@@ -160,13 +166,14 @@ export const HeroDisplayBoard = (props: HeroDisplayBoardProps) => {
 
   return (
     <Container id="HeroProjectContainer" media={media}>
-      <Styled_HeroDisplayBoard media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent}>
+      <Styled_HeroDisplayBoard media={media} isAnimatable={isAnimatable} backgroundGradient={props.backgroundGradient} scrollPercent={scrollPercent} onClick={handleClick}>
         <Section isPadding={false}>
           <Styled_Content>
             <Styled_TopContent>
               <Styled_HeroHeadline media={media} isAnimatable={isAnimatable}>
                 <Text font="headline" color="#ffffff">{props.headline}</Text>
                 <Text font="subheadline" color="#ffffff">{props.subhealine}</Text>
+                <Button path={props.path}>{props.buttonText}</Button>
               </Styled_HeroHeadline>
             </Styled_TopContent>
             <Styled_BottomContent>
