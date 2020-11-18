@@ -78,7 +78,7 @@ export const ThunderCast = (props: ThunderCastProps) => {
           <Text font="normal">
             Over the coming months, I would lead in both a product management and product design capacity a series of high profile initiatives to standardize our approach to ad creative, improve ad creative storage and access, and developed the business case and designed the company’s first mobile app.
           </Text>
-          <Image src={ElevatorPitch} />
+          <Image src={ElevatorPitch} isPadding={false} />
         </Section>
 
         <Section id="a" backgroundColor="#222222">
