@@ -11,10 +11,6 @@
   "author": "Phill Shaffer",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
-    "latest-version": "^5.1.0",
-    "preact": "^8.2.9",
-    "preact-router": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
