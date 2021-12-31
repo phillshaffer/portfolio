@@ -12,7 +12,7 @@ import ThunderCastBrainstorm from '../images/thunderCast/ThunderCastBrainstorm.p
 const Styled_MainWrapper = styled.main`
   display: flex;
   justify-content: center;
-
+  background-color: red;
 `;
 
 
@@ -21,7 +21,6 @@ interface Styled_MainProps {
 
 const Styled_Main = styled.main<Styled_MainProps>`
   width: 980px;
-  background-color: green;
 `;
 
 interface Styled_ColsProps {
@@ -29,6 +28,7 @@ interface Styled_ColsProps {
 
 export const Styled_Cols = styled.div<Styled_ColsProps>`
   display: flex;
+  background-color: blue;
 `;
 
 interface Styled_ColProps {
@@ -38,8 +38,6 @@ interface Styled_ColProps {
 export const Styled_Col = styled.div<Styled_ColProps>`
   flex-grow: ${props => props.growBy > 1 ? props.growBy : 1 };
   height: 500px;
-  background-color: red;
-  border-color: blue;
   position: relative;
 `;
 
@@ -70,7 +68,7 @@ export const Test = (props: TestProps) => {
       <Styled_MainWrapper>
         <Styled_Main>
           <Styled_Cols>
-            <Styled_Col growBy={6}>
+            <Styled_Col growBy={4}>
             </Styled_Col>
             <Styled_Col>
               <Styled_Image src={ThunderCastBrainstorm} maxWidth={520} />
