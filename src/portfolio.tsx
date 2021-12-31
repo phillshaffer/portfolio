@@ -1,6 +1,6 @@
 // libraries
 import React, { useState, useEffect, useContext } from 'react';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 // state
@@ -11,6 +11,8 @@ import { Work } from "./pages/work";
 import { UserPropertiesPanel } from './pages/userPropertiesPanel'
 import { ThunderCast } from "./pages/thunderCast";
 import { AccessibilityFirstDesignSystem } from './pages/accessibilityFirstDesignSystem'
+import { Test } from "./pages/test";
+
 
 export interface Projects extends Array<Project> {}
 
@@ -99,7 +101,7 @@ export const Portfolio = () => {
     matchedMedia.width = window.innerWidth
     matchedMedia.height = window.innerHeight
 
-    //console.log("portfolio " + JSON.stringify(matchedMedia))
+    console.log("portfolio " + JSON.stringify(matchedMedia))
     setMedia(matchedMedia);
     setIsLoading(false)
     
@@ -118,7 +120,10 @@ export const Portfolio = () => {
           </Route>
           <Route path="/accessibilityfirstdesignsystem">
             {!isLoading ? <AccessibilityFirstDesignSystem/> : null}
-          </Route>   
+          </Route>
+          <Route path="/test">
+            {!isLoading ? <Test/> : null}
+          </Route>  
           <Route path={["/", "/work"]}>
             {!isLoading ? <Work/> : null}
           </Route>
